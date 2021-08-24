@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - unnamed - ckb/db-schema/src/lib.rs</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">ckb/db-schema/src</a> - lib.rs<span style="font-size: 80%;"> (source / <a href="lib.rs.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">unnamed</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          3 : //! The schema include constants define the low level database column families.</span></a>
+<a name="2"><span class="lineNum">       2 </span>            : </a>
+<a name="3"><span class="lineNum">       3 </span>            : /// Column families alias type</a>
+<a name="4"><span class="lineNum">       4 </span>            : pub type Col = &amp;'static str;</a>
+<a name="5"><span class="lineNum">       5 </span>            : /// Total column number</a>
+<a name="6"><span class="lineNum">       6 </span>            : pub const COLUMNS: u32 = 16;</a>
+<a name="7"><span class="lineNum">       7 </span>            : /// Column store chain index</a>
+<a name="8"><span class="lineNum">       8 </span>            : pub const COLUMN_INDEX: Col = &quot;0&quot;;</a>
+<a name="9"><span class="lineNum">       9 </span>            : /// Column store block's header</a>
+<a name="10"><span class="lineNum">      10 </span>            : pub const COLUMN_BLOCK_HEADER: Col = &quot;1&quot;;</a>
+<a name="11"><span class="lineNum">      11 </span>            : /// Column store block's body</a>
+<a name="12"><span class="lineNum">      12 </span>            : pub const COLUMN_BLOCK_BODY: Col = &quot;2&quot;;</a>
+<a name="13"><span class="lineNum">      13 </span>            : /// Column store block's uncle and uncles’ proposal zones</a>
+<a name="14"><span class="lineNum">      14 </span>            : pub const COLUMN_BLOCK_UNCLE: Col = &quot;3&quot;;</a>
+<a name="15"><span class="lineNum">      15 </span>            : /// Column store meta data</a>
+<a name="16"><span class="lineNum">      16 </span>            : pub const COLUMN_META: Col = &quot;4&quot;;</a>
+<a name="17"><span class="lineNum">      17 </span>            : /// Column store transaction extra information</a>
+<a name="18"><span class="lineNum">      18 </span>            : pub const COLUMN_TRANSACTION_INFO: Col = &quot;5&quot;;</a>
+<a name="19"><span class="lineNum">      19 </span>            : /// Column store block extra information</a>
+<a name="20"><span class="lineNum">      20 </span>            : pub const COLUMN_BLOCK_EXT: Col = &quot;6&quot;;</a>
+<a name="21"><span class="lineNum">      21 </span>            : /// Column store block's proposal ids</a>
+<a name="22"><span class="lineNum">      22 </span>            : pub const COLUMN_BLOCK_PROPOSAL_IDS: Col = &quot;7&quot;;</a>
+<a name="23"><span class="lineNum">      23 </span>            : /// Column store indicates track block epoch</a>
+<a name="24"><span class="lineNum">      24 </span>            : pub const COLUMN_BLOCK_EPOCH: Col = &quot;8&quot;;</a>
+<a name="25"><span class="lineNum">      25 </span>            : /// Column store indicates track block epoch</a>
+<a name="26"><span class="lineNum">      26 </span>            : pub const COLUMN_EPOCH: Col = &quot;9&quot;;</a>
+<a name="27"><span class="lineNum">      27 </span>            : /// Column store cell</a>
+<a name="28"><span class="lineNum">      28 </span>            : pub const COLUMN_CELL: Col = &quot;10&quot;;</a>
+<a name="29"><span class="lineNum">      29 </span>            : /// Column store main chain consensus include uncles</a>
+<a name="30"><span class="lineNum">      30 </span>            : ///</a>
+<a name="31"><span class="lineNum">      31 </span>            : /// https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0020-ckb-consensus-protocol/0020-ckb-consensus-protocol.md#specification</a>
+<a name="32"><span class="lineNum">      32 </span>            : pub const COLUMN_UNCLES: Col = &quot;11&quot;;</a>
+<a name="33"><span class="lineNum">      33 </span>            : /// Column store cell data</a>
+<a name="34"><span class="lineNum">      34 </span>            : pub const COLUMN_CELL_DATA: Col = &quot;12&quot;;</a>
+<a name="35"><span class="lineNum">      35 </span>            : /// Column store block number-hash pair</a>
+<a name="36"><span class="lineNum">      36 </span>            : pub const COLUMN_NUMBER_HASH: Col = &quot;13&quot;;</a>
+<a name="37"><span class="lineNum">      37 </span>            : /// Column store cell data hash</a>
+<a name="38"><span class="lineNum">      38 </span>            : pub const COLUMN_CELL_DATA_HASH: Col = &quot;14&quot;;</a>
+<a name="39"><span class="lineNum">      39 </span>            : /// Column store block extension data</a>
+<a name="40"><span class="lineNum">      40 </span>            : pub const COLUMN_BLOCK_EXTENSION: Col = &quot;15&quot;;</a>
+<a name="41"><span class="lineNum">      41 </span>            : </a>
+<a name="42"><span class="lineNum">      42 </span>            : /// META_TIP_HEADER_KEY tracks the latest known best block header</a>
+<a name="43"><span class="lineNum">      43 </span>            : pub const META_TIP_HEADER_KEY: &amp;[u8] = b&quot;TIP_HEADER&quot;;</a>
+<a name="44"><span class="lineNum">      44 </span>            : /// META_CURRENT_EPOCH_KEY tracks the latest known epoch</a>
+<a name="45"><span class="lineNum">      45 </span>            : pub const META_CURRENT_EPOCH_KEY: &amp;[u8] = b&quot;CURRENT_EPOCH&quot;;</a>
+<a name="46"><span class="lineNum">      46 </span>            : </a>
+<a name="47"><span class="lineNum">      47 </span>            : /// CHAIN_SPEC_HASH_KEY tracks the hash of chain spec which created current database</a>
+<a name="48"><span class="lineNum">      48 </span>            : pub const CHAIN_SPEC_HASH_KEY: &amp;[u8] = b&quot;chain-spec-hash&quot;;</a>
+<a name="49"><span class="lineNum">      49 </span>            : /// MIGRATION_VERSION_KEY tracks the current database version.</a>
+<a name="50"><span class="lineNum">      50 </span>            : pub const MIGRATION_VERSION_KEY: &amp;[u8] = b&quot;db-version&quot;;</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

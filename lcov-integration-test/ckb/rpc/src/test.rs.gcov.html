@@ -1,0 +1,814 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov-integration-test.info - ckb/rpc/src/test.rs</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">ckb/rpc/src</a> - test.rs<span style="font-size: 80%;"> (source / <a href="test.rs.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov-integration-test.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">464</td>
+            <td class="headerCovTableEntry">535</td>
+            <td class="headerCovTableEntryMed">86.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">44</td>
+            <td class="headerCovTableEntry">68</td>
+            <td class="headerCovTableEntryLo">64.7 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : use crate::{RpcServer, ServiceBuilder};</a>
+<a name="2"><span class="lineNum">       2 </span>            : use ckb_app_config::{</a>
+<a name="3"><span class="lineNum">       3 </span>            :     BlockAssemblerConfig, NetworkAlertConfig, NetworkConfig, RpcConfig, RpcModule,</a>
+<a name="4"><span class="lineNum">       4 </span>            : };</a>
+<a name="5"><span class="lineNum">       5 </span>            : use ckb_chain::chain::{ChainController, ChainService};</a>
+<a name="6"><span class="lineNum">       6 </span>            : use ckb_chain_spec::consensus::{Consensus, ConsensusBuilder};</a>
+<a name="7"><span class="lineNum">       7 </span>            : use ckb_dao::DaoCalculator;</a>
+<a name="8"><span class="lineNum">       8 </span>            : use ckb_dao_utils::genesis_dao_data;</a>
+<a name="9"><span class="lineNum">       9 </span>            : use ckb_launcher::SharedBuilder;</a>
+<a name="10"><span class="lineNum">      10 </span>            : use ckb_network::{DefaultExitHandler, NetworkService, NetworkState};</a>
+<a name="11"><span class="lineNum">      11 </span>            : use ckb_network_alert::alert_relayer::AlertRelayer;</a>
+<a name="12"><span class="lineNum">      12 </span>            : use ckb_notify::NotifyService;</a>
+<a name="13"><span class="lineNum">      13 </span>            : use ckb_shared::{Shared, Snapshot};</a>
+<a name="14"><span class="lineNum">      14 </span>            : use ckb_store::ChainStore;</a>
+<a name="15"><span class="lineNum">      15 </span>            : use ckb_sync::SyncShared;</a>
+<a name="16"><span class="lineNum">      16 </span>            : use ckb_test_chain_utils::{always_success_cell, always_success_cellbase};</a>
+<a name="17"><span class="lineNum">      17 </span>            : use ckb_types::{</a>
+<a name="18"><span class="lineNum">      18 </span>            :     core::{</a>
+<a name="19"><span class="lineNum">      19 </span>            :         capacity_bytes, cell::resolve_transaction, BlockBuilder, BlockView, Capacity,</a>
+<a name="20"><span class="lineNum">      20 </span>            :         EpochNumberWithFraction, FeeRate, HeaderView, TransactionBuilder, TransactionView,</a>
+<a name="21"><span class="lineNum">      21 </span>            :     },</a>
+<a name="22"><span class="lineNum">      22 </span>            :     h256,</a>
+<a name="23"><span class="lineNum">      23 </span>            :     packed::{AlertBuilder, CellDep, CellInput, CellOutputBuilder, OutPoint, RawAlertBuilder},</a>
+<a name="24"><span class="lineNum">      24 </span>            :     prelude::*,</a>
+<a name="25"><span class="lineNum">      25 </span>            :     H256,</a>
+<a name="26"><span class="lineNum">      26 </span>            : };</a>
+<a name="27"><span class="lineNum">      27 </span>            : use pretty_assertions::assert_eq as pretty_assert_eq;</a>
+<a name="28"><span class="lineNum">      28 </span>            : use serde::{de::DeserializeOwned, Deserialize, Serialize};</a>
+<a name="29"><span class="lineNum">      29 </span>            : use serde_json::{json, Value};</a>
+<a name="30"><span class="lineNum">      30 </span>            : use std::collections::HashSet;</a>
+<a name="31"><span class="lineNum">      31 </span>            : use std::fmt;</a>
+<a name="32"><span class="lineNum">      32 </span>            : use std::fs::{read_dir, File};</a>
+<a name="33"><span class="lineNum">      33 </span>            : use std::hash;</a>
+<a name="34"><span class="lineNum">      34 </span>            : use std::io::{self, BufRead};</a>
+<a name="35"><span class="lineNum">      35 </span>            : use std::path::PathBuf;</a>
+<a name="36"><span class="lineNum">      36 </span>            : use std::sync::Arc;</a>
+<a name="37"><span class="lineNum">      37 </span>            : </a>
+<a name="38"><span class="lineNum">      38 </span>            : const GENESIS_TIMESTAMP: u64 = 1_557_310_743;</a>
+<a name="39"><span class="lineNum">      39 </span>            : const GENESIS_TARGET: u32 = 0x2001_0000;</a>
+<a name="40"><span class="lineNum">      40 </span>            : const EPOCH_REWARD: u64 = 125_000_000_000_000;</a>
+<a name="41"><span class="lineNum">      41 </span>            : const CELLBASE_MATURITY: u64 = 0;</a>
+<a name="42"><span class="lineNum">      42 </span>            : const ALERT_UNTIL_TIMESTAMP: u64 = 2_524_579_200;</a>
+<a name="43"><span class="lineNum">      43 </span>            : const TARGET_HEIGHT: u64 = 1024;</a>
+<a name="44"><span class="lineNum">      44 </span>            : const EXAMPLE_TX_PARENT: H256 =</a>
+<a name="45"><span class="lineNum">      45 </span>            :     h256!(&quot;0x365698b50ca0da75dca2c87f9e7b563811d3b5813736b8cc62cc3b106faceb17&quot;);</a>
+<a name="46"><span class="lineNum">      46 </span>            : const EXAMPLE_TX_HASH: H256 =</a>
+<a name="47"><span class="lineNum">      47 </span>            :     h256!(&quot;0xa0ef4eb5f4ceeb08a4c8524d84c5da95dce2f608e0ca2ec8091191b0f330c6e3&quot;);</a>
+<a name="48"><span class="lineNum">      48 </span>            : </a>
+<a name="49"><span class="lineNum">      49 </span>            : // Construct `Consensus` with an always-success cell</a>
+<a name="50"><span class="lineNum">      50 </span>            : //</a>
+<a name="51"><span class="lineNum">      51 </span>            : // It is similar to `util::test-chain-utils::always_success_consensus`, but with hard-code</a>
+<a name="52"><span class="lineNum">      52 </span>            : // genesis timestamp.</a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">          5 : fn always_success_consensus() -&gt; Consensus {</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">          5 :     let always_success_tx = always_success_transaction();</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          5 :     let dao = genesis_dao_data(vec![&amp;always_success_tx]).unwrap();</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          5 :     let genesis = BlockBuilder::default()</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          5 :         .timestamp(GENESIS_TIMESTAMP.pack())</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          5 :         .compact_target(GENESIS_TARGET.pack())</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          5 :         .epoch(EpochNumberWithFraction::new_unchecked(0, 0, 0).pack())</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          5 :         .dao(dao)</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          5 :         .transaction(always_success_tx)</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          5 :         .build();</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          5 :     ConsensusBuilder::default()</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          5 :         .genesis_block(genesis)</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          5 :         .initial_primary_epoch_reward(Capacity::shannons(EPOCH_REWARD))</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">          5 :         .cellbase_maturity(EpochNumberWithFraction::from_full_value(CELLBASE_MATURITY))</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">          5 :         .build()</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">          5 : }</span></a>
+<a name="69"><span class="lineNum">      69 </span>            : </a>
+<a name="70"><span class="lineNum">      70 </span>            : // Construct `Transaction` with an always-success cell</a>
+<a name="71"><span class="lineNum">      71 </span>            : //</a>
+<a name="72"><span class="lineNum">      72 </span>            : // The 1st transaction in genesis block, which contains an always_success_cell as the 1st output</a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">          8 : fn always_success_transaction() -&gt; TransactionView {</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">          8 :     let (always_success_cell, always_success_cell_data, always_success_script) =</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">          8 :         always_success_cell();</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">          8 :     TransactionBuilder::default()</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">          8 :         .input(CellInput::new(OutPoint::null(), 0))</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">          8 :         .output(always_success_cell.clone())</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">          8 :         .output_data(always_success_cell_data.to_owned().pack())</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          8 :         .witness(always_success_script.clone().into_witness())</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          8 :         .build()</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          8 : }</span></a>
+<a name="83"><span class="lineNum">      83 </span>            : </a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          3 : fn construct_example_transaction() -&gt; TransactionView {</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          3 :     let previous_output = OutPoint::new(EXAMPLE_TX_PARENT.clone().pack(), 0);</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">          3 :     let input = CellInput::new(previous_output, 0);</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">          3 :     let output = CellOutputBuilder::default()</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          3 :         .capacity(capacity_bytes!(100).pack())</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          3 :         .lock(always_success_cell().2.clone())</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          3 :         .build();</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">          3 :     let cell_dep = CellDep::new_builder()</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">          3 :         .out_point(OutPoint::new(always_success_transaction().hash(), 0))</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">          3 :         .build();</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">          3 :     TransactionBuilder::default()</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">          3 :         .input(input)</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">          3 :         .output(output)</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          3 :         .output_data(Default::default())</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">          3 :         .cell_dep(cell_dep)</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">          3 :         .header_dep(always_success_consensus().genesis_hash())</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">          3 :         .build()</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">          3 : }</span></a>
+<a name="102"><span class="lineNum">     102 </span>            : </a>
+<a name="103"><span class="lineNum">     103 </span>            : // Construct the next block based the given `parent`</a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">       1024 : fn next_block(shared: &amp;Shared, parent: &amp;HeaderView) -&gt; BlockView {</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">       1024 :     let snapshot: &amp;Snapshot = &amp;shared.snapshot();</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">       1024 :     let epoch = shared</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">       1024 :         .consensus()</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">       1024 :         .next_epoch_ext(parent, &amp;snapshot.as_data_provider())</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">       1024 :         .unwrap()</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">       1024 :         .epoch();</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">       1024 :     let (_, reward) = snapshot.finalize_block_reward(parent).unwrap();</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">       1024 :     let cellbase = always_success_cellbase(parent.number() + 1, reward.total, shared.consensus());</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">       1024 : </span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">       1024 :     let dao = {</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">       1024 :         let resolved_cellbase =</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">       1024 :             resolve_transaction(cellbase.clone(), &amp;mut HashSet::new(), snapshot, snapshot).unwrap();</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">       1024 :         let data_loader = shared.store().as_data_provider();</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">       1024 :         DaoCalculator::new(shared.consensus(), &amp;data_loader)</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">       1024 :             .dao_field(&amp;[resolved_cellbase], parent)</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">       1024 :             .unwrap()</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">       1024 :     };</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">       1024 :     BlockBuilder::default()</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">       1024 :         .transaction(cellbase)</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">       1024 :         .parent_hash(parent.hash())</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">       1024 :         .number((parent.number() + 1).pack())</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">       1024 :         .epoch(epoch.number_with_fraction(parent.number() + 1).pack())</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">       1024 :         .timestamp((parent.timestamp() + 1).pack())</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">       1024 :         .compact_target(epoch.compact_target().pack())</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineCov">       1024 :         .dao(dao)</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">       1024 :         .build()</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">       1024 : }</span></a>
+<a name="132"><span class="lineNum">     132 </span>            : </a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">          1 : fn json_bytes(hex: &amp;str) -&gt; ckb_jsonrpc_types::JsonBytes {</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">          1 :     serde_json::from_value(json!(hex)).expect(&quot;JsonBytes&quot;)</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">          1 : }</span></a>
+<a name="136"><span class="lineNum">     136 </span>            : </a>
+<a name="137"><span class="lineNum">     137 </span>            : // Setup the running environment</a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">          1 : fn setup_rpc_test_suite(height: u64) -&gt; RpcTestSuite {</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">          1 :     let (shared, mut pack) = SharedBuilder::with_temp_db()</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">          1 :         .consensus(always_success_consensus())</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">          1 :         .block_assembler_config(Some(BlockAssemblerConfig {</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">          1 :             code_hash: h256!(&quot;0x1892ea40d82b53c678ff88312450bbb17e164d7a3e0a90941aa58839f56f8df2&quot;),</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">          1 :             hash_type: ckb_jsonrpc_types::ScriptHashType::Type,</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">          1 :             args: json_bytes(&quot;0xb2e61ff569acf041b3c2c17724e2379c581eeac3&quot;),</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">          1 :             message: &quot;message&quot;.pack().into(),</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">          1 :             use_binary_version_as_message_prefix: true,</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">          1 :             binary_version: &quot;TEST&quot;.to_string(),</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">          1 :         }))</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">          1 :         .build()</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineCov">          1 :         .unwrap();</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">          1 :     let chain_controller =</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">          1 :         ChainService::new(shared.clone(), pack.take_proposal_table()).start::&lt;&amp;str&gt;(None);</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">          1 : </span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">          1 :     // Start network services</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">          1 :     let dir = tempfile::tempdir()</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">          1 :         .expect(&quot;create tempdir failed&quot;)</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">          1 :         .path()</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">          1 :         .to_path_buf();</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">          1 :     let network_controller = {</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">          1 :         let network_config = NetworkConfig {</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">          1 :             path: dir,</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">          1 :             ping_interval_secs: 1,</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">          1 :             ping_timeout_secs: 1,</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">          1 :             connect_outbound_interval_secs: 1,</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">          1 :             ..Default::default()</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">          1 :         };</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">          1 :         let network_state =</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">          1 :             Arc::new(NetworkState::from_config(network_config).expect(&quot;Init network state failed&quot;));</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">          1 :         NetworkService::new(</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">          1 :             Arc::clone(&amp;network_state),</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">          1 :             Vec::new(),</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">          1 :             Vec::new(),</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">          1 :             shared.consensus().identify_name(),</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          1 :             &quot;0.1.0&quot;.to_string(),</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">          1 :             DefaultExitHandler::default(),</span></a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineCov">          1 :         )</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">          1 :         .start(shared.async_handle())</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">          1 :         .expect(&quot;Start network service failed&quot;)</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">          1 :     };</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">          1 : </span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">          1 :     pack.take_tx_pool_builder()</span></a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">          1 :         .start(network_controller.clone());</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">          1 : </span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineCov">          1 :     // Build chain, insert [1, height) blocks</span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">          1 :     let mut parent = always_success_consensus().genesis_block;</span></a>
+<a name="186"><span class="lineNum">     186 </span>            : </a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">       1024 :     for _ in 0..height {</span></a>
+<a name="188"><span class="lineNum">     188 </span><span class="lineCov">       1024 :         let block = next_block(&amp;shared, &amp;parent.header());</span></a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineCov">       1024 :         chain_controller</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">       1024 :             .process_block(Arc::new(block.clone()))</span></a>
+<a name="191"><span class="lineNum">     191 </span><span class="lineCov">       1024 :             .expect(&quot;processing new block should be ok&quot;);</span></a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineCov">       1024 :         parent = block;</span></a>
+<a name="193"><span class="lineNum">     193 </span><span class="lineCov">       1024 :     }</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineCov">          1 :     assert_eq!(</span></a>
+<a name="195"><span class="lineNum">     195 </span><span class="lineCov">          1 :         EXAMPLE_TX_PARENT,</span></a>
+<a name="196"><span class="lineNum">     196 </span><span class="lineCov">          1 :         parent.tx_hashes()[0].unpack(),</span></a>
+<a name="197"><span class="lineNum">     197 </span><span class="lineNoCov">          0 :         &quot;Expect the last cellbase tx hash matches the constant, which is used later in an example tx.&quot;</span></a>
+<a name="198"><span class="lineNum">     198 </span>            :     );</a>
+<a name="199"><span class="lineNum">     199 </span>            : </a>
+<a name="200"><span class="lineNum">     200 </span>            :     // insert a fork block for rpc `get_fork_block` test</a>
+<a name="201"><span class="lineNum">     201 </span><span class="lineCov">          1 :     {</span></a>
+<a name="202"><span class="lineNum">     202 </span><span class="lineCov">          1 :         let fork_block = parent</span></a>
+<a name="203"><span class="lineNum">     203 </span><span class="lineCov">          1 :             .as_advanced_builder()</span></a>
+<a name="204"><span class="lineNum">     204 </span><span class="lineCov">          1 :             .header(</span></a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">          1 :                 parent</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">          1 :                     .header()</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">          1 :                     .as_advanced_builder()</span></a>
+<a name="208"><span class="lineNum">     208 </span><span class="lineCov">          1 :                     .timestamp((parent.header().timestamp() + 1).pack())</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">          1 :                     .build(),</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">          1 :             )</span></a>
+<a name="211"><span class="lineNum">     211 </span><span class="lineCov">          1 :             .build();</span></a>
+<a name="212"><span class="lineNum">     212 </span><span class="lineCov">          1 :         chain_controller</span></a>
+<a name="213"><span class="lineNum">     213 </span><span class="lineCov">          1 :             .process_block(Arc::new(fork_block))</span></a>
+<a name="214"><span class="lineNum">     214 </span><span class="lineCov">          1 :             .expect(&quot;processing new block should be ok&quot;);</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineCov">          1 :     }</span></a>
+<a name="216"><span class="lineNum">     216 </span><span class="lineCov">          1 : </span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineCov">          1 :     let sync_shared = Arc::new(SyncShared::new(</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">          1 :         shared.clone(),</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">          1 :         Default::default(),</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">          1 :         pack.take_relay_tx_receiver(),</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">          1 :     ));</span></a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">          1 : </span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">          1 :     let notify_controller = NotifyService::new(Default::default()).start(Some(&quot;test&quot;));</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">          1 :     let (alert_notifier, alert_verifier) = {</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">          1 :         let alert_relayer = AlertRelayer::new(</span></a>
+<a name="226"><span class="lineNum">     226 </span><span class="lineCov">          1 :             &quot;0.1.0&quot;.to_string(),</span></a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">          1 :             notify_controller,</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineCov">          1 :             NetworkAlertConfig::default(),</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">          1 :         );</span></a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineCov">          1 :         let alert_notifier = alert_relayer.notifier();</span></a>
+<a name="231"><span class="lineNum">     231 </span><span class="lineCov">          1 :         let alert = AlertBuilder::default()</span></a>
+<a name="232"><span class="lineNum">     232 </span><span class="lineCov">          1 :             .raw(</span></a>
+<a name="233"><span class="lineNum">     233 </span><span class="lineCov">          1 :                 RawAlertBuilder::default()</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineCov">          1 :                     .id(42u32.pack())</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">          1 :                     .min_version(Some(&quot;0.0.1&quot;.to_string()).pack())</span></a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">          1 :                     .max_version(Some(&quot;1.0.0&quot;.to_string()).pack())</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">          1 :                     .priority(1u32.pack())</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">          1 :                     .notice_until((ALERT_UNTIL_TIMESTAMP * 1000).pack())</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">          1 :                     .message(&quot;An example alert message!&quot;.pack())</span></a>
+<a name="240"><span class="lineNum">     240 </span><span class="lineCov">          1 :                     .build(),</span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">          1 :             )</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">          1 :             .build();</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">          1 :         alert_notifier.lock().add(&amp;alert);</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineCov">          1 :         (</span></a>
+<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          1 :             Arc::clone(alert_notifier),</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          1 :             Arc::clone(alert_relayer.verifier()),</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">          1 :         )</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">          1 :     };</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineCov">          1 : </span></a>
+<a name="250"><span class="lineNum">     250 </span><span class="lineCov">          1 :     // Start rpc services</span></a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineCov">          1 :     let rpc_config = RpcConfig {</span></a>
+<a name="252"><span class="lineNum">     252 </span><span class="lineCov">          1 :         listen_address: &quot;127.0.0.01:0&quot;.to_owned(),</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineCov">          1 :         tcp_listen_address: None,</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">          1 :         ws_listen_address: None,</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineCov">          1 :         max_request_body_size: 20_000_000,</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineCov">          1 :         threads: None,</span></a>
+<a name="257"><span class="lineNum">     257 </span><span class="lineCov">          1 :         // enable all rpc modules in unit test</span></a>
+<a name="258"><span class="lineNum">     258 </span><span class="lineCov">          1 :         modules: vec![</span></a>
+<a name="259"><span class="lineNum">     259 </span><span class="lineCov">          1 :             RpcModule::Net,</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">          1 :             RpcModule::Chain,</span></a>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :             RpcModule::Miner,</span></a>
+<a name="262"><span class="lineNum">     262 </span><span class="lineCov">          1 :             RpcModule::Pool,</span></a>
+<a name="263"><span class="lineNum">     263 </span><span class="lineCov">          1 :             RpcModule::Experiment,</span></a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">          1 :             RpcModule::Stats,</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">          1 :             RpcModule::IntegrationTest,</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">          1 :             RpcModule::Alert,</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">          1 :             RpcModule::Subscription,</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">          1 :             RpcModule::Debug,</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">          1 :         ],</span></a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">          1 :         reject_ill_transactions: true,</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">          1 :         // enable deprecated rpc in unit test</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          1 :         enable_deprecated_rpc: true,</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">          1 :         extra_well_known_lock_scripts: vec![],</span></a>
+<a name="274"><span class="lineNum">     274 </span><span class="lineCov">          1 :         extra_well_known_type_scripts: vec![],</span></a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">          1 :     };</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">          1 : </span></a>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">          1 :     let builder = ServiceBuilder::new(&amp;rpc_config)</span></a>
+<a name="278"><span class="lineNum">     278 </span><span class="lineCov">          1 :         .enable_chain(shared.clone())</span></a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineCov">          1 :         .enable_pool(shared.clone(), FeeRate::zero(), true, vec![], vec![])</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">          1 :         .enable_miner(</span></a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">          1 :             shared.clone(),</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">          1 :             network_controller.clone(),</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">          1 :             chain_controller.clone(),</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">          1 :             true,</span></a>
+<a name="285"><span class="lineNum">     285 </span><span class="lineCov">          1 :         )</span></a>
+<a name="286"><span class="lineNum">     286 </span><span class="lineCov">          1 :         .enable_net(network_controller.clone(), sync_shared)</span></a>
+<a name="287"><span class="lineNum">     287 </span><span class="lineCov">          1 :         .enable_stats(shared.clone(), Arc::clone(&amp;alert_notifier))</span></a>
+<a name="288"><span class="lineNum">     288 </span><span class="lineCov">          1 :         .enable_experiment(shared.clone())</span></a>
+<a name="289"><span class="lineNum">     289 </span><span class="lineCov">          1 :         .enable_integration_test(</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">          1 :             shared.clone(),</span></a>
+<a name="291"><span class="lineNum">     291 </span><span class="lineCov">          1 :             network_controller.clone(),</span></a>
+<a name="292"><span class="lineNum">     292 </span><span class="lineCov">          1 :             chain_controller.clone(),</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">          1 :         )</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">          1 :         .enable_debug()</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">          1 :         .enable_alert(alert_verifier, alert_notifier, network_controller);</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">          1 :     let io_handler = builder.build();</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">          1 : </span></a>
+<a name="298"><span class="lineNum">     298 </span><span class="lineCov">          1 :     let rpc_server = RpcServer::new(rpc_config, io_handler, shared.notify_controller());</span></a>
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">          1 :     let rpc_uri = format!(</span></a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">          1 :         &quot;http://{}:{}/&quot;,</span></a>
+<a name="301"><span class="lineNum">     301 </span><span class="lineCov">          1 :         rpc_server.http_address().ip(),</span></a>
+<a name="302"><span class="lineNum">     302 </span><span class="lineCov">          1 :         rpc_server.http_address().port()</span></a>
+<a name="303"><span class="lineNum">     303 </span><span class="lineCov">          1 :     );</span></a>
+<a name="304"><span class="lineNum">     304 </span><span class="lineCov">          1 :     let rpc_client = reqwest::blocking::Client::new();</span></a>
+<a name="305"><span class="lineNum">     305 </span><span class="lineCov">          1 : </span></a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">          1 :     let suite = RpcTestSuite {</span></a>
+<a name="307"><span class="lineNum">     307 </span><span class="lineCov">          1 :         shared,</span></a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">          1 :         chain_controller,</span></a>
+<a name="309"><span class="lineNum">     309 </span><span class="lineCov">          1 :         rpc_server,</span></a>
+<a name="310"><span class="lineNum">     310 </span><span class="lineCov">          1 :         rpc_uri,</span></a>
+<a name="311"><span class="lineNum">     311 </span><span class="lineCov">          1 :         rpc_client,</span></a>
+<a name="312"><span class="lineNum">     312 </span><span class="lineCov">          1 :     };</span></a>
+<a name="313"><span class="lineNum">     313 </span><span class="lineCov">          1 : </span></a>
+<a name="314"><span class="lineNum">     314 </span><span class="lineCov">          1 :     suite.send_example_transaction();</span></a>
+<a name="315"><span class="lineNum">     315 </span><span class="lineCov">          1 : </span></a>
+<a name="316"><span class="lineNum">     316 </span><span class="lineCov">          1 :     suite</span></a>
+<a name="317"><span class="lineNum">     317 </span><span class="lineCov">          1 : }</span></a>
+<a name="318"><span class="lineNum">     318 </span>            : </a>
+<a name="319"><span class="lineNum">     319 </span><span class="lineCov">       4459 : fn find_comment(line: &amp;str) -&gt; Option&lt;&amp;str&gt; {</span></a>
+<a name="320"><span class="lineNum">     320 </span><span class="lineCov">       4459 :     let line = line.trim();</span></a>
+<a name="321"><span class="lineNum">     321 </span><span class="lineCov">       4459 :     if line.starts_with(&quot;///&quot;) || line.starts_with(&quot;//!&quot;) {</span></a>
+<a name="322"><span class="lineNum">     322 </span><span class="lineCov">       2358 :         Some(line[3..].trim())</span></a>
+<a name="323"><span class="lineNum">     323 </span>            :     } else {</a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">       2101 :         None</span></a>
+<a name="325"><span class="lineNum">     325 </span>            :     }</a>
+<a name="326"><span class="lineNum">     326 </span><span class="lineCov">       4459 : }</span></a>
+<a name="327"><span class="lineNum">     327 </span>            : </a>
+<a name="328"><span class="lineNum">     328 </span><span class="lineCov">       2101 : fn find_rpc_method(line: &amp;str) -&gt; Option&lt;&amp;str&gt; {</span></a>
+<a name="329"><span class="lineNum">     329 </span><span class="lineCov">       2101 :     let line = line.trim();</span></a>
+<a name="330"><span class="lineNum">     330 </span><span class="lineCov">       2101 :     if line.starts_with(&quot;#[&quot;)</span></a>
+<a name="331"><span class="lineNum">     331 </span><span class="lineCov">         55 :         &amp;&amp; line.contains(&quot;rpc&quot;)</span></a>
+<a name="332"><span class="lineNum">     332 </span><span class="lineCov">         46 :         &amp;&amp; line.contains(&quot;name&quot;)</span></a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineCov">         38 :         &amp;&amp; !line.contains(&quot;noexample&quot;)</span></a>
+<a name="334"><span class="lineNum">     334 </span>            :     {</a>
+<a name="335"><span class="lineNum">     335 </span><span class="lineCov">         38 :         for w in line.split('=').collect::&lt;Vec&lt;_&gt;&gt;().windows(2) {</span></a>
+<a name="336"><span class="lineNum">     336 </span><span class="lineCov">         38 :             if w[0].trim().ends_with(&quot;name&quot;) &amp;&amp; w[1].trim().starts_with('&quot;') {</span></a>
+<a name="337"><span class="lineNum">     337 </span><span class="lineCov">         38 :                 let name = w[1].split('&quot;').collect::&lt;Vec&lt;_&gt;&gt;()[1];</span></a>
+<a name="338"><span class="lineNum">     338 </span><span class="lineCov">         38 :                 if let Some(n) = name.strip_prefix(&quot;deprecated.&quot;) {</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineNoCov">          0 :                     return Some(n);</span></a>
+<a name="340"><span class="lineNum">     340 </span>            :                 } else {</a>
+<a name="341"><span class="lineNum">     341 </span><span class="lineCov">         38 :                     return Some(name);</span></a>
+<a name="342"><span class="lineNum">     342 </span>            :                 }</a>
+<a name="343"><span class="lineNum">     343 </span><span class="lineNoCov">          0 :             }</span></a>
+<a name="344"><span class="lineNum">     344 </span>            :         }</a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineNoCov">          0 :         panic!(&quot;Fail to parse the RPC method name from line: {}&quot;, line);</span></a>
+<a name="346"><span class="lineNum">     346 </span>            :     } else {</a>
+<a name="347"><span class="lineNum">     347 </span><span class="lineCov">       2063 :         None</span></a>
+<a name="348"><span class="lineNum">     348 </span>            :     }</a>
+<a name="349"><span class="lineNum">     349 </span><span class="lineCov">       2101 : }</span></a>
+<a name="350"><span class="lineNum">     350 </span>            : </a>
+<a name="351"><span class="lineNum">     351 </span><span class="lineCov">         80 : fn collect_code_block(</span></a>
+<a name="352"><span class="lineNum">     352 </span><span class="lineCov">         80 :     collected: &amp;mut HashSet&lt;RpcTestExample&gt;,</span></a>
+<a name="353"><span class="lineNum">     353 </span><span class="lineCov">         80 :     request: &amp;mut Option&lt;RpcTestRequest&gt;,</span></a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineCov">         80 :     code_block: String,</span></a>
+<a name="355"><span class="lineNum">     355 </span><span class="lineCov">         80 : ) -&gt; io::Result&lt;()&gt; {</span></a>
+<a name="356"><span class="lineNum">     356 </span><span class="lineCov">         80 :     if code_block.contains(&quot;\&quot;method\&quot;:&quot;) {</span></a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineCov">         40 :         if let Some(ref request) = request {</span></a>
+<a name="358"><span class="lineNum">     358 </span><span class="lineNoCov">          0 :             return Err(io::Error::new(</span></a>
+<a name="359"><span class="lineNum">     359 </span><span class="lineNoCov">          0 :                 io::ErrorKind::Other,</span></a>
+<a name="360"><span class="lineNum">     360 </span><span class="lineNoCov">          0 :                 format!(</span></a>
+<a name="361"><span class="lineNum">     361 </span><span class="lineNoCov">          0 :                     &quot;Unexpected request. The request {} has no matched response yet.&quot;,</span></a>
+<a name="362"><span class="lineNum">     362 </span><span class="lineNoCov">          0 :                     request</span></a>
+<a name="363"><span class="lineNum">     363 </span><span class="lineNoCov">          0 :                 ),</span></a>
+<a name="364"><span class="lineNum">     364 </span><span class="lineNoCov">          0 :             ));</span></a>
+<a name="365"><span class="lineNum">     365 </span><span class="lineCov">         40 :         }</span></a>
+<a name="366"><span class="lineNum">     366 </span>            : </a>
+<a name="367"><span class="lineNum">     367 </span><span class="lineCov">         40 :         let new_request: RpcTestRequest = serde_json::from_str(&amp;code_block).map_err(|e| {</span></a>
+<a name="368"><span class="lineNum">     368 </span><span class="lineNoCov">          0 :             io::Error::new(</span></a>
+<a name="369"><span class="lineNum">     369 </span><span class="lineNoCov">          0 :                 io::ErrorKind::Other,</span></a>
+<a name="370"><span class="lineNum">     370 </span><span class="lineNoCov">          0 :                 format!(&quot;Invalid JSONRPC Request: {}\n{}&quot;, e, code_block),</span></a>
+<a name="371"><span class="lineNum">     371 </span><span class="lineNoCov">          0 :             )</span></a>
+<a name="372"><span class="lineNum">     372 </span><span class="lineCov">         40 :         })?;</span></a>
+<a name="373"><span class="lineNum">     373 </span><span class="lineCov">         40 :         *request = Some(new_request);</span></a>
+<a name="374"><span class="lineNum">     374 </span>            :     } else {</a>
+<a name="375"><span class="lineNum">     375 </span><span class="lineCov">         40 :         let response: RpcTestResponse = serde_json::from_str(&amp;code_block).map_err(|e| {</span></a>
+<a name="376"><span class="lineNum">     376 </span><span class="lineNoCov">          0 :             io::Error::new(</span></a>
+<a name="377"><span class="lineNum">     377 </span><span class="lineNoCov">          0 :                 io::ErrorKind::Other,</span></a>
+<a name="378"><span class="lineNum">     378 </span><span class="lineNoCov">          0 :                 format!(&quot;Invalid JSONRPC Response: {}\n{}&quot;, e, code_block),</span></a>
+<a name="379"><span class="lineNum">     379 </span><span class="lineNoCov">          0 :             )</span></a>
+<a name="380"><span class="lineNum">     380 </span><span class="lineCov">         40 :         })?;</span></a>
+<a name="381"><span class="lineNum">     381 </span><span class="lineCov">         40 :         if let Some(request) = request.take() {</span></a>
+<a name="382"><span class="lineNum">     382 </span><span class="lineCov">         40 :             if request.id != response.id {</span></a>
+<a name="383"><span class="lineNum">     383 </span><span class="lineNoCov">          0 :                 return Err(io::Error::new(</span></a>
+<a name="384"><span class="lineNum">     384 </span><span class="lineNoCov">          0 :                     io::ErrorKind::Other,</span></a>
+<a name="385"><span class="lineNum">     385 </span><span class="lineNoCov">          0 :                     &quot;Unmatched response id&quot;,</span></a>
+<a name="386"><span class="lineNum">     386 </span><span class="lineNoCov">          0 :                 ));</span></a>
+<a name="387"><span class="lineNum">     387 </span><span class="lineCov">         40 :             }</span></a>
+<a name="388"><span class="lineNum">     388 </span><span class="lineCov">         40 :             let request_display = format!(&quot;{}&quot;, request);</span></a>
+<a name="389"><span class="lineNum">     389 </span><span class="lineCov">         40 :             if !collected.insert(RpcTestExample { request, response }) {</span></a>
+<a name="390"><span class="lineNum">     390 </span><span class="lineNoCov">          0 :                 return Err(io::Error::new(</span></a>
+<a name="391"><span class="lineNum">     391 </span><span class="lineNoCov">          0 :                     io::ErrorKind::Other,</span></a>
+<a name="392"><span class="lineNum">     392 </span><span class="lineNoCov">          0 :                     format!(&quot;Duplicate example {}&quot;, request_display),</span></a>
+<a name="393"><span class="lineNum">     393 </span><span class="lineNoCov">          0 :                 ));</span></a>
+<a name="394"><span class="lineNum">     394 </span><span class="lineCov">         40 :             }</span></a>
+<a name="395"><span class="lineNum">     395 </span>            :         } else {</a>
+<a name="396"><span class="lineNum">     396 </span><span class="lineNoCov">          0 :             return Err(io::Error::new(io::ErrorKind::Other, &quot;Unexpected response&quot;));</span></a>
+<a name="397"><span class="lineNum">     397 </span>            :         }</a>
+<a name="398"><span class="lineNum">     398 </span>            :     }</a>
+<a name="399"><span class="lineNum">     399 </span>            : </a>
+<a name="400"><span class="lineNum">     400 </span><span class="lineCov">         80 :     Ok(())</span></a>
+<a name="401"><span class="lineNum">     401 </span><span class="lineCov">         80 : }</span></a>
+<a name="402"><span class="lineNum">     402 </span>            : </a>
+<a name="403"><span class="lineNum">     403 </span><span class="lineCov">          8 : fn collect_rpc_examples_in_file(</span></a>
+<a name="404"><span class="lineNum">     404 </span><span class="lineCov">          8 :     collected: &amp;mut HashSet&lt;RpcTestExample&gt;,</span></a>
+<a name="405"><span class="lineNum">     405 </span><span class="lineCov">          8 :     path: PathBuf,</span></a>
+<a name="406"><span class="lineNum">     406 </span><span class="lineCov">          8 : ) -&gt; io::Result&lt;()&gt; {</span></a>
+<a name="407"><span class="lineNum">     407 </span><span class="lineCov">          8 :     let reader = io::BufReader::new(File::open(&amp;path)?);</span></a>
+<a name="408"><span class="lineNum">     408 </span>            : </a>
+<a name="409"><span class="lineNum">     409 </span><span class="lineCov">          8 :     let mut collecting = Vec::new();</span></a>
+<a name="410"><span class="lineNum">     410 </span><span class="lineCov">          8 :     let mut request: Option&lt;RpcTestRequest&gt; = None;</span></a>
+<a name="411"><span class="lineNum">     411 </span>            : </a>
+<a name="412"><span class="lineNum">     412 </span><span class="lineCov">       4459 :     for (lineno, line) in reader.lines().enumerate() {</span></a>
+<a name="413"><span class="lineNum">     413 </span><span class="lineCov">       4459 :         let line = line?;</span></a>
+<a name="414"><span class="lineNum">     414 </span><span class="lineCov">       4459 :         if let Some(comment) = find_comment(&amp;line) {</span></a>
+<a name="415"><span class="lineNum">     415 </span><span class="lineCov">       2358 :             if comment == &quot;```json&quot; {</span></a>
+<a name="416"><span class="lineNum">     416 </span><span class="lineCov">         81 :                 if !collecting.is_empty() {</span></a>
+<a name="417"><span class="lineNum">     417 </span><span class="lineNoCov">          0 :                     return Err(io::Error::new(</span></a>
+<a name="418"><span class="lineNum">     418 </span><span class="lineNoCov">          0 :                         io::ErrorKind::Other,</span></a>
+<a name="419"><span class="lineNum">     419 </span><span class="lineNoCov">          0 :                         format!(&quot;{}:{}: Unexpected code block start&quot;, path.display(), lineno),</span></a>
+<a name="420"><span class="lineNum">     420 </span><span class="lineNoCov">          0 :                     ));</span></a>
+<a name="421"><span class="lineNum">     421 </span><span class="lineCov">         81 :                 }</span></a>
+<a name="422"><span class="lineNum">     422 </span><span class="lineCov">         81 :                 collecting.push(&quot;&quot;.to_string());</span></a>
+<a name="423"><span class="lineNum">     423 </span><span class="lineCov">       2277 :             } else if comment == &quot;```&quot; {</span></a>
+<a name="424"><span class="lineNum">     424 </span><span class="lineCov">         91 :                 let code_block = collecting.join(&quot;\n&quot;);</span></a>
+<a name="425"><span class="lineNum">     425 </span><span class="lineCov">         91 :                 if code_block.contains(&quot;\&quot;jsonrpc\&quot;:&quot;) {</span></a>
+<a name="426"><span class="lineNum">     426 </span><span class="lineCov">         80 :                     collect_code_block(collected, &amp;mut request, code_block).map_err(|e| {</span></a>
+<a name="427"><span class="lineNum">     427 </span><span class="lineNoCov">          0 :                         io::Error::new(</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineNoCov">          0 :                             io::ErrorKind::Other,</span></a>
+<a name="429"><span class="lineNum">     429 </span><span class="lineNoCov">          0 :                             format!(&quot;{}:{}: {}&quot;, path.display(), lineno, e),</span></a>
+<a name="430"><span class="lineNum">     430 </span><span class="lineNoCov">          0 :                         )</span></a>
+<a name="431"><span class="lineNum">     431 </span><span class="lineCov">         80 :                     })?;</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineCov">         11 :                 }</span></a>
+<a name="433"><span class="lineNum">     433 </span><span class="lineCov">         91 :                 collecting.clear();</span></a>
+<a name="434"><span class="lineNum">     434 </span><span class="lineCov">       2186 :             } else if !collecting.is_empty() {</span></a>
+<a name="435"><span class="lineNum">     435 </span><span class="lineCov">       1262 :                 collecting.push(comment.to_string());</span></a>
+<a name="436"><span class="lineNum">     436 </span><span class="lineCov">       1262 :             }</span></a>
+<a name="437"><span class="lineNum">     437 </span>            :         } else {</a>
+<a name="438"><span class="lineNum">     438 </span><span class="lineCov">       2101 :             if !collecting.is_empty() {</span></a>
+<a name="439"><span class="lineNum">     439 </span><span class="lineNoCov">          0 :                 return Err(io::Error::new(</span></a>
+<a name="440"><span class="lineNum">     440 </span><span class="lineNoCov">          0 :                     io::ErrorKind::Other,</span></a>
+<a name="441"><span class="lineNum">     441 </span><span class="lineNoCov">          0 :                     format!(&quot;{}:{}: Unexpected end of comment&quot;, path.display(), lineno),</span></a>
+<a name="442"><span class="lineNum">     442 </span><span class="lineNoCov">          0 :                 ));</span></a>
+<a name="443"><span class="lineNum">     443 </span><span class="lineCov">       2101 :             }</span></a>
+<a name="444"><span class="lineNum">     444 </span>            : </a>
+<a name="445"><span class="lineNum">     445 </span><span class="lineCov">       2101 :             if let Some(rpc_method) = find_rpc_method(&amp;line) {</span></a>
+<a name="446"><span class="lineNum">     446 </span><span class="lineCov">         38 :                 let key = RpcTestExample::search(rpc_method.to_string(), 42);</span></a>
+<a name="447"><span class="lineNum">     447 </span><span class="lineCov">         38 :                 assert!(</span></a>
+<a name="448"><span class="lineNum">     448 </span><span class="lineCov">         38 :                     collected.contains(&amp;key),</span></a>
+<a name="449"><span class="lineNum">     449 </span><span class="lineNoCov">          0 :                     &quot;{}:{}: Expect an example with id=42 for RPC method {}. \</span></a>
+<a name="450"><span class="lineNum">     450 </span><span class="lineNoCov">          0 :                     To skip the test, add a comment \&quot;noexample\&quot; after #[rpc]&quot;,</span></a>
+<a name="451"><span class="lineNum">     451 </span><span class="lineNoCov">          0 :                     path.display(),</span></a>
+<a name="452"><span class="lineNum">     452 </span><span class="lineNoCov">          0 :                     lineno,</span></a>
+<a name="453"><span class="lineNum">     453 </span><span class="lineNoCov">          0 :                     rpc_method,</span></a>
+<a name="454"><span class="lineNum">     454 </span>            :                 );</a>
+<a name="455"><span class="lineNum">     455 </span><span class="lineCov">       2063 :             }</span></a>
+<a name="456"><span class="lineNum">     456 </span>            :         }</a>
+<a name="457"><span class="lineNum">     457 </span>            :     }</a>
+<a name="458"><span class="lineNum">     458 </span>            : </a>
+<a name="459"><span class="lineNum">     459 </span><span class="lineCov">          8 :     if collecting.is_empty() {</span></a>
+<a name="460"><span class="lineNum">     460 </span><span class="lineCov">          8 :         Ok(())</span></a>
+<a name="461"><span class="lineNum">     461 </span>            :     } else {</a>
+<a name="462"><span class="lineNum">     462 </span><span class="lineNoCov">          0 :         Err(io::Error::new(</span></a>
+<a name="463"><span class="lineNum">     463 </span><span class="lineNoCov">          0 :             io::ErrorKind::Other,</span></a>
+<a name="464"><span class="lineNum">     464 </span><span class="lineNoCov">          0 :             format!(</span></a>
+<a name="465"><span class="lineNum">     465 </span><span class="lineNoCov">          0 :                 &quot;{}: Unexpected EOF while the code block is still open&quot;,</span></a>
+<a name="466"><span class="lineNum">     466 </span><span class="lineNoCov">          0 :                 path.display()</span></a>
+<a name="467"><span class="lineNum">     467 </span><span class="lineNoCov">          0 :             ),</span></a>
+<a name="468"><span class="lineNum">     468 </span><span class="lineNoCov">          0 :         ))</span></a>
+<a name="469"><span class="lineNum">     469 </span>            :     }</a>
+<a name="470"><span class="lineNum">     470 </span><span class="lineCov">          8 : }</span></a>
+<a name="471"><span class="lineNum">     471 </span>            : </a>
+<a name="472"><span class="lineNum">     472 </span>            : // Use HashSet to randomize the order</a>
+<a name="473"><span class="lineNum">     473 </span><span class="lineCov">          1 : fn collect_rpc_examples() -&gt; io::Result&lt;HashSet&lt;RpcTestExample&gt;&gt; {</span></a>
+<a name="474"><span class="lineNum">     474 </span><span class="lineCov">          1 :     let mut modules_dir = PathBuf::from(env!(&quot;CARGO_MANIFEST_DIR&quot;));</span></a>
+<a name="475"><span class="lineNum">     475 </span><span class="lineCov">          1 :     modules_dir.push(&quot;src&quot;);</span></a>
+<a name="476"><span class="lineNum">     476 </span><span class="lineCov">          1 :     modules_dir.push(&quot;module&quot;);</span></a>
+<a name="477"><span class="lineNum">     477 </span><span class="lineCov">          1 : </span></a>
+<a name="478"><span class="lineNum">     478 </span><span class="lineCov">          1 :     let mut examples = HashSet::new();</span></a>
+<a name="479"><span class="lineNum">     479 </span>            : </a>
+<a name="480"><span class="lineNum">     480 </span><span class="lineCov">         11 :     for module_file in read_dir(modules_dir)? {</span></a>
+<a name="481"><span class="lineNum">     481 </span><span class="lineCov">         11 :         let path = module_file?.path();</span></a>
+<a name="482"><span class="lineNum">     482 </span><span class="lineCov">         11 :         if path.extension().unwrap_or_default() == &quot;rs&quot;</span></a>
+<a name="483"><span class="lineNum">     483 </span><span class="lineCov">         11 :             &amp;&amp; path.file_stem().unwrap_or_default() != &quot;mod&quot;</span></a>
+<a name="484"><span class="lineNum">     484 </span><span class="lineCov">         10 :             &amp;&amp; path.file_stem().unwrap_or_default() != &quot;test&quot;</span></a>
+<a name="485"><span class="lineNum">     485 </span><span class="lineCov">          9 :             &amp;&amp; path.file_stem().unwrap_or_default() != &quot;debug&quot;</span></a>
+<a name="486"><span class="lineNum">     486 </span>            :         {</a>
+<a name="487"><span class="lineNum">     487 </span><span class="lineCov">          8 :             collect_rpc_examples_in_file(&amp;mut examples, path)?;</span></a>
+<a name="488"><span class="lineNum">     488 </span><span class="lineCov">          3 :         }</span></a>
+<a name="489"><span class="lineNum">     489 </span>            :     }</a>
+<a name="490"><span class="lineNum">     490 </span>            : </a>
+<a name="491"><span class="lineNum">     491 </span><span class="lineCov">          1 :     Ok(examples)</span></a>
+<a name="492"><span class="lineNum">     492 </span><span class="lineCov">          1 : }</span></a>
+<a name="493"><span class="lineNum">     493 </span>            : </a>
+<a name="494"><span class="lineNum">     494 </span><span class="lineCov">        360 : #[derive(Debug, Deserialize, Serialize, Clone, Default)]</span></a>
+<a name="495"><span class="lineNum">     495 </span>            : struct RpcTestRequest {</a>
+<a name="496"><span class="lineNum">     496 </span>            :     pub id: usize,</a>
+<a name="497"><span class="lineNum">     497 </span>            :     pub jsonrpc: String,</a>
+<a name="498"><span class="lineNum">     498 </span>            :     pub method: String,</a>
+<a name="499"><span class="lineNum">     499 </span>            :     pub params: Vec&lt;Value&gt;,</a>
+<a name="500"><span class="lineNum">     500 </span>            : }</a>
+<a name="501"><span class="lineNum">     501 </span>            : </a>
+<a name="502"><span class="lineNum">     502 </span>            : impl fmt::Display for RpcTestRequest {</a>
+<a name="503"><span class="lineNum">     503 </span><span class="lineCov">         80 :     fn fmt(&amp;self, f: &amp;mut fmt::Formatter&lt;'_&gt;) -&gt; fmt::Result {</span></a>
+<a name="504"><span class="lineNum">     504 </span><span class="lineCov">         80 :         write!(f, &quot;{}(id={})&quot;, self.method, self.id)</span></a>
+<a name="505"><span class="lineNum">     505 </span><span class="lineCov">         80 :     }</span></a>
+<a name="506"><span class="lineNum">     506 </span>            : }</a>
+<a name="507"><span class="lineNum">     507 </span>            : </a>
+<a name="508"><span class="lineNum">     508 </span>            : impl RpcTestRequest {</a>
+<a name="509"><span class="lineNum">     509 </span><span class="lineNoCov">          0 :     fn json(&amp;self) -&gt; String {</span></a>
+<a name="510"><span class="lineNum">     510 </span><span class="lineNoCov">          0 :         serde_json::to_string(self).unwrap()</span></a>
+<a name="511"><span class="lineNum">     511 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="512"><span class="lineNum">     512 </span>            : }</a>
+<a name="513"><span class="lineNum">     513 </span>            : </a>
+<a name="514"><span class="lineNum">     514 </span><span class="lineCov">        590 : #[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Default)]</span></a>
+<a name="515"><span class="lineNum">     515 </span>            : struct RpcTestResponse {</a>
+<a name="516"><span class="lineNum">     516 </span>            :     pub id: usize,</a>
+<a name="517"><span class="lineNum">     517 </span>            :     pub jsonrpc: String,</a>
+<a name="518"><span class="lineNum">     518 </span>            :     #[serde(default)]</a>
+<a name="519"><span class="lineNum">     519 </span>            :     pub result: Value,</a>
+<a name="520"><span class="lineNum">     520 </span>            :     #[serde(default)]</a>
+<a name="521"><span class="lineNum">     521 </span>            :     pub error: Value,</a>
+<a name="522"><span class="lineNum">     522 </span>            : }</a>
+<a name="523"><span class="lineNum">     523 </span>            : </a>
+<a name="524"><span class="lineNum">     524 </span>            : impl RpcTestResponse {</a>
+<a name="525"><span class="lineNum">     525 </span><span class="lineNoCov">          0 :     fn json(&amp;self) -&gt; String {</span></a>
+<a name="526"><span class="lineNum">     526 </span><span class="lineNoCov">          0 :         serde_json::to_string(self).unwrap()</span></a>
+<a name="527"><span class="lineNum">     527 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="528"><span class="lineNum">     528 </span>            : }</a>
+<a name="529"><span class="lineNum">     529 </span>            : </a>
+<a name="530"><span class="lineNum">     530 </span>            : struct RpcTestExample {</a>
+<a name="531"><span class="lineNum">     531 </span>            :     request: RpcTestRequest,</a>
+<a name="532"><span class="lineNum">     532 </span>            :     response: RpcTestResponse,</a>
+<a name="533"><span class="lineNum">     533 </span>            : }</a>
+<a name="534"><span class="lineNum">     534 </span>            : </a>
+<a name="535"><span class="lineNum">     535 </span>            : impl hash::Hash for RpcTestExample {</a>
+<a name="536"><span class="lineNum">     536 </span><span class="lineCov">        130 :     fn hash&lt;H: hash::Hasher&gt;(&amp;self, state: &amp;mut H) {</span></a>
+<a name="537"><span class="lineNum">     537 </span><span class="lineCov">        130 :         self.request.method.hash(state);</span></a>
+<a name="538"><span class="lineNum">     538 </span><span class="lineCov">        130 :         self.request.id.hash(state);</span></a>
+<a name="539"><span class="lineNum">     539 </span><span class="lineCov">        130 :     }</span></a>
+<a name="540"><span class="lineNum">     540 </span>            : }</a>
+<a name="541"><span class="lineNum">     541 </span>            : </a>
+<a name="542"><span class="lineNum">     542 </span>            : impl PartialEq for RpcTestExample {</a>
+<a name="543"><span class="lineNum">     543 </span><span class="lineCov">         40 :     fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
+<a name="544"><span class="lineNum">     544 </span><span class="lineCov">         40 :         self.request.method == other.request.method &amp;&amp; self.request.id == other.request.id</span></a>
+<a name="545"><span class="lineNum">     545 </span><span class="lineCov">         40 :     }</span></a>
+<a name="546"><span class="lineNum">     546 </span>            : }</a>
+<a name="547"><span class="lineNum">     547 </span>            : </a>
+<a name="548"><span class="lineNum">     548 </span>            : impl Eq for RpcTestExample {}</a>
+<a name="549"><span class="lineNum">     549 </span>            : </a>
+<a name="550"><span class="lineNum">     550 </span>            : impl RpcTestExample {</a>
+<a name="551"><span class="lineNum">     551 </span><span class="lineCov">         38 :     fn search(method: String, id: usize) -&gt; Self {</span></a>
+<a name="552"><span class="lineNum">     552 </span><span class="lineCov">         38 :         RpcTestExample {</span></a>
+<a name="553"><span class="lineNum">     553 </span><span class="lineCov">         38 :             request: RpcTestRequest {</span></a>
+<a name="554"><span class="lineNum">     554 </span><span class="lineCov">         38 :                 id,</span></a>
+<a name="555"><span class="lineNum">     555 </span><span class="lineCov">         38 :                 method,</span></a>
+<a name="556"><span class="lineNum">     556 </span><span class="lineCov">         38 :                 jsonrpc: &quot;2.0&quot;.to_string(),</span></a>
+<a name="557"><span class="lineNum">     557 </span><span class="lineCov">         38 :                 params: vec![],</span></a>
+<a name="558"><span class="lineNum">     558 </span><span class="lineCov">         38 :             },</span></a>
+<a name="559"><span class="lineNum">     559 </span><span class="lineCov">         38 :             response: RpcTestResponse {</span></a>
+<a name="560"><span class="lineNum">     560 </span><span class="lineCov">         38 :                 id,</span></a>
+<a name="561"><span class="lineNum">     561 </span><span class="lineCov">         38 :                 jsonrpc: &quot;2.0&quot;.to_string(),</span></a>
+<a name="562"><span class="lineNum">     562 </span><span class="lineCov">         38 :                 result: Value::Null,</span></a>
+<a name="563"><span class="lineNum">     563 </span><span class="lineCov">         38 :                 error: Value::Null,</span></a>
+<a name="564"><span class="lineNum">     564 </span><span class="lineCov">         38 :             },</span></a>
+<a name="565"><span class="lineNum">     565 </span><span class="lineCov">         38 :         }</span></a>
+<a name="566"><span class="lineNum">     566 </span><span class="lineCov">         38 :     }</span></a>
+<a name="567"><span class="lineNum">     567 </span>            : }</a>
+<a name="568"><span class="lineNum">     568 </span>            : </a>
+<a name="569"><span class="lineNum">     569 </span>            : #[allow(dead_code)]</a>
+<a name="570"><span class="lineNum">     570 </span>            : struct RpcTestSuite {</a>
+<a name="571"><span class="lineNum">     571 </span>            :     rpc_client: reqwest::blocking::Client,</a>
+<a name="572"><span class="lineNum">     572 </span>            :     rpc_uri: String,</a>
+<a name="573"><span class="lineNum">     573 </span>            :     shared: Shared,</a>
+<a name="574"><span class="lineNum">     574 </span>            :     chain_controller: ChainController,</a>
+<a name="575"><span class="lineNum">     575 </span>            :     rpc_server: RpcServer,</a>
+<a name="576"><span class="lineNum">     576 </span>            : }</a>
+<a name="577"><span class="lineNum">     577 </span>            : </a>
+<a name="578"><span class="lineNum">     578 </span>            : impl RpcTestSuite {</a>
+<a name="579"><span class="lineNum">     579 </span><span class="lineCov">         44 :     fn rpc(&amp;self, request: &amp;RpcTestRequest) -&gt; RpcTestResponse {</span></a>
+<a name="580"><span class="lineNum">     580 </span><span class="lineCov">         44 :         self.rpc_client</span></a>
+<a name="581"><span class="lineNum">     581 </span><span class="lineCov">         44 :             .post(&amp;self.rpc_uri)</span></a>
+<a name="582"><span class="lineNum">     582 </span><span class="lineCov">         44 :             .json(&amp;request)</span></a>
+<a name="583"><span class="lineNum">     583 </span><span class="lineCov">         44 :             .send()</span></a>
+<a name="584"><span class="lineNum">     584 </span><span class="lineCov">         44 :             .unwrap_or_else(|e| {</span></a>
+<a name="585"><span class="lineNum">     585 </span><span class="lineNoCov">          0 :                 panic!(</span></a>
+<a name="586"><span class="lineNum">     586 </span><span class="lineNoCov">          0 :                     &quot;Failed to call RPC request: {:?}\n\nrequest = {:?}&quot;,</span></a>
+<a name="587"><span class="lineNum">     587 </span><span class="lineNoCov">          0 :                     e,</span></a>
+<a name="588"><span class="lineNum">     588 </span><span class="lineNoCov">          0 :                     request.json(),</span></a>
+<a name="589"><span class="lineNum">     589 </span><span class="lineNoCov">          0 :                 )</span></a>
+<a name="590"><span class="lineNum">     590 </span><span class="lineCov">         44 :             })</span></a>
+<a name="591"><span class="lineNum">     591 </span><span class="lineCov">         44 :             .json::&lt;RpcTestResponse&gt;()</span></a>
+<a name="592"><span class="lineNum">     592 </span><span class="lineCov">         44 :             .expect(&quot;Deserialize RpcTestRequest&quot;)</span></a>
+<a name="593"><span class="lineNum">     593 </span><span class="lineCov">         44 :     }</span></a>
+<a name="594"><span class="lineNum">     594 </span>            : </a>
+<a name="595"><span class="lineNum">     595 </span><span class="lineCov">          3 :     fn send_example_transaction(&amp;self) {</span></a>
+<a name="596"><span class="lineNum">     596 </span><span class="lineCov">          3 :         let example_tx = construct_example_transaction();</span></a>
+<a name="597"><span class="lineNum">     597 </span><span class="lineCov">          3 :         assert_eq!(</span></a>
+<a name="598"><span class="lineNum">     598 </span><span class="lineCov">          3 :             EXAMPLE_TX_HASH,</span></a>
+<a name="599"><span class="lineNum">     599 </span><span class="lineCov">          3 :             example_tx.hash().unpack(),</span></a>
+<a name="600"><span class="lineNum">     600 </span><span class="lineNoCov">          0 :             &quot;Expect the example tx hash match the constant&quot;</span></a>
+<a name="601"><span class="lineNum">     601 </span>            :         );</a>
+<a name="602"><span class="lineNum">     602 </span><span class="lineCov">          3 :         let example_tx: ckb_jsonrpc_types::Transaction = example_tx.data().into();</span></a>
+<a name="603"><span class="lineNum">     603 </span><span class="lineCov">          3 :         self.rpc(&amp;RpcTestRequest {</span></a>
+<a name="604"><span class="lineNum">     604 </span><span class="lineCov">          3 :             id: 42,</span></a>
+<a name="605"><span class="lineNum">     605 </span><span class="lineCov">          3 :             jsonrpc: &quot;2.0&quot;.to_string(),</span></a>
+<a name="606"><span class="lineNum">     606 </span><span class="lineCov">          3 :             method: &quot;send_transaction&quot;.to_string(),</span></a>
+<a name="607"><span class="lineNum">     607 </span><span class="lineCov">          3 :             params: vec![json!(example_tx), json!(&quot;passthrough&quot;)],</span></a>
+<a name="608"><span class="lineNum">     608 </span><span class="lineCov">          3 :         });</span></a>
+<a name="609"><span class="lineNum">     609 </span><span class="lineCov">          3 :     }</span></a>
+<a name="610"><span class="lineNum">     610 </span>            : </a>
+<a name="611"><span class="lineNum">     611 </span><span class="lineCov">         40 :     fn run_example(&amp;self, example: &amp;RpcTestExample) {</span></a>
+<a name="612"><span class="lineNum">     612 </span><span class="lineCov">         40 :         let mut actual = self.rpc(&amp;example.request);</span></a>
+<a name="613"><span class="lineNum">     613 </span><span class="lineCov">         40 :         mock_rpc_response(&amp;example, &amp;mut actual);</span></a>
+<a name="614"><span class="lineNum">     614 </span><span class="lineCov">         40 :         pretty_assert_eq!(</span></a>
+<a name="615"><span class="lineNum">     615 </span>            :             example.response,</a>
+<a name="616"><span class="lineNum">     616 </span>            :             actual,</a>
+<a name="617"><span class="lineNum">     617 </span><span class="lineNoCov">          0 :             &quot;RPC Example {} got the following unexpected response:\n\n{}&quot;,</span></a>
+<a name="618"><span class="lineNum">     618 </span><span class="lineNoCov">          0 :             example.request,</span></a>
+<a name="619"><span class="lineNum">     619 </span><span class="lineNoCov">          0 :             actual.json(),</span></a>
+<a name="620"><span class="lineNum">     620 </span>            :         );</a>
+<a name="621"><span class="lineNum">     621 </span><span class="lineCov">         40 :     }</span></a>
+<a name="622"><span class="lineNum">     622 </span>            : }</a>
+<a name="623"><span class="lineNum">     623 </span>            : </a>
+<a name="624"><span class="lineNum">     624 </span>            : /// ## RPC Examples Test FAQ</a>
+<a name="625"><span class="lineNum">     625 </span>            : ///</a>
+<a name="626"><span class="lineNum">     626 </span>            : /// Q. How to add tests?</a>
+<a name="627"><span class="lineNum">     627 </span>            : ///</a>
+<a name="628"><span class="lineNum">     628 </span>            : /// Test cases are collected from code comments. Please put request and response JSON in their own code</a>
+<a name="629"><span class="lineNum">     629 </span>            : /// blocks and set the fenced code block type to &quot;json&quot;.</a>
+<a name="630"><span class="lineNum">     630 </span>            : ///</a>
+<a name="631"><span class="lineNum">     631 </span>            : /// The first example must use id 42. And extra examples for the same method must use different</a>
+<a name="632"><span class="lineNum">     632 </span>            : /// ids.</a>
+<a name="633"><span class="lineNum">     633 </span>            : ///</a>
+<a name="634"><span class="lineNum">     634 </span>            : /// Q. How to skip an RPC example test</a>
+<a name="635"><span class="lineNum">     635 </span>            : ///</a>
+<a name="636"><span class="lineNum">     636 </span>            : /// Add noexample in the comment in the same line with `#[rpc(name = &quot;...&quot;)]`.</a>
+<a name="637"><span class="lineNum">     637 </span>            : ///</a>
+<a name="638"><span class="lineNum">     638 </span>            : /// Q. How to setup and teardown the test case?</a>
+<a name="639"><span class="lineNum">     639 </span>            : ///</a>
+<a name="640"><span class="lineNum">     640 </span>            : /// Edit `around_rpc_example`.</a>
+<a name="641"><span class="lineNum">     641 </span><span class="lineCov">          1 : #[test]</span></a>
+<a name="642"><span class="lineNum">     642 </span><span class="lineCov">          1 : fn test_rpc_examples() {</span></a>
+<a name="643"><span class="lineNum">     643 </span><span class="lineCov">          1 :     let suite = setup_rpc_test_suite(TARGET_HEIGHT);</span></a>
+<a name="644"><span class="lineNum">     644 </span><span class="lineCov">         40 :     for example in collect_rpc_examples().expect(&quot;collect RPC examples&quot;) {</span></a>
+<a name="645"><span class="lineNum">     645 </span><span class="lineCov">         40 :         println!(&quot;Test RPC Example {}&quot;, example.request);</span></a>
+<a name="646"><span class="lineNum">     646 </span><span class="lineCov">         40 :         around_rpc_example(&amp;suite, example);</span></a>
+<a name="647"><span class="lineNum">     647 </span><span class="lineCov">         40 :     }</span></a>
+<a name="648"><span class="lineNum">     648 </span><span class="lineCov">          1 : }</span></a>
+<a name="649"><span class="lineNum">     649 </span>            : </a>
+<a name="650"><span class="lineNum">     650 </span><span class="lineCov">          7 : fn replace_rpc_response&lt;T&gt;(example: &amp;RpcTestExample, response: &amp;mut RpcTestResponse)</span></a>
+<a name="651"><span class="lineNum">     651 </span><span class="lineCov">          7 : where</span></a>
+<a name="652"><span class="lineNum">     652 </span><span class="lineCov">          7 :     T: DeserializeOwned,</span></a>
+<a name="653"><span class="lineNum">     653 </span><span class="lineCov">          7 : {</span></a>
+<a name="654"><span class="lineNum">     654 </span><span class="lineCov">          7 :     if !example.response.result.is_null() {</span></a>
+<a name="655"><span class="lineNum">     655 </span><span class="lineCov">          7 :         let result: serde_json::Result&lt;T&gt; = serde_json::from_value(example.response.result.clone());</span></a>
+<a name="656"><span class="lineNum">     656 </span><span class="lineCov">          7 :         if let Err(ref err) = result {</span></a>
+<a name="657"><span class="lineNum">     657 </span><span class="lineNoCov">          0 :             assert!(result.is_ok(), &quot;Deserialize response result error: {}&quot;, err);</span></a>
+<a name="658"><span class="lineNum">     658 </span><span class="lineCov">          7 :         }</span></a>
+<a name="659"><span class="lineNum">     659 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="660"><span class="lineNum">     660 </span><span class="lineCov">          7 :     *response = example.response.clone()</span></a>
+<a name="661"><span class="lineNum">     661 </span><span class="lineCov">          7 : }</span></a>
+<a name="662"><span class="lineNum">     662 </span>            : </a>
+<a name="663"><span class="lineNum">     663 </span>            : // * Use replace_rpc_response to skip the response matching assertions.</a>
+<a name="664"><span class="lineNum">     664 </span>            : // * Fix timestamp related fields.</a>
+<a name="665"><span class="lineNum">     665 </span><span class="lineCov">         40 : fn mock_rpc_response(example: &amp;RpcTestExample, response: &amp;mut RpcTestResponse) {</span></a>
+<a name="666"><span class="lineNum">     666 </span><span class="lineCov">         40 :     use ckb_jsonrpc_types::{BannedAddr, Capacity, LocalNode, RemoteNode, Uint64};</span></a>
+<a name="667"><span class="lineNum">     667 </span><span class="lineCov">         40 : </span></a>
+<a name="668"><span class="lineNum">     668 </span><span class="lineCov">         40 :     match example.request.method.as_str() {</span></a>
+<a name="669"><span class="lineNum">     669 </span><span class="lineCov">         40 :         &quot;local_node_info&quot; =&gt; replace_rpc_response::&lt;LocalNode&gt;(example, response),</span></a>
+<a name="670"><span class="lineNum">     670 </span><span class="lineCov">         39 :         &quot;get_peers&quot; =&gt; replace_rpc_response::&lt;Vec&lt;RemoteNode&gt;&gt;(example, response),</span></a>
+<a name="671"><span class="lineNum">     671 </span><span class="lineCov">         38 :         &quot;get_banned_addresses&quot; =&gt; replace_rpc_response::&lt;Vec&lt;BannedAddr&gt;&gt;(example, response),</span></a>
+<a name="672"><span class="lineNum">     672 </span><span class="lineCov">         37 :         &quot;calculate_dao_maximum_withdraw&quot; =&gt; replace_rpc_response::&lt;Capacity&gt;(example, response),</span></a>
+<a name="673"><span class="lineNum">     673 </span><span class="lineCov">         36 :         &quot;subscribe&quot; =&gt; replace_rpc_response::&lt;Uint64&gt;(example, response),</span></a>
+<a name="674"><span class="lineNum">     674 </span><span class="lineCov">         35 :         &quot;unsubscribe&quot; =&gt; replace_rpc_response::&lt;bool&gt;(example, response),</span></a>
+<a name="675"><span class="lineNum">     675 </span><span class="lineCov">         34 :         &quot;send_transaction&quot; =&gt; replace_rpc_response::&lt;H256&gt;(example, response),</span></a>
+<a name="676"><span class="lineNum">     676 </span><span class="lineCov">         33 :         &quot;get_block_template&quot; =&gt; {</span></a>
+<a name="677"><span class="lineNum">     677 </span><span class="lineCov">          1 :             response.result[&quot;current_time&quot;] = example.response.result[&quot;current_time&quot;].clone()</span></a>
+<a name="678"><span class="lineNum">     678 </span>            :         }</a>
+<a name="679"><span class="lineNum">     679 </span><span class="lineCov">         32 :         &quot;tx_pool_info&quot; =&gt; {</span></a>
+<a name="680"><span class="lineNum">     680 </span><span class="lineCov">          1 :             response.result[&quot;last_txs_updated_at&quot;] =</span></a>
+<a name="681"><span class="lineNum">     681 </span><span class="lineCov">          1 :                 example.response.result[&quot;last_txs_updated_at&quot;].clone()</span></a>
+<a name="682"><span class="lineNum">     682 </span>            :         }</a>
+<a name="683"><span class="lineNum">     683 </span><span class="lineCov">         31 :         &quot;get_blockchain_info&quot; =&gt; {</span></a>
+<a name="684"><span class="lineNum">     684 </span><span class="lineCov">          1 :             response.result[&quot;chain&quot;] = example.response.result[&quot;chain&quot;].clone()</span></a>
+<a name="685"><span class="lineNum">     685 </span>            :         }</a>
+<a name="686"><span class="lineNum">     686 </span><span class="lineCov">         30 :         &quot;send_alert&quot; =&gt; response.error[&quot;data&quot;] = example.response.error[&quot;data&quot;].clone(),</span></a>
+<a name="687"><span class="lineNum">     687 </span><span class="lineCov">         29 :         _ =&gt; {}</span></a>
+<a name="688"><span class="lineNum">     688 </span>            :     }</a>
+<a name="689"><span class="lineNum">     689 </span><span class="lineCov">         40 : }</span></a>
+<a name="690"><span class="lineNum">     690 </span>            : </a>
+<a name="691"><span class="lineNum">     691 </span>            : // Sets up RPC example test.</a>
+<a name="692"><span class="lineNum">     692 </span>            : //</a>
+<a name="693"><span class="lineNum">     693 </span>            : // Returns false to skip the example.</a>
+<a name="694"><span class="lineNum">     694 </span><span class="lineCov">         40 : fn before_rpc_example(_suite: &amp;RpcTestSuite, example: &amp;mut RpcTestExample) -&gt; bool {</span></a>
+<a name="695"><span class="lineNum">     695 </span><span class="lineCov">         40 :     match (example.request.method.as_str(), example.request.id) {</span></a>
+<a name="696"><span class="lineNum">     696 </span><span class="lineCov">         40 :         (&quot;get_transaction&quot;, 42) =&gt; {</span></a>
+<a name="697"><span class="lineNum">     697 </span><span class="lineCov">          1 :             assert_eq!(</span></a>
+<a name="698"><span class="lineNum">     698 </span><span class="lineCov">          1 :                 vec![json!(format!(&quot;{:#x}&quot;, EXAMPLE_TX_HASH))],</span></a>
+<a name="699"><span class="lineNum">     699 </span>            :                 example.request.params,</a>
+<a name="700"><span class="lineNum">     700 </span><span class="lineNoCov">          0 :                 &quot;get_transaction(id=42) must query the example tx&quot;</span></a>
+<a name="701"><span class="lineNum">     701 </span>            :             );</a>
+<a name="702"><span class="lineNum">     702 </span>            :         }</a>
+<a name="703"><span class="lineNum">     703 </span><span class="lineCov">         39 :         _ =&gt; return true,</span></a>
+<a name="704"><span class="lineNum">     704 </span>            :     }</a>
+<a name="705"><span class="lineNum">     705 </span>            : </a>
+<a name="706"><span class="lineNum">     706 </span><span class="lineCov">          1 :     true</span></a>
+<a name="707"><span class="lineNum">     707 </span><span class="lineCov">         40 : }</span></a>
+<a name="708"><span class="lineNum">     708 </span>            : </a>
+<a name="709"><span class="lineNum">     709 </span>            : // Tears down RPC example test.</a>
+<a name="710"><span class="lineNum">     710 </span><span class="lineCov">         40 : fn after_rpc_example(suite: &amp;RpcTestSuite, example: &amp;RpcTestExample) {</span></a>
+<a name="711"><span class="lineNum">     711 </span><span class="lineCov">         40 :     match example.request.method.as_str() {</span></a>
+<a name="712"><span class="lineNum">     712 </span><span class="lineCov">         40 :         &quot;clear_tx_pool&quot; =&gt; suite.send_example_transaction(),</span></a>
+<a name="713"><span class="lineNum">     713 </span><span class="lineCov">         39 :         &quot;send_transaction&quot; =&gt; {</span></a>
+<a name="714"><span class="lineNum">     714 </span><span class="lineCov">          1 :             suite.rpc(&amp;RpcTestRequest {</span></a>
+<a name="715"><span class="lineNum">     715 </span><span class="lineCov">          1 :                 id: 42,</span></a>
+<a name="716"><span class="lineNum">     716 </span><span class="lineCov">          1 :                 jsonrpc: &quot;2.0&quot;.to_string(),</span></a>
+<a name="717"><span class="lineNum">     717 </span><span class="lineCov">          1 :                 method: &quot;clear_tx_pool&quot;.to_string(),</span></a>
+<a name="718"><span class="lineNum">     718 </span><span class="lineCov">          1 :                 params: vec![],</span></a>
+<a name="719"><span class="lineNum">     719 </span><span class="lineCov">          1 :             });</span></a>
+<a name="720"><span class="lineNum">     720 </span><span class="lineCov">          1 :             suite.send_example_transaction()</span></a>
+<a name="721"><span class="lineNum">     721 </span>            :         }</a>
+<a name="722"><span class="lineNum">     722 </span><span class="lineCov">         38 :         _ =&gt; {}</span></a>
+<a name="723"><span class="lineNum">     723 </span>            :     }</a>
+<a name="724"><span class="lineNum">     724 </span><span class="lineCov">         40 : }</span></a>
+<a name="725"><span class="lineNum">     725 </span>            : </a>
+<a name="726"><span class="lineNum">     726 </span>            : // Use mock_rpc_response, before_rpc_example and after_rpc_example to tweak the test examples.</a>
+<a name="727"><span class="lineNum">     727 </span>            : //</a>
+<a name="728"><span class="lineNum">     728 </span>            : // Please ensure that examples do not depend on the execution sequence. Use `before_rpc_example`</a>
+<a name="729"><span class="lineNum">     729 </span>            : // and `after_rpc_example` to prepare the test environment and rollback the environment.</a>
+<a name="730"><span class="lineNum">     730 </span><span class="lineCov">         40 : fn around_rpc_example(suite: &amp;RpcTestSuite, mut example: RpcTestExample) {</span></a>
+<a name="731"><span class="lineNum">     731 </span><span class="lineCov">         40 :     if !before_rpc_example(suite, &amp;mut example) {</span></a>
+<a name="732"><span class="lineNum">     732 </span><span class="lineNoCov">          0 :         return;</span></a>
+<a name="733"><span class="lineNum">     733 </span><span class="lineCov">         40 :     }</span></a>
+<a name="734"><span class="lineNum">     734 </span><span class="lineCov">         40 : </span></a>
+<a name="735"><span class="lineNum">     735 </span><span class="lineCov">         40 :     suite.run_example(&amp;example);</span></a>
+<a name="736"><span class="lineNum">     736 </span><span class="lineCov">         40 : </span></a>
+<a name="737"><span class="lineNum">     737 </span><span class="lineCov">         40 :     after_rpc_example(suite, &amp;example);</span></a>
+<a name="738"><span class="lineNum">     738 </span><span class="lineCov">         40 : }</span></a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

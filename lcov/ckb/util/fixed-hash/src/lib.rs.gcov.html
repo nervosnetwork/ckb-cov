@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - unnamed - ckb/util/fixed-hash/src/lib.rs</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">ckb/util/fixed-hash/src</a> - lib.rs<span style="font-size: 80%;"> (source / <a href="lib.rs.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">unnamed</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          3 : //! Provide several simple fixed-sized hash data type and their static constructors.</span></a>
+<a name="2"><span class="lineNum">       2 </span>            : //!</a>
+<a name="3"><span class="lineNum">       3 </span>            : //! # Example</a>
+<a name="4"><span class="lineNum">       4 </span>            : //!</a>
+<a name="5"><span class="lineNum">       5 </span>            : //! ```rust</a>
+<a name="6"><span class="lineNum">       6 </span>            : //! use ckb_fixed_hash::{H256, h256};</a>
+<a name="7"><span class="lineNum">       7 </span>            : //!</a>
+<a name="8"><span class="lineNum">       8 </span>            : //! const N1: H256 = h256!(&quot;0xffffffff_ffffffff_ffffffff_fffffffe_baaedce6_af48a03b_bfd25e8c_d0364141&quot;);</a>
+<a name="9"><span class="lineNum">       9 </span>            : //! const N2: H256 = H256([</a>
+<a name="10"><span class="lineNum">      10 </span>            : //!     0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,</a>
+<a name="11"><span class="lineNum">      11 </span>            : //!     0xfe, 0xba, 0xae, 0xdc, 0xe6, 0xaf, 0x48, 0xa0, 0x3b, 0xbf, 0xd2, 0x5e, 0x8c, 0xd0, 0x36,</a>
+<a name="12"><span class="lineNum">      12 </span>            : //!     0x41, 0x41</a>
+<a name="13"><span class="lineNum">      13 </span>            : //! ]);</a>
+<a name="14"><span class="lineNum">      14 </span>            : //! assert_eq!(N1, N2);</a>
+<a name="15"><span class="lineNum">      15 </span>            : //!</a>
+<a name="16"><span class="lineNum">      16 </span>            : //! const ONE1: H256 = h256!(&quot;0x1&quot;);</a>
+<a name="17"><span class="lineNum">      17 </span>            : //! const ONE2: H256 = H256([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);</a>
+<a name="18"><span class="lineNum">      18 </span>            : //! assert_eq!(ONE1, ONE2);</a>
+<a name="19"><span class="lineNum">      19 </span>            : //! ```</a>
+<a name="20"><span class="lineNum">      20 </span>            : </a>
+<a name="21"><span class="lineNum">      21 </span>            : pub use ckb_fixed_hash_core::{error, H160, H256, H512, H520};</a>
+<a name="22"><span class="lineNum">      22 </span>            : pub use ckb_fixed_hash_macros::{h160, h256, h512, h520};</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

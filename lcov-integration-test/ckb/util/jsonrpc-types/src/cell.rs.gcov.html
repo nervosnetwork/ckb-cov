@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov-integration-test.info - ckb/util/jsonrpc-types/src/cell.rs</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">ckb/util/jsonrpc-types/src</a> - cell.rs<span style="font-size: 80%;"> (source / <a href="cell.rs.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov-integration-test.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">25</td>
+            <td class="headerCovTableEntry">27</td>
+            <td class="headerCovTableEntryHi">92.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntry">40</td>
+            <td class="headerCovTableEntryLo">17.5 %</td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : use crate::{CellOutput, JsonBytes};</a>
+<a name="2"><span class="lineNum">       2 </span>            : use ckb_types::{</a>
+<a name="3"><span class="lineNum">       3 </span>            :     core::cell::{CellMeta, CellStatus},</a>
+<a name="4"><span class="lineNum">       4 </span>            :     prelude::Unpack,</a>
+<a name="5"><span class="lineNum">       5 </span>            :     H256,</a>
+<a name="6"><span class="lineNum">       6 </span>            : };</a>
+<a name="7"><span class="lineNum">       7 </span>            : use serde::{Deserialize, Serialize};</a>
+<a name="8"><span class="lineNum">       8 </span>            : </a>
+<a name="9"><span class="lineNum">       9 </span>            : /// The JSON view of a cell with its status information.</a>
+<a name="10"><span class="lineNum">      10 </span>            : ///</a>
+<a name="11"><span class="lineNum">      11 </span>            : /// ## Examples</a>
+<a name="12"><span class="lineNum">      12 </span>            : ///</a>
+<a name="13"><span class="lineNum">      13 </span>            : /// ```</a>
+<a name="14"><span class="lineNum">      14 </span>            : /// # serde_json::from_str::&lt;ckb_jsonrpc_types::CellWithStatus&gt;(r#&quot;</a>
+<a name="15"><span class="lineNum">      15 </span>            : /// {</a>
+<a name="16"><span class="lineNum">      16 </span>            : ///   &quot;cell&quot;: {</a>
+<a name="17"><span class="lineNum">      17 </span>            : ///     &quot;data&quot;: {</a>
+<a name="18"><span class="lineNum">      18 </span>            : ///       &quot;content&quot;: &quot;0x7f454c460201010000000000000000000200f3000100000078000100000000004000000000000000980000000000000005000000400038000100400003000200010000000500000000000000000000000000010000000000000001000000000082000000000000008200000000000000001000000000000001459308d00573000000002e7368737472746162002e74657874000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b000000010000000600000000000000780001000000000078000000000000000a0000000000000000000000000000000200000000000000000000000000000001000000030000000000000000000000000000000000000082000000000000001100000000000000000000000000000001000000000000000000000000000000&quot;,</a>
+<a name="19"><span class="lineNum">      19 </span>            : ///       &quot;hash&quot;: &quot;0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5&quot;</a>
+<a name="20"><span class="lineNum">      20 </span>            : ///     },</a>
+<a name="21"><span class="lineNum">      21 </span>            : ///     &quot;output&quot;: {</a>
+<a name="22"><span class="lineNum">      22 </span>            : ///       &quot;capacity&quot;: &quot;0x802665800&quot;,</a>
+<a name="23"><span class="lineNum">      23 </span>            : ///       &quot;lock&quot;: {</a>
+<a name="24"><span class="lineNum">      24 </span>            : ///         &quot;args&quot;: &quot;0x&quot;,</a>
+<a name="25"><span class="lineNum">      25 </span>            : ///         &quot;code_hash&quot;: &quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,</a>
+<a name="26"><span class="lineNum">      26 </span>            : ///         &quot;hash_type&quot;: &quot;data&quot;</a>
+<a name="27"><span class="lineNum">      27 </span>            : ///       },</a>
+<a name="28"><span class="lineNum">      28 </span>            : ///       &quot;type&quot;: null</a>
+<a name="29"><span class="lineNum">      29 </span>            : ///     }</a>
+<a name="30"><span class="lineNum">      30 </span>            : ///   },</a>
+<a name="31"><span class="lineNum">      31 </span>            : ///   &quot;status&quot;: &quot;live&quot;</a>
+<a name="32"><span class="lineNum">      32 </span>            : /// }</a>
+<a name="33"><span class="lineNum">      33 </span>            : /// # &quot;#).unwrap();</a>
+<a name="34"><span class="lineNum">      34 </span>            : /// ```</a>
+<a name="35"><span class="lineNum">      35 </span>            : ///</a>
+<a name="36"><span class="lineNum">      36 </span>            : /// ```</a>
+<a name="37"><span class="lineNum">      37 </span>            : /// # serde_json::from_str::&lt;ckb_jsonrpc_types::CellWithStatus&gt;(r#&quot;</a>
+<a name="38"><span class="lineNum">      38 </span>            : /// {</a>
+<a name="39"><span class="lineNum">      39 </span>            : ///   &quot;cell&quot;: null,</a>
+<a name="40"><span class="lineNum">      40 </span>            : ///   &quot;status&quot;: &quot;unknown&quot;</a>
+<a name="41"><span class="lineNum">      41 </span>            : /// }</a>
+<a name="42"><span class="lineNum">      42 </span>            : /// # &quot;#).unwrap();</a>
+<a name="43"><span class="lineNum">      43 </span>            : /// ```</a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">          4 : #[derive(Debug, Serialize, Deserialize)]</span></a>
+<a name="45"><span class="lineNum">      45 </span>            : pub struct CellWithStatus {</a>
+<a name="46"><span class="lineNum">      46 </span>            :     /// The cell information.</a>
+<a name="47"><span class="lineNum">      47 </span>            :     ///</a>
+<a name="48"><span class="lineNum">      48 </span>            :     /// For performance issues, CKB only keeps the information for live cells.</a>
+<a name="49"><span class="lineNum">      49 </span>            :     pub cell: Option&lt;CellInfo&gt;,</a>
+<a name="50"><span class="lineNum">      50 </span>            :     /// Status of the cell.</a>
+<a name="51"><span class="lineNum">      51 </span>            :     ///</a>
+<a name="52"><span class="lineNum">      52 </span>            :     /// Allowed values: &quot;live&quot;, &quot;dead&quot;, &quot;unknown&quot;.</a>
+<a name="53"><span class="lineNum">      53 </span>            :     ///</a>
+<a name="54"><span class="lineNum">      54 </span>            :     /// * `live` - The transaction creating this cell is in the chain, and there are no</a>
+<a name="55"><span class="lineNum">      55 </span>            :     /// transactions found in the chain that uses this cell as an input.</a>
+<a name="56"><span class="lineNum">      56 </span>            :     /// * `dead` - (**Deprecated**: the dead status will be removed since 0.36.0, please do not</a>
+<a name="57"><span class="lineNum">      57 </span>            :     /// rely on the logic that differentiates dead and unknown cells.) The transaction creating</a>
+<a name="58"><span class="lineNum">      58 </span>            :     /// this cell is in the chain, and a transaction is found in the chain which uses this cell as</a>
+<a name="59"><span class="lineNum">      59 </span>            :     /// an input.</a>
+<a name="60"><span class="lineNum">      60 </span>            :     /// * `unknown` - CKB does not know the status of the cell. Either the transaction creating</a>
+<a name="61"><span class="lineNum">      61 </span>            :     /// this cell is not in the chain yet, or it is no longer live.</a>
+<a name="62"><span class="lineNum">      62 </span>            :     pub status: String,</a>
+<a name="63"><span class="lineNum">      63 </span>            : }</a>
+<a name="64"><span class="lineNum">      64 </span>            : </a>
+<a name="65"><span class="lineNum">      65 </span>            : /// The JSON view of a cell combining the fields in cell output and cell data.</a>
+<a name="66"><span class="lineNum">      66 </span>            : ///</a>
+<a name="67"><span class="lineNum">      67 </span>            : /// ## Examples</a>
+<a name="68"><span class="lineNum">      68 </span>            : ///</a>
+<a name="69"><span class="lineNum">      69 </span>            : /// ```</a>
+<a name="70"><span class="lineNum">      70 </span>            : /// # serde_json::from_str::&lt;ckb_jsonrpc_types::CellInfo&gt;(r#&quot;</a>
+<a name="71"><span class="lineNum">      71 </span>            : /// {</a>
+<a name="72"><span class="lineNum">      72 </span>            : ///   &quot;data&quot;: {</a>
+<a name="73"><span class="lineNum">      73 </span>            : ///     &quot;content&quot;: &quot;0x7f454c460201010000000000000000000200f3000100000078000100000000004000000000000000980000000000000005000000400038000100400003000200010000000500000000000000000000000000010000000000000001000000000082000000000000008200000000000000001000000000000001459308d00573000000002e7368737472746162002e74657874000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b000000010000000600000000000000780001000000000078000000000000000a0000000000000000000000000000000200000000000000000000000000000001000000030000000000000000000000000000000000000082000000000000001100000000000000000000000000000001000000000000000000000000000000&quot;,</a>
+<a name="74"><span class="lineNum">      74 </span>            : ///     &quot;hash&quot;: &quot;0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5&quot;</a>
+<a name="75"><span class="lineNum">      75 </span>            : ///   },</a>
+<a name="76"><span class="lineNum">      76 </span>            : ///   &quot;output&quot;: {</a>
+<a name="77"><span class="lineNum">      77 </span>            : ///     &quot;capacity&quot;: &quot;0x802665800&quot;,</a>
+<a name="78"><span class="lineNum">      78 </span>            : ///     &quot;lock&quot;: {</a>
+<a name="79"><span class="lineNum">      79 </span>            : ///       &quot;args&quot;: &quot;0x&quot;,</a>
+<a name="80"><span class="lineNum">      80 </span>            : ///       &quot;code_hash&quot;: &quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,</a>
+<a name="81"><span class="lineNum">      81 </span>            : ///       &quot;hash_type&quot;: &quot;data&quot;</a>
+<a name="82"><span class="lineNum">      82 </span>            : ///     },</a>
+<a name="83"><span class="lineNum">      83 </span>            : ///     &quot;type&quot;: null</a>
+<a name="84"><span class="lineNum">      84 </span>            : ///   }</a>
+<a name="85"><span class="lineNum">      85 </span>            : /// }</a>
+<a name="86"><span class="lineNum">      86 </span>            : /// # &quot;#).unwrap();</a>
+<a name="87"><span class="lineNum">      87 </span>            : /// ```</a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          4 : #[derive(Debug, Serialize, Deserialize)]</span></a>
+<a name="89"><span class="lineNum">      89 </span>            : pub struct CellInfo {</a>
+<a name="90"><span class="lineNum">      90 </span>            :     /// Cell fields appears in the transaction `outputs` array.</a>
+<a name="91"><span class="lineNum">      91 </span>            :     pub output: CellOutput,</a>
+<a name="92"><span class="lineNum">      92 </span>            :     /// Cell data.</a>
+<a name="93"><span class="lineNum">      93 </span>            :     ///</a>
+<a name="94"><span class="lineNum">      94 </span>            :     /// This is `null` when the data is not requested, which does not mean the cell data is empty.</a>
+<a name="95"><span class="lineNum">      95 </span>            :     pub data: Option&lt;CellData&gt;,</a>
+<a name="96"><span class="lineNum">      96 </span>            : }</a>
+<a name="97"><span class="lineNum">      97 </span>            : </a>
+<a name="98"><span class="lineNum">      98 </span>            : /// The cell data content and hash.</a>
+<a name="99"><span class="lineNum">      99 </span>            : ///</a>
+<a name="100"><span class="lineNum">     100 </span>            : /// ## Examples</a>
+<a name="101"><span class="lineNum">     101 </span>            : ///</a>
+<a name="102"><span class="lineNum">     102 </span>            : /// ```</a>
+<a name="103"><span class="lineNum">     103 </span>            : /// # serde_json::from_str::&lt;ckb_jsonrpc_types::CellData&gt;(r#&quot;</a>
+<a name="104"><span class="lineNum">     104 </span>            : /// {</a>
+<a name="105"><span class="lineNum">     105 </span>            : ///   &quot;content&quot;: &quot;0x7f454c460201010000000000000000000200f3000100000078000100000000004000000000000000980000000000000005000000400038000100400003000200010000000500000000000000000000000000010000000000000001000000000082000000000000008200000000000000001000000000000001459308d00573000000002e7368737472746162002e74657874000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b000000010000000600000000000000780001000000000078000000000000000a0000000000000000000000000000000200000000000000000000000000000001000000030000000000000000000000000000000000000082000000000000001100000000000000000000000000000001000000000000000000000000000000&quot;,</a>
+<a name="106"><span class="lineNum">     106 </span>            : ///   &quot;hash&quot;: &quot;0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5&quot;</a>
+<a name="107"><span class="lineNum">     107 </span>            : /// }</a>
+<a name="108"><span class="lineNum">     108 </span>            : /// # &quot;#).unwrap();</a>
+<a name="109"><span class="lineNum">     109 </span>            : /// ```</a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">          4 : #[derive(Debug, Serialize, Deserialize)]</span></a>
+<a name="111"><span class="lineNum">     111 </span>            : pub struct CellData {</a>
+<a name="112"><span class="lineNum">     112 </span>            :     /// Cell content.</a>
+<a name="113"><span class="lineNum">     113 </span>            :     pub content: JsonBytes,</a>
+<a name="114"><span class="lineNum">     114 </span>            :     /// Cell content hash.</a>
+<a name="115"><span class="lineNum">     115 </span>            :     pub hash: H256,</a>
+<a name="116"><span class="lineNum">     116 </span>            : }</a>
+<a name="117"><span class="lineNum">     117 </span>            : </a>
+<a name="118"><span class="lineNum">     118 </span>            : impl From&lt;CellMeta&gt; for CellInfo {</a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         18 :     fn from(cell_meta: CellMeta) -&gt; Self {</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">         18 :         let data = cell_meta.mem_cell_data;</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         18 :         let data_hash = cell_meta.mem_cell_data_hash;</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         18 :         let output = cell_meta.cell_output.into();</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         18 :         CellInfo {</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         18 :             output,</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         18 :             data: data.and_then(move |data| {</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         18 :                 data_hash.map(|hash| CellData {</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         18 :                     content: JsonBytes::from_bytes(data),</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         18 :                     hash: hash.unpack(),</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineCov">         18 :                 })</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">         18 :             }),</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">         18 :         }</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">         18 :     }</span></a>
+<a name="133"><span class="lineNum">     133 </span>            : }</a>
+<a name="134"><span class="lineNum">     134 </span>            : </a>
+<a name="135"><span class="lineNum">     135 </span>            : impl From&lt;CellStatus&gt; for CellWithStatus {</a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">         18 :     fn from(status: CellStatus) -&gt; Self {</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         18 :         let (cell, status) = match status {</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         18 :             CellStatus::Live(cell_meta) =&gt; (Some(cell_meta), &quot;live&quot;),</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineNoCov">          0 :             CellStatus::Dead =&gt; (None, &quot;dead&quot;),</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineNoCov">          0 :             CellStatus::Unknown =&gt; (None, &quot;unknown&quot;),</span></a>
+<a name="141"><span class="lineNum">     141 </span>            :         };</a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         18 :             cell: cell.map(Into::into),</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         18 :             status: status.to_string(),</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         18 :         }</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         18 :     }</span></a>
+<a name="147"><span class="lineNum">     147 </span>            : }</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

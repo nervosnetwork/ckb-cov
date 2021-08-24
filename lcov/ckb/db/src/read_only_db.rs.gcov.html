@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - unnamed - ckb/db/src/read_only_db.rs</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">ckb/db/src</a> - read_only_db.rs<span style="font-size: 80%;"> (source / <a href="read_only_db.rs.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">unnamed</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">32</td>
+            <td class="headerCovTableEntry">57</td>
+            <td class="headerCovTableEntryLo">56.1 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntryLo">37.5 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : //! ReadOnlyDB wrapper base on rocksdb read_only_open mode</a>
+<a name="2"><span class="lineNum">       2 </span>            : use crate::{internal_error, Result};</a>
+<a name="3"><span class="lineNum">       3 </span>            : use ckb_db_schema::Col;</a>
+<a name="4"><span class="lineNum">       4 </span>            : use ckb_logger::info;</a>
+<a name="5"><span class="lineNum">       5 </span>            : use rocksdb::ops::{GetColumnFamilys, GetPinned, GetPinnedCF, OpenCF};</a>
+<a name="6"><span class="lineNum">       6 </span>            : use rocksdb::{DBPinnableSlice, Options, ReadOnlyDB as RawReadOnlyDB};</a>
+<a name="7"><span class="lineNum">       7 </span>            : use std::path::Path;</a>
+<a name="8"><span class="lineNum">       8 </span>            : use std::sync::Arc;</a>
+<a name="9"><span class="lineNum">       9 </span>            : </a>
+<a name="10"><span class="lineNum">      10 </span>            : /// ReadOnlyDB wrapper</a>
+<a name="11"><span class="lineNum">      11 </span>            : pub struct ReadOnlyDB {</a>
+<a name="12"><span class="lineNum">      12 </span>            :     pub(crate) inner: Arc&lt;RawReadOnlyDB&gt;,</a>
+<a name="13"><span class="lineNum">      13 </span>            : }</a>
+<a name="14"><span class="lineNum">      14 </span>            : </a>
+<a name="15"><span class="lineNum">      15 </span>            : impl ReadOnlyDB {</a>
+<a name="16"><span class="lineNum">      16 </span>            :     /// The behavior is similar to DB::Open,</a>
+<a name="17"><span class="lineNum">      17 </span>            :     /// except that it opens DB in read-only mode.</a>
+<a name="18"><span class="lineNum">      18 </span>            :     /// One big difference is that when opening the DB as read-only,</a>
+<a name="19"><span class="lineNum">      19 </span>            :     /// you don't need to specify all Column Families</a>
+<a name="20"><span class="lineNum">      20 </span>            :     /// -- you can only open a subset of Column Families.</a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">          6 :     pub fn open_cf&lt;P, I, N&gt;(path: P, cf_names: I) -&gt; Result&lt;Option&lt;Self&gt;&gt;</span></a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov">          6 :     where</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">          6 :         P: AsRef&lt;Path&gt;,</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">          6 :         I: IntoIterator&lt;Item = N&gt;,</span></a>
+<a name="25"><span class="lineNum">      25 </span><span class="lineCov">          6 :         N: AsRef&lt;str&gt;,</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineCov">          6 :     {</span></a>
+<a name="27"><span class="lineNum">      27 </span><span class="lineCov">          6 :         let opts = Options::default();</span></a>
+<a name="28"><span class="lineNum">      28 </span><span class="lineCov">          6 :         RawReadOnlyDB::open_cf(&amp;opts, path, cf_names).map_or_else(</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">          6 :             |err| {</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">          6 :                 let err_str = err.as_ref();</span></a>
+<a name="31"><span class="lineNum">      31 </span><span class="lineCov">          6 :                 // notice: err msg difference</span></a>
+<a name="32"><span class="lineNum">      32 </span><span class="lineCov">          6 :                 if err_str.starts_with(&quot;IO error: No such file or directory&quot;)</span></a>
+<a name="33"><span class="lineNum">      33 </span>            :                 {</a>
+<a name="34"><span class="lineNum">      34 </span><span class="lineCov">          6 :                     Ok(None)</span></a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineNoCov">          0 :                 } else if err_str.starts_with(&quot;Corruption:&quot;) {</span></a>
+<a name="36"><span class="lineNum">      36 </span>            :                     info!(</a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :                         &quot;DB corrupted: {}.\n\</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :                         Try ckb db-repair command to repair DB.\n\</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :                         Note: Currently there is a limitation that un-flushed column families will be lost after repair.\</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :                         This would happen even if the DB is in healthy state.\n\</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :                         See https://github.com/facebook/rocksdb/wiki/RocksDB-Repairer for detail&quot;,</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :                         err_str</span></a>
+<a name="43"><span class="lineNum">      43 </span>            :                     );</a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :                     Err(internal_error(&quot;DB corrupted&quot;))</span></a>
+<a name="45"><span class="lineNum">      45 </span>            :                 } else {</a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :                     Err(internal_error(format!(</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :                         &quot;failed to open the database: {}&quot;,</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :                         err</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :                     )))</span></a>
+<a name="50"><span class="lineNum">      50 </span>            :                 }</a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          6 :             },</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          6 :             |db| {</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :                 Ok(Some(ReadOnlyDB {</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :                     inner: Arc::new(db),</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :                 }))</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          6 :             },</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">          6 :         )</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">          6 :     }</span></a>
+<a name="59"><span class="lineNum">      59 </span>            : </a>
+<a name="60"><span class="lineNum">      60 </span>            :     /// Return the value associated with a key using RocksDB's PinnableSlice from the default column</a>
+<a name="61"><span class="lineNum">      61 </span>            :     /// so as to avoid unnecessary memory copy.</a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :     pub fn get_pinned_default(&amp;self, key: &amp;[u8]) -&gt; Result&lt;Option&lt;DBPinnableSlice&gt;&gt; {</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineNoCov">          0 :         self.inner.get_pinned(&amp;key).map_err(internal_error)</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="65"><span class="lineNum">      65 </span>            : </a>
+<a name="66"><span class="lineNum">      66 </span>            :     /// Return the value associated with a key using RocksDB's PinnableSlice from the given column</a>
+<a name="67"><span class="lineNum">      67 </span>            :     /// so as to avoid unnecessary memory copy.</a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :     pub fn get_pinned(&amp;self, col: Col, key: &amp;[u8]) -&gt; Result&lt;Option&lt;DBPinnableSlice&gt;&gt; {</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineNoCov">          0 :         let cf = self</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineNoCov">          0 :             .inner</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineNoCov">          0 :             .cf_handle(col)</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineNoCov">          0 :             .ok_or_else(|| internal_error(format!(&quot;column {} not found&quot;, col)))?;</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineNoCov">          0 :         self.inner.get_pinned_cf(cf, &amp;key).map_err(internal_error)</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="75"><span class="lineNum">      75 </span>            : }</a>
+<a name="76"><span class="lineNum">      76 </span>            : </a>
+<a name="77"><span class="lineNum">      77 </span>            : #[cfg(test)]</a>
+<a name="78"><span class="lineNum">      78 </span>            : mod tests {</a>
+<a name="79"><span class="lineNum">      79 </span>            :     use super::ReadOnlyDB;</a>
+<a name="80"><span class="lineNum">      80 </span>            : </a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          3 :     #[test]</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          3 :     fn test_open_read_only_not_exist() {</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          3 :         let tmp_dir = tempfile::Builder::new()</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          3 :             .prefix(&quot;test_open_read_only_not_exist&quot;)</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          3 :             .tempdir()</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">          3 :             .unwrap();</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">          3 : </span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          3 :         let cfs: Vec&lt;&amp;str&gt; = vec![];</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          3 :         let db = ReadOnlyDB::open_cf(&amp;tmp_dir, cfs);</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          3 :         assert!(matches!(db, Ok(x) if x.is_none()));</span></a>
+<a name="91"><span class="lineNum">      91 </span>            : </a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">          3 :         let cfs: Vec&lt;&amp;str&gt; = vec![&quot;0&quot;];</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">          3 :         let db = ReadOnlyDB::open_cf(&amp;tmp_dir, cfs);</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">          3 :         assert!(matches!(db, Ok(x) if x.is_none()));</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">          3 :     }</span></a>
+<a name="96"><span class="lineNum">      96 </span>            : }</a>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.14</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
