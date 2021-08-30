@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/rpc/src/module/chain.rs</title>
+  <title>LCOV - Unit + Integration - ckb/rpc/src/module/chain.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">294</td>
-            <td class="headerCovTableEntry">382</td>
-            <td class="headerCovTableEntryMed">77.0 %</td>
+            <td class="headerCovTableEntry">378</td>
+            <td class="headerCovTableEntryMed">77.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">64</td>
@@ -104,7 +104,7 @@
 <a name="42"><span class="lineNum">      42 </span>            : /// * it is found as an output in any transaction in the [canonical chain](#canonical-chain),</a>
 <a name="43"><span class="lineNum">      43 </span>            : /// and</a>
 <a name="44"><span class="lineNum">      44 </span>            : /// * it is not found as an input in any transaction in the canonical chain.</a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">         75 : #[rpc(server)]</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">         50 : #[rpc(server)]</span></a>
 <a name="46"><span class="lineNum">      46 </span>            : pub trait ChainRpc {</a>
 <a name="47"><span class="lineNum">      47 </span>            :     /// Returns the information about a block by hash.</a>
 <a name="48"><span class="lineNum">      48 </span>            :     ///</a>
@@ -1263,25 +1263,25 @@
 <a name="1201"><span class="lineNum">    1201 </span>            : const DEFAULT_HEADER_VERBOSITY_LEVEL: u32 = 1;</a>
 <a name="1202"><span class="lineNum">    1202 </span>            : </a>
 <a name="1203"><span class="lineNum">    1203 </span>            : impl ChainRpc for ChainRpcImpl {</a>
-<a name="1204"><span class="lineNum">    1204 </span><span class="lineCov">          3 :     fn get_block(</span></a>
-<a name="1205"><span class="lineNum">    1205 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1206"><span class="lineNum">    1206 </span><span class="lineCov">          3 :         block_hash: H256,</span></a>
-<a name="1207"><span class="lineNum">    1207 </span><span class="lineCov">          3 :         verbosity: Option&lt;Uint32&gt;,</span></a>
-<a name="1208"><span class="lineNum">    1208 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;BlockView, Block&gt;&gt;&gt; {</span></a>
-<a name="1209"><span class="lineNum">    1209 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1210"><span class="lineNum">    1210 </span><span class="lineCov">          3 :         let block_hash = block_hash.pack();</span></a>
-<a name="1211"><span class="lineNum">    1211 </span><span class="lineCov">          3 :         if !snapshot.is_main_chain(&amp;block_hash) {</span></a>
+<a name="1204"><span class="lineNum">    1204 </span><span class="lineCov">          2 :     fn get_block(</span></a>
+<a name="1205"><span class="lineNum">    1205 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1206"><span class="lineNum">    1206 </span><span class="lineCov">          2 :         block_hash: H256,</span></a>
+<a name="1207"><span class="lineNum">    1207 </span><span class="lineCov">          2 :         verbosity: Option&lt;Uint32&gt;,</span></a>
+<a name="1208"><span class="lineNum">    1208 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;BlockView, Block&gt;&gt;&gt; {</span></a>
+<a name="1209"><span class="lineNum">    1209 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1210"><span class="lineNum">    1210 </span><span class="lineCov">          2 :         let block_hash = block_hash.pack();</span></a>
+<a name="1211"><span class="lineNum">    1211 </span><span class="lineCov">          2 :         if !snapshot.is_main_chain(&amp;block_hash) {</span></a>
 <a name="1212"><span class="lineNum">    1212 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
-<a name="1213"><span class="lineNum">    1213 </span><span class="lineCov">          3 :         }</span></a>
-<a name="1214"><span class="lineNum">    1214 </span><span class="lineCov">          3 : </span></a>
-<a name="1215"><span class="lineNum">    1215 </span><span class="lineCov">          3 :         let verbosity = verbosity</span></a>
-<a name="1216"><span class="lineNum">    1216 </span><span class="lineCov">          3 :             .map(|v| v.value())</span></a>
-<a name="1217"><span class="lineNum">    1217 </span><span class="lineCov">          3 :             .unwrap_or(DEFAULT_BLOCK_VERBOSITY_LEVEL);</span></a>
-<a name="1218"><span class="lineNum">    1218 </span><span class="lineCov">          3 :         // TODO: verbosity level == 1, output block only contains tx_hash in JSON format</span></a>
-<a name="1219"><span class="lineNum">    1219 </span><span class="lineCov">          3 :         if verbosity == 2 {</span></a>
-<a name="1220"><span class="lineNum">    1220 </span><span class="lineCov">          3 :             Ok(snapshot</span></a>
-<a name="1221"><span class="lineNum">    1221 </span><span class="lineCov">          3 :                 .get_block(&amp;block_hash)</span></a>
-<a name="1222"><span class="lineNum">    1222 </span><span class="lineCov">          3 :                 .map(|block| ResponseFormat::Json(block.into())))</span></a>
+<a name="1213"><span class="lineNum">    1213 </span><span class="lineCov">          2 :         }</span></a>
+<a name="1214"><span class="lineNum">    1214 </span><span class="lineCov">          2 : </span></a>
+<a name="1215"><span class="lineNum">    1215 </span><span class="lineCov">          2 :         let verbosity = verbosity</span></a>
+<a name="1216"><span class="lineNum">    1216 </span><span class="lineCov">          2 :             .map(|v| v.value())</span></a>
+<a name="1217"><span class="lineNum">    1217 </span><span class="lineCov">          2 :             .unwrap_or(DEFAULT_BLOCK_VERBOSITY_LEVEL);</span></a>
+<a name="1218"><span class="lineNum">    1218 </span><span class="lineCov">          2 :         // TODO: verbosity level == 1, output block only contains tx_hash in JSON format</span></a>
+<a name="1219"><span class="lineNum">    1219 </span><span class="lineCov">          2 :         if verbosity == 2 {</span></a>
+<a name="1220"><span class="lineNum">    1220 </span><span class="lineCov">          2 :             Ok(snapshot</span></a>
+<a name="1221"><span class="lineNum">    1221 </span><span class="lineCov">          2 :                 .get_block(&amp;block_hash)</span></a>
+<a name="1222"><span class="lineNum">    1222 </span><span class="lineCov">          2 :                 .map(|block| ResponseFormat::Json(block.into())))</span></a>
 <a name="1223"><span class="lineNum">    1223 </span><span class="lineNoCov">          0 :         } else if verbosity == 0 {</span></a>
 <a name="1224"><span class="lineNum">    1224 </span><span class="lineNoCov">          0 :             Ok(snapshot</span></a>
 <a name="1225"><span class="lineNum">    1225 </span><span class="lineNoCov">          0 :                 .get_packed_block(&amp;block_hash)</span></a>
@@ -1289,27 +1289,27 @@
 <a name="1227"><span class="lineNum">    1227 </span>            :         } else {</a>
 <a name="1228"><span class="lineNum">    1228 </span><span class="lineNoCov">          0 :             Err(RPCError::invalid_params(&quot;invalid verbosity level&quot;))</span></a>
 <a name="1229"><span class="lineNum">    1229 </span>            :         }</a>
-<a name="1230"><span class="lineNum">    1230 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1230"><span class="lineNum">    1230 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1231"><span class="lineNum">    1231 </span>            : </a>
-<a name="1232"><span class="lineNum">    1232 </span><span class="lineCov">          3 :     fn get_block_by_number(</span></a>
-<a name="1233"><span class="lineNum">    1233 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1234"><span class="lineNum">    1234 </span><span class="lineCov">          3 :         block_number: BlockNumber,</span></a>
-<a name="1235"><span class="lineNum">    1235 </span><span class="lineCov">          3 :         verbosity: Option&lt;Uint32&gt;,</span></a>
-<a name="1236"><span class="lineNum">    1236 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;BlockView, Block&gt;&gt;&gt; {</span></a>
-<a name="1237"><span class="lineNum">    1237 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1238"><span class="lineNum">    1238 </span><span class="lineCov">          3 :         let block_hash = match snapshot.get_block_hash(block_number.into()) {</span></a>
-<a name="1239"><span class="lineNum">    1239 </span><span class="lineCov">          3 :             Some(block_hash) =&gt; block_hash,</span></a>
+<a name="1232"><span class="lineNum">    1232 </span><span class="lineCov">          2 :     fn get_block_by_number(</span></a>
+<a name="1233"><span class="lineNum">    1233 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1234"><span class="lineNum">    1234 </span><span class="lineCov">          2 :         block_number: BlockNumber,</span></a>
+<a name="1235"><span class="lineNum">    1235 </span><span class="lineCov">          2 :         verbosity: Option&lt;Uint32&gt;,</span></a>
+<a name="1236"><span class="lineNum">    1236 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;BlockView, Block&gt;&gt;&gt; {</span></a>
+<a name="1237"><span class="lineNum">    1237 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1238"><span class="lineNum">    1238 </span><span class="lineCov">          2 :         let block_hash = match snapshot.get_block_hash(block_number.into()) {</span></a>
+<a name="1239"><span class="lineNum">    1239 </span><span class="lineCov">          2 :             Some(block_hash) =&gt; block_hash,</span></a>
 <a name="1240"><span class="lineNum">    1240 </span><span class="lineNoCov">          0 :             None =&gt; return Ok(None),</span></a>
 <a name="1241"><span class="lineNum">    1241 </span>            :         };</a>
 <a name="1242"><span class="lineNum">    1242 </span>            : </a>
-<a name="1243"><span class="lineNum">    1243 </span><span class="lineCov">          3 :         let verbosity = verbosity</span></a>
-<a name="1244"><span class="lineNum">    1244 </span><span class="lineCov">          3 :             .map(|v| v.value())</span></a>
-<a name="1245"><span class="lineNum">    1245 </span><span class="lineCov">          3 :             .unwrap_or(DEFAULT_BLOCK_VERBOSITY_LEVEL);</span></a>
+<a name="1243"><span class="lineNum">    1243 </span><span class="lineCov">          2 :         let verbosity = verbosity</span></a>
+<a name="1244"><span class="lineNum">    1244 </span><span class="lineCov">          2 :             .map(|v| v.value())</span></a>
+<a name="1245"><span class="lineNum">    1245 </span><span class="lineCov">          2 :             .unwrap_or(DEFAULT_BLOCK_VERBOSITY_LEVEL);</span></a>
 <a name="1246"><span class="lineNum">    1246 </span>            :         // TODO: verbosity level == 1, output block only contains tx_hash in json format</a>
-<a name="1247"><span class="lineNum">    1247 </span><span class="lineCov">          3 :         let result = if verbosity == 2 {</span></a>
-<a name="1248"><span class="lineNum">    1248 </span><span class="lineCov">          3 :             snapshot</span></a>
-<a name="1249"><span class="lineNum">    1249 </span><span class="lineCov">          3 :                 .get_block(&amp;block_hash)</span></a>
-<a name="1250"><span class="lineNum">    1250 </span><span class="lineCov">          3 :                 .map(|block| Some(ResponseFormat::Json(block.into())))</span></a>
+<a name="1247"><span class="lineNum">    1247 </span><span class="lineCov">          2 :         let result = if verbosity == 2 {</span></a>
+<a name="1248"><span class="lineNum">    1248 </span><span class="lineCov">          2 :             snapshot</span></a>
+<a name="1249"><span class="lineNum">    1249 </span><span class="lineCov">          2 :                 .get_block(&amp;block_hash)</span></a>
+<a name="1250"><span class="lineNum">    1250 </span><span class="lineCov">          2 :                 .map(|block| Some(ResponseFormat::Json(block.into())))</span></a>
 <a name="1251"><span class="lineNum">    1251 </span><span class="lineNoCov">          0 :         } else if verbosity == 0 {</span></a>
 <a name="1252"><span class="lineNum">    1252 </span><span class="lineNoCov">          0 :             snapshot</span></a>
 <a name="1253"><span class="lineNum">    1253 </span><span class="lineNoCov">          0 :                 .get_packed_block(&amp;block_hash)</span></a>
@@ -1318,34 +1318,34 @@
 <a name="1256"><span class="lineNum">    1256 </span><span class="lineNoCov">          0 :             return Err(RPCError::invalid_params(&quot;invalid verbosity level&quot;));</span></a>
 <a name="1257"><span class="lineNum">    1257 </span>            :         };</a>
 <a name="1258"><span class="lineNum">    1258 </span>            : </a>
-<a name="1259"><span class="lineNum">    1259 </span><span class="lineCov">          3 :         result.ok_or_else(|| {</span></a>
+<a name="1259"><span class="lineNum">    1259 </span><span class="lineCov">          2 :         result.ok_or_else(|| {</span></a>
 <a name="1260"><span class="lineNum">    1260 </span><span class="lineNoCov">          0 :             let message = format!(</span></a>
 <a name="1261"><span class="lineNum">    1261 </span><span class="lineNoCov">          0 :                 &quot;Chain Index says block #{} is {:#x}, but that block is not in the database&quot;,</span></a>
 <a name="1262"><span class="lineNum">    1262 </span><span class="lineNoCov">          0 :                 block_number, block_hash</span></a>
 <a name="1263"><span class="lineNum">    1263 </span><span class="lineNoCov">          0 :             );</span></a>
-<a name="1264"><span class="lineNum">    1264 </span><span class="lineNoCov">          0 :             error!(&quot;{}&quot;, message);</span></a>
+<a name="1264"><span class="lineNum">    1264 </span>            :             error!(&quot;{}&quot;, message);</a>
 <a name="1265"><span class="lineNum">    1265 </span><span class="lineNoCov">          0 :             RPCError::custom(RPCError::ChainIndexIsInconsistent, message)</span></a>
-<a name="1266"><span class="lineNum">    1266 </span><span class="lineCov">          3 :         })</span></a>
-<a name="1267"><span class="lineNum">    1267 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1266"><span class="lineNum">    1266 </span><span class="lineCov">          2 :         })</span></a>
+<a name="1267"><span class="lineNum">    1267 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1268"><span class="lineNum">    1268 </span>            : </a>
-<a name="1269"><span class="lineNum">    1269 </span><span class="lineCov">          3 :     fn get_header(</span></a>
-<a name="1270"><span class="lineNum">    1270 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1271"><span class="lineNum">    1271 </span><span class="lineCov">          3 :         block_hash: H256,</span></a>
-<a name="1272"><span class="lineNum">    1272 </span><span class="lineCov">          3 :         verbosity: Option&lt;Uint32&gt;,</span></a>
-<a name="1273"><span class="lineNum">    1273 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;HeaderView, Header&gt;&gt;&gt; {</span></a>
-<a name="1274"><span class="lineNum">    1274 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1275"><span class="lineNum">    1275 </span><span class="lineCov">          3 :         let block_hash = block_hash.pack();</span></a>
-<a name="1276"><span class="lineNum">    1276 </span><span class="lineCov">          3 :         if !snapshot.is_main_chain(&amp;block_hash) {</span></a>
+<a name="1269"><span class="lineNum">    1269 </span><span class="lineCov">          2 :     fn get_header(</span></a>
+<a name="1270"><span class="lineNum">    1270 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1271"><span class="lineNum">    1271 </span><span class="lineCov">          2 :         block_hash: H256,</span></a>
+<a name="1272"><span class="lineNum">    1272 </span><span class="lineCov">          2 :         verbosity: Option&lt;Uint32&gt;,</span></a>
+<a name="1273"><span class="lineNum">    1273 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;HeaderView, Header&gt;&gt;&gt; {</span></a>
+<a name="1274"><span class="lineNum">    1274 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1275"><span class="lineNum">    1275 </span><span class="lineCov">          2 :         let block_hash = block_hash.pack();</span></a>
+<a name="1276"><span class="lineNum">    1276 </span><span class="lineCov">          2 :         if !snapshot.is_main_chain(&amp;block_hash) {</span></a>
 <a name="1277"><span class="lineNum">    1277 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
-<a name="1278"><span class="lineNum">    1278 </span><span class="lineCov">          3 :         }</span></a>
-<a name="1279"><span class="lineNum">    1279 </span><span class="lineCov">          3 : </span></a>
-<a name="1280"><span class="lineNum">    1280 </span><span class="lineCov">          3 :         let verbosity = verbosity</span></a>
-<a name="1281"><span class="lineNum">    1281 </span><span class="lineCov">          3 :             .map(|v| v.value())</span></a>
-<a name="1282"><span class="lineNum">    1282 </span><span class="lineCov">          3 :             .unwrap_or(DEFAULT_HEADER_VERBOSITY_LEVEL);</span></a>
-<a name="1283"><span class="lineNum">    1283 </span><span class="lineCov">          3 :         if verbosity == 1 {</span></a>
-<a name="1284"><span class="lineNum">    1284 </span><span class="lineCov">          3 :             Ok(snapshot</span></a>
-<a name="1285"><span class="lineNum">    1285 </span><span class="lineCov">          3 :                 .get_block_header(&amp;block_hash)</span></a>
-<a name="1286"><span class="lineNum">    1286 </span><span class="lineCov">          3 :                 .map(|header| ResponseFormat::Json(header.into())))</span></a>
+<a name="1278"><span class="lineNum">    1278 </span><span class="lineCov">          2 :         }</span></a>
+<a name="1279"><span class="lineNum">    1279 </span><span class="lineCov">          2 : </span></a>
+<a name="1280"><span class="lineNum">    1280 </span><span class="lineCov">          2 :         let verbosity = verbosity</span></a>
+<a name="1281"><span class="lineNum">    1281 </span><span class="lineCov">          2 :             .map(|v| v.value())</span></a>
+<a name="1282"><span class="lineNum">    1282 </span><span class="lineCov">          2 :             .unwrap_or(DEFAULT_HEADER_VERBOSITY_LEVEL);</span></a>
+<a name="1283"><span class="lineNum">    1283 </span><span class="lineCov">          2 :         if verbosity == 1 {</span></a>
+<a name="1284"><span class="lineNum">    1284 </span><span class="lineCov">          2 :             Ok(snapshot</span></a>
+<a name="1285"><span class="lineNum">    1285 </span><span class="lineCov">          2 :                 .get_block_header(&amp;block_hash)</span></a>
+<a name="1286"><span class="lineNum">    1286 </span><span class="lineCov">          2 :                 .map(|header| ResponseFormat::Json(header.into())))</span></a>
 <a name="1287"><span class="lineNum">    1287 </span><span class="lineNoCov">          0 :         } else if verbosity == 0 {</span></a>
 <a name="1288"><span class="lineNum">    1288 </span><span class="lineNoCov">          0 :             Ok(snapshot</span></a>
 <a name="1289"><span class="lineNum">    1289 </span><span class="lineNoCov">          0 :                 .get_packed_block_header(&amp;block_hash)</span></a>
@@ -1353,26 +1353,26 @@
 <a name="1291"><span class="lineNum">    1291 </span>            :         } else {</a>
 <a name="1292"><span class="lineNum">    1292 </span><span class="lineNoCov">          0 :             Err(RPCError::invalid_params(&quot;invalid verbosity level&quot;))</span></a>
 <a name="1293"><span class="lineNum">    1293 </span>            :         }</a>
-<a name="1294"><span class="lineNum">    1294 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1294"><span class="lineNum">    1294 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1295"><span class="lineNum">    1295 </span>            : </a>
-<a name="1296"><span class="lineNum">    1296 </span><span class="lineCov">          3 :     fn get_header_by_number(</span></a>
-<a name="1297"><span class="lineNum">    1297 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1298"><span class="lineNum">    1298 </span><span class="lineCov">          3 :         block_number: BlockNumber,</span></a>
-<a name="1299"><span class="lineNum">    1299 </span><span class="lineCov">          3 :         verbosity: Option&lt;Uint32&gt;,</span></a>
-<a name="1300"><span class="lineNum">    1300 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;HeaderView, Header&gt;&gt;&gt; {</span></a>
-<a name="1301"><span class="lineNum">    1301 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1302"><span class="lineNum">    1302 </span><span class="lineCov">          3 :         let block_hash = match snapshot.get_block_hash(block_number.into()) {</span></a>
-<a name="1303"><span class="lineNum">    1303 </span><span class="lineCov">          3 :             Some(block_hash) =&gt; block_hash,</span></a>
+<a name="1296"><span class="lineNum">    1296 </span><span class="lineCov">          2 :     fn get_header_by_number(</span></a>
+<a name="1297"><span class="lineNum">    1297 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1298"><span class="lineNum">    1298 </span><span class="lineCov">          2 :         block_number: BlockNumber,</span></a>
+<a name="1299"><span class="lineNum">    1299 </span><span class="lineCov">          2 :         verbosity: Option&lt;Uint32&gt;,</span></a>
+<a name="1300"><span class="lineNum">    1300 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;HeaderView, Header&gt;&gt;&gt; {</span></a>
+<a name="1301"><span class="lineNum">    1301 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1302"><span class="lineNum">    1302 </span><span class="lineCov">          2 :         let block_hash = match snapshot.get_block_hash(block_number.into()) {</span></a>
+<a name="1303"><span class="lineNum">    1303 </span><span class="lineCov">          2 :             Some(block_hash) =&gt; block_hash,</span></a>
 <a name="1304"><span class="lineNum">    1304 </span><span class="lineNoCov">          0 :             None =&gt; return Ok(None),</span></a>
 <a name="1305"><span class="lineNum">    1305 </span>            :         };</a>
 <a name="1306"><span class="lineNum">    1306 </span>            : </a>
-<a name="1307"><span class="lineNum">    1307 </span><span class="lineCov">          3 :         let verbosity = verbosity</span></a>
-<a name="1308"><span class="lineNum">    1308 </span><span class="lineCov">          3 :             .map(|v| v.value())</span></a>
-<a name="1309"><span class="lineNum">    1309 </span><span class="lineCov">          3 :             .unwrap_or(DEFAULT_HEADER_VERBOSITY_LEVEL);</span></a>
-<a name="1310"><span class="lineNum">    1310 </span><span class="lineCov">          3 :         let result = if verbosity == 1 {</span></a>
-<a name="1311"><span class="lineNum">    1311 </span><span class="lineCov">          3 :             snapshot</span></a>
-<a name="1312"><span class="lineNum">    1312 </span><span class="lineCov">          3 :                 .get_block_header(&amp;block_hash)</span></a>
-<a name="1313"><span class="lineNum">    1313 </span><span class="lineCov">          3 :                 .map(|header| Some(ResponseFormat::Json(header.into())))</span></a>
+<a name="1307"><span class="lineNum">    1307 </span><span class="lineCov">          2 :         let verbosity = verbosity</span></a>
+<a name="1308"><span class="lineNum">    1308 </span><span class="lineCov">          2 :             .map(|v| v.value())</span></a>
+<a name="1309"><span class="lineNum">    1309 </span><span class="lineCov">          2 :             .unwrap_or(DEFAULT_HEADER_VERBOSITY_LEVEL);</span></a>
+<a name="1310"><span class="lineNum">    1310 </span><span class="lineCov">          2 :         let result = if verbosity == 1 {</span></a>
+<a name="1311"><span class="lineNum">    1311 </span><span class="lineCov">          2 :             snapshot</span></a>
+<a name="1312"><span class="lineNum">    1312 </span><span class="lineCov">          2 :                 .get_block_header(&amp;block_hash)</span></a>
+<a name="1313"><span class="lineNum">    1313 </span><span class="lineCov">          2 :                 .map(|header| Some(ResponseFormat::Json(header.into())))</span></a>
 <a name="1314"><span class="lineNum">    1314 </span><span class="lineNoCov">          0 :         } else if verbosity == 0 {</span></a>
 <a name="1315"><span class="lineNum">    1315 </span><span class="lineNoCov">          0 :             snapshot</span></a>
 <a name="1316"><span class="lineNum">    1316 </span><span class="lineNoCov">          0 :                 .get_packed_block_header(&amp;block_hash)</span></a>
@@ -1381,66 +1381,66 @@
 <a name="1319"><span class="lineNum">    1319 </span><span class="lineNoCov">          0 :             return Err(RPCError::invalid_params(&quot;invalid verbosity level&quot;));</span></a>
 <a name="1320"><span class="lineNum">    1320 </span>            :         };</a>
 <a name="1321"><span class="lineNum">    1321 </span>            : </a>
-<a name="1322"><span class="lineNum">    1322 </span><span class="lineCov">          3 :         result.ok_or_else(|| {</span></a>
+<a name="1322"><span class="lineNum">    1322 </span><span class="lineCov">          2 :         result.ok_or_else(|| {</span></a>
 <a name="1323"><span class="lineNum">    1323 </span><span class="lineNoCov">          0 :             let message = format!(</span></a>
 <a name="1324"><span class="lineNum">    1324 </span><span class="lineNoCov">          0 :                 &quot;Chain Index says block #{} is {:#x}, but that block is not in the database&quot;,</span></a>
 <a name="1325"><span class="lineNum">    1325 </span><span class="lineNoCov">          0 :                 block_number, block_hash</span></a>
 <a name="1326"><span class="lineNum">    1326 </span><span class="lineNoCov">          0 :             );</span></a>
-<a name="1327"><span class="lineNum">    1327 </span><span class="lineNoCov">          0 :             error!(&quot;{}&quot;, message);</span></a>
+<a name="1327"><span class="lineNum">    1327 </span>            :             error!(&quot;{}&quot;, message);</a>
 <a name="1328"><span class="lineNum">    1328 </span><span class="lineNoCov">          0 :             RPCError::custom(RPCError::ChainIndexIsInconsistent, message)</span></a>
-<a name="1329"><span class="lineNum">    1329 </span><span class="lineCov">          3 :         })</span></a>
-<a name="1330"><span class="lineNum">    1330 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1329"><span class="lineNum">    1329 </span><span class="lineCov">          2 :         })</span></a>
+<a name="1330"><span class="lineNum">    1330 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1331"><span class="lineNum">    1331 </span>            : </a>
-<a name="1332"><span class="lineNum">    1332 </span><span class="lineCov">          3 :     fn get_transaction(&amp;self, tx_hash: H256) -&gt; Result&lt;Option&lt;TransactionWithStatus&gt;&gt; {</span></a>
-<a name="1333"><span class="lineNum">    1333 </span><span class="lineCov">          3 :         let tx_hash = tx_hash.pack();</span></a>
-<a name="1334"><span class="lineNum">    1334 </span><span class="lineCov">          3 :         let id = packed::ProposalShortId::from_tx_hash(&amp;tx_hash);</span></a>
+<a name="1332"><span class="lineNum">    1332 </span><span class="lineCov">          2 :     fn get_transaction(&amp;self, tx_hash: H256) -&gt; Result&lt;Option&lt;TransactionWithStatus&gt;&gt; {</span></a>
+<a name="1333"><span class="lineNum">    1333 </span><span class="lineCov">          2 :         let tx_hash = tx_hash.pack();</span></a>
+<a name="1334"><span class="lineNum">    1334 </span><span class="lineCov">          2 :         let id = packed::ProposalShortId::from_tx_hash(&amp;tx_hash);</span></a>
 <a name="1335"><span class="lineNum">    1335 </span>            : </a>
-<a name="1336"><span class="lineNum">    1336 </span><span class="lineCov">          3 :         let tx = {</span></a>
-<a name="1337"><span class="lineNum">    1337 </span><span class="lineCov">          3 :             let tx_pool = self.shared.tx_pool_controller();</span></a>
-<a name="1338"><span class="lineNum">    1338 </span><span class="lineCov">          3 :             let fetch_tx_for_rpc = tx_pool.fetch_tx_for_rpc(id);</span></a>
-<a name="1339"><span class="lineNum">    1339 </span><span class="lineCov">          3 :             if let Err(e) = fetch_tx_for_rpc {</span></a>
-<a name="1340"><span class="lineNum">    1340 </span><span class="lineNoCov">          0 :                 error!(&quot;send fetch_tx_for_rpc request error {}&quot;, e);</span></a>
+<a name="1336"><span class="lineNum">    1336 </span><span class="lineCov">          2 :         let tx = {</span></a>
+<a name="1337"><span class="lineNum">    1337 </span><span class="lineCov">          2 :             let tx_pool = self.shared.tx_pool_controller();</span></a>
+<a name="1338"><span class="lineNum">    1338 </span><span class="lineCov">          2 :             let fetch_tx_for_rpc = tx_pool.fetch_tx_for_rpc(id);</span></a>
+<a name="1339"><span class="lineNum">    1339 </span><span class="lineCov">          2 :             if let Err(e) = fetch_tx_for_rpc {</span></a>
+<a name="1340"><span class="lineNum">    1340 </span>            :                 error!(&quot;send fetch_tx_for_rpc request error {}&quot;, e);</a>
 <a name="1341"><span class="lineNum">    1341 </span><span class="lineNoCov">          0 :                 return Err(RPCError::ckb_internal_error(e));</span></a>
-<a name="1342"><span class="lineNum">    1342 </span><span class="lineCov">          3 :             };</span></a>
-<a name="1343"><span class="lineNum">    1343 </span><span class="lineCov">          3 : </span></a>
-<a name="1344"><span class="lineNum">    1344 </span><span class="lineCov">          3 :             fetch_tx_for_rpc.unwrap().map(|(proposed, tx)| {</span></a>
-<a name="1345"><span class="lineNum">    1345 </span><span class="lineCov">          3 :                 if proposed {</span></a>
+<a name="1342"><span class="lineNum">    1342 </span><span class="lineCov">          2 :             };</span></a>
+<a name="1343"><span class="lineNum">    1343 </span><span class="lineCov">          2 : </span></a>
+<a name="1344"><span class="lineNum">    1344 </span><span class="lineCov">          2 :             fetch_tx_for_rpc.unwrap().map(|(proposed, tx)| {</span></a>
+<a name="1345"><span class="lineNum">    1345 </span><span class="lineCov">          2 :                 if proposed {</span></a>
 <a name="1346"><span class="lineNum">    1346 </span><span class="lineNoCov">          0 :                     TransactionWithStatus::with_proposed(tx)</span></a>
 <a name="1347"><span class="lineNum">    1347 </span>            :                 } else {</a>
-<a name="1348"><span class="lineNum">    1348 </span><span class="lineCov">          3 :                     TransactionWithStatus::with_pending(tx)</span></a>
+<a name="1348"><span class="lineNum">    1348 </span><span class="lineCov">          2 :                     TransactionWithStatus::with_pending(tx)</span></a>
 <a name="1349"><span class="lineNum">    1349 </span>            :                 }</a>
-<a name="1350"><span class="lineNum">    1350 </span><span class="lineCov">          3 :             })</span></a>
-<a name="1351"><span class="lineNum">    1351 </span><span class="lineCov">          3 :         };</span></a>
-<a name="1352"><span class="lineNum">    1352 </span><span class="lineCov">          3 : </span></a>
-<a name="1353"><span class="lineNum">    1353 </span><span class="lineCov">          3 :         Ok(tx.or_else(|| {</span></a>
+<a name="1350"><span class="lineNum">    1350 </span><span class="lineCov">          2 :             })</span></a>
+<a name="1351"><span class="lineNum">    1351 </span><span class="lineCov">          2 :         };</span></a>
+<a name="1352"><span class="lineNum">    1352 </span><span class="lineCov">          2 : </span></a>
+<a name="1353"><span class="lineNum">    1353 </span><span class="lineCov">          2 :         Ok(tx.or_else(|| {</span></a>
 <a name="1354"><span class="lineNum">    1354 </span><span class="lineNoCov">          0 :             self.shared</span></a>
 <a name="1355"><span class="lineNum">    1355 </span><span class="lineNoCov">          0 :                 .snapshot()</span></a>
 <a name="1356"><span class="lineNum">    1356 </span><span class="lineNoCov">          0 :                 .get_transaction(&amp;tx_hash)</span></a>
 <a name="1357"><span class="lineNum">    1357 </span><span class="lineNoCov">          0 :                 .map(|(tx, block_hash)| {</span></a>
 <a name="1358"><span class="lineNum">    1358 </span><span class="lineNoCov">          0 :                     TransactionWithStatus::with_committed(tx, block_hash.unpack())</span></a>
 <a name="1359"><span class="lineNum">    1359 </span><span class="lineNoCov">          0 :                 })</span></a>
-<a name="1360"><span class="lineNum">    1360 </span><span class="lineCov">          3 :         }))</span></a>
-<a name="1361"><span class="lineNum">    1361 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1360"><span class="lineNum">    1360 </span><span class="lineCov">          2 :         }))</span></a>
+<a name="1361"><span class="lineNum">    1361 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1362"><span class="lineNum">    1362 </span>            : </a>
-<a name="1363"><span class="lineNum">    1363 </span><span class="lineCov">          3 :     fn get_block_hash(&amp;self, block_number: BlockNumber) -&gt; Result&lt;Option&lt;H256&gt;&gt; {</span></a>
-<a name="1364"><span class="lineNum">    1364 </span><span class="lineCov">          3 :         Ok(self</span></a>
-<a name="1365"><span class="lineNum">    1365 </span><span class="lineCov">          3 :             .shared</span></a>
-<a name="1366"><span class="lineNum">    1366 </span><span class="lineCov">          3 :             .snapshot()</span></a>
-<a name="1367"><span class="lineNum">    1367 </span><span class="lineCov">          3 :             .get_block_hash(block_number.into())</span></a>
-<a name="1368"><span class="lineNum">    1368 </span><span class="lineCov">          3 :             .map(|h| h.unpack()))</span></a>
-<a name="1369"><span class="lineNum">    1369 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1363"><span class="lineNum">    1363 </span><span class="lineCov">          2 :     fn get_block_hash(&amp;self, block_number: BlockNumber) -&gt; Result&lt;Option&lt;H256&gt;&gt; {</span></a>
+<a name="1364"><span class="lineNum">    1364 </span><span class="lineCov">          2 :         Ok(self</span></a>
+<a name="1365"><span class="lineNum">    1365 </span><span class="lineCov">          2 :             .shared</span></a>
+<a name="1366"><span class="lineNum">    1366 </span><span class="lineCov">          2 :             .snapshot()</span></a>
+<a name="1367"><span class="lineNum">    1367 </span><span class="lineCov">          2 :             .get_block_hash(block_number.into())</span></a>
+<a name="1368"><span class="lineNum">    1368 </span><span class="lineCov">          2 :             .map(|h| h.unpack()))</span></a>
+<a name="1369"><span class="lineNum">    1369 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1370"><span class="lineNum">    1370 </span>            : </a>
-<a name="1371"><span class="lineNum">    1371 </span><span class="lineCov">          3 :     fn get_tip_header(</span></a>
-<a name="1372"><span class="lineNum">    1372 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1373"><span class="lineNum">    1373 </span><span class="lineCov">          3 :         verbosity: Option&lt;Uint32&gt;,</span></a>
-<a name="1374"><span class="lineNum">    1374 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;ResponseFormat&lt;HeaderView, Header&gt;&gt; {</span></a>
-<a name="1375"><span class="lineNum">    1375 </span><span class="lineCov">          3 :         let verbosity = verbosity</span></a>
-<a name="1376"><span class="lineNum">    1376 </span><span class="lineCov">          3 :             .map(|v| v.value())</span></a>
-<a name="1377"><span class="lineNum">    1377 </span><span class="lineCov">          3 :             .unwrap_or(DEFAULT_HEADER_VERBOSITY_LEVEL);</span></a>
-<a name="1378"><span class="lineNum">    1378 </span><span class="lineCov">          3 :         if verbosity == 1 {</span></a>
-<a name="1379"><span class="lineNum">    1379 </span><span class="lineCov">          3 :             Ok(ResponseFormat::Json(</span></a>
-<a name="1380"><span class="lineNum">    1380 </span><span class="lineCov">          3 :                 self.shared.snapshot().tip_header().clone().into(),</span></a>
-<a name="1381"><span class="lineNum">    1381 </span><span class="lineCov">          3 :             ))</span></a>
+<a name="1371"><span class="lineNum">    1371 </span><span class="lineCov">          2 :     fn get_tip_header(</span></a>
+<a name="1372"><span class="lineNum">    1372 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1373"><span class="lineNum">    1373 </span><span class="lineCov">          2 :         verbosity: Option&lt;Uint32&gt;,</span></a>
+<a name="1374"><span class="lineNum">    1374 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;ResponseFormat&lt;HeaderView, Header&gt;&gt; {</span></a>
+<a name="1375"><span class="lineNum">    1375 </span><span class="lineCov">          2 :         let verbosity = verbosity</span></a>
+<a name="1376"><span class="lineNum">    1376 </span><span class="lineCov">          2 :             .map(|v| v.value())</span></a>
+<a name="1377"><span class="lineNum">    1377 </span><span class="lineCov">          2 :             .unwrap_or(DEFAULT_HEADER_VERBOSITY_LEVEL);</span></a>
+<a name="1378"><span class="lineNum">    1378 </span><span class="lineCov">          2 :         if verbosity == 1 {</span></a>
+<a name="1379"><span class="lineNum">    1379 </span><span class="lineCov">          2 :             Ok(ResponseFormat::Json(</span></a>
+<a name="1380"><span class="lineNum">    1380 </span><span class="lineCov">          2 :                 self.shared.snapshot().tip_header().clone().into(),</span></a>
+<a name="1381"><span class="lineNum">    1381 </span><span class="lineCov">          2 :             ))</span></a>
 <a name="1382"><span class="lineNum">    1382 </span><span class="lineNoCov">          0 :         } else if verbosity == 0 {</span></a>
 <a name="1383"><span class="lineNum">    1383 </span><span class="lineNoCov">          0 :             Ok(ResponseFormat::Hex(</span></a>
 <a name="1384"><span class="lineNum">    1384 </span><span class="lineNoCov">          0 :                 self.shared.snapshot().tip_header().data(),</span></a>
@@ -1448,131 +1448,131 @@
 <a name="1386"><span class="lineNum">    1386 </span>            :         } else {</a>
 <a name="1387"><span class="lineNum">    1387 </span><span class="lineNoCov">          0 :             Err(RPCError::invalid_params(&quot;invalid verbosity level&quot;))</span></a>
 <a name="1388"><span class="lineNum">    1388 </span>            :         }</a>
-<a name="1389"><span class="lineNum">    1389 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1389"><span class="lineNum">    1389 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1390"><span class="lineNum">    1390 </span>            : </a>
-<a name="1391"><span class="lineNum">    1391 </span><span class="lineCov">          3 :     fn get_current_epoch(&amp;self) -&gt; Result&lt;EpochView&gt; {</span></a>
-<a name="1392"><span class="lineNum">    1392 </span><span class="lineCov">          3 :         Ok(EpochView::from_ext(</span></a>
-<a name="1393"><span class="lineNum">    1393 </span><span class="lineCov">          3 :             self.shared.snapshot().epoch_ext().pack(),</span></a>
-<a name="1394"><span class="lineNum">    1394 </span><span class="lineCov">          3 :         ))</span></a>
-<a name="1395"><span class="lineNum">    1395 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1391"><span class="lineNum">    1391 </span><span class="lineCov">          2 :     fn get_current_epoch(&amp;self) -&gt; Result&lt;EpochView&gt; {</span></a>
+<a name="1392"><span class="lineNum">    1392 </span><span class="lineCov">          2 :         Ok(EpochView::from_ext(</span></a>
+<a name="1393"><span class="lineNum">    1393 </span><span class="lineCov">          2 :             self.shared.snapshot().epoch_ext().pack(),</span></a>
+<a name="1394"><span class="lineNum">    1394 </span><span class="lineCov">          2 :         ))</span></a>
+<a name="1395"><span class="lineNum">    1395 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1396"><span class="lineNum">    1396 </span>            : </a>
-<a name="1397"><span class="lineNum">    1397 </span><span class="lineCov">          3 :     fn get_epoch_by_number(&amp;self, epoch_number: EpochNumber) -&gt; Result&lt;Option&lt;EpochView&gt;&gt; {</span></a>
-<a name="1398"><span class="lineNum">    1398 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1399"><span class="lineNum">    1399 </span><span class="lineCov">          3 :         Ok(snapshot</span></a>
-<a name="1400"><span class="lineNum">    1400 </span><span class="lineCov">          3 :             .get_epoch_index(epoch_number.into())</span></a>
-<a name="1401"><span class="lineNum">    1401 </span><span class="lineCov">          3 :             .and_then(|hash| {</span></a>
-<a name="1402"><span class="lineNum">    1402 </span><span class="lineCov">          3 :                 snapshot</span></a>
-<a name="1403"><span class="lineNum">    1403 </span><span class="lineCov">          3 :                     .get_epoch_ext(&amp;hash)</span></a>
-<a name="1404"><span class="lineNum">    1404 </span><span class="lineCov">          3 :                     .map(|ext| EpochView::from_ext(ext.pack()))</span></a>
-<a name="1405"><span class="lineNum">    1405 </span><span class="lineCov">          3 :             }))</span></a>
-<a name="1406"><span class="lineNum">    1406 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1397"><span class="lineNum">    1397 </span><span class="lineCov">          2 :     fn get_epoch_by_number(&amp;self, epoch_number: EpochNumber) -&gt; Result&lt;Option&lt;EpochView&gt;&gt; {</span></a>
+<a name="1398"><span class="lineNum">    1398 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1399"><span class="lineNum">    1399 </span><span class="lineCov">          2 :         Ok(snapshot</span></a>
+<a name="1400"><span class="lineNum">    1400 </span><span class="lineCov">          2 :             .get_epoch_index(epoch_number.into())</span></a>
+<a name="1401"><span class="lineNum">    1401 </span><span class="lineCov">          2 :             .and_then(|hash| {</span></a>
+<a name="1402"><span class="lineNum">    1402 </span><span class="lineCov">          2 :                 snapshot</span></a>
+<a name="1403"><span class="lineNum">    1403 </span><span class="lineCov">          2 :                     .get_epoch_ext(&amp;hash)</span></a>
+<a name="1404"><span class="lineNum">    1404 </span><span class="lineCov">          2 :                     .map(|ext| EpochView::from_ext(ext.pack()))</span></a>
+<a name="1405"><span class="lineNum">    1405 </span><span class="lineCov">          2 :             }))</span></a>
+<a name="1406"><span class="lineNum">    1406 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1407"><span class="lineNum">    1407 </span>            : </a>
-<a name="1408"><span class="lineNum">    1408 </span><span class="lineCov">          3 :     fn get_live_cell(&amp;self, out_point: OutPoint, with_data: bool) -&gt; Result&lt;CellWithStatus&gt; {</span></a>
-<a name="1409"><span class="lineNum">    1409 </span><span class="lineCov">          3 :         let cell_status = self.shared.snapshot().cell(&amp;out_point.into(), with_data);</span></a>
-<a name="1410"><span class="lineNum">    1410 </span><span class="lineCov">          3 :         Ok(cell_status.into())</span></a>
-<a name="1411"><span class="lineNum">    1411 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1408"><span class="lineNum">    1408 </span><span class="lineCov">          2 :     fn get_live_cell(&amp;self, out_point: OutPoint, with_data: bool) -&gt; Result&lt;CellWithStatus&gt; {</span></a>
+<a name="1409"><span class="lineNum">    1409 </span><span class="lineCov">          2 :         let cell_status = self.shared.snapshot().cell(&amp;out_point.into(), with_data);</span></a>
+<a name="1410"><span class="lineNum">    1410 </span><span class="lineCov">          2 :         Ok(cell_status.into())</span></a>
+<a name="1411"><span class="lineNum">    1411 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1412"><span class="lineNum">    1412 </span>            : </a>
-<a name="1413"><span class="lineNum">    1413 </span><span class="lineCov">          3 :     fn get_tip_block_number(&amp;self) -&gt; Result&lt;BlockNumber&gt; {</span></a>
-<a name="1414"><span class="lineNum">    1414 </span><span class="lineCov">          3 :         Ok(self.shared.snapshot().tip_header().number().into())</span></a>
-<a name="1415"><span class="lineNum">    1415 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1413"><span class="lineNum">    1413 </span><span class="lineCov">          2 :     fn get_tip_block_number(&amp;self) -&gt; Result&lt;BlockNumber&gt; {</span></a>
+<a name="1414"><span class="lineNum">    1414 </span><span class="lineCov">          2 :         Ok(self.shared.snapshot().tip_header().number().into())</span></a>
+<a name="1415"><span class="lineNum">    1415 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1416"><span class="lineNum">    1416 </span>            : </a>
-<a name="1417"><span class="lineNum">    1417 </span><span class="lineCov">          3 :     fn get_block_economic_state(&amp;self, block_hash: H256) -&gt; Result&lt;Option&lt;BlockEconomicState&gt;&gt; {</span></a>
-<a name="1418"><span class="lineNum">    1418 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1417"><span class="lineNum">    1417 </span><span class="lineCov">          2 :     fn get_block_economic_state(&amp;self, block_hash: H256) -&gt; Result&lt;Option&lt;BlockEconomicState&gt;&gt; {</span></a>
+<a name="1418"><span class="lineNum">    1418 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
 <a name="1419"><span class="lineNum">    1419 </span>            : </a>
-<a name="1420"><span class="lineNum">    1420 </span><span class="lineCov">          3 :         let block_number = if let Some(block_number) = snapshot.get_block_number(&amp;block_hash.pack())</span></a>
+<a name="1420"><span class="lineNum">    1420 </span><span class="lineCov">          2 :         let block_number = if let Some(block_number) = snapshot.get_block_number(&amp;block_hash.pack())</span></a>
 <a name="1421"><span class="lineNum">    1421 </span>            :         {</a>
-<a name="1422"><span class="lineNum">    1422 </span><span class="lineCov">          3 :             block_number</span></a>
+<a name="1422"><span class="lineNum">    1422 </span><span class="lineCov">          2 :             block_number</span></a>
 <a name="1423"><span class="lineNum">    1423 </span>            :         } else {</a>
 <a name="1424"><span class="lineNum">    1424 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
 <a name="1425"><span class="lineNum">    1425 </span>            :         };</a>
 <a name="1426"><span class="lineNum">    1426 </span>            : </a>
-<a name="1427"><span class="lineNum">    1427 </span><span class="lineCov">          3 :         let delay_length = snapshot.consensus().finalization_delay_length();</span></a>
-<a name="1428"><span class="lineNum">    1428 </span><span class="lineCov">          3 :         let finalized_at_number = block_number + delay_length;</span></a>
-<a name="1429"><span class="lineNum">    1429 </span><span class="lineCov">          3 :         if block_number == 0 || snapshot.tip_number() &lt; finalized_at_number {</span></a>
+<a name="1427"><span class="lineNum">    1427 </span><span class="lineCov">          2 :         let delay_length = snapshot.consensus().finalization_delay_length();</span></a>
+<a name="1428"><span class="lineNum">    1428 </span><span class="lineCov">          2 :         let finalized_at_number = block_number + delay_length;</span></a>
+<a name="1429"><span class="lineNum">    1429 </span><span class="lineCov">          2 :         if block_number == 0 || snapshot.tip_number() &lt; finalized_at_number {</span></a>
 <a name="1430"><span class="lineNum">    1430 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
-<a name="1431"><span class="lineNum">    1431 </span><span class="lineCov">          3 :         }</span></a>
-<a name="1432"><span class="lineNum">    1432 </span><span class="lineCov">          3 : </span></a>
-<a name="1433"><span class="lineNum">    1433 </span><span class="lineCov">          3 :         let block_hash = block_hash.pack();</span></a>
-<a name="1434"><span class="lineNum">    1434 </span><span class="lineCov">          3 :         let finalized_at = if let Some(block_hash) = snapshot.get_block_hash(finalized_at_number) {</span></a>
-<a name="1435"><span class="lineNum">    1435 </span><span class="lineCov">          3 :             block_hash</span></a>
+<a name="1431"><span class="lineNum">    1431 </span><span class="lineCov">          2 :         }</span></a>
+<a name="1432"><span class="lineNum">    1432 </span><span class="lineCov">          2 : </span></a>
+<a name="1433"><span class="lineNum">    1433 </span><span class="lineCov">          2 :         let block_hash = block_hash.pack();</span></a>
+<a name="1434"><span class="lineNum">    1434 </span><span class="lineCov">          2 :         let finalized_at = if let Some(block_hash) = snapshot.get_block_hash(finalized_at_number) {</span></a>
+<a name="1435"><span class="lineNum">    1435 </span><span class="lineCov">          2 :             block_hash</span></a>
 <a name="1436"><span class="lineNum">    1436 </span>            :         } else {</a>
 <a name="1437"><span class="lineNum">    1437 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
 <a name="1438"><span class="lineNum">    1438 </span>            :         };</a>
 <a name="1439"><span class="lineNum">    1439 </span>            : </a>
-<a name="1440"><span class="lineNum">    1440 </span><span class="lineCov">          3 :         let issuance = if let Some(issuance) = snapshot</span></a>
-<a name="1441"><span class="lineNum">    1441 </span><span class="lineCov">          3 :             .get_block_epoch_index(&amp;block_hash)</span></a>
-<a name="1442"><span class="lineNum">    1442 </span><span class="lineCov">          3 :             .and_then(|index| snapshot.get_epoch_ext(&amp;index))</span></a>
-<a name="1443"><span class="lineNum">    1443 </span><span class="lineCov">          3 :             .and_then(|epoch_ext| {</span></a>
-<a name="1444"><span class="lineNum">    1444 </span><span class="lineCov">          3 :                 let primary = epoch_ext.block_reward(block_number).ok()?;</span></a>
-<a name="1445"><span class="lineNum">    1445 </span><span class="lineCov">          3 :                 let secondary = epoch_ext</span></a>
-<a name="1446"><span class="lineNum">    1446 </span><span class="lineCov">          3 :                     .secondary_block_issuance(</span></a>
-<a name="1447"><span class="lineNum">    1447 </span><span class="lineCov">          3 :                         block_number,</span></a>
-<a name="1448"><span class="lineNum">    1448 </span><span class="lineCov">          3 :                         snapshot.consensus().secondary_epoch_reward(),</span></a>
-<a name="1449"><span class="lineNum">    1449 </span><span class="lineCov">          3 :                     )</span></a>
-<a name="1450"><span class="lineNum">    1450 </span><span class="lineCov">          3 :                     .ok()?;</span></a>
-<a name="1451"><span class="lineNum">    1451 </span><span class="lineCov">          3 :                 Some(core::BlockIssuance { primary, secondary })</span></a>
-<a name="1452"><span class="lineNum">    1452 </span><span class="lineCov">          3 :             }) {</span></a>
-<a name="1453"><span class="lineNum">    1453 </span><span class="lineCov">          3 :             issuance</span></a>
+<a name="1440"><span class="lineNum">    1440 </span><span class="lineCov">          2 :         let issuance = if let Some(issuance) = snapshot</span></a>
+<a name="1441"><span class="lineNum">    1441 </span><span class="lineCov">          2 :             .get_block_epoch_index(&amp;block_hash)</span></a>
+<a name="1442"><span class="lineNum">    1442 </span><span class="lineCov">          2 :             .and_then(|index| snapshot.get_epoch_ext(&amp;index))</span></a>
+<a name="1443"><span class="lineNum">    1443 </span><span class="lineCov">          2 :             .and_then(|epoch_ext| {</span></a>
+<a name="1444"><span class="lineNum">    1444 </span><span class="lineCov">          2 :                 let primary = epoch_ext.block_reward(block_number).ok()?;</span></a>
+<a name="1445"><span class="lineNum">    1445 </span><span class="lineCov">          2 :                 let secondary = epoch_ext</span></a>
+<a name="1446"><span class="lineNum">    1446 </span><span class="lineCov">          2 :                     .secondary_block_issuance(</span></a>
+<a name="1447"><span class="lineNum">    1447 </span><span class="lineCov">          2 :                         block_number,</span></a>
+<a name="1448"><span class="lineNum">    1448 </span><span class="lineCov">          2 :                         snapshot.consensus().secondary_epoch_reward(),</span></a>
+<a name="1449"><span class="lineNum">    1449 </span><span class="lineCov">          2 :                     )</span></a>
+<a name="1450"><span class="lineNum">    1450 </span><span class="lineCov">          2 :                     .ok()?;</span></a>
+<a name="1451"><span class="lineNum">    1451 </span><span class="lineCov">          2 :                 Some(core::BlockIssuance { primary, secondary })</span></a>
+<a name="1452"><span class="lineNum">    1452 </span><span class="lineCov">          2 :             }) {</span></a>
+<a name="1453"><span class="lineNum">    1453 </span><span class="lineCov">          2 :             issuance</span></a>
 <a name="1454"><span class="lineNum">    1454 </span>            :         } else {</a>
 <a name="1455"><span class="lineNum">    1455 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
 <a name="1456"><span class="lineNum">    1456 </span>            :         };</a>
 <a name="1457"><span class="lineNum">    1457 </span>            : </a>
-<a name="1458"><span class="lineNum">    1458 </span><span class="lineCov">          3 :         let txs_fee = if let Some(txs_fee) =</span></a>
-<a name="1459"><span class="lineNum">    1459 </span><span class="lineCov">          3 :             snapshot.get_block_ext(&amp;block_hash).and_then(|block_ext| {</span></a>
-<a name="1460"><span class="lineNum">    1460 </span><span class="lineCov">          3 :                 block_ext</span></a>
-<a name="1461"><span class="lineNum">    1461 </span><span class="lineCov">          3 :                     .txs_fees</span></a>
-<a name="1462"><span class="lineNum">    1462 </span><span class="lineCov">          3 :                     .iter()</span></a>
-<a name="1463"><span class="lineNum">    1463 </span><span class="lineCov">          3 :                     .try_fold(core::Capacity::zero(), |acc, tx_fee| acc.safe_add(*tx_fee))</span></a>
-<a name="1464"><span class="lineNum">    1464 </span><span class="lineCov">          3 :                     .ok()</span></a>
-<a name="1465"><span class="lineNum">    1465 </span><span class="lineCov">          3 :             }) {</span></a>
-<a name="1466"><span class="lineNum">    1466 </span><span class="lineCov">          3 :             txs_fee</span></a>
+<a name="1458"><span class="lineNum">    1458 </span><span class="lineCov">          2 :         let txs_fee = if let Some(txs_fee) =</span></a>
+<a name="1459"><span class="lineNum">    1459 </span><span class="lineCov">          2 :             snapshot.get_block_ext(&amp;block_hash).and_then(|block_ext| {</span></a>
+<a name="1460"><span class="lineNum">    1460 </span><span class="lineCov">          2 :                 block_ext</span></a>
+<a name="1461"><span class="lineNum">    1461 </span><span class="lineCov">          2 :                     .txs_fees</span></a>
+<a name="1462"><span class="lineNum">    1462 </span><span class="lineCov">          2 :                     .iter()</span></a>
+<a name="1463"><span class="lineNum">    1463 </span><span class="lineCov">          2 :                     .try_fold(core::Capacity::zero(), |acc, tx_fee| acc.safe_add(*tx_fee))</span></a>
+<a name="1464"><span class="lineNum">    1464 </span><span class="lineCov">          2 :                     .ok()</span></a>
+<a name="1465"><span class="lineNum">    1465 </span><span class="lineCov">          2 :             }) {</span></a>
+<a name="1466"><span class="lineNum">    1466 </span><span class="lineCov">          2 :             txs_fee</span></a>
 <a name="1467"><span class="lineNum">    1467 </span>            :         } else {</a>
 <a name="1468"><span class="lineNum">    1468 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
 <a name="1469"><span class="lineNum">    1469 </span>            :         };</a>
 <a name="1470"><span class="lineNum">    1470 </span>            : </a>
-<a name="1471"><span class="lineNum">    1471 </span><span class="lineCov">          3 :         Ok(snapshot.get_block_header(&amp;block_hash).and_then(|header| {</span></a>
-<a name="1472"><span class="lineNum">    1472 </span><span class="lineCov">          3 :             RewardCalculator::new(snapshot.consensus(), snapshot.as_ref())</span></a>
-<a name="1473"><span class="lineNum">    1473 </span><span class="lineCov">          3 :                 .block_reward_for_target(&amp;header)</span></a>
-<a name="1474"><span class="lineNum">    1474 </span><span class="lineCov">          3 :                 .ok()</span></a>
-<a name="1475"><span class="lineNum">    1475 </span><span class="lineCov">          3 :                 .map(|(_, block_reward)| core::BlockEconomicState {</span></a>
-<a name="1476"><span class="lineNum">    1476 </span><span class="lineCov">          3 :                     issuance,</span></a>
-<a name="1477"><span class="lineNum">    1477 </span><span class="lineCov">          3 :                     miner_reward: block_reward.into(),</span></a>
-<a name="1478"><span class="lineNum">    1478 </span><span class="lineCov">          3 :                     txs_fee,</span></a>
-<a name="1479"><span class="lineNum">    1479 </span><span class="lineCov">          3 :                     finalized_at,</span></a>
-<a name="1480"><span class="lineNum">    1480 </span><span class="lineCov">          3 :                 })</span></a>
-<a name="1481"><span class="lineNum">    1481 </span><span class="lineCov">          3 :                 .map(Into::into)</span></a>
-<a name="1482"><span class="lineNum">    1482 </span><span class="lineCov">          3 :         }))</span></a>
-<a name="1483"><span class="lineNum">    1483 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1471"><span class="lineNum">    1471 </span><span class="lineCov">          2 :         Ok(snapshot.get_block_header(&amp;block_hash).and_then(|header| {</span></a>
+<a name="1472"><span class="lineNum">    1472 </span><span class="lineCov">          2 :             RewardCalculator::new(snapshot.consensus(), snapshot.as_ref())</span></a>
+<a name="1473"><span class="lineNum">    1473 </span><span class="lineCov">          2 :                 .block_reward_for_target(&amp;header)</span></a>
+<a name="1474"><span class="lineNum">    1474 </span><span class="lineCov">          2 :                 .ok()</span></a>
+<a name="1475"><span class="lineNum">    1475 </span><span class="lineCov">          2 :                 .map(|(_, block_reward)| core::BlockEconomicState {</span></a>
+<a name="1476"><span class="lineNum">    1476 </span><span class="lineCov">          2 :                     issuance,</span></a>
+<a name="1477"><span class="lineNum">    1477 </span><span class="lineCov">          2 :                     miner_reward: block_reward.into(),</span></a>
+<a name="1478"><span class="lineNum">    1478 </span><span class="lineCov">          2 :                     txs_fee,</span></a>
+<a name="1479"><span class="lineNum">    1479 </span><span class="lineCov">          2 :                     finalized_at,</span></a>
+<a name="1480"><span class="lineNum">    1480 </span><span class="lineCov">          2 :                 })</span></a>
+<a name="1481"><span class="lineNum">    1481 </span><span class="lineCov">          2 :                 .map(Into::into)</span></a>
+<a name="1482"><span class="lineNum">    1482 </span><span class="lineCov">          2 :         }))</span></a>
+<a name="1483"><span class="lineNum">    1483 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1484"><span class="lineNum">    1484 </span>            : </a>
-<a name="1485"><span class="lineNum">    1485 </span><span class="lineCov">          3 :     fn get_transaction_proof(</span></a>
-<a name="1486"><span class="lineNum">    1486 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1487"><span class="lineNum">    1487 </span><span class="lineCov">          3 :         tx_hashes: Vec&lt;H256&gt;,</span></a>
-<a name="1488"><span class="lineNum">    1488 </span><span class="lineCov">          3 :         block_hash: Option&lt;H256&gt;,</span></a>
-<a name="1489"><span class="lineNum">    1489 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;TransactionProof&gt; {</span></a>
-<a name="1490"><span class="lineNum">    1490 </span><span class="lineCov">          3 :         if tx_hashes.is_empty() {</span></a>
+<a name="1485"><span class="lineNum">    1485 </span><span class="lineCov">          2 :     fn get_transaction_proof(</span></a>
+<a name="1486"><span class="lineNum">    1486 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1487"><span class="lineNum">    1487 </span><span class="lineCov">          2 :         tx_hashes: Vec&lt;H256&gt;,</span></a>
+<a name="1488"><span class="lineNum">    1488 </span><span class="lineCov">          2 :         block_hash: Option&lt;H256&gt;,</span></a>
+<a name="1489"><span class="lineNum">    1489 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;TransactionProof&gt; {</span></a>
+<a name="1490"><span class="lineNum">    1490 </span><span class="lineCov">          2 :         if tx_hashes.is_empty() {</span></a>
 <a name="1491"><span class="lineNum">    1491 </span><span class="lineNoCov">          0 :             return Err(RPCError::invalid_params(&quot;Empty transaction hashes&quot;));</span></a>
-<a name="1492"><span class="lineNum">    1492 </span><span class="lineCov">          3 :         }</span></a>
-<a name="1493"><span class="lineNum">    1493 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1494"><span class="lineNum">    1494 </span><span class="lineCov">          3 : </span></a>
-<a name="1495"><span class="lineNum">    1495 </span><span class="lineCov">          3 :         let mut retrieved_block_hash = None;</span></a>
-<a name="1496"><span class="lineNum">    1496 </span><span class="lineCov">          3 :         let mut tx_indices = HashSet::new();</span></a>
-<a name="1497"><span class="lineNum">    1497 </span><span class="lineCov">          3 :         for tx_hash in tx_hashes {</span></a>
-<a name="1498"><span class="lineNum">    1498 </span><span class="lineCov">          3 :             match snapshot.get_transaction_info(&amp;tx_hash.pack()) {</span></a>
-<a name="1499"><span class="lineNum">    1499 </span><span class="lineCov">          3 :                 Some(tx_info) =&gt; {</span></a>
-<a name="1500"><span class="lineNum">    1500 </span><span class="lineCov">          3 :                     if retrieved_block_hash.is_none() {</span></a>
-<a name="1501"><span class="lineNum">    1501 </span><span class="lineCov">          3 :                         retrieved_block_hash = Some(tx_info.block_hash);</span></a>
-<a name="1502"><span class="lineNum">    1502 </span><span class="lineCov">          3 :                     } else if Some(tx_info.block_hash) != retrieved_block_hash {</span></a>
+<a name="1492"><span class="lineNum">    1492 </span><span class="lineCov">          2 :         }</span></a>
+<a name="1493"><span class="lineNum">    1493 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1494"><span class="lineNum">    1494 </span><span class="lineCov">          2 : </span></a>
+<a name="1495"><span class="lineNum">    1495 </span><span class="lineCov">          2 :         let mut retrieved_block_hash = None;</span></a>
+<a name="1496"><span class="lineNum">    1496 </span><span class="lineCov">          2 :         let mut tx_indices = HashSet::new();</span></a>
+<a name="1497"><span class="lineNum">    1497 </span><span class="lineCov">          2 :         for tx_hash in tx_hashes {</span></a>
+<a name="1498"><span class="lineNum">    1498 </span><span class="lineCov">          2 :             match snapshot.get_transaction_info(&amp;tx_hash.pack()) {</span></a>
+<a name="1499"><span class="lineNum">    1499 </span><span class="lineCov">          2 :                 Some(tx_info) =&gt; {</span></a>
+<a name="1500"><span class="lineNum">    1500 </span><span class="lineCov">          2 :                     if retrieved_block_hash.is_none() {</span></a>
+<a name="1501"><span class="lineNum">    1501 </span><span class="lineCov">          2 :                         retrieved_block_hash = Some(tx_info.block_hash);</span></a>
+<a name="1502"><span class="lineNum">    1502 </span><span class="lineCov">          2 :                     } else if Some(tx_info.block_hash) != retrieved_block_hash {</span></a>
 <a name="1503"><span class="lineNum">    1503 </span><span class="lineNoCov">          0 :                         return Err(RPCError::invalid_params(</span></a>
 <a name="1504"><span class="lineNum">    1504 </span><span class="lineNoCov">          0 :                             &quot;Not all transactions found in retrieved block&quot;,</span></a>
 <a name="1505"><span class="lineNum">    1505 </span><span class="lineNoCov">          0 :                         ));</span></a>
 <a name="1506"><span class="lineNum">    1506 </span><span class="lineNoCov">          0 :                     }</span></a>
 <a name="1507"><span class="lineNum">    1507 </span>            : </a>
-<a name="1508"><span class="lineNum">    1508 </span><span class="lineCov">          3 :                     if !tx_indices.insert(tx_info.index as u32) {</span></a>
+<a name="1508"><span class="lineNum">    1508 </span><span class="lineCov">          2 :                     if !tx_indices.insert(tx_info.index as u32) {</span></a>
 <a name="1509"><span class="lineNum">    1509 </span><span class="lineNoCov">          0 :                         return Err(RPCError::invalid_params(format!(</span></a>
 <a name="1510"><span class="lineNum">    1510 </span><span class="lineNoCov">          0 :                             &quot;Duplicated tx_hash {:#x}&quot;,</span></a>
 <a name="1511"><span class="lineNum">    1511 </span><span class="lineNoCov">          0 :                             tx_hash</span></a>
 <a name="1512"><span class="lineNum">    1512 </span><span class="lineNoCov">          0 :                         )));</span></a>
-<a name="1513"><span class="lineNum">    1513 </span><span class="lineCov">          3 :                     }</span></a>
+<a name="1513"><span class="lineNum">    1513 </span><span class="lineCov">          2 :                     }</span></a>
 <a name="1514"><span class="lineNum">    1514 </span>            :                 }</a>
 <a name="1515"><span class="lineNum">    1515 </span>            :                 None =&gt; {</a>
 <a name="1516"><span class="lineNum">    1516 </span><span class="lineNoCov">          0 :                     return Err(RPCError::invalid_params(format!(</span></a>
@@ -1583,103 +1583,103 @@
 <a name="1521"><span class="lineNum">    1521 </span>            :             }</a>
 <a name="1522"><span class="lineNum">    1522 </span>            :         }</a>
 <a name="1523"><span class="lineNum">    1523 </span>            : </a>
-<a name="1524"><span class="lineNum">    1524 </span><span class="lineCov">          3 :         let retrieved_block_hash = retrieved_block_hash.expect(&quot;checked len&quot;);</span></a>
-<a name="1525"><span class="lineNum">    1525 </span><span class="lineCov">          3 :         if let Some(specified_block_hash) = block_hash {</span></a>
+<a name="1524"><span class="lineNum">    1524 </span><span class="lineCov">          2 :         let retrieved_block_hash = retrieved_block_hash.expect(&quot;checked len&quot;);</span></a>
+<a name="1525"><span class="lineNum">    1525 </span><span class="lineCov">          2 :         if let Some(specified_block_hash) = block_hash {</span></a>
 <a name="1526"><span class="lineNum">    1526 </span><span class="lineNoCov">          0 :             if !retrieved_block_hash.eq(&amp;specified_block_hash.pack()) {</span></a>
 <a name="1527"><span class="lineNum">    1527 </span><span class="lineNoCov">          0 :                 return Err(RPCError::invalid_params(</span></a>
 <a name="1528"><span class="lineNum">    1528 </span><span class="lineNoCov">          0 :                     &quot;Not all transactions found in specified block&quot;,</span></a>
 <a name="1529"><span class="lineNum">    1529 </span><span class="lineNoCov">          0 :                 ));</span></a>
 <a name="1530"><span class="lineNum">    1530 </span><span class="lineNoCov">          0 :             }</span></a>
-<a name="1531"><span class="lineNum">    1531 </span><span class="lineCov">          3 :         }</span></a>
+<a name="1531"><span class="lineNum">    1531 </span><span class="lineCov">          2 :         }</span></a>
 <a name="1532"><span class="lineNum">    1532 </span>            : </a>
-<a name="1533"><span class="lineNum">    1533 </span><span class="lineCov">          3 :         snapshot</span></a>
-<a name="1534"><span class="lineNum">    1534 </span><span class="lineCov">          3 :             .get_block(&amp;retrieved_block_hash)</span></a>
-<a name="1535"><span class="lineNum">    1535 </span><span class="lineCov">          3 :             .ok_or_else(|| {</span></a>
+<a name="1533"><span class="lineNum">    1533 </span><span class="lineCov">          2 :         snapshot</span></a>
+<a name="1534"><span class="lineNum">    1534 </span><span class="lineCov">          2 :             .get_block(&amp;retrieved_block_hash)</span></a>
+<a name="1535"><span class="lineNum">    1535 </span><span class="lineCov">          2 :             .ok_or_else(|| {</span></a>
 <a name="1536"><span class="lineNum">    1536 </span><span class="lineNoCov">          0 :                 let message = format!(</span></a>
 <a name="1537"><span class="lineNum">    1537 </span><span class="lineNoCov">          0 :                     &quot;Chain TransactionInfo says block {:#x} existing, but that block is not in the database&quot;,</span></a>
 <a name="1538"><span class="lineNum">    1538 </span><span class="lineNoCov">          0 :                     retrieved_block_hash</span></a>
 <a name="1539"><span class="lineNum">    1539 </span><span class="lineNoCov">          0 :                 );</span></a>
-<a name="1540"><span class="lineNum">    1540 </span><span class="lineNoCov">          0 :                 error!(&quot;{}&quot;, message);</span></a>
+<a name="1540"><span class="lineNum">    1540 </span>            :                 error!(&quot;{}&quot;, message);</a>
 <a name="1541"><span class="lineNum">    1541 </span><span class="lineNoCov">          0 :                 RPCError::custom(RPCError::ChainIndexIsInconsistent, message)</span></a>
-<a name="1542"><span class="lineNum">    1542 </span><span class="lineCov">          3 :             })</span></a>
-<a name="1543"><span class="lineNum">    1543 </span><span class="lineCov">          3 :             .map(|block| {</span></a>
-<a name="1544"><span class="lineNum">    1544 </span><span class="lineCov">          3 :                 let proof = CBMT::build_merkle_proof(</span></a>
-<a name="1545"><span class="lineNum">    1545 </span><span class="lineCov">          3 :                     &amp;block.transactions().iter().map(|tx| tx.hash()).collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
-<a name="1546"><span class="lineNum">    1546 </span><span class="lineCov">          3 :                     &amp;tx_indices.into_iter().collect::&lt;Vec&lt;_&gt;&gt;())</span></a>
-<a name="1547"><span class="lineNum">    1547 </span><span class="lineCov">          3 :                 .expect(&quot;build proof with verified inputs should be OK&quot;);</span></a>
-<a name="1548"><span class="lineNum">    1548 </span><span class="lineCov">          3 :                 TransactionProof {</span></a>
-<a name="1549"><span class="lineNum">    1549 </span><span class="lineCov">          3 :                     block_hash: block.hash().unpack(),</span></a>
-<a name="1550"><span class="lineNum">    1550 </span><span class="lineCov">          3 :                     witnesses_root: block.calc_witnesses_root().unpack(),</span></a>
-<a name="1551"><span class="lineNum">    1551 </span><span class="lineCov">          3 :                     proof: JsonMerkleProof {</span></a>
-<a name="1552"><span class="lineNum">    1552 </span><span class="lineCov">          3 :                         indices: proof.indices().iter().map(|index| (*index).into()).collect(),</span></a>
-<a name="1553"><span class="lineNum">    1553 </span><span class="lineCov">          3 :                         lemmas: proof.lemmas().iter().map(|lemma| Unpack::&lt;H256&gt;::unpack(lemma)).collect(),</span></a>
-<a name="1554"><span class="lineNum">    1554 </span><span class="lineCov">          3 :                     }</span></a>
-<a name="1555"><span class="lineNum">    1555 </span><span class="lineCov">          3 :                 }</span></a>
-<a name="1556"><span class="lineNum">    1556 </span><span class="lineCov">          3 :             })</span></a>
-<a name="1557"><span class="lineNum">    1557 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1542"><span class="lineNum">    1542 </span><span class="lineCov">          2 :             })</span></a>
+<a name="1543"><span class="lineNum">    1543 </span><span class="lineCov">          2 :             .map(|block| {</span></a>
+<a name="1544"><span class="lineNum">    1544 </span><span class="lineCov">          2 :                 let proof = CBMT::build_merkle_proof(</span></a>
+<a name="1545"><span class="lineNum">    1545 </span><span class="lineCov">          2 :                     &amp;block.transactions().iter().map(|tx| tx.hash()).collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
+<a name="1546"><span class="lineNum">    1546 </span><span class="lineCov">          2 :                     &amp;tx_indices.into_iter().collect::&lt;Vec&lt;_&gt;&gt;())</span></a>
+<a name="1547"><span class="lineNum">    1547 </span><span class="lineCov">          2 :                 .expect(&quot;build proof with verified inputs should be OK&quot;);</span></a>
+<a name="1548"><span class="lineNum">    1548 </span><span class="lineCov">          2 :                 TransactionProof {</span></a>
+<a name="1549"><span class="lineNum">    1549 </span><span class="lineCov">          2 :                     block_hash: block.hash().unpack(),</span></a>
+<a name="1550"><span class="lineNum">    1550 </span><span class="lineCov">          2 :                     witnesses_root: block.calc_witnesses_root().unpack(),</span></a>
+<a name="1551"><span class="lineNum">    1551 </span><span class="lineCov">          2 :                     proof: JsonMerkleProof {</span></a>
+<a name="1552"><span class="lineNum">    1552 </span><span class="lineCov">          2 :                         indices: proof.indices().iter().map(|index| (*index).into()).collect(),</span></a>
+<a name="1553"><span class="lineNum">    1553 </span><span class="lineCov">          2 :                         lemmas: proof.lemmas().iter().map(|lemma| Unpack::&lt;H256&gt;::unpack(lemma)).collect(),</span></a>
+<a name="1554"><span class="lineNum">    1554 </span><span class="lineCov">          2 :                     }</span></a>
+<a name="1555"><span class="lineNum">    1555 </span><span class="lineCov">          2 :                 }</span></a>
+<a name="1556"><span class="lineNum">    1556 </span><span class="lineCov">          2 :             })</span></a>
+<a name="1557"><span class="lineNum">    1557 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1558"><span class="lineNum">    1558 </span>            : </a>
-<a name="1559"><span class="lineNum">    1559 </span><span class="lineCov">          3 :     fn verify_transaction_proof(&amp;self, tx_proof: TransactionProof) -&gt; Result&lt;Vec&lt;H256&gt;&gt; {</span></a>
-<a name="1560"><span class="lineNum">    1560 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1561"><span class="lineNum">    1561 </span><span class="lineCov">          3 : </span></a>
-<a name="1562"><span class="lineNum">    1562 </span><span class="lineCov">          3 :         snapshot</span></a>
-<a name="1563"><span class="lineNum">    1563 </span><span class="lineCov">          3 :             .get_block(&amp;tx_proof.block_hash.pack())</span></a>
-<a name="1564"><span class="lineNum">    1564 </span><span class="lineCov">          3 :             .ok_or_else(|| {</span></a>
+<a name="1559"><span class="lineNum">    1559 </span><span class="lineCov">          2 :     fn verify_transaction_proof(&amp;self, tx_proof: TransactionProof) -&gt; Result&lt;Vec&lt;H256&gt;&gt; {</span></a>
+<a name="1560"><span class="lineNum">    1560 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1561"><span class="lineNum">    1561 </span><span class="lineCov">          2 : </span></a>
+<a name="1562"><span class="lineNum">    1562 </span><span class="lineCov">          2 :         snapshot</span></a>
+<a name="1563"><span class="lineNum">    1563 </span><span class="lineCov">          2 :             .get_block(&amp;tx_proof.block_hash.pack())</span></a>
+<a name="1564"><span class="lineNum">    1564 </span><span class="lineCov">          2 :             .ok_or_else(|| {</span></a>
 <a name="1565"><span class="lineNum">    1565 </span><span class="lineNoCov">          0 :                 RPCError::invalid_params(format!(&quot;Cannot find block {:#x}&quot;, tx_proof.block_hash))</span></a>
-<a name="1566"><span class="lineNum">    1566 </span><span class="lineCov">          3 :             })</span></a>
-<a name="1567"><span class="lineNum">    1567 </span><span class="lineCov">          3 :             .and_then(|block| {</span></a>
-<a name="1568"><span class="lineNum">    1568 </span><span class="lineCov">          3 :                 let witnesses_root = tx_proof.witnesses_root.pack();</span></a>
-<a name="1569"><span class="lineNum">    1569 </span><span class="lineCov">          3 :                 let merkle_proof = MerkleProof::new(</span></a>
-<a name="1570"><span class="lineNum">    1570 </span><span class="lineCov">          3 :                     tx_proof</span></a>
-<a name="1571"><span class="lineNum">    1571 </span><span class="lineCov">          3 :                         .proof</span></a>
-<a name="1572"><span class="lineNum">    1572 </span><span class="lineCov">          3 :                         .indices</span></a>
-<a name="1573"><span class="lineNum">    1573 </span><span class="lineCov">          3 :                         .into_iter()</span></a>
-<a name="1574"><span class="lineNum">    1574 </span><span class="lineCov">          3 :                         .map(|index| index.value())</span></a>
-<a name="1575"><span class="lineNum">    1575 </span><span class="lineCov">          3 :                         .collect(),</span></a>
-<a name="1576"><span class="lineNum">    1576 </span><span class="lineCov">          3 :                     tx_proof</span></a>
-<a name="1577"><span class="lineNum">    1577 </span><span class="lineCov">          3 :                         .proof</span></a>
-<a name="1578"><span class="lineNum">    1578 </span><span class="lineCov">          3 :                         .lemmas</span></a>
-<a name="1579"><span class="lineNum">    1579 </span><span class="lineCov">          3 :                         .into_iter()</span></a>
-<a name="1580"><span class="lineNum">    1580 </span><span class="lineCov">          3 :                         .map(|lemma| lemma.pack())</span></a>
-<a name="1581"><span class="lineNum">    1581 </span><span class="lineCov">          3 :                         .collect(),</span></a>
-<a name="1582"><span class="lineNum">    1582 </span><span class="lineCov">          3 :                 );</span></a>
-<a name="1583"><span class="lineNum">    1583 </span><span class="lineCov">          3 : </span></a>
-<a name="1584"><span class="lineNum">    1584 </span><span class="lineCov">          3 :                 CBMT::retrieve_leaves(&amp;block.tx_hashes(), &amp;merkle_proof)</span></a>
-<a name="1585"><span class="lineNum">    1585 </span><span class="lineCov">          3 :                     .and_then(|tx_hashes| {</span></a>
-<a name="1586"><span class="lineNum">    1586 </span><span class="lineCov">          3 :                         merkle_proof</span></a>
-<a name="1587"><span class="lineNum">    1587 </span><span class="lineCov">          3 :                             .root(&amp;tx_hashes)</span></a>
-<a name="1588"><span class="lineNum">    1588 </span><span class="lineCov">          3 :                             .and_then(|raw_transactions_root| {</span></a>
-<a name="1589"><span class="lineNum">    1589 </span><span class="lineCov">          3 :                                 if block.transactions_root()</span></a>
-<a name="1590"><span class="lineNum">    1590 </span><span class="lineCov">          3 :                                     == merkle_root(&amp;[raw_transactions_root, witnesses_root])</span></a>
+<a name="1566"><span class="lineNum">    1566 </span><span class="lineCov">          2 :             })</span></a>
+<a name="1567"><span class="lineNum">    1567 </span><span class="lineCov">          2 :             .and_then(|block| {</span></a>
+<a name="1568"><span class="lineNum">    1568 </span><span class="lineCov">          2 :                 let witnesses_root = tx_proof.witnesses_root.pack();</span></a>
+<a name="1569"><span class="lineNum">    1569 </span><span class="lineCov">          2 :                 let merkle_proof = MerkleProof::new(</span></a>
+<a name="1570"><span class="lineNum">    1570 </span><span class="lineCov">          2 :                     tx_proof</span></a>
+<a name="1571"><span class="lineNum">    1571 </span><span class="lineCov">          2 :                         .proof</span></a>
+<a name="1572"><span class="lineNum">    1572 </span><span class="lineCov">          2 :                         .indices</span></a>
+<a name="1573"><span class="lineNum">    1573 </span><span class="lineCov">          2 :                         .into_iter()</span></a>
+<a name="1574"><span class="lineNum">    1574 </span><span class="lineCov">          2 :                         .map(|index| index.value())</span></a>
+<a name="1575"><span class="lineNum">    1575 </span><span class="lineCov">          2 :                         .collect(),</span></a>
+<a name="1576"><span class="lineNum">    1576 </span><span class="lineCov">          2 :                     tx_proof</span></a>
+<a name="1577"><span class="lineNum">    1577 </span><span class="lineCov">          2 :                         .proof</span></a>
+<a name="1578"><span class="lineNum">    1578 </span><span class="lineCov">          2 :                         .lemmas</span></a>
+<a name="1579"><span class="lineNum">    1579 </span><span class="lineCov">          2 :                         .into_iter()</span></a>
+<a name="1580"><span class="lineNum">    1580 </span><span class="lineCov">          2 :                         .map(|lemma| lemma.pack())</span></a>
+<a name="1581"><span class="lineNum">    1581 </span><span class="lineCov">          2 :                         .collect(),</span></a>
+<a name="1582"><span class="lineNum">    1582 </span><span class="lineCov">          2 :                 );</span></a>
+<a name="1583"><span class="lineNum">    1583 </span><span class="lineCov">          2 : </span></a>
+<a name="1584"><span class="lineNum">    1584 </span><span class="lineCov">          2 :                 CBMT::retrieve_leaves(&amp;block.tx_hashes(), &amp;merkle_proof)</span></a>
+<a name="1585"><span class="lineNum">    1585 </span><span class="lineCov">          2 :                     .and_then(|tx_hashes| {</span></a>
+<a name="1586"><span class="lineNum">    1586 </span><span class="lineCov">          2 :                         merkle_proof</span></a>
+<a name="1587"><span class="lineNum">    1587 </span><span class="lineCov">          2 :                             .root(&amp;tx_hashes)</span></a>
+<a name="1588"><span class="lineNum">    1588 </span><span class="lineCov">          2 :                             .and_then(|raw_transactions_root| {</span></a>
+<a name="1589"><span class="lineNum">    1589 </span><span class="lineCov">          2 :                                 if block.transactions_root()</span></a>
+<a name="1590"><span class="lineNum">    1590 </span><span class="lineCov">          2 :                                     == merkle_root(&amp;[raw_transactions_root, witnesses_root])</span></a>
 <a name="1591"><span class="lineNum">    1591 </span>            :                                 {</a>
-<a name="1592"><span class="lineNum">    1592 </span><span class="lineCov">          3 :                                     Some(tx_hashes.iter().map(|hash| hash.unpack()).collect())</span></a>
+<a name="1592"><span class="lineNum">    1592 </span><span class="lineCov">          2 :                                     Some(tx_hashes.iter().map(|hash| hash.unpack()).collect())</span></a>
 <a name="1593"><span class="lineNum">    1593 </span>            :                                 } else {</a>
 <a name="1594"><span class="lineNum">    1594 </span><span class="lineNoCov">          0 :                                     None</span></a>
 <a name="1595"><span class="lineNum">    1595 </span>            :                                 }</a>
-<a name="1596"><span class="lineNum">    1596 </span><span class="lineCov">          3 :                             })</span></a>
-<a name="1597"><span class="lineNum">    1597 </span><span class="lineCov">          3 :                     })</span></a>
-<a name="1598"><span class="lineNum">    1598 </span><span class="lineCov">          3 :                     .ok_or_else(|| RPCError::invalid_params(&quot;Invalid transaction proof&quot;))</span></a>
-<a name="1599"><span class="lineNum">    1599 </span><span class="lineCov">          3 :             })</span></a>
-<a name="1600"><span class="lineNum">    1600 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1596"><span class="lineNum">    1596 </span><span class="lineCov">          2 :                             })</span></a>
+<a name="1597"><span class="lineNum">    1597 </span><span class="lineCov">          2 :                     })</span></a>
+<a name="1598"><span class="lineNum">    1598 </span><span class="lineCov">          2 :                     .ok_or_else(|| RPCError::invalid_params(&quot;Invalid transaction proof&quot;))</span></a>
+<a name="1599"><span class="lineNum">    1599 </span><span class="lineCov">          2 :             })</span></a>
+<a name="1600"><span class="lineNum">    1600 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1601"><span class="lineNum">    1601 </span>            : </a>
-<a name="1602"><span class="lineNum">    1602 </span><span class="lineCov">          3 :     fn get_fork_block(</span></a>
-<a name="1603"><span class="lineNum">    1603 </span><span class="lineCov">          3 :         &amp;self,</span></a>
-<a name="1604"><span class="lineNum">    1604 </span><span class="lineCov">          3 :         block_hash: H256,</span></a>
-<a name="1605"><span class="lineNum">    1605 </span><span class="lineCov">          3 :         verbosity: Option&lt;Uint32&gt;,</span></a>
-<a name="1606"><span class="lineNum">    1606 </span><span class="lineCov">          3 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;BlockView, Block&gt;&gt;&gt; {</span></a>
-<a name="1607"><span class="lineNum">    1607 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1608"><span class="lineNum">    1608 </span><span class="lineCov">          3 :         let block_hash = block_hash.pack();</span></a>
-<a name="1609"><span class="lineNum">    1609 </span><span class="lineCov">          3 :         if snapshot.is_main_chain(&amp;block_hash) {</span></a>
+<a name="1602"><span class="lineNum">    1602 </span><span class="lineCov">          2 :     fn get_fork_block(</span></a>
+<a name="1603"><span class="lineNum">    1603 </span><span class="lineCov">          2 :         &amp;self,</span></a>
+<a name="1604"><span class="lineNum">    1604 </span><span class="lineCov">          2 :         block_hash: H256,</span></a>
+<a name="1605"><span class="lineNum">    1605 </span><span class="lineCov">          2 :         verbosity: Option&lt;Uint32&gt;,</span></a>
+<a name="1606"><span class="lineNum">    1606 </span><span class="lineCov">          2 :     ) -&gt; Result&lt;Option&lt;ResponseFormat&lt;BlockView, Block&gt;&gt;&gt; {</span></a>
+<a name="1607"><span class="lineNum">    1607 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1608"><span class="lineNum">    1608 </span><span class="lineCov">          2 :         let block_hash = block_hash.pack();</span></a>
+<a name="1609"><span class="lineNum">    1609 </span><span class="lineCov">          2 :         if snapshot.is_main_chain(&amp;block_hash) {</span></a>
 <a name="1610"><span class="lineNum">    1610 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
-<a name="1611"><span class="lineNum">    1611 </span><span class="lineCov">          3 :         }</span></a>
-<a name="1612"><span class="lineNum">    1612 </span><span class="lineCov">          3 : </span></a>
-<a name="1613"><span class="lineNum">    1613 </span><span class="lineCov">          3 :         let verbosity = verbosity</span></a>
-<a name="1614"><span class="lineNum">    1614 </span><span class="lineCov">          3 :             .map(|v| v.value())</span></a>
-<a name="1615"><span class="lineNum">    1615 </span><span class="lineCov">          3 :             .unwrap_or(DEFAULT_BLOCK_VERBOSITY_LEVEL);</span></a>
-<a name="1616"><span class="lineNum">    1616 </span><span class="lineCov">          3 :         // TODO: verbosity level == 1, output block only contains tx_hash in JSON format</span></a>
-<a name="1617"><span class="lineNum">    1617 </span><span class="lineCov">          3 :         if verbosity == 2 {</span></a>
-<a name="1618"><span class="lineNum">    1618 </span><span class="lineCov">          3 :             Ok(snapshot</span></a>
-<a name="1619"><span class="lineNum">    1619 </span><span class="lineCov">          3 :                 .get_block(&amp;block_hash)</span></a>
-<a name="1620"><span class="lineNum">    1620 </span><span class="lineCov">          3 :                 .map(|block| ResponseFormat::Json(block.into())))</span></a>
+<a name="1611"><span class="lineNum">    1611 </span><span class="lineCov">          2 :         }</span></a>
+<a name="1612"><span class="lineNum">    1612 </span><span class="lineCov">          2 : </span></a>
+<a name="1613"><span class="lineNum">    1613 </span><span class="lineCov">          2 :         let verbosity = verbosity</span></a>
+<a name="1614"><span class="lineNum">    1614 </span><span class="lineCov">          2 :             .map(|v| v.value())</span></a>
+<a name="1615"><span class="lineNum">    1615 </span><span class="lineCov">          2 :             .unwrap_or(DEFAULT_BLOCK_VERBOSITY_LEVEL);</span></a>
+<a name="1616"><span class="lineNum">    1616 </span><span class="lineCov">          2 :         // TODO: verbosity level == 1, output block only contains tx_hash in JSON format</span></a>
+<a name="1617"><span class="lineNum">    1617 </span><span class="lineCov">          2 :         if verbosity == 2 {</span></a>
+<a name="1618"><span class="lineNum">    1618 </span><span class="lineCov">          2 :             Ok(snapshot</span></a>
+<a name="1619"><span class="lineNum">    1619 </span><span class="lineCov">          2 :                 .get_block(&amp;block_hash)</span></a>
+<a name="1620"><span class="lineNum">    1620 </span><span class="lineCov">          2 :                 .map(|block| ResponseFormat::Json(block.into())))</span></a>
 <a name="1621"><span class="lineNum">    1621 </span><span class="lineNoCov">          0 :         } else if verbosity == 0 {</span></a>
 <a name="1622"><span class="lineNum">    1622 </span><span class="lineNoCov">          0 :             Ok(snapshot</span></a>
 <a name="1623"><span class="lineNum">    1623 </span><span class="lineNoCov">          0 :                 .get_packed_block(&amp;block_hash)</span></a>
@@ -1687,26 +1687,26 @@
 <a name="1625"><span class="lineNum">    1625 </span>            :         } else {</a>
 <a name="1626"><span class="lineNum">    1626 </span><span class="lineNoCov">          0 :             Err(RPCError::invalid_params(&quot;invalid verbosity level&quot;))</span></a>
 <a name="1627"><span class="lineNum">    1627 </span>            :         }</a>
-<a name="1628"><span class="lineNum">    1628 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1628"><span class="lineNum">    1628 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1629"><span class="lineNum">    1629 </span>            : </a>
-<a name="1630"><span class="lineNum">    1630 </span><span class="lineCov">          3 :     fn get_consensus(&amp;self) -&gt; Result&lt;Consensus&gt; {</span></a>
-<a name="1631"><span class="lineNum">    1631 </span><span class="lineCov">          3 :         let consensus = self.shared.consensus().clone();</span></a>
-<a name="1632"><span class="lineNum">    1632 </span><span class="lineCov">          3 :         Ok(consensus.into())</span></a>
-<a name="1633"><span class="lineNum">    1633 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1630"><span class="lineNum">    1630 </span><span class="lineCov">          2 :     fn get_consensus(&amp;self) -&gt; Result&lt;Consensus&gt; {</span></a>
+<a name="1631"><span class="lineNum">    1631 </span><span class="lineCov">          2 :         let consensus = self.shared.consensus().clone();</span></a>
+<a name="1632"><span class="lineNum">    1632 </span><span class="lineCov">          2 :         Ok(consensus.into())</span></a>
+<a name="1633"><span class="lineNum">    1633 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1634"><span class="lineNum">    1634 </span>            : </a>
-<a name="1635"><span class="lineNum">    1635 </span><span class="lineCov">          3 :     fn get_block_median_time(&amp;self, block_hash: H256) -&gt; Result&lt;Option&lt;Timestamp&gt;&gt; {</span></a>
-<a name="1636"><span class="lineNum">    1636 </span><span class="lineCov">          3 :         let block_hash = block_hash.pack();</span></a>
-<a name="1637"><span class="lineNum">    1637 </span><span class="lineCov">          3 :         let snapshot = self.shared.snapshot();</span></a>
-<a name="1638"><span class="lineNum">    1638 </span><span class="lineCov">          3 :         if !snapshot.is_main_chain(&amp;block_hash) {</span></a>
+<a name="1635"><span class="lineNum">    1635 </span><span class="lineCov">          2 :     fn get_block_median_time(&amp;self, block_hash: H256) -&gt; Result&lt;Option&lt;Timestamp&gt;&gt; {</span></a>
+<a name="1636"><span class="lineNum">    1636 </span><span class="lineCov">          2 :         let block_hash = block_hash.pack();</span></a>
+<a name="1637"><span class="lineNum">    1637 </span><span class="lineCov">          2 :         let snapshot = self.shared.snapshot();</span></a>
+<a name="1638"><span class="lineNum">    1638 </span><span class="lineCov">          2 :         if !snapshot.is_main_chain(&amp;block_hash) {</span></a>
 <a name="1639"><span class="lineNum">    1639 </span><span class="lineNoCov">          0 :             return Ok(None);</span></a>
-<a name="1640"><span class="lineNum">    1640 </span><span class="lineCov">          3 :         }</span></a>
-<a name="1641"><span class="lineNum">    1641 </span><span class="lineCov">          3 : </span></a>
-<a name="1642"><span class="lineNum">    1642 </span><span class="lineCov">          3 :         let median_time = snapshot.block_median_time(</span></a>
-<a name="1643"><span class="lineNum">    1643 </span><span class="lineCov">          3 :             &amp;block_hash,</span></a>
-<a name="1644"><span class="lineNum">    1644 </span><span class="lineCov">          3 :             self.shared.consensus().median_time_block_count(),</span></a>
-<a name="1645"><span class="lineNum">    1645 </span><span class="lineCov">          3 :         );</span></a>
-<a name="1646"><span class="lineNum">    1646 </span><span class="lineCov">          3 :         Ok(Some(median_time.into()))</span></a>
-<a name="1647"><span class="lineNum">    1647 </span><span class="lineCov">          3 :     }</span></a>
+<a name="1640"><span class="lineNum">    1640 </span><span class="lineCov">          2 :         }</span></a>
+<a name="1641"><span class="lineNum">    1641 </span><span class="lineCov">          2 : </span></a>
+<a name="1642"><span class="lineNum">    1642 </span><span class="lineCov">          2 :         let median_time = snapshot.block_median_time(</span></a>
+<a name="1643"><span class="lineNum">    1643 </span><span class="lineCov">          2 :             &amp;block_hash,</span></a>
+<a name="1644"><span class="lineNum">    1644 </span><span class="lineCov">          2 :             self.shared.consensus().median_time_block_count(),</span></a>
+<a name="1645"><span class="lineNum">    1645 </span><span class="lineCov">          2 :         );</span></a>
+<a name="1646"><span class="lineNum">    1646 </span><span class="lineCov">          2 :         Ok(Some(median_time.into()))</span></a>
+<a name="1647"><span class="lineNum">    1647 </span><span class="lineCov">          2 :     }</span></a>
 <a name="1648"><span class="lineNum">    1648 </span>            : }</a>
 </pre>
       </td>

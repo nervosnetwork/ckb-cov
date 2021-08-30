@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
@@ -85,89 +85,89 @@
 <a name="23"><span class="lineNum">      23 </span>            :     /// # Safety</a>
 <a name="24"><span class="lineNum">      24 </span>            :     ///</a>
 <a name="25"><span class="lineNum">      25 </span>            :     /// This function is unsafe because it take raw pointer as arguments</a>
-<a name="26"><span class="lineNum">      26 </span><span class="lineCov">     179642 :     pub unsafe fn new(</span></a>
-<a name="27"><span class="lineNum">      27 </span><span class="lineCov">     179642 :         db: &amp;Arc&lt;OptimisticTransactionDB&gt;,</span></a>
-<a name="28"><span class="lineNum">      28 </span><span class="lineCov">     179642 :         ptr: *const ffi::rocksdb_snapshot_t,</span></a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">     179642 :     ) -&gt; RocksDBSnapshot {</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">     179642 :         RocksDBSnapshot {</span></a>
-<a name="31"><span class="lineNum">      31 </span><span class="lineCov">     179642 :             db: Arc::clone(db),</span></a>
-<a name="32"><span class="lineNum">      32 </span><span class="lineCov">     179642 :             inner: ptr,</span></a>
-<a name="33"><span class="lineNum">      33 </span><span class="lineCov">     179642 :         }</span></a>
-<a name="34"><span class="lineNum">      34 </span><span class="lineCov">     179642 :     }</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineCov">     164628 :     pub unsafe fn new(</span></a>
+<a name="27"><span class="lineNum">      27 </span><span class="lineCov">     164628 :         db: &amp;Arc&lt;OptimisticTransactionDB&gt;,</span></a>
+<a name="28"><span class="lineNum">      28 </span><span class="lineCov">     164628 :         ptr: *const ffi::rocksdb_snapshot_t,</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">     164628 :     ) -&gt; RocksDBSnapshot {</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">     164628 :         RocksDBSnapshot {</span></a>
+<a name="31"><span class="lineNum">      31 </span><span class="lineCov">     164628 :             db: Arc::clone(db),</span></a>
+<a name="32"><span class="lineNum">      32 </span><span class="lineCov">     164628 :             inner: ptr,</span></a>
+<a name="33"><span class="lineNum">      33 </span><span class="lineCov">     164628 :         }</span></a>
+<a name="34"><span class="lineNum">      34 </span><span class="lineCov">     164628 :     }</span></a>
 <a name="35"><span class="lineNum">      35 </span>            : </a>
 <a name="36"><span class="lineNum">      36 </span>            :     /// Return the value associated with a key using RocksDB's PinnableSlice from the given column</a>
 <a name="37"><span class="lineNum">      37 </span>            :     /// so as to avoid unnecessary memory copy.</a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineCov">     678628 :     pub fn get_pinned(&amp;self, col: Col, key: &amp;[u8]) -&gt; Result&lt;Option&lt;DBPinnableSlice&gt;&gt; {</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">     678628 :         let cf = cf_handle(&amp;self.db, col)?;</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">     678628 :         self.get_pinned_cf_full(Some(cf), &amp;key, None)</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineCov">     678628 :             .map_err(internal_error)</span></a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineCov">     678628 :     }</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">     622120 :     pub fn get_pinned(&amp;self, col: Col, key: &amp;[u8]) -&gt; Result&lt;Option&lt;DBPinnableSlice&gt;&gt; {</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">     622120 :         let cf = cf_handle(&amp;self.db, col)?;</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineCov">     622120 :         self.get_pinned_cf_full(Some(cf), &amp;key, None)</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">     622120 :             .map_err(internal_error)</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">     622120 :     }</span></a>
 <a name="43"><span class="lineNum">      43 </span>            : }</a>
 <a name="44"><span class="lineNum">      44 </span>            : </a>
 <a name="45"><span class="lineNum">      45 </span>            : impl Read for RocksDBSnapshot {}</a>
 <a name="46"><span class="lineNum">      46 </span>            : </a>
 <a name="47"><span class="lineNum">      47 </span>            : impl ConstHandle&lt;ffi::rocksdb_snapshot_t&gt; for RocksDBSnapshot {</a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">     739816 :     fn const_handle(&amp;self) -&gt; *const ffi::rocksdb_snapshot_t {</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">     739816 :         self.inner</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">     739816 :     }</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">     678693 :     fn const_handle(&amp;self) -&gt; *const ffi::rocksdb_snapshot_t {</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">     678693 :         self.inner</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">     678693 :     }</span></a>
 <a name="51"><span class="lineNum">      51 </span>            : }</a>
 <a name="52"><span class="lineNum">      52 </span>            : </a>
 <a name="53"><span class="lineNum">      53 </span>            : impl&lt;'a&gt; GetPinnedCF&lt;'a&gt; for RocksDBSnapshot {</a>
 <a name="54"><span class="lineNum">      54 </span>            :     type ColumnFamily = &amp;'a ColumnFamily;</a>
 <a name="55"><span class="lineNum">      55 </span>            :     type ReadOptions = &amp;'a ReadOptions;</a>
 <a name="56"><span class="lineNum">      56 </span>            : </a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">     679132 :     fn get_pinned_cf_full&lt;K: AsRef&lt;[u8]&gt;&gt;(</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">     679132 :         &amp;'a self,</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">     679132 :         cf: Option&lt;Self::ColumnFamily&gt;,</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">     679132 :         key: K,</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">     679132 :         readopts: Option&lt;Self::ReadOptions&gt;,</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">     679132 :     ) -&gt; ::std::result::Result&lt;Option&lt;DBPinnableSlice&lt;'a&gt;&gt;, Error&gt; {</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">     679132 :         let mut ro = readopts.cloned().unwrap_or_default();</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">     679132 :         ro.set_snapshot(self);</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">     679132 : </span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">     679132 :         let key = key.as_ref();</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">     679132 :         let key_ptr = key.as_ptr() as *const c_char;</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">     679132 :         let key_len = key.len() as size_t;</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">     679132 : </span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">     679132 :         unsafe {</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">     679132 :             let mut err: *mut ::libc::c_char = ::std::ptr::null_mut();</span></a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineCov">     679132 :             let val = match cf {</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">     679036 :                 Some(cf) =&gt; ffi::rocksdb_get_pinned_cf(</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">     679036 :                     self.db.handle(),</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">     679036 :                     ro.handle(),</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">     679036 :                     cf.handle(),</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">     679036 :                     key_ptr,</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">     679036 :                     key_len,</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">     679036 :                     &amp;mut err,</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">     679036 :                 ),</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         96 :                 None =&gt; ffi::rocksdb_get_pinned(</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         96 :                     self.db.handle(),</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         96 :                     ro.handle(),</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         96 :                     key_ptr,</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         96 :                     key_len,</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">         96 :                     &amp;mut err,</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">         96 :                 ),</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">     622527 :     fn get_pinned_cf_full&lt;K: AsRef&lt;[u8]&gt;&gt;(</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">     622527 :         &amp;'a self,</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">     622527 :         cf: Option&lt;Self::ColumnFamily&gt;,</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">     622527 :         key: K,</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">     622527 :         readopts: Option&lt;Self::ReadOptions&gt;,</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">     622527 :     ) -&gt; ::std::result::Result&lt;Option&lt;DBPinnableSlice&lt;'a&gt;&gt;, Error&gt; {</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">     622527 :         let mut ro = readopts.cloned().unwrap_or_default();</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">     622527 :         ro.set_snapshot(self);</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">     622527 : </span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">     622527 :         let key = key.as_ref();</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">     622527 :         let key_ptr = key.as_ptr() as *const c_char;</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">     622527 :         let key_len = key.len() as size_t;</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">     622527 : </span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">     622527 :         unsafe {</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">     622527 :             let mut err: *mut ::libc::c_char = ::std::ptr::null_mut();</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineCov">     622527 :             let val = match cf {</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">     622461 :                 Some(cf) =&gt; ffi::rocksdb_get_pinned_cf(</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">     622461 :                     self.db.handle(),</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">     622461 :                     ro.handle(),</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">     622461 :                     cf.handle(),</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">     622461 :                     key_ptr,</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">     622461 :                     key_len,</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">     622461 :                     &amp;mut err,</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">     622461 :                 ),</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         66 :                 None =&gt; ffi::rocksdb_get_pinned(</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         66 :                     self.db.handle(),</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         66 :                     ro.handle(),</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         66 :                     key_ptr,</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         66 :                     key_len,</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">         66 :                     &amp;mut err,</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">         66 :                 ),</span></a>
 <a name="88"><span class="lineNum">      88 </span>            :             };</a>
 <a name="89"><span class="lineNum">      89 </span>            : </a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">     679132 :             if !err.is_null() {</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">     622527 :             if !err.is_null() {</span></a>
 <a name="91"><span class="lineNum">      91 </span><span class="lineNoCov">          0 :                 return Err(Error::new(ffi_util::error_message(err)));</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">     679132 :             }</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">     679132 : </span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">     679132 :             if val.is_null() {</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">       1826 :                 Ok(None)</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">     622527 :             }</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">     622527 : </span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">     622527 :             if val.is_null() {</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">       1674 :                 Ok(None)</span></a>
 <a name="96"><span class="lineNum">      96 </span>            :             } else {</a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">     677234 :                 Ok(Some(DBPinnableSlice::from_c(val)))</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">     620787 :                 Ok(Some(DBPinnableSlice::from_c(val)))</span></a>
 <a name="98"><span class="lineNum">      98 </span>            :             }</a>
 <a name="99"><span class="lineNum">      99 </span>            :         }</a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">     679060 :     }</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">     622461 :     }</span></a>
 <a name="101"><span class="lineNum">     101 </span>            : }</a>
 <a name="102"><span class="lineNum">     102 </span>            : </a>
 <a name="103"><span class="lineNum">     103 </span>            : impl Drop for RocksDBSnapshot {</a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">     179522 :     fn drop(&amp;mut self) {</span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">     179522 :         unsafe {</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">     179522 :             ffi::rocksdb_release_snapshot(self.db.base_db_ptr(), self.inner);</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">     179522 :         }</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">     179522 :     }</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">     164683 :     fn drop(&amp;mut self) {</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">     164683 :         unsafe {</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">     164683 :             ffi::rocksdb_release_snapshot(self.db.base_db_ptr(), self.inner);</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">     164683 :         }</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">     164683 :     }</span></a>
 <a name="109"><span class="lineNum">     109 </span>            : }</a>
 <a name="110"><span class="lineNum">     110 </span>            : </a>
 <a name="111"><span class="lineNum">     111 </span>            : impl Iterate for RocksDBSnapshot {</a>
@@ -179,15 +179,15 @@
 <a name="117"><span class="lineNum">     117 </span>            : }</a>
 <a name="118"><span class="lineNum">     118 </span>            : </a>
 <a name="119"><span class="lineNum">     119 </span>            : impl IterateCF for RocksDBSnapshot {</a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">      61428 :     fn get_raw_iter_cf&lt;'a: 'b, 'b&gt;(</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">      61428 :         &amp;'a self,</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">      61428 :         cf_handle: &amp;ColumnFamily,</span></a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">      61428 :         readopts: &amp;ReadOptions,</span></a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">      61428 :     ) -&gt; ::std::result::Result&lt;DBRawIterator&lt;'b&gt;, Error&gt; {</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">      61428 :         let mut ro = readopts.to_owned();</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">      61428 :         ro.set_snapshot(self);</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">      61428 :         self.db.get_raw_iter_cf(cf_handle, &amp;ro)</span></a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">      61428 :     }</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">      56331 :     fn get_raw_iter_cf&lt;'a: 'b, 'b&gt;(</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">      56331 :         &amp;'a self,</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">      56331 :         cf_handle: &amp;ColumnFamily,</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">      56331 :         readopts: &amp;ReadOptions,</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">      56331 :     ) -&gt; ::std::result::Result&lt;DBRawIterator&lt;'b&gt;, Error&gt; {</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">      56331 :         let mut ro = readopts.to_owned();</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">      56331 :         ro.set_snapshot(self);</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">      56331 :         self.db.get_raw_iter_cf(cf_handle, &amp;ro)</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">      56331 :     }</span></a>
 <a name="129"><span class="lineNum">     129 </span>            : }</a>
 </pre>
       </td>

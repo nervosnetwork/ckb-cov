@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">7</td>
@@ -178,34 +178,34 @@
 <a name="116"><span class="lineNum">     116 </span>            : }</a>
 <a name="117"><span class="lineNum">     117 </span>            : </a>
 <a name="118"><span class="lineNum">     118 </span>            : impl From&lt;CellMeta&gt; for CellInfo {</a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         18 :     fn from(cell_meta: CellMeta) -&gt; Self {</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">         18 :         let data = cell_meta.mem_cell_data;</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         18 :         let data_hash = cell_meta.mem_cell_data_hash;</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         18 :         let output = cell_meta.cell_output.into();</span></a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         18 :         CellInfo {</span></a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         18 :             output,</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         18 :             data: data.and_then(move |data| {</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         18 :                 data_hash.map(|hash| CellData {</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         18 :                     content: JsonBytes::from_bytes(data),</span></a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         18 :                     hash: hash.unpack(),</span></a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineCov">         18 :                 })</span></a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">         18 :             }),</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">         18 :         }</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">         18 :     }</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         20 :     fn from(cell_meta: CellMeta) -&gt; Self {</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">         20 :         let data = cell_meta.mem_cell_data;</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         20 :         let data_hash = cell_meta.mem_cell_data_hash;</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         20 :         let output = cell_meta.cell_output.into();</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         20 :         CellInfo {</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         20 :             output,</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         20 :             data: data.and_then(move |data| {</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         20 :                 data_hash.map(|hash| CellData {</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         20 :                     content: JsonBytes::from_bytes(data),</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         20 :                     hash: hash.unpack(),</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineCov">         20 :                 })</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">         20 :             }),</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">         20 :         }</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">         20 :     }</span></a>
 <a name="133"><span class="lineNum">     133 </span>            : }</a>
 <a name="134"><span class="lineNum">     134 </span>            : </a>
 <a name="135"><span class="lineNum">     135 </span>            : impl From&lt;CellStatus&gt; for CellWithStatus {</a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">         18 :     fn from(status: CellStatus) -&gt; Self {</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         18 :         let (cell, status) = match status {</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         18 :             CellStatus::Live(cell_meta) =&gt; (Some(cell_meta), &quot;live&quot;),</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">         20 :     fn from(status: CellStatus) -&gt; Self {</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         20 :         let (cell, status) = match status {</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         20 :             CellStatus::Live(cell_meta) =&gt; (Some(cell_meta), &quot;live&quot;),</span></a>
 <a name="139"><span class="lineNum">     139 </span><span class="lineNoCov">          0 :             CellStatus::Dead =&gt; (None, &quot;dead&quot;),</span></a>
 <a name="140"><span class="lineNum">     140 </span><span class="lineNoCov">          0 :             CellStatus::Unknown =&gt; (None, &quot;unknown&quot;),</span></a>
 <a name="141"><span class="lineNum">     141 </span>            :         };</a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         18 :         Self {</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         18 :             cell: cell.map(Into::into),</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         18 :             status: status.to_string(),</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         18 :         }</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         18 :     }</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         20 :         Self {</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         20 :             cell: cell.map(Into::into),</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         20 :             status: status.to_string(),</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         20 :         }</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         20 :     }</span></a>
 <a name="147"><span class="lineNum">     147 </span>            : }</a>
 </pre>
       </td>

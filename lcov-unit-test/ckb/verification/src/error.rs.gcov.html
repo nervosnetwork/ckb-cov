@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-unit-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">60</td>
-            <td class="headerCovTableEntry">62</td>
-            <td class="headerCovTableEntryHi">96.8 %</td>
+            <td class="headerCovTableEntry">25</td>
+            <td class="headerCovTableEntry">27</td>
+            <td class="headerCovTableEntryHi">92.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">14</td>
-            <td class="headerCovTableEntry">64</td>
-            <td class="headerCovTableEntryLo">21.9 %</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">60</td>
+            <td class="headerCovTableEntryLo">16.7 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -76,8 +76,8 @@
 <a name="14"><span class="lineNum">      14 </span>            : /// It is used with the [`HeaderError`].</a>
 <a name="15"><span class="lineNum">      15 </span>            : ///</a>
 <a name="16"><span class="lineNum">      16 </span>            : /// [`HeaderError`]: ../ckb_verification/struct.HeaderError.html</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">        136 : #[derive(Debug, PartialEq, Eq, Clone, Copy, Display)]</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          6 : pub enum HeaderErrorKind {</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">         63 : #[derive(Debug, PartialEq, Eq, Clone, Copy, Display)]</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          3 : pub enum HeaderErrorKind {</span></a>
 <a name="19"><span class="lineNum">      19 </span>            :     /// It indicates that the underlying error is [`InvalidParentError`].</a>
 <a name="20"><span class="lineNum">      20 </span>            :     ///</a>
 <a name="21"><span class="lineNum">      21 </span>            :     /// [`InvalidParentError`]: ../ckb_verification/struct.InvalidParentError.html</a>
@@ -117,8 +117,8 @@
 <a name="55"><span class="lineNum">      55 </span>            : /// It is used with the [`BlockError`].</a>
 <a name="56"><span class="lineNum">      56 </span>            : ///</a>
 <a name="57"><span class="lineNum">      57 </span>            : /// [`BlockError`]: ../ckb_verification/struct.BlockError.html</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        452 : #[derive(Debug, PartialEq, Eq, Clone, Copy, Display)]</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">         12 : pub enum BlockErrorKind {</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        198 : #[derive(Debug, PartialEq, Eq, Clone, Copy, Display)]</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          6 : pub enum BlockErrorKind {</span></a>
 <a name="60"><span class="lineNum">      60 </span>            :     /// There are duplicated proposal transactions.</a>
 <a name="61"><span class="lineNum">      61 </span>            :     ProposalTransactionDuplicate,</a>
 <a name="62"><span class="lineNum">      62 </span>            : </a>
@@ -198,7 +198,7 @@
 <a name="136"><span class="lineNum">     136 </span>            : }</a>
 <a name="137"><span class="lineNum">     137 </span>            : </a>
 <a name="138"><span class="lineNum">     138 </span>            : /// Cannot access the parent block to the cannonical chain.</a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">          4 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">          2 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="140"><span class="lineNum">     140 </span>            : #[error(&quot;UnknownParentError(parent_hash: {parent_hash})&quot;)]</a>
 <a name="141"><span class="lineNum">     141 </span>            : pub struct UnknownParentError {</a>
 <a name="142"><span class="lineNum">     142 </span>            :     /// The hash of parent block.</a>
@@ -208,8 +208,8 @@
 <a name="146"><span class="lineNum">     146 </span>            : /// Errors due to the fact that the 2pc rule is not respected.</a>
 <a name="147"><span class="lineNum">     147 </span>            : ///</a>
 <a name="148"><span class="lineNum">     148 </span>            : /// See also [Two-Step Transaction Confirmation](https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0020-ckb-consensus-protocol/0020-ckb-consensus-protocol.md#two-step-transaction-confirmation)</a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         96 : #[derive(Error, Debug, PartialEq, Eq, Clone, Display)]</span></a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineCov">         48 : pub enum CommitError {</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         40 : #[derive(Error, Debug, PartialEq, Eq, Clone, Display)]</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineCov">         20 : pub enum CommitError {</span></a>
 <a name="151"><span class="lineNum">     151 </span>            :     /// There are blocks required at 2pc verification but not found.</a>
 <a name="152"><span class="lineNum">     152 </span>            :     AncestorNotFound,</a>
 <a name="153"><span class="lineNum">     153 </span>            :     /// There are block transactions that have not been proposed in the proposal window.</a>
@@ -221,8 +221,8 @@
 <a name="159"><span class="lineNum">     159 </span>            : /// See more about cellbase transaction: [cellbase transaction]</a>
 <a name="160"><span class="lineNum">     160 </span>            : ///</a>
 <a name="161"><span class="lineNum">     161 </span>            : /// [cellbase transaction]: https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0022-transaction-structure/0022-transaction-structure.md#exceptions</a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">         64 : #[derive(Error, Debug, PartialEq, Eq, Clone, Display)]</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">          4 : pub enum CellbaseError {</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">         30 : #[derive(Error, Debug, PartialEq, Eq, Clone, Display)]</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">          2 : pub enum CellbaseError {</span></a>
 <a name="164"><span class="lineNum">     164 </span>            :     /// The cellbase input is unexpected. The structure reference of correct cellbase input: [`new_cellbase_input`].</a>
 <a name="165"><span class="lineNum">     165 </span>            :     ///</a>
 <a name="166"><span class="lineNum">     166 </span>            :     /// [`new_cellbase_input`]: https://github.com/nervosnetwork/ckb/blob/ee0ccecd87013821a2e68120ba3510393c0373e7/util/types/src/extension/shortcuts.rs#L107-L109</a>
@@ -256,7 +256,7 @@
 <a name="194"><span class="lineNum">     194 </span>            : }</a>
 <a name="195"><span class="lineNum">     195 </span>            : </a>
 <a name="196"><span class="lineNum">     196 </span>            : /// Errors due to the fact that the uncle rule is not respected.</a>
-<a name="197"><span class="lineNum">     197 </span><span class="lineCov">        264 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="197"><span class="lineNum">     197 </span><span class="lineCov">        110 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="198"><span class="lineNum">     198 </span>            : pub enum UnclesError {</a>
 <a name="199"><span class="lineNum">     199 </span>            :     /// The number of block uncles exceeds limit.</a>
 <a name="200"><span class="lineNum">     200 </span>            :     #[error(&quot;OverCount(max: {max}, actual: {actual})&quot;)]</a>
@@ -305,7 +305,7 @@
 <a name="243"><span class="lineNum">     243 </span>            : }</a>
 <a name="244"><span class="lineNum">     244 </span>            : </a>
 <a name="245"><span class="lineNum">     245 </span>            : /// The block version is unexpected.</a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          6 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          3 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="247"><span class="lineNum">     247 </span>            : #[error(&quot;BlockVersionError(expected: {expected}, actual: {actual})&quot;)]</a>
 <a name="248"><span class="lineNum">     248 </span>            : pub struct BlockVersionError {</a>
 <a name="249"><span class="lineNum">     249 </span>            :     /// The expected block version.</a>
@@ -323,7 +323,7 @@
 <a name="261"><span class="lineNum">     261 </span>            : }</a>
 <a name="262"><span class="lineNum">     262 </span>            : </a>
 <a name="263"><span class="lineNum">     263 </span>            : /// Errors due to the fact that the pow rule is not respected.</a>
-<a name="264"><span class="lineNum">     264 </span><span class="lineCov">          4 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">          2 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="265"><span class="lineNum">     265 </span>            : pub enum PowError {</a>
 <a name="266"><span class="lineNum">     266 </span>            :     /// Error occurs during PoW verification.</a>
 <a name="267"><span class="lineNum">     267 </span>            :     #[error(&quot;InvalidNonce: please set logger.filter to \&quot;info,ckb-pow=debug\&quot; to see detailed PoW verification information in the log&quot;)]</a>
@@ -331,7 +331,7 @@
 <a name="269"><span class="lineNum">     269 </span>            : }</a>
 <a name="270"><span class="lineNum">     270 </span>            : </a>
 <a name="271"><span class="lineNum">     271 </span>            : /// Errors due to the fact that the block timestamp rule is not respected.</a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          8 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          4 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="273"><span class="lineNum">     273 </span>            : pub enum TimestampError {</a>
 <a name="274"><span class="lineNum">     274 </span>            :     /// The block timestamp is older than the allowed oldest timestamp.</a>
 <a name="275"><span class="lineNum">     275 </span>            :     #[error(&quot;BlockTimeTooOld(min: {min}, actual: {actual})&quot;)]</a>
@@ -355,17 +355,17 @@
 <a name="293"><span class="lineNum">     293 </span>            : impl TimestampError {</a>
 <a name="294"><span class="lineNum">     294 </span>            :     /// Return `true` if this error is `TimestampError::BlockTimeTooNew`.</a>
 <a name="295"><span class="lineNum">     295 </span>            :     #[doc(hidden)]</a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineCov">          4 :     pub fn is_too_new(&amp;self) -&gt; bool {</span></a>
-<a name="297"><span class="lineNum">     297 </span><span class="lineCov">          4 :         match self {</span></a>
-<a name="298"><span class="lineNum">     298 </span><span class="lineCov">          4 :             Self::BlockTimeTooOld { .. } =&gt; false,</span></a>
-<a name="299"><span class="lineNum">     299 </span><span class="lineCov">          2 :             Self::BlockTimeTooNew { .. } =&gt; true,</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">          2 :     pub fn is_too_new(&amp;self) -&gt; bool {</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">          2 :         match self {</span></a>
+<a name="298"><span class="lineNum">     298 </span><span class="lineCov">          2 :             Self::BlockTimeTooOld { .. } =&gt; false,</span></a>
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">          1 :             Self::BlockTimeTooNew { .. } =&gt; true,</span></a>
 <a name="300"><span class="lineNum">     300 </span>            :         }</a>
-<a name="301"><span class="lineNum">     301 </span><span class="lineCov">          4 :     }</span></a>
+<a name="301"><span class="lineNum">     301 </span><span class="lineCov">          2 :     }</span></a>
 <a name="302"><span class="lineNum">     302 </span>            : }</a>
 <a name="303"><span class="lineNum">     303 </span>            : </a>
 <a name="304"><span class="lineNum">     304 </span>            : /// The block number is not equal to parent number + `1`.</a>
 <a name="305"><span class="lineNum">     305 </span>            : /// Specially genesis block number is `0`.</a>
-<a name="306"><span class="lineNum">     306 </span><span class="lineCov">         20 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">          9 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="307"><span class="lineNum">     307 </span>            : #[error(&quot;NumberError(expected: {expected}, actual: {actual})&quot;)]</a>
 <a name="308"><span class="lineNum">     308 </span>            : pub struct NumberError {</a>
 <a name="309"><span class="lineNum">     309 </span>            :     /// The expected block number.</a>
@@ -375,7 +375,7 @@
 <a name="313"><span class="lineNum">     313 </span>            : }</a>
 <a name="314"><span class="lineNum">     314 </span>            : </a>
 <a name="315"><span class="lineNum">     315 </span>            : /// Errors due to the fact that the block epoch is not expected.</a>
-<a name="316"><span class="lineNum">     316 </span><span class="lineCov">         92 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
+<a name="316"><span class="lineNum">     316 </span><span class="lineCov">         42 : #[derive(Error, Debug, PartialEq, Eq, Clone)]</span></a>
 <a name="317"><span class="lineNum">     317 </span>            : pub enum EpochError {</a>
 <a name="318"><span class="lineNum">     318 </span>            :     /// The format of header epoch is malformed.</a>
 <a name="319"><span class="lineNum">     319 </span>            :     #[error(&quot;Malformed(value: {value:#})&quot;)]</a>
@@ -424,54 +424,12 @@
 <a name="362"><span class="lineNum">     362 </span>            :     ///</a>
 <a name="363"><span class="lineNum">     363 </span>            :     /// [`TimestampError::is_too_new`]</a>
 <a name="364"><span class="lineNum">     364 </span>            :     #[doc(hidden)]</a>
-<a name="365"><span class="lineNum">     365 </span><span class="lineCov">         28 :     pub fn is_too_new(&amp;self) -&gt; bool {</span></a>
-<a name="366"><span class="lineNum">     366 </span><span class="lineCov">         28 :         self.downcast_ref::&lt;TimestampError&gt;()</span></a>
-<a name="367"><span class="lineNum">     367 </span><span class="lineCov">         28 :             .map(|e| e.is_too_new())</span></a>
-<a name="368"><span class="lineNum">     368 </span><span class="lineCov">         28 :             .unwrap_or(false)</span></a>
-<a name="369"><span class="lineNum">     369 </span><span class="lineCov">         28 :     }</span></a>
+<a name="365"><span class="lineNum">     365 </span><span class="lineCov">         13 :     pub fn is_too_new(&amp;self) -&gt; bool {</span></a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineCov">         13 :         self.downcast_ref::&lt;TimestampError&gt;()</span></a>
+<a name="367"><span class="lineNum">     367 </span><span class="lineCov">         13 :             .map(|e| e.is_too_new())</span></a>
+<a name="368"><span class="lineNum">     368 </span><span class="lineCov">         13 :             .unwrap_or(false)</span></a>
+<a name="369"><span class="lineNum">     369 </span><span class="lineCov">         13 :     }</span></a>
 <a name="370"><span class="lineNum">     370 </span>            : }</a>
-<a name="371"><span class="lineNum">     371 </span>            : </a>
-<a name="372"><span class="lineNum">     372 </span>            : #[cfg(test)]</a>
-<a name="373"><span class="lineNum">     373 </span>            : mod tests {</a>
-<a name="374"><span class="lineNum">     374 </span>            :     use super::*;</a>
-<a name="375"><span class="lineNum">     375 </span>            : </a>
-<a name="376"><span class="lineNum">     376 </span><span class="lineCov">          2 :     #[test]</span></a>
-<a name="377"><span class="lineNum">     377 </span><span class="lineCov">          2 :     fn is_too_new() {</span></a>
-<a name="378"><span class="lineNum">     378 </span><span class="lineCov">          2 :         let too_old = TimestampError::BlockTimeTooOld { min: 0, actual: 0 };</span></a>
-<a name="379"><span class="lineNum">     379 </span><span class="lineCov">          2 :         let too_new = TimestampError::BlockTimeTooNew { max: 0, actual: 0 };</span></a>
-<a name="380"><span class="lineNum">     380 </span><span class="lineCov">          2 : </span></a>
-<a name="381"><span class="lineNum">     381 </span><span class="lineCov">          2 :         let errors: Vec&lt;HeaderError&gt; = vec![</span></a>
-<a name="382"><span class="lineNum">     382 </span><span class="lineCov">          2 :             HeaderErrorKind::InvalidParent.into(),</span></a>
-<a name="383"><span class="lineNum">     383 </span><span class="lineCov">          2 :             HeaderErrorKind::Pow.into(),</span></a>
-<a name="384"><span class="lineNum">     384 </span><span class="lineCov">          2 :             HeaderErrorKind::Version.into(),</span></a>
-<a name="385"><span class="lineNum">     385 </span><span class="lineCov">          2 :             HeaderErrorKind::Epoch.into(),</span></a>
-<a name="386"><span class="lineNum">     386 </span><span class="lineCov">          2 :             HeaderErrorKind::Version.into(),</span></a>
-<a name="387"><span class="lineNum">     387 </span><span class="lineCov">          2 :             HeaderErrorKind::Timestamp.into(),</span></a>
-<a name="388"><span class="lineNum">     388 </span><span class="lineCov">          2 :             too_old.into(),</span></a>
-<a name="389"><span class="lineNum">     389 </span><span class="lineCov">          2 :             too_new.into(),</span></a>
-<a name="390"><span class="lineNum">     390 </span><span class="lineCov">          2 :         ];</span></a>
-<a name="391"><span class="lineNum">     391 </span><span class="lineCov">          2 : </span></a>
-<a name="392"><span class="lineNum">     392 </span><span class="lineCov">         16 :         let is_too_new: Vec&lt;bool&gt; = errors.iter().map(|e| e.is_too_new()).collect();</span></a>
-<a name="393"><span class="lineNum">     393 </span><span class="lineCov">          2 :         assert_eq!(</span></a>
-<a name="394"><span class="lineNum">     394 </span><span class="lineCov">          2 :             is_too_new,</span></a>
-<a name="395"><span class="lineNum">     395 </span><span class="lineCov">          2 :             vec![false, false, false, false, false, false, false, true]</span></a>
-<a name="396"><span class="lineNum">     396 </span><span class="lineCov">          2 :         );</span></a>
-<a name="397"><span class="lineNum">     397 </span><span class="lineCov">          2 :     }</span></a>
-<a name="398"><span class="lineNum">     398 </span>            : </a>
-<a name="399"><span class="lineNum">     399 </span><span class="lineCov">          2 :     #[test]</span></a>
-<a name="400"><span class="lineNum">     400 </span><span class="lineCov">          2 :     fn test_version_error_display() {</span></a>
-<a name="401"><span class="lineNum">     401 </span><span class="lineCov">          2 :         let e: Error = BlockVersionError {</span></a>
-<a name="402"><span class="lineNum">     402 </span><span class="lineCov">          2 :             expected: 0,</span></a>
-<a name="403"><span class="lineNum">     403 </span><span class="lineCov">          2 :             actual: 1,</span></a>
-<a name="404"><span class="lineNum">     404 </span><span class="lineCov">          2 :         }</span></a>
-<a name="405"><span class="lineNum">     405 </span><span class="lineCov">          2 :         .into();</span></a>
-<a name="406"><span class="lineNum">     406 </span><span class="lineCov">          2 : </span></a>
-<a name="407"><span class="lineNum">     407 </span><span class="lineCov">          2 :         assert_eq!(</span></a>
-<a name="408"><span class="lineNum">     408 </span><span class="lineCov">          2 :             &quot;Header(Version(BlockVersionError(expected: 0, actual: 1)))&quot;,</span></a>
-<a name="409"><span class="lineNum">     409 </span><span class="lineCov">          2 :             format!(&quot;{}&quot;, e)</span></a>
-<a name="410"><span class="lineNum">     410 </span><span class="lineCov">          2 :         );</span></a>
-<a name="411"><span class="lineNum">     411 </span><span class="lineCov">          2 :     }</span></a>
-<a name="412"><span class="lineNum">     412 </span>            : }</a>
 </pre>
       </td>
     </tr>

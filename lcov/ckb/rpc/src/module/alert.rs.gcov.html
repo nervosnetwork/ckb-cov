@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/rpc/src/module/alert.rs</title>
+  <title>LCOV - Unit + Integration - ckb/rpc/src/module/alert.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">28</td>
-            <td class="headerCovTableEntry">40</td>
-            <td class="headerCovTableEntryLo">70.0 %</td>
+            <td class="headerCovTableEntry">39</td>
+            <td class="headerCovTableEntryLo">71.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -77,7 +77,7 @@
 <a name="15"><span class="lineNum">      15 </span>            : ///</a>
 <a name="16"><span class="lineNum">      16 </span>            : /// The alerts must be signed by 2-of-4 signatures, where the public keys are hard-coded in the source code</a>
 <a name="17"><span class="lineNum">      17 </span>            : /// and belong to early CKB developers.</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          6 : #[rpc(server)]</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          4 : #[rpc(server)]</span></a>
 <a name="19"><span class="lineNum">      19 </span>            : pub trait AlertRpc {</a>
 <a name="20"><span class="lineNum">      20 </span>            :     /// Sends an alert.</a>
 <a name="21"><span class="lineNum">      21 </span>            :     ///</a>
@@ -139,51 +139,51 @@
 <a name="77"><span class="lineNum">      77 </span>            : }</a>
 <a name="78"><span class="lineNum">      78 </span>            : </a>
 <a name="79"><span class="lineNum">      79 </span>            : impl AlertRpcImpl {</a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          3 :     pub fn new(</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          3 :         verifier: Arc&lt;AlertVerifier&gt;,</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          3 :         notifier: Arc&lt;Mutex&lt;AlertNotifier&gt;&gt;,</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          3 :         network_controller: NetworkController,</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          3 :     ) -&gt; Self {</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          3 :         AlertRpcImpl {</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">          3 :             network_controller,</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">          3 :             verifier,</span></a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          3 :             notifier,</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          3 :         }</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          3 :     }</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">          2 :     pub fn new(</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          2 :         verifier: Arc&lt;AlertVerifier&gt;,</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          2 :         notifier: Arc&lt;Mutex&lt;AlertNotifier&gt;&gt;,</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          2 :         network_controller: NetworkController,</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          2 :     ) -&gt; Self {</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          2 :         AlertRpcImpl {</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">          2 :             network_controller,</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">          2 :             verifier,</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          2 :             notifier,</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          2 :         }</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          2 :     }</span></a>
 <a name="91"><span class="lineNum">      91 </span>            : }</a>
 <a name="92"><span class="lineNum">      92 </span>            : </a>
 <a name="93"><span class="lineNum">      93 </span>            : impl AlertRpc for AlertRpcImpl {</a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">          3 :     fn send_alert(&amp;self, alert: Alert) -&gt; Result&lt;()&gt; {</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">          3 :         let alert: packed::Alert = alert.into();</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">          3 :         let now_ms = faketime::unix_time_as_millis();</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          3 :         let notice_until: u64 = alert.raw().notice_until().unpack();</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">          3 :         if notice_until &lt; now_ms {</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">          2 :     fn send_alert(&amp;self, alert: Alert) -&gt; Result&lt;()&gt; {</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">          2 :         let alert: packed::Alert = alert.into();</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">          2 :         let now_ms = faketime::unix_time_as_millis();</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          2 :         let notice_until: u64 = alert.raw().notice_until().unpack();</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">          2 :         if notice_until &lt; now_ms {</span></a>
 <a name="99"><span class="lineNum">      99 </span><span class="lineNoCov">          0 :             return Err(RPCError::invalid_params(format!(</span></a>
 <a name="100"><span class="lineNum">     100 </span><span class="lineNoCov">          0 :                 &quot;Expected `params[0].notice_until` in the future (&gt; {}), got {}&quot;,</span></a>
 <a name="101"><span class="lineNum">     101 </span><span class="lineNoCov">          0 :                 now_ms, notice_until</span></a>
 <a name="102"><span class="lineNum">     102 </span><span class="lineNoCov">          0 :             )));</span></a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">          3 :         }</span></a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">          3 : </span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">          3 :         let result = self.verifier.verify_signatures(&amp;alert);</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">          3 : </span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">          3 :         match result {</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">          3 :             Ok(()) =&gt; {</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineCov">          2 :         }</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">          2 : </span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">          2 :         let result = self.verifier.verify_signatures(&amp;alert);</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">          2 : </span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">          2 :         match result {</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">          2 :             Ok(()) =&gt; {</span></a>
 <a name="109"><span class="lineNum">     109 </span>            :                 // set self node notifier</a>
 <a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :                 self.notifier.lock().add(&amp;alert);</span></a>
 <a name="111"><span class="lineNum">     111 </span><span class="lineNoCov">          0 : </span></a>
 <a name="112"><span class="lineNum">     112 </span><span class="lineNoCov">          0 :                 self.network_controller</span></a>
 <a name="113"><span class="lineNum">     113 </span><span class="lineNoCov">          0 :                     .broadcast(SupportProtocols::Alert.protocol_id(), alert.as_bytes())</span></a>
 <a name="114"><span class="lineNum">     114 </span><span class="lineNoCov">          0 :                     .map_err(|err| {</span></a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineNoCov">          0 :                         error!(&quot;Broadcast alert failed: {:?}&quot;, err);</span></a>
+<a name="115"><span class="lineNum">     115 </span>            :                         error!(&quot;Broadcast alert failed: {:?}&quot;, err);</a>
 <a name="116"><span class="lineNum">     116 </span><span class="lineNoCov">          0 :                         RPCError::custom_with_error(RPCError::P2PFailedToBroadcast, err)</span></a>
 <a name="117"><span class="lineNum">     117 </span><span class="lineNoCov">          0 :                     })</span></a>
 <a name="118"><span class="lineNum">     118 </span>            :             }</a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">          3 :             Err(e) =&gt; Err(RPCError::custom_with_error(</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">          3 :                 RPCError::AlertFailedToVerifySignatures,</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">          3 :                 e,</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">          3 :             )),</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">          2 :             Err(e) =&gt; Err(RPCError::custom_with_error(</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">          2 :                 RPCError::AlertFailedToVerifySignatures,</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">          2 :                 e,</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">          2 :             )),</span></a>
 <a name="123"><span class="lineNum">     123 </span>            :         }</a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">          3 :     }</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">          2 :     }</span></a>
 <a name="125"><span class="lineNum">     125 </span>            : }</a>
 </pre>
       </td>

@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">21</td>
-            <td class="headerCovTableEntry">102</td>
-            <td class="headerCovTableEntryLo">20.6 %</td>
+            <td class="headerCovTableEntry">99</td>
+            <td class="headerCovTableEntryLo">21.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -124,8 +124,8 @@
 <a name="62"><span class="lineNum">      62 </span>            :                 };</a>
 <a name="63"><span class="lineNum">      63 </span><span class="lineNoCov">          0 :                 if let Ok(db) = DB::open(&amp;opts, cache_dir.path()) {</span></a>
 <a name="64"><span class="lineNum">      64 </span>            :                     debug!(</a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :                         &quot;open a key-value database({}) to save header map into disk&quot;,</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :                         cache_dir.path().to_str().unwrap_or(&quot;&quot;)</span></a>
+<a name="65"><span class="lineNum">      65 </span>            :                         &quot;open a key-value database({}) to save header map into disk&quot;,</a>
+<a name="66"><span class="lineNum">      66 </span>            :                         cache_dir.path().to_str().unwrap_or(&quot;&quot;)</a>
 <a name="67"><span class="lineNum">      67 </span>            :                     );</a>
 <a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :                     self.resource.replace((cache_dir, db));</span></a>
 <a name="69"><span class="lineNum">      69 </span>            :                 } else {</a>
@@ -204,7 +204,7 @@
 <a name="142"><span class="lineNum">     142 </span><span class="lineNoCov">          0 :                     do_count = true;</span></a>
 <a name="143"><span class="lineNum">     143 </span><span class="lineNoCov">          0 :                     value_opt</span></a>
 <a name="144"><span class="lineNum">     144 </span>            :                 } else {</a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineNoCov">          0 :                     warn!(&quot;failed to delete a value from database&quot;);</span></a>
+<a name="145"><span class="lineNum">     145 </span>            :                     warn!(&quot;failed to delete a value from database&quot;);</a>
 <a name="146"><span class="lineNum">     146 </span><span class="lineNoCov">          0 :                     None</span></a>
 <a name="147"><span class="lineNum">     147 </span>            :                 }</a>
 <a name="148"><span class="lineNum">     148 </span>            :             } else {</a>

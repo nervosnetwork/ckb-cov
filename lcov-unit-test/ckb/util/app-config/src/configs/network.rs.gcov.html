@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">30</td>
@@ -72,7 +72,7 @@
 <a name="10"><span class="lineNum">      10 </span>            : const DEFAULT_SEND_BUFFER: usize = 24 * 1024 * 1024;</a>
 <a name="11"><span class="lineNum">      11 </span>            : </a>
 <a name="12"><span class="lineNum">      12 </span>            : /// Network config options.</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        944 : #[derive(Clone, Debug, Serialize, Deserialize, Default)]</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        476 : #[derive(Clone, Debug, Serialize, Deserialize, Default)]</span></a>
 <a name="14"><span class="lineNum">      14 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="15"><span class="lineNum">      15 </span>            : pub struct Config {</a>
 <a name="16"><span class="lineNum">      16 </span>            :     /// Only connect to whitelist peers.</a>
@@ -147,7 +147,7 @@
 <a name="85"><span class="lineNum">      85 </span>            : }</a>
 <a name="86"><span class="lineNum">      86 </span>            : </a>
 <a name="87"><span class="lineNum">      87 </span>            : /// Chain synchronization config options.</a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">        572 : #[derive(Clone, Debug, Serialize, Deserialize, Default)]</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">        286 : #[derive(Clone, Debug, Serialize, Deserialize, Default)]</span></a>
 <a name="89"><span class="lineNum">      89 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="90"><span class="lineNum">      90 </span>            : pub struct SyncConfig {</a>
 <a name="91"><span class="lineNum">      91 </span>            :     /// Header map config options.</a>
@@ -164,7 +164,7 @@
 <a name="102"><span class="lineNum">     102 </span>            : /// Header map config options.</a>
 <a name="103"><span class="lineNum">     103 </span>            : ///</a>
 <a name="104"><span class="lineNum">     104 </span>            : /// Header map stores the block headers before fully verifying the block.</a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        532 : #[derive(Clone, Debug, Serialize, Deserialize)]</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        266 : #[derive(Clone, Debug, Serialize, Deserialize)]</span></a>
 <a name="106"><span class="lineNum">     106 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="107"><span class="lineNum">     107 </span>            : pub struct HeaderMapConfig {</a>
 <a name="108"><span class="lineNum">     108 </span>            :     /// The maximum size of data in memory</a>
@@ -174,12 +174,12 @@
 <a name="112"><span class="lineNum">     112 </span>            : }</a>
 <a name="113"><span class="lineNum">     113 </span>            : </a>
 <a name="114"><span class="lineNum">     114 </span>            : impl Default for HeaderMapConfig {</a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">       3920 :     fn default() -&gt; Self {</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">       3920 :         Self {</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">       3920 :             primary_limit: 300_000,</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">       3920 :             backend_close_threshold: 20_000,</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">       3920 :         }</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">       3920 :     }</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">       1960 :     fn default() -&gt; Self {</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">       1960 :         Self {</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">       1960 :             primary_limit: 300_000,</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">       1960 :             backend_close_threshold: 20_000,</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">       1960 :         }</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">       1960 :     }</span></a>
 <a name="121"><span class="lineNum">     121 </span>            : }</a>
 <a name="122"><span class="lineNum">     122 </span>            : </a>
 <a name="123"><span class="lineNum">     123 </span><span class="lineNoCov">          0 : #[derive(Clone, Debug, Copy, Eq, PartialEq, Serialize, Deserialize)]</span></a>
@@ -196,41 +196,41 @@
 <a name="134"><span class="lineNum">     134 </span>            :     Alert,</a>
 <a name="135"><span class="lineNum">     135 </span>            : }</a>
 <a name="136"><span class="lineNum">     136 </span>            : </a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         20 : fn default_support_all_protocols() -&gt; Vec&lt;SupportProtocol&gt; {</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         20 :     vec![</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">         20 :         SupportProtocol::Ping,</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">         20 :         SupportProtocol::Discovery,</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">         20 :         SupportProtocol::Identify,</span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         20 :         SupportProtocol::Feeler,</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         20 :         SupportProtocol::DisconnectMessage,</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         20 :         SupportProtocol::Sync,</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         20 :         SupportProtocol::Relay,</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         20 :         SupportProtocol::Time,</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">         20 :         SupportProtocol::Alert,</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">         20 :     ]</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         20 : }</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         10 : fn default_support_all_protocols() -&gt; Vec&lt;SupportProtocol&gt; {</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         10 :     vec![</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">         10 :         SupportProtocol::Ping,</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">         10 :         SupportProtocol::Discovery,</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">         10 :         SupportProtocol::Identify,</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         10 :         SupportProtocol::Feeler,</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         10 :         SupportProtocol::DisconnectMessage,</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         10 :         SupportProtocol::Sync,</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         10 :         SupportProtocol::Relay,</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         10 :         SupportProtocol::Time,</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">         10 :         SupportProtocol::Alert,</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">         10 :     ]</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         10 : }</span></a>
 <a name="150"><span class="lineNum">     150 </span>            : </a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineCov">       2400 : pub(crate) fn generate_random_key() -&gt; [u8; 32] {</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">       2400 :     loop {</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">       2400 :         let mut key: [u8; 32] = [0; 32];</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       2400 :         rand::thread_rng().fill(&amp;mut key);</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">       2400 :         if secio::SecioKeyPair::secp256k1_raw_key(&amp;key).is_ok() {</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       2400 :             return key;</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">       1200 : pub(crate) fn generate_random_key() -&gt; [u8; 32] {</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">       1200 :     loop {</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">       1200 :         let mut key: [u8; 32] = [0; 32];</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       1200 :         rand::thread_rng().fill(&amp;mut key);</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">       1200 :         if secio::SecioKeyPair::secp256k1_raw_key(&amp;key).is_ok() {</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       1200 :             return key;</span></a>
 <a name="157"><span class="lineNum">     157 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="158"><span class="lineNum">     158 </span>            :     }</a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">       2400 : }</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">       1200 : }</span></a>
 <a name="160"><span class="lineNum">     160 </span>            : </a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">       2385 : pub(crate) fn write_secret_to_file(secret: &amp;[u8], path: PathBuf) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">       2385 :     fs::OpenOptions::new()</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">       2385 :         .create(true)</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">       2385 :         .write(true)</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">       2385 :         .open(path)</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">       2385 :         .and_then(|mut file| {</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       2400 :             file.write_all(&amp;secret)?;</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">       1200 : pub(crate) fn write_secret_to_file(secret: &amp;[u8], path: PathBuf) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">       1200 :     fs::OpenOptions::new()</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">       1200 :         .create(true)</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">       1200 :         .write(true)</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">       1200 :         .open(path)</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">       1200 :         .and_then(|mut file| {</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1200 :             file.write_all(&amp;secret)?;</span></a>
 <a name="168"><span class="lineNum">     168 </span>            :             #[cfg(unix)]</a>
 <a name="169"><span class="lineNum">     169 </span>            :             {</a>
 <a name="170"><span class="lineNum">     170 </span>            :                 use std::os::unix::fs::PermissionsExt;</a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       2400 :                 file.set_permissions(fs::Permissions::from_mode(0o400))</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       1200 :                 file.set_permissions(fs::Permissions::from_mode(0o400))</span></a>
 <a name="172"><span class="lineNum">     172 </span>            :             }</a>
 <a name="173"><span class="lineNum">     173 </span>            :             #[cfg(not(unix))]</a>
 <a name="174"><span class="lineNum">     174 </span>            :             {</a>
@@ -238,123 +238,123 @@
 <a name="176"><span class="lineNum">     176 </span>            :                 permissions.set_readonly(true);</a>
 <a name="177"><span class="lineNum">     177 </span>            :                 file.set_permissions(permissions)</a>
 <a name="178"><span class="lineNum">     178 </span>            :             }</a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">       2400 :         })</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">       2385 : }</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">       1200 :         })</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">       1200 : }</span></a>
 <a name="181"><span class="lineNum">     181 </span>            : </a>
-<a name="182"><span class="lineNum">     182 </span><span class="lineCov">       4770 : pub(crate) fn read_secret_key(path: PathBuf) -&gt; Result&lt;Option&lt;secio::SecioKeyPair&gt;, Error&gt; {</span></a>
-<a name="183"><span class="lineNum">     183 </span><span class="lineCov">       4770 :     let mut file = match fs::File::open(path.clone()) {</span></a>
-<a name="184"><span class="lineNum">     184 </span><span class="lineCov">       2370 :         Ok(file) =&gt; file,</span></a>
-<a name="185"><span class="lineNum">     185 </span><span class="lineCov">       2400 :         Err(_) =&gt; return Ok(None),</span></a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">       2400 : pub(crate) fn read_secret_key(path: PathBuf) -&gt; Result&lt;Option&lt;secio::SecioKeyPair&gt;, Error&gt; {</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">       2400 :     let mut file = match fs::File::open(path.clone()) {</span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineCov">       1200 :         Ok(file) =&gt; file,</span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">       1200 :         Err(_) =&gt; return Ok(None),</span></a>
 <a name="186"><span class="lineNum">     186 </span>            :     };</a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">       2370 :     let warn = |m: bool, d: &amp;str| {</span></a>
-<a name="188"><span class="lineNum">     188 </span><span class="lineCov">       2355 :         if m {</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">       1200 :     let warn = |m: bool, d: &amp;str| {</span></a>
+<a name="188"><span class="lineNum">     188 </span><span class="lineCov">       1200 :         if m {</span></a>
 <a name="189"><span class="lineNum">     189 </span>            :             ckb_logger::warn!(</a>
 <a name="190"><span class="lineNum">     190 </span><span class="lineNoCov">          0 :                 &quot;Your network secret file's permission is not {}, path: {:?}, \</span></a>
 <a name="191"><span class="lineNum">     191 </span><span class="lineNoCov">          0 :                 please fix it as soon as possible&quot;,</span></a>
 <a name="192"><span class="lineNum">     192 </span><span class="lineNoCov">          0 :                 d,</span></a>
 <a name="193"><span class="lineNum">     193 </span><span class="lineNoCov">          0 :                 path</span></a>
 <a name="194"><span class="lineNum">     194 </span>            :             )</a>
-<a name="195"><span class="lineNum">     195 </span><span class="lineCov">       2355 :         }</span></a>
-<a name="196"><span class="lineNum">     196 </span><span class="lineCov">       2355 :     };</span></a>
+<a name="195"><span class="lineNum">     195 </span><span class="lineCov">       1200 :         }</span></a>
+<a name="196"><span class="lineNum">     196 </span><span class="lineCov">       1200 :     };</span></a>
 <a name="197"><span class="lineNum">     197 </span>            :     #[cfg(unix)]</a>
 <a name="198"><span class="lineNum">     198 </span>            :     {</a>
 <a name="199"><span class="lineNum">     199 </span>            :         use std::os::unix::fs::PermissionsExt;</a>
-<a name="200"><span class="lineNum">     200 </span><span class="lineCov">       2370 :         warn(</span></a>
-<a name="201"><span class="lineNum">     201 </span><span class="lineCov">       2385 :             file.metadata()?.permissions().mode() &amp; 0o177 != 0,</span></a>
-<a name="202"><span class="lineNum">     202 </span><span class="lineCov">       2385 :             &quot;less than 0o600&quot;,</span></a>
-<a name="203"><span class="lineNum">     203 </span><span class="lineCov">       2385 :         );</span></a>
-<a name="204"><span class="lineNum">     204 </span><span class="lineCov">       2385 :     }</span></a>
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       2385 :     #[cfg(not(unix))]</span></a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       2385 :     {</span></a>
-<a name="207"><span class="lineNum">     207 </span><span class="lineCov">       2385 :         warn(!file.metadata()?.permissions().readonly(), &quot;readonly&quot;);</span></a>
-<a name="208"><span class="lineNum">     208 </span><span class="lineCov">       2385 :     }</span></a>
-<a name="209"><span class="lineNum">     209 </span><span class="lineCov">       2385 :     let mut buf = Vec::new();</span></a>
-<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       2385 :     file.read_to_end(&amp;mut buf).and_then(|_read_size| {</span></a>
-<a name="211"><span class="lineNum">     211 </span><span class="lineCov">       2355 :         secio::SecioKeyPair::secp256k1_raw_key(&amp;buf)</span></a>
-<a name="212"><span class="lineNum">     212 </span><span class="lineCov">       2355 :             .map(Some)</span></a>
-<a name="213"><span class="lineNum">     213 </span><span class="lineCov">       2355 :             .map_err(|_| Error::new(ErrorKind::InvalidData, &quot;invalid secret key data&quot;))</span></a>
-<a name="214"><span class="lineNum">     214 </span><span class="lineCov">       2385 :     })</span></a>
-<a name="215"><span class="lineNum">     215 </span><span class="lineCov">       4785 : }</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">       1200 :         warn(</span></a>
+<a name="201"><span class="lineNum">     201 </span><span class="lineCov">       1200 :             file.metadata()?.permissions().mode() &amp; 0o177 != 0,</span></a>
+<a name="202"><span class="lineNum">     202 </span><span class="lineCov">       1200 :             &quot;less than 0o600&quot;,</span></a>
+<a name="203"><span class="lineNum">     203 </span><span class="lineCov">       1200 :         );</span></a>
+<a name="204"><span class="lineNum">     204 </span><span class="lineCov">       1200 :     }</span></a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       1200 :     #[cfg(not(unix))]</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       1200 :     {</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">       1200 :         warn(!file.metadata()?.permissions().readonly(), &quot;readonly&quot;);</span></a>
+<a name="208"><span class="lineNum">     208 </span><span class="lineCov">       1200 :     }</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">       1200 :     let mut buf = Vec::new();</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       1200 :     file.read_to_end(&amp;mut buf).and_then(|_read_size| {</span></a>
+<a name="211"><span class="lineNum">     211 </span><span class="lineCov">       1200 :         secio::SecioKeyPair::secp256k1_raw_key(&amp;buf)</span></a>
+<a name="212"><span class="lineNum">     212 </span><span class="lineCov">       1200 :             .map(Some)</span></a>
+<a name="213"><span class="lineNum">     213 </span><span class="lineCov">       1200 :             .map_err(|_| Error::new(ErrorKind::InvalidData, &quot;invalid secret key data&quot;))</span></a>
+<a name="214"><span class="lineNum">     214 </span><span class="lineCov">       1200 :     })</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineCov">       2400 : }</span></a>
 <a name="216"><span class="lineNum">     216 </span>            : </a>
 <a name="217"><span class="lineNum">     217 </span>            : impl Config {</a>
 <a name="218"><span class="lineNum">     218 </span>            :     /// Gets the network secret key path.</a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">       7170 :     pub fn secret_key_path(&amp;self) -&gt; PathBuf {</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">       7170 :         let mut path = self.path.clone();</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">       7170 :         path.push(&quot;secret_key&quot;);</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">       7170 :         path</span></a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">       7170 :     }</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">       3600 :     pub fn secret_key_path(&amp;self) -&gt; PathBuf {</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">       3600 :         let mut path = self.path.clone();</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">       3600 :         path.push(&quot;secret_key&quot;);</span></a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">       3600 :         path</span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">       3600 :     }</span></a>
 <a name="224"><span class="lineNum">     224 </span>            : </a>
 <a name="225"><span class="lineNum">     225 </span>            :     /// Gets the peer store path.</a>
-<a name="226"><span class="lineNum">     226 </span><span class="lineCov">       6120 :     pub fn peer_store_path(&amp;self) -&gt; PathBuf {</span></a>
-<a name="227"><span class="lineNum">     227 </span><span class="lineCov">       6120 :         let mut path = self.path.clone();</span></a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">       6120 :         path.push(&quot;peer_store&quot;);</span></a>
-<a name="229"><span class="lineNum">     229 </span><span class="lineCov">       6120 :         path</span></a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">       6120 :     }</span></a>
+<a name="226"><span class="lineNum">     226 </span><span class="lineCov">       3060 :     pub fn peer_store_path(&amp;self) -&gt; PathBuf {</span></a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">       3060 :         let mut path = self.path.clone();</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineCov">       3060 :         path.push(&quot;peer_store&quot;);</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">       3060 :         path</span></a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineCov">       3060 :     }</span></a>
 <a name="231"><span class="lineNum">     231 </span>            : </a>
 <a name="232"><span class="lineNum">     232 </span>            :     /// Creates missing directories.</a>
-<a name="233"><span class="lineNum">     233 </span><span class="lineCov">       2400 :     pub fn create_dir_if_not_exists(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="234"><span class="lineNum">     234 </span><span class="lineCov">       2400 :         if !self.path.exists() {</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">        570 :             fs::create_dir(&amp;self.path)</span></a>
+<a name="233"><span class="lineNum">     233 </span><span class="lineCov">       1200 :     pub fn create_dir_if_not_exists(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineCov">       1200 :         if !self.path.exists() {</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">        285 :             fs::create_dir(&amp;self.path)</span></a>
 <a name="236"><span class="lineNum">     236 </span>            :         } else {</a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">       1830 :             Ok(())</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">        915 :             Ok(())</span></a>
 <a name="238"><span class="lineNum">     238 </span>            :         }</a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">       2400 :     }</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">       1200 :     }</span></a>
 <a name="240"><span class="lineNum">     240 </span>            : </a>
 <a name="241"><span class="lineNum">     241 </span>            :     /// Gets maximum inbound peers.</a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineCov">       2355 :     pub fn max_inbound_peers(&amp;self) -&gt; u32 {</span></a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineCov">       2355 :         self.max_peers.saturating_sub(self.max_outbound_peers)</span></a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineCov">       2355 :     }</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">       1200 :     pub fn max_inbound_peers(&amp;self) -&gt; u32 {</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">       1200 :         self.max_peers.saturating_sub(self.max_outbound_peers)</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineCov">       1200 :     }</span></a>
 <a name="245"><span class="lineNum">     245 </span>            : </a>
 <a name="246"><span class="lineNum">     246 </span>            :     /// Gets maximum outbound peers.</a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">       2340 :     pub fn max_outbound_peers(&amp;self) -&gt; u32 {</span></a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineCov">       2340 :         self.max_outbound_peers</span></a>
-<a name="249"><span class="lineNum">     249 </span><span class="lineCov">       2340 :     }</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">       1200 :     pub fn max_outbound_peers(&amp;self) -&gt; u32 {</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">       1200 :         self.max_outbound_peers</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineCov">       1200 :     }</span></a>
 <a name="250"><span class="lineNum">     250 </span>            : </a>
 <a name="251"><span class="lineNum">     251 </span>            :     /// Gets maximum send buffer size.</a>
-<a name="252"><span class="lineNum">     252 </span><span class="lineCov">       1815 :     pub fn max_send_buffer(&amp;self) -&gt; usize {</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineCov">       1815 :         self.max_send_buffer.unwrap_or(DEFAULT_SEND_BUFFER)</span></a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineCov">       1815 :     }</span></a>
+<a name="252"><span class="lineNum">     252 </span><span class="lineCov">        930 :     pub fn max_send_buffer(&amp;self) -&gt; usize {</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineCov">        930 :         self.max_send_buffer.unwrap_or(DEFAULT_SEND_BUFFER)</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">        930 :     }</span></a>
 <a name="255"><span class="lineNum">     255 </span>            : </a>
 <a name="256"><span class="lineNum">     256 </span>            :     /// Reads the secret key from secret key file.</a>
 <a name="257"><span class="lineNum">     257 </span>            :     ///</a>
 <a name="258"><span class="lineNum">     258 </span>            :     /// If the key file does not exists, it returns `Ok(None)`.</a>
-<a name="259"><span class="lineNum">     259 </span><span class="lineCov">       4770 :     fn read_secret_key(&amp;self) -&gt; Result&lt;Option&lt;secio::SecioKeyPair&gt;, Error&gt; {</span></a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineCov">       4770 :         let path = self.secret_key_path();</span></a>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">       4770 :         read_secret_key(path)</span></a>
-<a name="262"><span class="lineNum">     262 </span><span class="lineCov">       4770 :     }</span></a>
+<a name="259"><span class="lineNum">     259 </span><span class="lineCov">       2400 :     fn read_secret_key(&amp;self) -&gt; Result&lt;Option&lt;secio::SecioKeyPair&gt;, Error&gt; {</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">       2400 :         let path = self.secret_key_path();</span></a>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">       2400 :         read_secret_key(path)</span></a>
+<a name="262"><span class="lineNum">     262 </span><span class="lineCov">       2400 :     }</span></a>
 <a name="263"><span class="lineNum">     263 </span>            : </a>
 <a name="264"><span class="lineNum">     264 </span>            :     /// Generates a random secret key and saves it into the file.</a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">       2400 :     fn write_secret_key_to_file(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">       2400 :         let path = self.secret_key_path();</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">       2400 :         let random_key_pair = generate_random_key();</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">       2400 :         write_secret_to_file(&amp;random_key_pair, path)</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineCov">       2400 :     }</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">       1200 :     fn write_secret_key_to_file(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">       1200 :         let path = self.secret_key_path();</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">       1200 :         let random_key_pair = generate_random_key();</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">       1200 :         write_secret_to_file(&amp;random_key_pair, path)</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">       1200 :     }</span></a>
 <a name="270"><span class="lineNum">     270 </span>            : </a>
 <a name="271"><span class="lineNum">     271 </span>            :     /// Reads the private key from file or generates one if the file does not exist.</a>
 <a name="272"><span class="lineNum">     272 </span>            :     pub fn fetch_private_key(&amp;self) -&gt; Result&lt;secio::SecioKeyPair, Error&gt; {</a>
-<a name="273"><span class="lineNum">     273 </span><span class="lineCov">       2400 :         match self.read_secret_key()? {</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">       1200 :         match self.read_secret_key()? {</span></a>
 <a name="274"><span class="lineNum">     274 </span><span class="lineNoCov">          0 :             Some(key) =&gt; Ok(key),</span></a>
 <a name="275"><span class="lineNum">     275 </span>            :             None =&gt; {</a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineCov">       2400 :                 self.write_secret_key_to_file()?;</span></a>
-<a name="277"><span class="lineNum">     277 </span><span class="lineCov">       2400 :                 Ok(self.read_secret_key()?.expect(&quot;key must exists&quot;))</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">       1200 :                 self.write_secret_key_to_file()?;</span></a>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">       1200 :                 Ok(self.read_secret_key()?.expect(&quot;key must exists&quot;))</span></a>
 <a name="278"><span class="lineNum">     278 </span>            :             }</a>
 <a name="279"><span class="lineNum">     279 </span>            :         }</a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineCov">       2370 :     }</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">       1200 :     }</span></a>
 <a name="281"><span class="lineNum">     281 </span>            : </a>
 <a name="282"><span class="lineNum">     282 </span>            :     /// Gets the list of whitelist peers.</a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineCov">       6420 :     pub fn whitelist_peers(&amp;self) -&gt; Vec&lt;Multiaddr&gt; {</span></a>
-<a name="284"><span class="lineNum">     284 </span><span class="lineCov">       6420 :         self.whitelist_peers.clone()</span></a>
-<a name="285"><span class="lineNum">     285 </span><span class="lineCov">       6420 :     }</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">       3210 :     pub fn whitelist_peers(&amp;self) -&gt; Vec&lt;Multiaddr&gt; {</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">       3210 :         self.whitelist_peers.clone()</span></a>
+<a name="285"><span class="lineNum">     285 </span><span class="lineCov">       3210 :     }</span></a>
 <a name="286"><span class="lineNum">     286 </span>            : </a>
 <a name="287"><span class="lineNum">     287 </span>            :     /// Gets a list of bootnodes.</a>
-<a name="288"><span class="lineNum">     288 </span><span class="lineCov">       2385 :     pub fn bootnodes(&amp;self) -&gt; Vec&lt;Multiaddr&gt; {</span></a>
-<a name="289"><span class="lineNum">     289 </span><span class="lineCov">       2385 :         self.bootnodes.clone()</span></a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineCov">       2385 :     }</span></a>
+<a name="288"><span class="lineNum">     288 </span><span class="lineCov">       1200 :     pub fn bootnodes(&amp;self) -&gt; Vec&lt;Multiaddr&gt; {</span></a>
+<a name="289"><span class="lineNum">     289 </span><span class="lineCov">       1200 :         self.bootnodes.clone()</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">       1200 :     }</span></a>
 <a name="291"><span class="lineNum">     291 </span>            : </a>
 <a name="292"><span class="lineNum">     292 </span>            :     /// Checks whether the outbound peer service should be enabled.</a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineCov">       1860 :     pub fn outbound_peer_service_enabled(&amp;self) -&gt; bool {</span></a>
-<a name="294"><span class="lineNum">     294 </span><span class="lineCov">       1860 :         self.connect_outbound_interval_secs &gt; 0</span></a>
-<a name="295"><span class="lineNum">     295 </span><span class="lineCov">       1860 :     }</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">        930 :     pub fn outbound_peer_service_enabled(&amp;self) -&gt; bool {</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">        930 :         self.connect_outbound_interval_secs &gt; 0</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">        930 :     }</span></a>
 <a name="296"><span class="lineNum">     296 </span>            : </a>
 <a name="297"><span class="lineNum">     297 </span>            :     /// Checks whether the DNS seeding service should be enabled.</a>
 <a name="298"><span class="lineNum">     298 </span><span class="lineNoCov">          0 :     pub fn dns_seeding_service_enabled(&amp;self) -&gt; bool {</span></a>
@@ -364,9 +364,9 @@
 <a name="302"><span class="lineNum">     302 </span>            : </a>
 <a name="303"><span class="lineNum">     303 </span>            : /// By default, using reuse port can make any outbound connection of the node become a potential</a>
 <a name="304"><span class="lineNum">     304 </span>            : /// listen address, which will help the robustness of our network</a>
-<a name="305"><span class="lineNum">     305 </span><span class="lineCov">         20 : const fn default_reuse() -&gt; bool {</span></a>
-<a name="306"><span class="lineNum">     306 </span><span class="lineCov">         20 :     true</span></a>
-<a name="307"><span class="lineNum">     307 </span><span class="lineCov">         20 : }</span></a>
+<a name="305"><span class="lineNum">     305 </span><span class="lineCov">         10 : const fn default_reuse() -&gt; bool {</span></a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">         10 :     true</span></a>
+<a name="307"><span class="lineNum">     307 </span><span class="lineCov">         10 : }</span></a>
 </pre>
       </td>
     </tr>

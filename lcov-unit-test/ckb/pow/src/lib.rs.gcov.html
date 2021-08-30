@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-unit-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">30</td>
-            <td class="headerCovTableEntry">41</td>
-            <td class="headerCovTableEntryLo">73.2 %</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntryLo">57.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">13</td>
-            <td class="headerCovTableEntry">54</td>
-            <td class="headerCovTableEntryLo">24.1 %</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntry">52</td>
+            <td class="headerCovTableEntryLo">21.2 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! TODO(doc): @quake</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          1 : //! TODO(doc): @quake</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : use byteorder::{ByteOrder, LittleEndian};</a>
 <a name="3"><span class="lineNum">       3 </span>            : use ckb_types::{</a>
 <a name="4"><span class="lineNum">       4 </span>            :     packed::{Byte32, Header},</a>
@@ -75,94 +75,76 @@
 <a name="13"><span class="lineNum">      13 </span>            : mod eaglesong;</a>
 <a name="14"><span class="lineNum">      14 </span>            : mod eaglesong_blake2b;</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span>            : pub use crate::dummy::DummyPowEngine;</a>
-<a name="17"><span class="lineNum">      17 </span>            : pub use crate::eaglesong::EaglesongPowEngine;</a>
-<a name="18"><span class="lineNum">      18 </span>            : pub use crate::eaglesong_blake2b::EaglesongBlake2bPowEngine;</a>
-<a name="19"><span class="lineNum">      19 </span>            : </a>
-<a name="20"><span class="lineNum">      20 </span>            : /// TODO(doc): @quake</a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">       3492 : #[derive(Clone, Serialize, Deserialize, Eq, PartialEq, Hash, Debug)]</span></a>
-<a name="22"><span class="lineNum">      22 </span>            : #[serde(tag = &quot;func&quot;, content = &quot;params&quot;)]</a>
-<a name="23"><span class="lineNum">      23 </span>            : pub enum Pow {</a>
-<a name="24"><span class="lineNum">      24 </span>            :     /// TODO(doc): @quake</a>
-<a name="25"><span class="lineNum">      25 </span>            :     Dummy,</a>
-<a name="26"><span class="lineNum">      26 </span>            :     /// TODO(doc): @quake</a>
-<a name="27"><span class="lineNum">      27 </span>            :     Eaglesong,</a>
-<a name="28"><span class="lineNum">      28 </span>            :     /// TODO(doc): @quake</a>
-<a name="29"><span class="lineNum">      29 </span>            :     EaglesongBlake2b,</a>
-<a name="30"><span class="lineNum">      30 </span>            : }</a>
-<a name="31"><span class="lineNum">      31 </span>            : </a>
-<a name="32"><span class="lineNum">      32 </span>            : impl fmt::Display for Pow {</a>
-<a name="33"><span class="lineNum">      33 </span><span class="lineNoCov">          0 :     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {</span></a>
-<a name="34"><span class="lineNum">      34 </span><span class="lineNoCov">          0 :         match self {</span></a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineNoCov">          0 :             Pow::Dummy =&gt; write!(f, &quot;Dummy&quot;),</span></a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :             Pow::Eaglesong =&gt; write!(f, &quot;Eaglesong&quot;),</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :             Pow::EaglesongBlake2b =&gt; write!(f, &quot;EaglesongBlake2b&quot;),</span></a>
-<a name="38"><span class="lineNum">      38 </span>            :         }</a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="40"><span class="lineNum">      40 </span>            : }</a>
-<a name="41"><span class="lineNum">      41 </span>            : </a>
-<a name="42"><span class="lineNum">      42 </span>            : impl Pow {</a>
-<a name="43"><span class="lineNum">      43 </span>            :     /// TODO(doc): @quake</a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">       1080 :     pub fn engine(&amp;self) -&gt; Arc&lt;dyn PowEngine&gt; {</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">       1080 :         match *self {</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">       1080 :             Pow::Dummy =&gt; Arc::new(DummyPowEngine),</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :             Pow::Eaglesong =&gt; Arc::new(EaglesongPowEngine),</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :             Pow::EaglesongBlake2b =&gt; Arc::new(EaglesongBlake2bPowEngine),</span></a>
-<a name="49"><span class="lineNum">      49 </span>            :         }</a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">       1080 :     }</span></a>
-<a name="51"><span class="lineNum">      51 </span>            : </a>
-<a name="52"><span class="lineNum">      52 </span>            :     /// TODO(doc): @quake</a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">       3492 :     pub fn is_dummy(&amp;self) -&gt; bool {</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">       3492 :         *self == Pow::Dummy</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">       3492 :     }</span></a>
-<a name="56"><span class="lineNum">      56 </span>            : }</a>
-<a name="57"><span class="lineNum">      57 </span>            : </a>
-<a name="58"><span class="lineNum">      58 </span>            : /// TODO(doc): @quake</a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">          2 : pub fn pow_message(pow_hash: &amp;Byte32, nonce: u128) -&gt; [u8; 48] {</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">          2 :     let mut message = [0; 48];</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">          2 :     message[0..32].copy_from_slice(pow_hash.as_slice());</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          2 :     LittleEndian::write_u128(&amp;mut message[32..48], nonce);</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          2 :     message</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          2 : }</span></a>
-<a name="65"><span class="lineNum">      65 </span>            : </a>
-<a name="66"><span class="lineNum">      66 </span>            : /// TODO(doc): @quake</a>
-<a name="67"><span class="lineNum">      67 </span>            : pub trait PowEngine: Send + Sync + AsAny {</a>
-<a name="68"><span class="lineNum">      68 </span>            :     /// TODO(doc): @quake</a>
-<a name="69"><span class="lineNum">      69 </span>            :     fn verify(&amp;self, header: &amp;Header) -&gt; bool;</a>
-<a name="70"><span class="lineNum">      70 </span>            : }</a>
-<a name="71"><span class="lineNum">      71 </span>            : </a>
-<a name="72"><span class="lineNum">      72 </span>            : /// TODO(doc): @quake</a>
-<a name="73"><span class="lineNum">      73 </span>            : pub trait AsAny {</a>
-<a name="74"><span class="lineNum">      74 </span>            :     /// TODO(doc): @quake</a>
-<a name="75"><span class="lineNum">      75 </span>            :     fn as_any(&amp;self) -&gt; &amp;dyn Any;</a>
-<a name="76"><span class="lineNum">      76 </span>            : }</a>
-<a name="77"><span class="lineNum">      77 </span>            : </a>
-<a name="78"><span class="lineNum">      78 </span>            : impl&lt;T: Any&gt; AsAny for T {</a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineNoCov">          0 :     fn as_any(&amp;self) -&gt; &amp;dyn Any {</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineNoCov">          0 :         self</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="82"><span class="lineNum">      82 </span>            : }</a>
-<a name="83"><span class="lineNum">      83 </span>            : </a>
-<a name="84"><span class="lineNum">      84 </span>            : #[cfg(test)]</a>
-<a name="85"><span class="lineNum">      85 </span>            : mod test {</a>
-<a name="86"><span class="lineNum">      86 </span>            :     use super::*;</a>
-<a name="87"><span class="lineNum">      87 </span>            :     use ckb_hash::blake2b_256;</a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">          2 :     #[test]</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">          2 :     fn test_pow_message() {</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          2 :         let zero_hash = blake2b_256(&amp;[]).pack();</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">          2 :         let nonce = u128::max_value();</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">          2 :         let message = pow_message(&amp;zero_hash, nonce);</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">          2 :         assert_eq!(</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">          2 :             message.to_vec(),</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">          2 :             [</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">          2 :                 68, 244, 198, 151, 68, 213, 248, 197, 93, 100, 32, 98, 148, 157, 202, 228, 155,</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">          2 :                 196, 231, 239, 67, 211, 136, 197, 161, 47, 66, 181, 99, 61, 22, 62, 255, 255, 255,</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">          2 :                 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">          2 :             ]</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">          2 :             .to_vec()</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">          2 :         );</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">          2 :     }</span></a>
-<a name="103"><span class="lineNum">     103 </span>            : }</a>
+<a name="16"><span class="lineNum">      16 </span>            : #[cfg(test)]</a>
+<a name="17"><span class="lineNum">      17 </span>            : mod tests;</a>
+<a name="18"><span class="lineNum">      18 </span>            : </a>
+<a name="19"><span class="lineNum">      19 </span>            : pub use crate::dummy::DummyPowEngine;</a>
+<a name="20"><span class="lineNum">      20 </span>            : pub use crate::eaglesong::EaglesongPowEngine;</a>
+<a name="21"><span class="lineNum">      21 </span>            : pub use crate::eaglesong_blake2b::EaglesongBlake2bPowEngine;</a>
+<a name="22"><span class="lineNum">      22 </span>            : </a>
+<a name="23"><span class="lineNum">      23 </span>            : /// TODO(doc): @quake</a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">       1746 : #[derive(Clone, Serialize, Deserialize, Eq, PartialEq, Hash, Debug)]</span></a>
+<a name="25"><span class="lineNum">      25 </span>            : #[serde(tag = &quot;func&quot;, content = &quot;params&quot;)]</a>
+<a name="26"><span class="lineNum">      26 </span>            : pub enum Pow {</a>
+<a name="27"><span class="lineNum">      27 </span>            :     /// TODO(doc): @quake</a>
+<a name="28"><span class="lineNum">      28 </span>            :     Dummy,</a>
+<a name="29"><span class="lineNum">      29 </span>            :     /// TODO(doc): @quake</a>
+<a name="30"><span class="lineNum">      30 </span>            :     Eaglesong,</a>
+<a name="31"><span class="lineNum">      31 </span>            :     /// TODO(doc): @quake</a>
+<a name="32"><span class="lineNum">      32 </span>            :     EaglesongBlake2b,</a>
+<a name="33"><span class="lineNum">      33 </span>            : }</a>
+<a name="34"><span class="lineNum">      34 </span>            : </a>
+<a name="35"><span class="lineNum">      35 </span>            : impl fmt::Display for Pow {</a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 :         match self {</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :             Pow::Dummy =&gt; write!(f, &quot;Dummy&quot;),</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :             Pow::Eaglesong =&gt; write!(f, &quot;Eaglesong&quot;),</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :             Pow::EaglesongBlake2b =&gt; write!(f, &quot;EaglesongBlake2b&quot;),</span></a>
+<a name="41"><span class="lineNum">      41 </span>            :         }</a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="43"><span class="lineNum">      43 </span>            : }</a>
+<a name="44"><span class="lineNum">      44 </span>            : </a>
+<a name="45"><span class="lineNum">      45 </span>            : impl Pow {</a>
+<a name="46"><span class="lineNum">      46 </span>            :     /// TODO(doc): @quake</a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        540 :     pub fn engine(&amp;self) -&gt; Arc&lt;dyn PowEngine&gt; {</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        540 :         match *self {</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        540 :             Pow::Dummy =&gt; Arc::new(DummyPowEngine),</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :             Pow::Eaglesong =&gt; Arc::new(EaglesongPowEngine),</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :             Pow::EaglesongBlake2b =&gt; Arc::new(EaglesongBlake2bPowEngine),</span></a>
+<a name="52"><span class="lineNum">      52 </span>            :         }</a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">        540 :     }</span></a>
+<a name="54"><span class="lineNum">      54 </span>            : </a>
+<a name="55"><span class="lineNum">      55 </span>            :     /// TODO(doc): @quake</a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">       1746 :     pub fn is_dummy(&amp;self) -&gt; bool {</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">       1746 :         *self == Pow::Dummy</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">       1746 :     }</span></a>
+<a name="59"><span class="lineNum">      59 </span>            : }</a>
+<a name="60"><span class="lineNum">      60 </span>            : </a>
+<a name="61"><span class="lineNum">      61 </span>            : /// TODO(doc): @quake</a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          1 : pub fn pow_message(pow_hash: &amp;Byte32, nonce: u128) -&gt; [u8; 48] {</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          1 :     let mut message = [0; 48];</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          1 :     message[0..32].copy_from_slice(pow_hash.as_slice());</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          1 :     LittleEndian::write_u128(&amp;mut message[32..48], nonce);</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">          1 :     message</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">          1 : }</span></a>
+<a name="68"><span class="lineNum">      68 </span>            : </a>
+<a name="69"><span class="lineNum">      69 </span>            : /// TODO(doc): @quake</a>
+<a name="70"><span class="lineNum">      70 </span>            : pub trait PowEngine: Send + Sync + AsAny {</a>
+<a name="71"><span class="lineNum">      71 </span>            :     /// TODO(doc): @quake</a>
+<a name="72"><span class="lineNum">      72 </span>            :     fn verify(&amp;self, header: &amp;Header) -&gt; bool;</a>
+<a name="73"><span class="lineNum">      73 </span>            : }</a>
+<a name="74"><span class="lineNum">      74 </span>            : </a>
+<a name="75"><span class="lineNum">      75 </span>            : /// TODO(doc): @quake</a>
+<a name="76"><span class="lineNum">      76 </span>            : pub trait AsAny {</a>
+<a name="77"><span class="lineNum">      77 </span>            :     /// TODO(doc): @quake</a>
+<a name="78"><span class="lineNum">      78 </span>            :     fn as_any(&amp;self) -&gt; &amp;dyn Any;</a>
+<a name="79"><span class="lineNum">      79 </span>            : }</a>
+<a name="80"><span class="lineNum">      80 </span>            : </a>
+<a name="81"><span class="lineNum">      81 </span>            : impl&lt;T: Any&gt; AsAny for T {</a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineNoCov">          0 :     fn as_any(&amp;self) -&gt; &amp;dyn Any {</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineNoCov">          0 :         self</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="85"><span class="lineNum">      85 </span>            : }</a>
 </pre>
       </td>
     </tr>

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/jsonrpc-types/src/net.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/jsonrpc-types/src/net.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">8</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">31</td>
@@ -103,7 +103,7 @@
 <a name="41"><span class="lineNum">      41 </span>            : /// }</a>
 <a name="42"><span class="lineNum">      42 </span>            : /// # &quot;#).unwrap();</a>
 <a name="43"><span class="lineNum">      43 </span>            : /// ```</a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">         48 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">         32 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="45"><span class="lineNum">      45 </span>            : pub struct LocalNode {</a>
 <a name="46"><span class="lineNum">      46 </span>            :     /// CKB node version.</a>
 <a name="47"><span class="lineNum">      47 </span>            :     ///</a>
@@ -128,7 +128,7 @@
 <a name="66"><span class="lineNum">      66 </span>            : }</a>
 <a name="67"><span class="lineNum">      67 </span>            : </a>
 <a name="68"><span class="lineNum">      68 </span>            : /// The information of a P2P protocol that is supported by the local node.</a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         51 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         34 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="70"><span class="lineNum">      70 </span>            : pub struct LocalNodeProtocol {</a>
 <a name="71"><span class="lineNum">      71 </span>            :     /// Unique protocol ID.</a>
 <a name="72"><span class="lineNum">      72 </span>            :     pub id: Uint64,</a>
@@ -210,7 +210,7 @@
 <a name="148"><span class="lineNum">     148 </span>            : /// }</a>
 <a name="149"><span class="lineNum">     149 </span>            : /// # &quot;#).unwrap();</a>
 <a name="150"><span class="lineNum">     150 </span>            : /// ```</a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineCov">        102 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">         68 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="152"><span class="lineNum">     152 </span>            : pub struct RemoteNode {</a>
 <a name="153"><span class="lineNum">     153 </span>            :     /// The remote node version.</a>
 <a name="154"><span class="lineNum">     154 </span>            :     pub version: String,</a>
@@ -240,7 +240,7 @@
 <a name="178"><span class="lineNum">     178 </span>            : }</a>
 <a name="179"><span class="lineNum">     179 </span>            : </a>
 <a name="180"><span class="lineNum">     180 </span>            : /// The information about an active running protocol.</a>
-<a name="181"><span class="lineNum">     181 </span><span class="lineCov">        240 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">        160 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="182"><span class="lineNum">     182 </span>            : pub struct RemoteNodeProtocol {</a>
 <a name="183"><span class="lineNum">     183 </span>            :     /// Unique protocol ID.</a>
 <a name="184"><span class="lineNum">     184 </span>            :     pub id: Uint64,</a>
@@ -249,7 +249,7 @@
 <a name="187"><span class="lineNum">     187 </span>            : }</a>
 <a name="188"><span class="lineNum">     188 </span>            : </a>
 <a name="189"><span class="lineNum">     189 </span>            : /// The chain synchronization state between the local node and a remote node.</a>
-<a name="190"><span class="lineNum">     190 </span><span class="lineCov">         90 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">         60 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="191"><span class="lineNum">     191 </span>            : pub struct PeerSyncState {</a>
 <a name="192"><span class="lineNum">     192 </span>            :     /// Best known header hash of remote peer.</a>
 <a name="193"><span class="lineNum">     193 </span>            :     ///</a>
@@ -279,7 +279,7 @@
 <a name="217"><span class="lineNum">     217 </span>            : }</a>
 <a name="218"><span class="lineNum">     218 </span>            : </a>
 <a name="219"><span class="lineNum">     219 </span>            : /// Node P2P address and score.</a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">         75 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">         50 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="221"><span class="lineNum">     221 </span>            : pub struct NodeAddress {</a>
 <a name="222"><span class="lineNum">     222 </span>            :     /// P2P address.</a>
 <a name="223"><span class="lineNum">     223 </span>            :     ///</a>
@@ -294,7 +294,7 @@
 <a name="232"><span class="lineNum">     232 </span>            : }</a>
 <a name="233"><span class="lineNum">     233 </span>            : </a>
 <a name="234"><span class="lineNum">     234 </span>            : /// A banned P2P address.</a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">         30 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">         24 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="236"><span class="lineNum">     236 </span>            : pub struct BannedAddr {</a>
 <a name="237"><span class="lineNum">     237 </span>            :     /// The P2P address.</a>
 <a name="238"><span class="lineNum">     238 </span>            :     ///</a>
@@ -309,7 +309,7 @@
 <a name="247"><span class="lineNum">     247 </span>            : }</a>
 <a name="248"><span class="lineNum">     248 </span>            : </a>
 <a name="249"><span class="lineNum">     249 </span>            : /// The overall chain synchronization state of this local node.</a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineCov">         12 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="250"><span class="lineNum">     250 </span><span class="lineCov">          8 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="251"><span class="lineNum">     251 </span>            : pub struct SyncState {</a>
 <a name="252"><span class="lineNum">     252 </span>            :     /// Whether the local node is in IBD, Initial Block Download.</a>
 <a name="253"><span class="lineNum">     253 </span>            :     ///</a>

@@ -31,13 +31,13 @@
             <td class="headerValue">lcov-integration-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">36</td>
-            <td class="headerCovTableEntry">375</td>
-            <td class="headerCovTableEntryLo">9.6 %</td>
+            <td class="headerCovTableEntry">32</td>
+            <td class="headerCovTableEntry">364</td>
+            <td class="headerCovTableEntryLo">8.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -162,20 +162,20 @@
 <a name="100"><span class="lineNum">     100 </span><span class="lineCov">          1 :     let spec = &quot;info,a-b=trace,c-d_e-f=warn,g-h-i=debug,jkl=trace/*[0-9]&quot;;</span></a>
 <a name="101"><span class="lineNum">     101 </span><span class="lineCov">          1 :     let expected = &quot;info,a-b=trace,a_b=trace,c-d_e-f=warn,c_d_e_f=warn,g-h-i=debug,g_h_i=debug,jkl=trace/*[0-9]&quot;;</span></a>
 <a name="102"><span class="lineNum">     102 </span><span class="lineCov">          1 :     let result = convert_compatible_crate_name(&amp;spec);</span></a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">          1 :     assert_eq!(&amp;result, &amp;expected);</span></a>
+<a name="103"><span class="lineNum">     103 </span>            :     assert_eq!(&amp;result, &amp;expected);</a>
 <a name="104"><span class="lineNum">     104 </span><span class="lineCov">          1 :     let spec = &quot;info,a-b=trace,c-d_e-f=warn,g-h-i=debug,jkl=trace&quot;;</span></a>
 <a name="105"><span class="lineNum">     105 </span><span class="lineCov">          1 :     let expected =</span></a>
 <a name="106"><span class="lineNum">     106 </span><span class="lineCov">          1 :         &quot;info,a-b=trace,a_b=trace,c-d_e-f=warn,c_d_e_f=warn,g-h-i=debug,g_h_i=debug,jkl=trace&quot;;</span></a>
 <a name="107"><span class="lineNum">     107 </span><span class="lineCov">          1 :     let result = convert_compatible_crate_name(&amp;spec);</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">          1 :     assert_eq!(&amp;result, &amp;expected);</span></a>
+<a name="108"><span class="lineNum">     108 </span>            :     assert_eq!(&amp;result, &amp;expected);</a>
 <a name="109"><span class="lineNum">     109 </span><span class="lineCov">          1 :     let spec = &quot;info/*[0-9]&quot;;</span></a>
 <a name="110"><span class="lineNum">     110 </span><span class="lineCov">          1 :     let expected = &quot;info/*[0-9]&quot;;</span></a>
 <a name="111"><span class="lineNum">     111 </span><span class="lineCov">          1 :     let result = convert_compatible_crate_name(&amp;spec);</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">          1 :     assert_eq!(&amp;result, &amp;expected);</span></a>
+<a name="112"><span class="lineNum">     112 </span>            :     assert_eq!(&amp;result, &amp;expected);</a>
 <a name="113"><span class="lineNum">     113 </span><span class="lineCov">          1 :     let spec = &quot;info&quot;;</span></a>
 <a name="114"><span class="lineNum">     114 </span><span class="lineCov">          1 :     let expected = &quot;info&quot;;</span></a>
 <a name="115"><span class="lineNum">     115 </span><span class="lineCov">          1 :     let result = convert_compatible_crate_name(&amp;spec);</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">          1 :     assert_eq!(&amp;result, &amp;expected);</span></a>
+<a name="116"><span class="lineNum">     116 </span>            :     assert_eq!(&amp;result, &amp;expected);</a>
 <a name="117"><span class="lineNum">     117 </span><span class="lineCov">          1 : }</span></a>
 <a name="118"><span class="lineNum">     118 </span>            : </a>
 <a name="119"><span class="lineNum">     119 </span>            : impl Logger {</a>
@@ -586,13 +586,13 @@
 <a name="524"><span class="lineNum">     524 </span><span class="lineNoCov">          0 :                 None =&gt; &quot;Box&lt;Any&gt;&quot;,</span></a>
 <a name="525"><span class="lineNum">     525 </span>            :             },</a>
 <a name="526"><span class="lineNum">     526 </span>            :         };</a>
-<a name="527"><span class="lineNum">     527 </span><span class="lineNoCov">          0 :         log::error!(</span></a>
-<a name="528"><span class="lineNum">     528 </span><span class="lineNoCov">          0 :             target: &quot;panic&quot;, &quot;thread '{}' panicked at '{}': {}:{}{:?}&quot;,</span></a>
-<a name="529"><span class="lineNum">     529 </span><span class="lineNoCov">          0 :             name,</span></a>
-<a name="530"><span class="lineNum">     530 </span><span class="lineNoCov">          0 :             msg,</span></a>
-<a name="531"><span class="lineNum">     531 </span><span class="lineNoCov">          0 :             location.file(),</span></a>
-<a name="532"><span class="lineNum">     532 </span><span class="lineNoCov">          0 :             location.line(),</span></a>
-<a name="533"><span class="lineNum">     533 </span><span class="lineNoCov">          0 :             backtrace,</span></a>
+<a name="527"><span class="lineNum">     527 </span>            :         log::error!(</a>
+<a name="528"><span class="lineNum">     528 </span>            :             target: &quot;panic&quot;, &quot;thread '{}' panicked at '{}': {}:{}{:?}&quot;,</a>
+<a name="529"><span class="lineNum">     529 </span>            :             name,</a>
+<a name="530"><span class="lineNum">     530 </span>            :             msg,</a>
+<a name="531"><span class="lineNum">     531 </span>            :             location.file(),</a>
+<a name="532"><span class="lineNum">     532 </span>            :             location.line(),</a>
+<a name="533"><span class="lineNum">     533 </span>            :             backtrace,</a>
 <a name="534"><span class="lineNum">     534 </span>            :         );</a>
 <a name="535"><span class="lineNum">     535 </span><span class="lineNoCov">          0 :     };</span></a>
 <a name="536"><span class="lineNum">     536 </span><span class="lineNoCov">          0 :     panic::set_hook(Box::new(panic_logger));</span></a>

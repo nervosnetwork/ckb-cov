@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -63,24 +63,24 @@
 <a name="1"><span class="lineNum">       1 </span>            : //! Build script for the binary crate `ckb`.</a>
 <a name="2"><span class="lineNum">       2 </span>            : use std::path::Path;</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
-<a name="4"><span class="lineNum">       4 </span><span class="lineCov">       3032 : fn rerun_if_changed(path_str: &amp;str) -&gt; bool {</span></a>
-<a name="5"><span class="lineNum">       5 </span><span class="lineCov">       3032 :     let path = Path::new(path_str);</span></a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">       3032 : </span></a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">       3032 :     if path.starts_with(&quot;benches&quot;)</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">       2996 :         || path.starts_with(&quot;devtools&quot;)</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">       2900 :         || path.starts_with(&quot;docker&quot;)</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">       2892 :         || path.starts_with(&quot;docs&quot;)</span></a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">       2872 :         || path.starts_with(&quot;test&quot;)</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">       2432 :         || path.starts_with(&quot;.github&quot;)</span></a>
+<a name="4"><span class="lineNum">       4 </span><span class="lineCov">       3264 : fn rerun_if_changed(path_str: &amp;str) -&gt; bool {</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineCov">       3264 :     let path = Path::new(path_str);</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">       3264 : </span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov">       3264 :     if path.starts_with(&quot;benches&quot;)</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">       3228 :         || path.starts_with(&quot;devtools&quot;)</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">       3136 :         || path.starts_with(&quot;docker&quot;)</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">       3128 :         || path.starts_with(&quot;docs&quot;)</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineCov">       3108 :         || path.starts_with(&quot;test&quot;)</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">       2668 :         || path.starts_with(&quot;.github&quot;)</span></a>
 <a name="13"><span class="lineNum">      13 </span>            :     {</a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        844 :         return false;</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">       2188 :     }</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        840 :         return false;</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">       2424 :     }</span></a>
 <a name="16"><span class="lineNum">      16 </span>            : </a>
 <a name="17"><span class="lineNum">      17 </span><span class="lineCov">         20 :     !matches!(</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">       2188 :         path_str,</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">       2188 :         &quot;COPYING&quot; | &quot;Makefile&quot; | &quot;clippy.toml&quot; | &quot;rustfmt.toml&quot; | &quot;rust-toolchain&quot;</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">       2424 :         path_str,</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">       2424 :         &quot;COPYING&quot; | &quot;Makefile&quot; | &quot;clippy.toml&quot; | &quot;rustfmt.toml&quot; | &quot;rust-toolchain&quot;</span></a>
 <a name="20"><span class="lineNum">      20 </span>            :     )</a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">       3032 : }</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">       3264 : }</span></a>
 <a name="22"><span class="lineNum">      22 </span>            : </a>
 <a name="23"><span class="lineNum">      23 </span>            : #[allow(clippy::manual_strip)]</a>
 <a name="24"><span class="lineNum">      24 </span><span class="lineCov">          4 : fn main() {</span></a>
@@ -113,10 +113,10 @@
 <a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="53"><span class="lineNum">      53 </span>            : </a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">       3032 :     for file in files_stdout.iter().flat_map(|stdout| stdout.lines()) {</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">       3032 :         if rerun_if_changed(file) {</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">       2168 :             println!(&quot;cargo:rerun-if-changed={}&quot;, file);</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">       2168 :         }</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">       3264 :     for file in files_stdout.iter().flat_map(|stdout| stdout.lines()) {</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">       3264 :         if rerun_if_changed(file) {</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">       2404 :             println!(&quot;cargo:rerun-if-changed={}&quot;, file);</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">       2404 :         }</span></a>
 <a name="58"><span class="lineNum">      58 </span>            :     }</a>
 <a name="59"><span class="lineNum">      59 </span><span class="lineCov">          4 : }</span></a>
 </pre>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -75,11 +75,11 @@
 <a name="13"><span class="lineNum">      13 </span>            : const CACHE_SIZE: usize = 1000 * 30;</a>
 <a name="14"><span class="lineNum">      14 </span>            : </a>
 <a name="15"><span class="lineNum">      15 </span>            : /// Initialize cache</a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">        570 : pub fn init_cache() -&gt; TxVerificationCache {</span></a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">        570 :     lru::LruCache::new(CACHE_SIZE)</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        570 : }</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">        456 : pub fn init_cache() -&gt; TxVerificationCache {</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">        456 :     lru::LruCache::new(CACHE_SIZE)</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        456 : }</span></a>
 <a name="19"><span class="lineNum">      19 </span>            : </a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">         10 : #[derive(Clone, Debug)]</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">          8 : #[derive(Clone, Debug)]</span></a>
 <a name="21"><span class="lineNum">      21 </span>            : /// TX verification lru entry</a>
 <a name="22"><span class="lineNum">      22 </span>            : pub enum CacheEntry {</a>
 <a name="23"><span class="lineNum">      23 </span>            :     /// Completed</a>
@@ -98,7 +98,7 @@
 <a name="36"><span class="lineNum">      36 </span>            : }</a>
 <a name="37"><span class="lineNum">      37 </span>            : </a>
 <a name="38"><span class="lineNum">      38 </span>            : /// Completed entry</a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">        126 : #[derive(Clone, Copy, Debug, PartialEq)]</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">        124 : #[derive(Clone, Copy, Debug, PartialEq)]</span></a>
 <a name="40"><span class="lineNum">      40 </span>            : pub struct Completed {</a>
 <a name="41"><span class="lineNum">      41 </span>            :     /// Cached tx cycles</a>
 <a name="42"><span class="lineNum">      42 </span>            :     pub cycles: Cycle,</a>
@@ -108,9 +108,9 @@
 <a name="46"><span class="lineNum">      46 </span>            : </a>
 <a name="47"><span class="lineNum">      47 </span>            : impl CacheEntry {</a>
 <a name="48"><span class="lineNum">      48 </span>            :     /// Constructs a completed CacheEntry</a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">         25 :     pub fn completed(cycles: Cycle, fee: Capacity) -&gt; Self {</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">         25 :         CacheEntry::Completed(Completed { cycles, fee })</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">         25 :     }</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">         16 :     pub fn completed(cycles: Cycle, fee: Capacity) -&gt; Self {</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">         16 :         CacheEntry::Completed(Completed { cycles, fee })</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">         16 :     }</span></a>
 <a name="52"><span class="lineNum">      52 </span>            : </a>
 <a name="53"><span class="lineNum">      53 </span>            :     /// Constructs a Suspended CacheEntry</a>
 <a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :     pub fn suspended(snap: Arc&lt;TransactionSnapshot&gt;, fee: Capacity) -&gt; Self {</span></a>

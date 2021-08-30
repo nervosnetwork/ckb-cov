@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">28</td>
-            <td class="headerCovTableEntry">40</td>
-            <td class="headerCovTableEntryLo">70.0 %</td>
+            <td class="headerCovTableEntry">39</td>
+            <td class="headerCovTableEntryLo">71.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -174,7 +174,7 @@
 <a name="112"><span class="lineNum">     112 </span><span class="lineNoCov">          0 :                 self.network_controller</span></a>
 <a name="113"><span class="lineNum">     113 </span><span class="lineNoCov">          0 :                     .broadcast(SupportProtocols::Alert.protocol_id(), alert.as_bytes())</span></a>
 <a name="114"><span class="lineNum">     114 </span><span class="lineNoCov">          0 :                     .map_err(|err| {</span></a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineNoCov">          0 :                         error!(&quot;Broadcast alert failed: {:?}&quot;, err);</span></a>
+<a name="115"><span class="lineNum">     115 </span>            :                         error!(&quot;Broadcast alert failed: {:?}&quot;, err);</a>
 <a name="116"><span class="lineNum">     116 </span><span class="lineNoCov">          0 :                         RPCError::custom_with_error(RPCError::P2PFailedToBroadcast, err)</span></a>
 <a name="117"><span class="lineNum">     117 </span><span class="lineNoCov">          0 :                     })</span></a>
 <a name="118"><span class="lineNum">     118 </span>            :             }</a>

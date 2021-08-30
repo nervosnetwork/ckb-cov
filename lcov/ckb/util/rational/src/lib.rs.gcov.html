@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/rational/src/lib.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/rational/src/lib.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">150</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">38</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          3 : //! Rational numbers.</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! Rational numbers.</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : #[cfg(test)]</a>
 <a name="3"><span class="lineNum">       3 </span>            : mod tests;</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
@@ -72,7 +72,7 @@
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span>            : /// Represents the ratio `numerator / denominator`, where `numerator` and `denominator` are both</a>
 <a name="12"><span class="lineNum">      12 </span>            : /// unsigned 256-bit integers.</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">      11569 : #[derive(Clone, Debug, PartialEq, Eq, Deserialize, Serialize)]</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">       7726 : #[derive(Clone, Debug, PartialEq, Eq, Deserialize, Serialize)]</span></a>
 <a name="14"><span class="lineNum">      14 </span>            : pub struct RationalU256 {</a>
 <a name="15"><span class="lineNum">      15 </span>            :     /// Numerator.</a>
 <a name="16"><span class="lineNum">      16 </span>            :     numer: U256,</a>
@@ -93,20 +93,20 @@
 <a name="31"><span class="lineNum">      31 </span>            :     ///</a>
 <a name="32"><span class="lineNum">      32 </span>            :     /// Panics when `denom` is zero.</a>
 <a name="33"><span class="lineNum">      33 </span>            :     #[inline]</a>
-<a name="34"><span class="lineNum">      34 </span><span class="lineCov">     110872 :     pub fn new(numer: U256, denom: U256) -&gt; RationalU256 {</span></a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineCov">     110872 :         if denom.is_zero() {</span></a>
+<a name="34"><span class="lineNum">      34 </span><span class="lineCov">      78936 :     pub fn new(numer: U256, denom: U256) -&gt; RationalU256 {</span></a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">      78936 :         if denom.is_zero() {</span></a>
 <a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :             panic!(&quot;denominator == 0&quot;);</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineCov">     110872 :         }</span></a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineCov">     110872 :         let mut ret = RationalU256::new_raw(numer, denom);</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">     110872 :         ret.reduce();</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">     110872 :         ret</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineCov">     110872 :     }</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineCov">      78936 :         }</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">      78936 :         let mut ret = RationalU256::new_raw(numer, denom);</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">      78936 :         ret.reduce();</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineCov">      78936 :         ret</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">      78936 :     }</span></a>
 <a name="42"><span class="lineNum">      42 </span>            : </a>
 <a name="43"><span class="lineNum">      43 </span>            :     /// Creates a new ratio `numer / denom` without checking whether `denom` is zero.</a>
 <a name="44"><span class="lineNum">      44 </span>            :     #[inline]</a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">     234916 :     pub const fn new_raw(numer: U256, denom: U256) -&gt; RationalU256 {</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">     234916 :         RationalU256 { numer, denom }</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">     234916 :     }</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">     167818 :     pub const fn new_raw(numer: U256, denom: U256) -&gt; RationalU256 {</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">     167818 :         RationalU256 { numer, denom }</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">     167818 :     }</span></a>
 <a name="48"><span class="lineNum">      48 </span>            : </a>
 <a name="49"><span class="lineNum">      49 </span>            :     /// Creates a new ratio `t / 1`.</a>
 <a name="50"><span class="lineNum">      50 </span>            :     #[inline]</a>
@@ -116,188 +116,188 @@
 <a name="54"><span class="lineNum">      54 </span>            : </a>
 <a name="55"><span class="lineNum">      55 </span>            :     /// Tells whether the numerator is zero.</a>
 <a name="56"><span class="lineNum">      56 </span>            :     #[inline]</a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">       1341 :     pub fn is_zero(&amp;self) -&gt; bool {</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">       1341 :         self.numer.is_zero()</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">       1341 :     }</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">        754 :     pub fn is_zero(&amp;self) -&gt; bool {</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        754 :         self.numer.is_zero()</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">        754 :     }</span></a>
 <a name="60"><span class="lineNum">      60 </span>            : </a>
 <a name="61"><span class="lineNum">      61 </span>            :     /// Creates a new ratio `0 / 1`.</a>
 <a name="62"><span class="lineNum">      62 </span>            :     #[inline]</a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">       1457 :     pub const fn zero() -&gt; RationalU256 {</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">       1457 :         RationalU256::new_raw(U256::zero(), U256::one())</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">       1457 :     }</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">        998 :     pub const fn zero() -&gt; RationalU256 {</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        998 :         RationalU256::new_raw(U256::zero(), U256::one())</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        998 :     }</span></a>
 <a name="66"><span class="lineNum">      66 </span>            : </a>
 <a name="67"><span class="lineNum">      67 </span>            :     /// Creates a new ratio `1 / 1`.</a>
 <a name="68"><span class="lineNum">      68 </span>            :     #[inline]</a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         60 :     pub const fn one() -&gt; RationalU256 {</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         60 :         RationalU256::new_raw(U256::one(), U256::one())</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         60 :     }</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         32 :     pub const fn one() -&gt; RationalU256 {</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         32 :         RationalU256::new_raw(U256::one(), U256::one())</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         32 :     }</span></a>
 <a name="72"><span class="lineNum">      72 </span>            : </a>
 <a name="73"><span class="lineNum">      73 </span>            :     /// Rounds down the ratio into an unsigned 256-bit integer.</a>
 <a name="74"><span class="lineNum">      74 </span>            :     #[inline]</a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">      21332 :     pub fn into_u256(self) -&gt; U256 {</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">      21332 :         self.numer / self.denom</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      21332 :     }</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">      14080 :     pub fn into_u256(self) -&gt; U256 {</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">      14080 :         self.numer / self.denom</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      14080 :     }</span></a>
 <a name="78"><span class="lineNum">      78 </span>            : </a>
 <a name="79"><span class="lineNum">      79 </span>            :     /// Computes `self - rhs` and saturates the result to zero when `self` is less than `rhs`.</a>
 <a name="80"><span class="lineNum">      80 </span>            :     ///</a>
 <a name="81"><span class="lineNum">      81 </span>            :     /// Returns `self - rhs` when `self &gt; rhs`, returns zero otherwise.</a>
 <a name="82"><span class="lineNum">      82 </span>            :     #[inline]</a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        768 :     pub fn saturating_sub(self, rhs: RationalU256) -&gt; Self {</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">        768 :         if self.denom == rhs.denom {</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        512 :     pub fn saturating_sub(self, rhs: RationalU256) -&gt; Self {</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">        512 :         if self.denom == rhs.denom {</span></a>
 <a name="85"><span class="lineNum">      85 </span><span class="lineNoCov">          0 :             let (numer, overflowing) = self.numer.overflowing_sub(&amp;rhs.numer);</span></a>
 <a name="86"><span class="lineNum">      86 </span><span class="lineNoCov">          0 :             return if overflowing {</span></a>
 <a name="87"><span class="lineNum">      87 </span><span class="lineNoCov">          0 :                 RationalU256::zero()</span></a>
 <a name="88"><span class="lineNum">      88 </span>            :             } else {</a>
 <a name="89"><span class="lineNum">      89 </span><span class="lineNoCov">          0 :                 RationalU256::new(numer, self.denom)</span></a>
 <a name="90"><span class="lineNum">      90 </span>            :             };</a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">        768 :         }</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">        768 : </span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">        768 :         let gcd = self.denom.gcd(&amp;rhs.denom);</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">        768 :         let lcm = &amp;self.denom * (&amp;rhs.denom / gcd);</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">        768 :         let lhs_numer = &amp;self.numer * (&amp;lcm / self.denom);</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">        768 :         let rhs_numer = &amp;rhs.numer * (&amp;lcm / &amp;rhs.denom);</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">        768 : </span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">        768 :         let (numer, overflowing) = lhs_numer.overflowing_sub(&amp;rhs_numer);</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">        768 :         if overflowing {</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">        398 :             RationalU256::zero()</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">        512 :         }</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">        512 : </span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">        512 :         let gcd = self.denom.gcd(&amp;rhs.denom);</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">        512 :         let lcm = &amp;self.denom * (&amp;rhs.denom / gcd);</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">        512 :         let lhs_numer = &amp;self.numer * (&amp;lcm / self.denom);</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">        512 :         let rhs_numer = &amp;rhs.numer * (&amp;lcm / &amp;rhs.denom);</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">        512 : </span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">        512 :         let (numer, overflowing) = lhs_numer.overflowing_sub(&amp;rhs_numer);</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">        512 :         if overflowing {</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">        278 :             RationalU256::zero()</span></a>
 <a name="101"><span class="lineNum">     101 </span>            :         } else {</a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">        370 :             RationalU256::new(numer, lcm)</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineCov">        234 :             RationalU256::new(numer, lcm)</span></a>
 <a name="103"><span class="lineNum">     103 </span>            :         }</a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">        768 :     }</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">        512 :     }</span></a>
 <a name="105"><span class="lineNum">     105 </span>            : </a>
 <a name="106"><span class="lineNum">     106 </span>            :     /// Computes `self - rhs` and saturates the result to zero when `self` is less than `rhs`.</a>
 <a name="107"><span class="lineNum">     107 </span>            :     ///</a>
 <a name="108"><span class="lineNum">     108 </span>            :     /// Returns `self - rhs` when `self &gt; rhs`, returns zero otherwise.</a>
 <a name="109"><span class="lineNum">     109 </span>            :     #[inline]</a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">        843 :     pub fn saturating_sub_u256(self, rhs: U256) -&gt; Self {</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">        843 :         let (numer, overflowing) = self.numer.overflowing_sub(&amp;(&amp;self.denom * rhs));</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">        843 :         if overflowing {</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">        783 :             RationalU256::zero()</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">        552 :     pub fn saturating_sub_u256(self, rhs: U256) -&gt; Self {</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">        552 :         let (numer, overflowing) = self.numer.overflowing_sub(&amp;(&amp;self.denom * rhs));</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">        552 :         if overflowing {</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">        520 :             RationalU256::zero()</span></a>
 <a name="114"><span class="lineNum">     114 </span>            :         } else {</a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         60 :             RationalU256::new_raw(numer, self.denom)</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         32 :             RationalU256::new_raw(numer, self.denom)</span></a>
 <a name="116"><span class="lineNum">     116 </span>            :         }</a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">        843 :     }</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">        552 :     }</span></a>
 <a name="118"><span class="lineNum">     118 </span>            : </a>
 <a name="119"><span class="lineNum">     119 </span>            :     /// Puts self into lowest terms, with denom &gt; 0.</a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">     149341 :     fn reduce(&amp;mut self) {</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">     149341 :         let g = self.numer.gcd(&amp;self.denom);</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">     149341 :         self.numer = &amp;self.numer / &amp;g;</span></a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">     149341 :         self.denom = &amp;self.denom / &amp;g;</span></a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">     149341 :     }</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">     107376 :     fn reduce(&amp;mut self) {</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">     107376 :         let g = self.numer.gcd(&amp;self.denom);</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">     107376 :         self.numer = &amp;self.numer / &amp;g;</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">     107376 :         self.denom = &amp;self.denom / &amp;g;</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">     107376 :     }</span></a>
 <a name="125"><span class="lineNum">     125 </span>            : }</a>
 <a name="126"><span class="lineNum">     126 </span>            : </a>
 <a name="127"><span class="lineNum">     127 </span>            : // a/b * c/d = (a/gcd_ad)*(c/gcd_bc) / ((d/gcd_ad)*(b/gcd_bc))</a>
 <a name="128"><span class="lineNum">     128 </span>            : impl Mul&lt;&amp;RationalU256&gt; for &amp;RationalU256 {</a>
 <a name="129"><span class="lineNum">     129 </span>            :     type Output = RationalU256;</a>
 <a name="130"><span class="lineNum">     130 </span>            :     #[inline]</a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">       3252 :     fn mul(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">       3252 :         let gcd_ad = self.numer.gcd(&amp;rhs.denom);</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">       3252 :         let gcd_bc = self.denom.gcd(&amp;rhs.numer);</span></a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">       3252 : </span></a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">       3252 :         RationalU256::new_raw(</span></a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">       3252 :             (&amp;self.numer / &amp;gcd_ad) * (&amp;rhs.numer / &amp;gcd_bc),</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">       3252 :             (&amp;self.denom / gcd_bc) * (&amp;rhs.denom / gcd_ad),</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">       3252 :         )</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">       3252 :     }</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">       2144 :     fn mul(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">       2144 :         let gcd_ad = self.numer.gcd(&amp;rhs.denom);</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">       2144 :         let gcd_bc = self.denom.gcd(&amp;rhs.numer);</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">       2144 : </span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">       2144 :         RationalU256::new_raw(</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">       2144 :             (&amp;self.numer / &amp;gcd_ad) * (&amp;rhs.numer / &amp;gcd_bc),</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">       2144 :             (&amp;self.denom / gcd_bc) * (&amp;rhs.denom / gcd_ad),</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">       2144 :         )</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">       2144 :     }</span></a>
 <a name="140"><span class="lineNum">     140 </span>            : }</a>
 <a name="141"><span class="lineNum">     141 </span>            : </a>
 <a name="142"><span class="lineNum">     142 </span>            : impl Mul&lt;RationalU256&gt; for &amp;RationalU256 {</a>
 <a name="143"><span class="lineNum">     143 </span>            :     type Output = RationalU256;</a>
 <a name="144"><span class="lineNum">     144 </span>            :     #[inline]</a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">        948 :     fn mul(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">        948 :         self.mul(&amp;rhs)</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">        948 :     }</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">        608 :     fn mul(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">        608 :         self.mul(&amp;rhs)</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">        608 :     }</span></a>
 <a name="148"><span class="lineNum">     148 </span>            : }</a>
 <a name="149"><span class="lineNum">     149 </span>            : </a>
 <a name="150"><span class="lineNum">     150 </span>            : impl Mul&lt;&amp;RationalU256&gt; for RationalU256 {</a>
 <a name="151"><span class="lineNum">     151 </span>            :     type Output = RationalU256;</a>
 <a name="152"><span class="lineNum">     152 </span>            :     #[inline]</a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">        768 :     fn mul(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">        768 :         (&amp;self).mul(rhs)</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        768 :     }</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">        512 :     fn mul(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">        512 :         (&amp;self).mul(rhs)</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        512 :     }</span></a>
 <a name="156"><span class="lineNum">     156 </span>            : }</a>
 <a name="157"><span class="lineNum">     157 </span>            : </a>
 <a name="158"><span class="lineNum">     158 </span>            : impl Mul&lt;RationalU256&gt; for RationalU256 {</a>
 <a name="159"><span class="lineNum">     159 </span>            :     type Output = RationalU256;</a>
 <a name="160"><span class="lineNum">     160 </span>            :     #[inline]</a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">        768 :     fn mul(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        768 :         (&amp;self).mul(&amp;rhs)</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        768 :     }</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">        512 :     fn mul(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        512 :         (&amp;self).mul(&amp;rhs)</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        512 :     }</span></a>
 <a name="164"><span class="lineNum">     164 </span>            : }</a>
 <a name="165"><span class="lineNum">     165 </span>            : </a>
 <a name="166"><span class="lineNum">     166 </span>            : // a/b * c/1 = (a*c) / (b*1) = (a*c) / b</a>
 <a name="167"><span class="lineNum">     167 </span>            : impl Mul&lt;&amp;U256&gt; for &amp;RationalU256 {</a>
 <a name="168"><span class="lineNum">     168 </span>            :     type Output = RationalU256;</a>
 <a name="169"><span class="lineNum">     169 </span>            :     #[inline]</a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">       3732 :     fn mul(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       3732 :         let gcd = self.denom.gcd(&amp;rhs);</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">       3732 :         RationalU256::new_raw(&amp;self.numer * (rhs.div(&amp;gcd)), (&amp;self.denom).div(gcd))</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">       3732 :     }</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">       2400 :     fn mul(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       2400 :         let gcd = self.denom.gcd(&amp;rhs);</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">       2400 :         RationalU256::new_raw(&amp;self.numer * (rhs.div(&amp;gcd)), (&amp;self.denom).div(gcd))</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">       2400 :     }</span></a>
 <a name="174"><span class="lineNum">     174 </span>            : }</a>
 <a name="175"><span class="lineNum">     175 </span>            : </a>
 <a name="176"><span class="lineNum">     176 </span>            : impl Mul&lt;U256&gt; for &amp;RationalU256 {</a>
 <a name="177"><span class="lineNum">     177 </span>            :     type Output = RationalU256;</a>
 <a name="178"><span class="lineNum">     178 </span>            :     #[inline]</a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">        768 :     fn mul(self, rhs: U256) -&gt; RationalU256 {</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">        768 :         self.mul(&amp;rhs)</span></a>
-<a name="181"><span class="lineNum">     181 </span><span class="lineCov">        768 :     }</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">        512 :     fn mul(self, rhs: U256) -&gt; RationalU256 {</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">        512 :         self.mul(&amp;rhs)</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">        512 :     }</span></a>
 <a name="182"><span class="lineNum">     182 </span>            : }</a>
 <a name="183"><span class="lineNum">     183 </span>            : </a>
 <a name="184"><span class="lineNum">     184 </span>            : impl Mul&lt;U256&gt; for RationalU256 {</a>
 <a name="185"><span class="lineNum">     185 </span>            :     type Output = RationalU256;</a>
 <a name="186"><span class="lineNum">     186 </span>            :     #[inline]</a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">        858 :     fn mul(self, rhs: U256) -&gt; RationalU256 {</span></a>
-<a name="188"><span class="lineNum">     188 </span><span class="lineCov">        858 :         (&amp;self).mul(&amp;rhs)</span></a>
-<a name="189"><span class="lineNum">     189 </span><span class="lineCov">        858 :     }</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">        560 :     fn mul(self, rhs: U256) -&gt; RationalU256 {</span></a>
+<a name="188"><span class="lineNum">     188 </span><span class="lineCov">        560 :         (&amp;self).mul(&amp;rhs)</span></a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineCov">        560 :     }</span></a>
 <a name="190"><span class="lineNum">     190 </span>            : }</a>
 <a name="191"><span class="lineNum">     191 </span>            : </a>
 <a name="192"><span class="lineNum">     192 </span>            : impl Mul&lt;&amp;U256&gt; for RationalU256 {</a>
 <a name="193"><span class="lineNum">     193 </span>            :     type Output = RationalU256;</a>
 <a name="194"><span class="lineNum">     194 </span>            :     #[inline]</a>
-<a name="195"><span class="lineNum">     195 </span><span class="lineCov">       1263 :     fn mul(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
-<a name="196"><span class="lineNum">     196 </span><span class="lineCov">       1263 :         (&amp;self).mul(rhs)</span></a>
-<a name="197"><span class="lineNum">     197 </span><span class="lineCov">       1263 :     }</span></a>
+<a name="195"><span class="lineNum">     195 </span><span class="lineCov">        776 :     fn mul(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
+<a name="196"><span class="lineNum">     196 </span><span class="lineCov">        776 :         (&amp;self).mul(rhs)</span></a>
+<a name="197"><span class="lineNum">     197 </span><span class="lineCov">        776 :     }</span></a>
 <a name="198"><span class="lineNum">     198 </span>            : }</a>
 <a name="199"><span class="lineNum">     199 </span>            : </a>
 <a name="200"><span class="lineNum">     200 </span>            : // (a/b) / (c/d) = (a/gcd_ac)*(d/gcd_bd) / ((c/gcd_ac)*(b/gcd_bd))</a>
 <a name="201"><span class="lineNum">     201 </span>            : impl Div&lt;&amp;RationalU256&gt; for &amp;RationalU256 {</a>
 <a name="202"><span class="lineNum">     202 </span>            :     type Output = RationalU256;</a>
 <a name="203"><span class="lineNum">     203 </span>            :     #[inline]</a>
-<a name="204"><span class="lineNum">     204 </span><span class="lineCov">       4578 :     fn div(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       4578 :         let gcd_ac = self.numer.gcd(&amp;rhs.numer);</span></a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       4578 :         let gcd_bd = self.denom.gcd(&amp;rhs.denom);</span></a>
-<a name="207"><span class="lineNum">     207 </span><span class="lineCov">       4578 :         RationalU256::new_raw(</span></a>
-<a name="208"><span class="lineNum">     208 </span><span class="lineCov">       4578 :             (&amp;self.numer / &amp;gcd_ac) * (&amp;rhs.denom / &amp;gcd_bd),</span></a>
-<a name="209"><span class="lineNum">     209 </span><span class="lineCov">       4578 :             (&amp;self.denom / gcd_bd) * (&amp;rhs.numer / gcd_ac),</span></a>
-<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       4578 :         )</span></a>
-<a name="211"><span class="lineNum">     211 </span><span class="lineCov">       4578 :     }</span></a>
+<a name="204"><span class="lineNum">     204 </span><span class="lineCov">       2890 :     fn div(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       2890 :         let gcd_ac = self.numer.gcd(&amp;rhs.numer);</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       2890 :         let gcd_bd = self.denom.gcd(&amp;rhs.denom);</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">       2890 :         RationalU256::new_raw(</span></a>
+<a name="208"><span class="lineNum">     208 </span><span class="lineCov">       2890 :             (&amp;self.numer / &amp;gcd_ac) * (&amp;rhs.denom / &amp;gcd_bd),</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">       2890 :             (&amp;self.denom / gcd_bd) * (&amp;rhs.numer / gcd_ac),</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       2890 :         )</span></a>
+<a name="211"><span class="lineNum">     211 </span><span class="lineCov">       2890 :     }</span></a>
 <a name="212"><span class="lineNum">     212 </span>            : }</a>
 <a name="213"><span class="lineNum">     213 </span>            : </a>
 <a name="214"><span class="lineNum">     214 </span>            : impl Div&lt;RationalU256&gt; for RationalU256 {</a>
 <a name="215"><span class="lineNum">     215 </span>            :     type Output = RationalU256;</a>
 <a name="216"><span class="lineNum">     216 </span>            : </a>
 <a name="217"><span class="lineNum">     217 </span>            :     #[inline]</a>
-<a name="218"><span class="lineNum">     218 </span><span class="lineCov">       2274 :     fn div(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">       2274 :         (&amp;self).div(&amp;rhs)</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">       2274 :     }</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">       1354 :     fn div(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">       1354 :         (&amp;self).div(&amp;rhs)</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">       1354 :     }</span></a>
 <a name="221"><span class="lineNum">     221 </span>            : }</a>
 <a name="222"><span class="lineNum">     222 </span>            : </a>
 <a name="223"><span class="lineNum">     223 </span>            : impl Div&lt;RationalU256&gt; for &amp;RationalU256 {</a>
 <a name="224"><span class="lineNum">     224 </span>            :     type Output = RationalU256;</a>
 <a name="225"><span class="lineNum">     225 </span>            : </a>
 <a name="226"><span class="lineNum">     226 </span>            :     #[inline]</a>
-<a name="227"><span class="lineNum">     227 </span><span class="lineCov">        768 :     fn div(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">        768 :         (&amp;self).div(&amp;rhs)</span></a>
-<a name="229"><span class="lineNum">     229 </span><span class="lineCov">        768 :     }</span></a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">        512 :     fn div(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineCov">        512 :         (&amp;self).div(&amp;rhs)</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">        512 :     }</span></a>
 <a name="230"><span class="lineNum">     230 </span>            : }</a>
 <a name="231"><span class="lineNum">     231 </span>            : </a>
 <a name="232"><span class="lineNum">     232 </span>            : impl Div&lt;&amp;RationalU256&gt; for RationalU256 {</a>
 <a name="233"><span class="lineNum">     233 </span>            :     type Output = RationalU256;</a>
 <a name="234"><span class="lineNum">     234 </span>            : </a>
 <a name="235"><span class="lineNum">     235 </span>            :     #[inline]</a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineCov">        768 :     fn div(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">        768 :         (&amp;self).div(rhs)</span></a>
-<a name="238"><span class="lineNum">     238 </span><span class="lineCov">        768 :     }</span></a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">        512 :     fn div(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">        512 :         (&amp;self).div(rhs)</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">        512 :     }</span></a>
 <a name="239"><span class="lineNum">     239 </span>            : }</a>
 <a name="240"><span class="lineNum">     240 </span>            : </a>
 <a name="241"><span class="lineNum">     241 </span>            : // (a/b) / (c/1) = (a*1) / (b*c) = a / (b*c)</a>
@@ -305,110 +305,110 @@
 <a name="243"><span class="lineNum">     243 </span>            :     type Output = RationalU256;</a>
 <a name="244"><span class="lineNum">     244 </span>            : </a>
 <a name="245"><span class="lineNum">     245 </span>            :     #[inline]</a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineCov">       3072 :     fn div(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">       3072 :         let gcd = self.numer.gcd(&amp;rhs);</span></a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineCov">       3072 :         RationalU256::new_raw(&amp;self.numer / &amp;gcd, &amp;self.denom * (rhs / gcd))</span></a>
-<a name="249"><span class="lineNum">     249 </span><span class="lineCov">       3072 :     }</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">       2048 :     fn div(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">       2048 :         let gcd = self.numer.gcd(&amp;rhs);</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">       2048 :         RationalU256::new_raw(&amp;self.numer / &amp;gcd, &amp;self.denom * (rhs / gcd))</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineCov">       2048 :     }</span></a>
 <a name="250"><span class="lineNum">     250 </span>            : }</a>
 <a name="251"><span class="lineNum">     251 </span>            : </a>
 <a name="252"><span class="lineNum">     252 </span>            : impl Div&lt;U256&gt; for RationalU256 {</a>
 <a name="253"><span class="lineNum">     253 </span>            :     type Output = RationalU256;</a>
 <a name="254"><span class="lineNum">     254 </span>            : </a>
 <a name="255"><span class="lineNum">     255 </span>            :     #[inline]</a>
-<a name="256"><span class="lineNum">     256 </span><span class="lineCov">        768 :     fn div(self, rhs: U256) -&gt; RationalU256 {</span></a>
-<a name="257"><span class="lineNum">     257 </span><span class="lineCov">        768 :         (&amp;self).div(&amp;rhs)</span></a>
-<a name="258"><span class="lineNum">     258 </span><span class="lineCov">        768 :     }</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineCov">        512 :     fn div(self, rhs: U256) -&gt; RationalU256 {</span></a>
+<a name="257"><span class="lineNum">     257 </span><span class="lineCov">        512 :         (&amp;self).div(&amp;rhs)</span></a>
+<a name="258"><span class="lineNum">     258 </span><span class="lineCov">        512 :     }</span></a>
 <a name="259"><span class="lineNum">     259 </span>            : }</a>
 <a name="260"><span class="lineNum">     260 </span>            : </a>
 <a name="261"><span class="lineNum">     261 </span>            : impl Div&lt;&amp;U256&gt; for RationalU256 {</a>
 <a name="262"><span class="lineNum">     262 </span>            :     type Output = RationalU256;</a>
 <a name="263"><span class="lineNum">     263 </span>            : </a>
 <a name="264"><span class="lineNum">     264 </span>            :     #[inline]</a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">        768 :     fn div(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">        768 :         (&amp;self).div(rhs)</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">        768 :     }</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">        512 :     fn div(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">        512 :         (&amp;self).div(rhs)</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">        512 :     }</span></a>
 <a name="268"><span class="lineNum">     268 </span>            : }</a>
 <a name="269"><span class="lineNum">     269 </span>            : </a>
 <a name="270"><span class="lineNum">     270 </span>            : impl Div&lt;U256&gt; for &amp;RationalU256 {</a>
 <a name="271"><span class="lineNum">     271 </span>            :     type Output = RationalU256;</a>
 <a name="272"><span class="lineNum">     272 </span>            : </a>
 <a name="273"><span class="lineNum">     273 </span>            :     #[inline]</a>
-<a name="274"><span class="lineNum">     274 </span><span class="lineCov">        768 :     fn div(self, rhs: U256) -&gt; RationalU256 {</span></a>
-<a name="275"><span class="lineNum">     275 </span><span class="lineCov">        768 :         (self).div(&amp;rhs)</span></a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineCov">        768 :     }</span></a>
+<a name="274"><span class="lineNum">     274 </span><span class="lineCov">        512 :     fn div(self, rhs: U256) -&gt; RationalU256 {</span></a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">        512 :         (self).div(&amp;rhs)</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">        512 :     }</span></a>
 <a name="277"><span class="lineNum">     277 </span>            : }</a>
 <a name="278"><span class="lineNum">     278 </span>            : </a>
 <a name="279"><span class="lineNum">     279 </span>            : impl Add&lt;&amp;RationalU256&gt; for &amp;RationalU256 {</a>
 <a name="280"><span class="lineNum">     280 </span>            :     type Output = RationalU256;</a>
 <a name="281"><span class="lineNum">     281 </span>            :     #[inline]</a>
-<a name="282"><span class="lineNum">     282 </span><span class="lineCov">       4224 :     fn add(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineCov">       4224 :         if self.denom == rhs.denom {</span></a>
-<a name="284"><span class="lineNum">     284 </span><span class="lineCov">       1080 :             RationalU256::new(&amp;self.numer + &amp;rhs.numer, self.denom.clone())</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">       2788 :     fn add(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">       2788 :         if self.denom == rhs.denom {</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">        710 :             RationalU256::new(&amp;self.numer + &amp;rhs.numer, self.denom.clone())</span></a>
 <a name="285"><span class="lineNum">     285 </span>            :         } else {</a>
-<a name="286"><span class="lineNum">     286 </span><span class="lineCov">       3144 :             let gcd = self.denom.gcd(&amp;rhs.denom);</span></a>
-<a name="287"><span class="lineNum">     287 </span><span class="lineCov">       3144 :             let lcm = &amp;self.denom * (&amp;rhs.denom / gcd);</span></a>
-<a name="288"><span class="lineNum">     288 </span><span class="lineCov">       3144 :             let lhs_numer = &amp;self.numer * (&amp;lcm / &amp;self.denom);</span></a>
-<a name="289"><span class="lineNum">     289 </span><span class="lineCov">       3144 :             let rhs_numer = &amp;rhs.numer * (&amp;lcm / &amp;rhs.denom);</span></a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineCov">       3144 : </span></a>
-<a name="291"><span class="lineNum">     291 </span><span class="lineCov">       3144 :             RationalU256::new(lhs_numer + rhs_numer, lcm)</span></a>
+<a name="286"><span class="lineNum">     286 </span><span class="lineCov">       2078 :             let gcd = self.denom.gcd(&amp;rhs.denom);</span></a>
+<a name="287"><span class="lineNum">     287 </span><span class="lineCov">       2078 :             let lcm = &amp;self.denom * (&amp;rhs.denom / gcd);</span></a>
+<a name="288"><span class="lineNum">     288 </span><span class="lineCov">       2078 :             let lhs_numer = &amp;self.numer * (&amp;lcm / &amp;self.denom);</span></a>
+<a name="289"><span class="lineNum">     289 </span><span class="lineCov">       2078 :             let rhs_numer = &amp;rhs.numer * (&amp;lcm / &amp;rhs.denom);</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">       2078 : </span></a>
+<a name="291"><span class="lineNum">     291 </span><span class="lineCov">       2078 :             RationalU256::new(lhs_numer + rhs_numer, lcm)</span></a>
 <a name="292"><span class="lineNum">     292 </span>            :         }</a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineCov">       4224 :     }</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">       2788 :     }</span></a>
 <a name="294"><span class="lineNum">     294 </span>            : }</a>
 <a name="295"><span class="lineNum">     295 </span>            : </a>
 <a name="296"><span class="lineNum">     296 </span>            : impl Add&lt;RationalU256&gt; for RationalU256 {</a>
 <a name="297"><span class="lineNum">     297 </span>            :     type Output = RationalU256;</a>
 <a name="298"><span class="lineNum">     298 </span>            :     #[inline]</a>
-<a name="299"><span class="lineNum">     299 </span><span class="lineCov">       1920 :     fn add(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineCov">       1920 :         (&amp;self).add(&amp;rhs)</span></a>
-<a name="301"><span class="lineNum">     301 </span><span class="lineCov">       1920 :     }</span></a>
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">       1252 :     fn add(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">       1252 :         (&amp;self).add(&amp;rhs)</span></a>
+<a name="301"><span class="lineNum">     301 </span><span class="lineCov">       1252 :     }</span></a>
 <a name="302"><span class="lineNum">     302 </span>            : }</a>
 <a name="303"><span class="lineNum">     303 </span>            : </a>
 <a name="304"><span class="lineNum">     304 </span>            : impl Add&lt;&amp;RationalU256&gt; for RationalU256 {</a>
 <a name="305"><span class="lineNum">     305 </span>            :     type Output = RationalU256;</a>
 <a name="306"><span class="lineNum">     306 </span>            :     #[inline]</a>
-<a name="307"><span class="lineNum">     307 </span><span class="lineCov">        768 :     fn add(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
-<a name="308"><span class="lineNum">     308 </span><span class="lineCov">        768 :         (&amp;self).add(rhs)</span></a>
-<a name="309"><span class="lineNum">     309 </span><span class="lineCov">        768 :     }</span></a>
+<a name="307"><span class="lineNum">     307 </span><span class="lineCov">        512 :     fn add(self, rhs: &amp;RationalU256) -&gt; RationalU256 {</span></a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">        512 :         (&amp;self).add(rhs)</span></a>
+<a name="309"><span class="lineNum">     309 </span><span class="lineCov">        512 :     }</span></a>
 <a name="310"><span class="lineNum">     310 </span>            : }</a>
 <a name="311"><span class="lineNum">     311 </span>            : </a>
 <a name="312"><span class="lineNum">     312 </span>            : impl Add&lt;RationalU256&gt; for &amp;RationalU256 {</a>
 <a name="313"><span class="lineNum">     313 </span>            :     type Output = RationalU256;</a>
 <a name="314"><span class="lineNum">     314 </span>            :     #[inline]</a>
-<a name="315"><span class="lineNum">     315 </span><span class="lineCov">        768 :     fn add(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
-<a name="316"><span class="lineNum">     316 </span><span class="lineCov">        768 :         (self).add(&amp;rhs)</span></a>
-<a name="317"><span class="lineNum">     317 </span><span class="lineCov">        768 :     }</span></a>
+<a name="315"><span class="lineNum">     315 </span><span class="lineCov">        512 :     fn add(self, rhs: RationalU256) -&gt; RationalU256 {</span></a>
+<a name="316"><span class="lineNum">     316 </span><span class="lineCov">        512 :         (self).add(&amp;rhs)</span></a>
+<a name="317"><span class="lineNum">     317 </span><span class="lineCov">        512 :     }</span></a>
 <a name="318"><span class="lineNum">     318 </span>            : }</a>
 <a name="319"><span class="lineNum">     319 </span>            : </a>
 <a name="320"><span class="lineNum">     320 </span>            : impl Add&lt;&amp;U256&gt; for &amp;RationalU256 {</a>
 <a name="321"><span class="lineNum">     321 </span>            :     type Output = RationalU256;</a>
 <a name="322"><span class="lineNum">     322 </span>            :     #[inline]</a>
-<a name="323"><span class="lineNum">     323 </span><span class="lineCov">      97004 :     fn add(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
-<a name="324"><span class="lineNum">     324 </span><span class="lineCov">      97004 :         RationalU256::new_raw(&amp;self.numer + (&amp;self.denom * rhs), self.denom.clone())</span></a>
-<a name="325"><span class="lineNum">     325 </span><span class="lineCov">      97004 :     }</span></a>
+<a name="323"><span class="lineNum">     323 </span><span class="lineCov">      69732 :     fn add(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">      69732 :         RationalU256::new_raw(&amp;self.numer + (&amp;self.denom * rhs), self.denom.clone())</span></a>
+<a name="325"><span class="lineNum">     325 </span><span class="lineCov">      69732 :     }</span></a>
 <a name="326"><span class="lineNum">     326 </span>            : }</a>
 <a name="327"><span class="lineNum">     327 </span>            : </a>
 <a name="328"><span class="lineNum">     328 </span>            : impl Add&lt;U256&gt; for RationalU256 {</a>
 <a name="329"><span class="lineNum">     329 </span>            :     type Output = RationalU256;</a>
 <a name="330"><span class="lineNum">     330 </span>            :     #[inline]</a>
-<a name="331"><span class="lineNum">     331 </span><span class="lineCov">      94415 :     fn add(self, rhs: U256) -&gt; RationalU256 {</span></a>
-<a name="332"><span class="lineNum">     332 </span><span class="lineCov">      94415 :         (&amp;self).add(&amp;rhs)</span></a>
-<a name="333"><span class="lineNum">     333 </span><span class="lineCov">      94415 :     }</span></a>
+<a name="331"><span class="lineNum">     331 </span><span class="lineCov">      67994 :     fn add(self, rhs: U256) -&gt; RationalU256 {</span></a>
+<a name="332"><span class="lineNum">     332 </span><span class="lineCov">      67994 :         (&amp;self).add(&amp;rhs)</span></a>
+<a name="333"><span class="lineNum">     333 </span><span class="lineCov">      67994 :     }</span></a>
 <a name="334"><span class="lineNum">     334 </span>            : }</a>
 <a name="335"><span class="lineNum">     335 </span>            : </a>
 <a name="336"><span class="lineNum">     336 </span>            : impl Add&lt;&amp;U256&gt; for RationalU256 {</a>
 <a name="337"><span class="lineNum">     337 </span>            :     type Output = RationalU256;</a>
 <a name="338"><span class="lineNum">     338 </span>            :     #[inline]</a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineCov">        768 :     fn add(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
-<a name="340"><span class="lineNum">     340 </span><span class="lineCov">        768 :         (&amp;self).add(rhs)</span></a>
-<a name="341"><span class="lineNum">     341 </span><span class="lineCov">        768 :     }</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineCov">        512 :     fn add(self, rhs: &amp;U256) -&gt; RationalU256 {</span></a>
+<a name="340"><span class="lineNum">     340 </span><span class="lineCov">        512 :         (&amp;self).add(rhs)</span></a>
+<a name="341"><span class="lineNum">     341 </span><span class="lineCov">        512 :     }</span></a>
 <a name="342"><span class="lineNum">     342 </span>            : }</a>
 <a name="343"><span class="lineNum">     343 </span>            : </a>
 <a name="344"><span class="lineNum">     344 </span>            : impl Add&lt;U256&gt; for &amp;RationalU256 {</a>
 <a name="345"><span class="lineNum">     345 </span>            :     type Output = RationalU256;</a>
 <a name="346"><span class="lineNum">     346 </span>            :     #[inline]</a>
-<a name="347"><span class="lineNum">     347 </span><span class="lineCov">       1053 :     fn add(self, rhs: U256) -&gt; RationalU256 {</span></a>
-<a name="348"><span class="lineNum">     348 </span><span class="lineCov">       1053 :         self.add(&amp;rhs)</span></a>
-<a name="349"><span class="lineNum">     349 </span><span class="lineCov">       1053 :     }</span></a>
+<a name="347"><span class="lineNum">     347 </span><span class="lineCov">        664 :     fn add(self, rhs: U256) -&gt; RationalU256 {</span></a>
+<a name="348"><span class="lineNum">     348 </span><span class="lineCov">        664 :         self.add(&amp;rhs)</span></a>
+<a name="349"><span class="lineNum">     349 </span><span class="lineCov">        664 :     }</span></a>
 <a name="350"><span class="lineNum">     350 </span>            : }</a>
 <a name="351"><span class="lineNum">     351 </span>            : </a>
 <a name="352"><span class="lineNum">     352 </span>            : impl Sub&lt;&amp;RationalU256&gt; for &amp;RationalU256 {</a>
@@ -485,18 +485,18 @@
 <a name="423"><span class="lineNum">     423 </span>            : }</a>
 <a name="424"><span class="lineNum">     424 </span>            : </a>
 <a name="425"><span class="lineNum">     425 </span>            : impl PartialOrd for RationalU256 {</a>
-<a name="426"><span class="lineNum">     426 </span><span class="lineCov">      53084 :     fn partial_cmp(&amp;self, other: &amp;RationalU256) -&gt; Option&lt;Ordering&gt; {</span></a>
-<a name="427"><span class="lineNum">     427 </span><span class="lineCov">      53084 :         Some(self.cmp(other))</span></a>
-<a name="428"><span class="lineNum">     428 </span><span class="lineCov">      53084 :     }</span></a>
+<a name="426"><span class="lineNum">     426 </span><span class="lineCov">      38400 :     fn partial_cmp(&amp;self, other: &amp;RationalU256) -&gt; Option&lt;Ordering&gt; {</span></a>
+<a name="427"><span class="lineNum">     427 </span><span class="lineCov">      38400 :         Some(self.cmp(other))</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineCov">      38400 :     }</span></a>
 <a name="429"><span class="lineNum">     429 </span>            : }</a>
 <a name="430"><span class="lineNum">     430 </span>            : </a>
 <a name="431"><span class="lineNum">     431 </span>            : impl Ord for RationalU256 {</a>
-<a name="432"><span class="lineNum">     432 </span><span class="lineCov">      53084 :     fn cmp(&amp;self, other: &amp;RationalU256) -&gt; Ordering {</span></a>
-<a name="433"><span class="lineNum">     433 </span><span class="lineCov">      53084 :         let gcd = self.denom.gcd(&amp;other.denom);</span></a>
-<a name="434"><span class="lineNum">     434 </span><span class="lineCov">      53084 :         let lhs = &amp;self.numer * (&amp;other.denom / &amp;gcd);</span></a>
-<a name="435"><span class="lineNum">     435 </span><span class="lineCov">      53084 :         let rhs = &amp;other.numer * (&amp;self.denom / &amp;gcd);</span></a>
-<a name="436"><span class="lineNum">     436 </span><span class="lineCov">      53084 :         lhs.cmp(&amp;rhs)</span></a>
-<a name="437"><span class="lineNum">     437 </span><span class="lineCov">      53084 :     }</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineCov">      38450 :     fn cmp(&amp;self, other: &amp;RationalU256) -&gt; Ordering {</span></a>
+<a name="433"><span class="lineNum">     433 </span><span class="lineCov">      38450 :         let gcd = self.denom.gcd(&amp;other.denom);</span></a>
+<a name="434"><span class="lineNum">     434 </span><span class="lineCov">      38450 :         let lhs = &amp;self.numer * (&amp;other.denom / &amp;gcd);</span></a>
+<a name="435"><span class="lineNum">     435 </span><span class="lineCov">      38450 :         let rhs = &amp;other.numer * (&amp;self.denom / &amp;gcd);</span></a>
+<a name="436"><span class="lineNum">     436 </span><span class="lineCov">      38450 :         lhs.cmp(&amp;rhs)</span></a>
+<a name="437"><span class="lineNum">     437 </span><span class="lineCov">      38450 :     }</span></a>
 <a name="438"><span class="lineNum">     438 </span>            : }</a>
 </pre>
       </td>

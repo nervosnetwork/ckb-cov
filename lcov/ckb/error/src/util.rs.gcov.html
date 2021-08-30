@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/error/src/util.rs</title>
+  <title>LCOV - Unit + Integration - ckb/error/src/util.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">47</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">73</td>
@@ -111,9 +111,9 @@
 <a name="49"><span class="lineNum">      49 </span>            : macro_rules! impl_error_conversion_with_kind {</a>
 <a name="50"><span class="lineNum">      50 </span>            :     ($source:ty, $kind:expr, $target:ty) =&gt; {</a>
 <a name="51"><span class="lineNum">      51 </span>            :         impl ::std::convert::From&lt;$source&gt; for $target {</a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">      36015 :             fn from(error: $source) -&gt; Self {</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">      36015 :                 $kind.because(error)</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">      36015 :             }</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">      25792 :             fn from(error: $source) -&gt; Self {</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">      25792 :                 $kind.because(error)</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">      25792 :             }</span></a>
 <a name="55"><span class="lineNum">      55 </span>            :         }</a>
 <a name="56"><span class="lineNum">      56 </span>            :     };</a>
 <a name="57"><span class="lineNum">      57 </span>            : }</a>
@@ -142,9 +142,9 @@
 <a name="80"><span class="lineNum">      80 </span>            : macro_rules! impl_error_conversion_with_adaptor {</a>
 <a name="81"><span class="lineNum">      81 </span>            :     ($source:ty, $adaptor:ty, $target:ty) =&gt; {</a>
 <a name="82"><span class="lineNum">      82 </span>            :         impl ::std::convert::From&lt;$source&gt; for $target {</a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">       1158 :             fn from(error: $source) -&gt; Self {</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">       1158 :                 ::std::convert::Into::&lt;$adaptor&gt;::into(error).into()</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">       1158 :             }</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        718 :             fn from(error: $source) -&gt; Self {</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">        718 :                 ::std::convert::Into::&lt;$adaptor&gt;::into(error).into()</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">        718 :             }</span></a>
 <a name="86"><span class="lineNum">      86 </span>            :         }</a>
 <a name="87"><span class="lineNum">      87 </span>            :     };</a>
 <a name="88"><span class="lineNum">      88 </span>            : }</a>
@@ -154,7 +154,7 @@
 <a name="92"><span class="lineNum">      92 </span>            : macro_rules! def_error_base_on_kind {</a>
 <a name="93"><span class="lineNum">      93 </span>            :     ($error:ident, $error_kind:ty, $comment_error:expr, $comment_because:expr, $comment_simple:expr) =&gt; {</a>
 <a name="94"><span class="lineNum">      94 </span>            :         #[doc = $comment_error]</a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">        162 :         #[derive(Error, Debug, Clone)]</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">        116 :         #[derive(Error, Debug, Clone)]</span></a>
 <a name="96"><span class="lineNum">      96 </span>            :         pub struct $error {</a>
 <a name="97"><span class="lineNum">      97 </span>            :             kind: $error_kind,</a>
 <a name="98"><span class="lineNum">      98 </span>            :             inner: $crate::AnyError,</a>
@@ -162,71 +162,71 @@
 <a name="100"><span class="lineNum">     100 </span>            : </a>
 <a name="101"><span class="lineNum">     101 </span>            :         impl ::std::fmt::Display for $error {</a>
 <a name="102"><span class="lineNum">     102 </span>            :             fn fmt(&amp;self, f: &amp;mut ::std::fmt::Formatter) -&gt; ::std::fmt::Result {</a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">      55341 :                 if let Some(err) = self.cause() {</span></a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">      55341 :                     if f.alternate() {</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineCov">      39596 :                 if let Some(err) = self.cause() {</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">      39596 :                     if f.alternate() {</span></a>
 <a name="105"><span class="lineNum">     105 </span><span class="lineNoCov">          0 :                         write!(f, &quot;{}: {}&quot;, self.kind(), err)</span></a>
 <a name="106"><span class="lineNum">     106 </span>            :                     } else {</a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">      55341 :                         write!(f, &quot;{}({})&quot;, self.kind(), err)</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">      39596 :                         write!(f, &quot;{}({})&quot;, self.kind(), err)</span></a>
 <a name="108"><span class="lineNum">     108 </span>            :                     }</a>
 <a name="109"><span class="lineNum">     109 </span>            :                 } else {</a>
 <a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :                     write!(f, &quot;{}&quot;, self.kind())</span></a>
 <a name="111"><span class="lineNum">     111 </span>            :                 }</a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">      55341 :             }</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">      39596 :             }</span></a>
 <a name="113"><span class="lineNum">     113 </span>            :         }</a>
 <a name="114"><span class="lineNum">     114 </span>            : </a>
 <a name="115"><span class="lineNum">     115 </span>            :         impl ::std::convert::From&lt;$error_kind&gt; for $error {</a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">        141 :             fn from(kind: $error_kind) -&gt; Self {</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">        141 :                 kind.because($crate::SilentError)</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">        141 :             }</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">         98 :             fn from(kind: $error_kind) -&gt; Self {</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         98 :                 kind.because($crate::SilentError)</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         98 :             }</span></a>
 <a name="119"><span class="lineNum">     119 </span>            :         }</a>
 <a name="120"><span class="lineNum">     120 </span>            : </a>
 <a name="121"><span class="lineNum">     121 </span>            :         impl $error_kind {</a>
 <a name="122"><span class="lineNum">     122 </span>            :             #[doc = $comment_because]</a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">      37519 :             pub fn because&lt;E&gt;(self, reason: E) -&gt; $error</span></a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">      37519 :             where</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">      37519 :                 E: ::std::error::Error + Send + Sync + 'static,</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">      37519 :             {</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">      37519 :                 $error {</span></a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">      37519 :                     kind: self,</span></a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineCov">      37519 :                     inner: reason.into(),</span></a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">      37519 :                 }</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">      37519 :             }</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">      26842 :             pub fn because&lt;E&gt;(self, reason: E) -&gt; $error</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">      26842 :             where</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">      26842 :                 E: ::std::error::Error + Send + Sync + 'static,</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">      26842 :             {</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">      26842 :                 $error {</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">      26842 :                     kind: self,</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineCov">      26842 :                     inner: reason.into(),</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">      26842 :                 }</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">      26842 :             }</span></a>
 <a name="132"><span class="lineNum">     132 </span>            : </a>
 <a name="133"><span class="lineNum">     133 </span>            :             #[doc = $comment_simple]</a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">         36 :             pub fn other&lt;T&gt;(self, reason: T) -&gt; $error</span></a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">         36 :             where</span></a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">         36 :                 T: ::std::fmt::Display,</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         36 :             {</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         36 :                 $error {</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">         36 :                     kind: self,</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">         36 :                     inner: $crate::OtherError::new(reason.to_string()).into(),</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">         36 :                 }</span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         36 :             }</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">         22 :             pub fn other&lt;T&gt;(self, reason: T) -&gt; $error</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">         22 :             where</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">         22 :                 T: ::std::fmt::Display,</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         22 :             {</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         22 :                 $error {</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">         22 :                     kind: self,</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">         22 :                     inner: $crate::OtherError::new(reason.to_string()).into(),</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">         22 :                 }</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         22 :             }</span></a>
 <a name="143"><span class="lineNum">     143 </span>            :         }</a>
 <a name="144"><span class="lineNum">     144 </span>            : </a>
 <a name="145"><span class="lineNum">     145 </span>            :         impl $error {</a>
 <a name="146"><span class="lineNum">     146 </span>            :             /// Returns the general category of this error.</a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">      56799 :             pub fn kind(&amp;self) -&gt; $error_kind {</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">      56799 :                 self.kind</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">      56799 :             }</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">      40662 :             pub fn kind(&amp;self) -&gt; $error_kind {</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">      40662 :                 self.kind</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">      40662 :             }</span></a>
 <a name="150"><span class="lineNum">     150 </span>            : </a>
 <a name="151"><span class="lineNum">     151 </span>            :             /// Downcast this error object by reference.</a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">        333 :             pub fn downcast_ref&lt;E&gt;(&amp;self) -&gt; Option&lt;&amp;E&gt;</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">        333 :             where</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">        333 :                 E: ::std::fmt::Display + ::std::fmt::Debug + Send + Sync + 'static,</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        333 :             {</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">        333 :                 self.inner.downcast_ref::&lt;E&gt;()</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">        333 :             }</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">        232 :             pub fn downcast_ref&lt;E&gt;(&amp;self) -&gt; Option&lt;&amp;E&gt;</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">        232 :             where</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">        232 :                 E: ::std::fmt::Display + ::std::fmt::Debug + Send + Sync + 'static,</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        232 :             {</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">        232 :                 self.inner.downcast_ref::&lt;E&gt;()</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">        232 :             }</span></a>
 <a name="158"><span class="lineNum">     158 </span>            : </a>
 <a name="159"><span class="lineNum">     159 </span>            :             /// The lowest level cause of this error — this error's cause's cause's cause etc.</a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         81 :             pub fn root_cause(&amp;self) -&gt; &amp;(dyn ::std::error::Error + 'static) {</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         81 :                 self.inner.root_cause()</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">         81 :             }</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         58 :             pub fn root_cause(&amp;self) -&gt; &amp;(dyn ::std::error::Error + 'static) {</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         58 :                 self.inner.root_cause()</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">         58 :             }</span></a>
 <a name="163"><span class="lineNum">     163 </span>            : </a>
 <a name="164"><span class="lineNum">     164 </span>            :             /// The lower-level source of this error, if any.</a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">      55368 :             pub fn cause(&amp;self) -&gt; Option&lt;&amp;(dyn ::std::error::Error + 'static)&gt; {</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">      55368 :                 self.inner.chain().next()</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">      55368 :             }</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">      39596 :             pub fn cause(&amp;self) -&gt; Option&lt;&amp;(dyn ::std::error::Error + 'static)&gt; {</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">      39596 :                 self.inner.chain().next()</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">      39596 :             }</span></a>
 <a name="168"><span class="lineNum">     168 </span>            :         }</a>
 <a name="169"><span class="lineNum">     169 </span>            :     };</a>
 <a name="170"><span class="lineNum">     170 </span>            :     ($error:ident, $error_kind:ty, $comment_error:expr) =&gt; {</a>

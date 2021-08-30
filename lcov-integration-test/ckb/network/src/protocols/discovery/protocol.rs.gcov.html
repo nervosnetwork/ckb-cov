@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-integration-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">166</td>
-            <td class="headerCovTableEntry">191</td>
-            <td class="headerCovTableEntryMed">86.9 %</td>
+            <td class="headerCovTableEntry">120</td>
+            <td class="headerCovTableEntry">144</td>
+            <td class="headerCovTableEntryMed">83.3 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">12</td>
-            <td class="headerCovTableEntry">23</td>
-            <td class="headerCovTableEntryLo">52.2 %</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntryLo">42.1 %</td>
           </tr>
           <tr><td><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -72,9 +72,9 @@
 <a name="10"><span class="lineNum">      10 </span>            : use ckb_logger::debug;</a>
 <a name="11"><span class="lineNum">      11 </span>            : use ckb_types::{packed, prelude::*};</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">         26 : pub(crate) fn encode(data: DiscoveryMessage, v2: bool) -&gt; Bytes {</span></a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">         26 :     if v2 {</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         24 :         data.encode()</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">         27 : pub(crate) fn encode(data: DiscoveryMessage, v2: bool) -&gt; Bytes {</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">         27 :     if v2 {</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         25 :         data.encode()</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :     } else {</a>
 <a name="17"><span class="lineNum">      17 </span>            :         // Length Delimited Codec is not a mandatory requirement.</a>
 <a name="18"><span class="lineNum">      18 </span>            :         // For historical reasons, this must exist as compatibility</a>
@@ -85,7 +85,7 @@
 <a name="23"><span class="lineNum">      23 </span><span class="lineCov">          2 :             .expect(&quot;encode must be success&quot;);</span></a>
 <a name="24"><span class="lineNum">      24 </span><span class="lineCov">          2 :         bytes.freeze()</span></a>
 <a name="25"><span class="lineNum">      25 </span>            :     }</a>
-<a name="26"><span class="lineNum">      26 </span><span class="lineCov">         26 : }</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineCov">         27 : }</span></a>
 <a name="27"><span class="lineNum">      27 </span>            : </a>
 <a name="28"><span class="lineNum">      28 </span><span class="lineCov">         26 : pub(crate) fn decode(data: &amp;Bytes, v2: bool) -&gt; Option&lt;DiscoveryMessage&gt; {</span></a>
 <a name="29"><span class="lineNum">      29 </span><span class="lineCov">         26 :     if v2 {</span></a>
@@ -99,7 +99,7 @@
 <a name="37"><span class="lineNum">      37 </span><span class="lineCov">          2 :             Ok(Some(frame)) =&gt; DiscoveryMessage::decode(&amp;frame),</span></a>
 <a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :             Ok(None) =&gt; None,</span></a>
 <a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :             Err(err) =&gt; {</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :                 debug!(&quot;decode error: {:?}&quot;, err);</span></a>
+<a name="40"><span class="lineNum">      40 </span>            :                 debug!(&quot;decode error: {:?}&quot;, err);</a>
 <a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :                 None</span></a>
 <a name="42"><span class="lineNum">      42 </span>            :             }</a>
 <a name="43"><span class="lineNum">      43 </span>            :         }</a>
@@ -117,44 +117,44 @@
 <a name="55"><span class="lineNum">      55 </span>            : }</a>
 <a name="56"><span class="lineNum">      56 </span>            : </a>
 <a name="57"><span class="lineNum">      57 </span>            : impl DiscoveryMessage {</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">         26 :     pub fn encode(self) -&gt; Bytes {</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">         26 :         let playload = match self {</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">         27 :     pub fn encode(self) -&gt; Bytes {</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">         27 :         let playload = match self {</span></a>
 <a name="60"><span class="lineNum">      60 </span>            :             DiscoveryMessage::GetNodes {</a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         15 :                 version,</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">         15 :                 count,</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">         15 :                 listen_port,</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         15 :             } =&gt; {</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">         15 :                 let version_le = version.to_le_bytes();</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         15 :                 let count_le = count.to_le_bytes();</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">         15 :                 let version = packed::Uint32::new_builder()</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         15 :                     .nth0(version_le[0].into())</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         15 :                     .nth1(version_le[1].into())</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         15 :                     .nth2(version_le[2].into())</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         15 :                     .nth3(version_le[3].into())</span></a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineCov">         15 :                     .build();</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">         15 :                 let count = packed::Uint32::new_builder()</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">         15 :                     .nth0(count_le[0].into())</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">         15 :                     .nth1(count_le[1].into())</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">         15 :                     .nth2(count_le[2].into())</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">         15 :                     .nth3(count_le[3].into())</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">         15 :                     .build();</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">         15 :                 let listen_port = packed::PortOpt::new_builder()</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">         15 :                     .set(listen_port.map(|port| {</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         15 :                         let port_le = port.to_le_bytes();</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         15 :                         packed::Uint16::new_builder()</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         15 :                             .nth0(port_le[0].into())</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         15 :                             .nth1(port_le[1].into())</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         15 :                             .build()</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">         15 :                     }))</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">         15 :                     .build();</span></a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">         15 :                 let get_node = packed::GetNodes::new_builder()</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">         15 :                     .listen_port(listen_port)</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">         15 :                     .count(count)</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">         15 :                     .version(version)</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">         15 :                     .build();</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">         15 :                 packed::DiscoveryPayload::new_builder()</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">         15 :                     .set(get_node)</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         15 :                     .build()</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         16 :                 version,</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">         16 :                 count,</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">         16 :                 listen_port,</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         16 :             } =&gt; {</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">         16 :                 let version_le = version.to_le_bytes();</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         16 :                 let count_le = count.to_le_bytes();</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">         16 :                 let version = packed::Uint32::new_builder()</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         16 :                     .nth0(version_le[0].into())</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         16 :                     .nth1(version_le[1].into())</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         16 :                     .nth2(version_le[2].into())</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         16 :                     .nth3(version_le[3].into())</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineCov">         16 :                     .build();</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">         16 :                 let count = packed::Uint32::new_builder()</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">         16 :                     .nth0(count_le[0].into())</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">         16 :                     .nth1(count_le[1].into())</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">         16 :                     .nth2(count_le[2].into())</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">         16 :                     .nth3(count_le[3].into())</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">         16 :                     .build();</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">         16 :                 let listen_port = packed::PortOpt::new_builder()</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">         16 :                     .set(listen_port.map(|port| {</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         16 :                         let port_le = port.to_le_bytes();</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         16 :                         packed::Uint16::new_builder()</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         16 :                             .nth0(port_le[0].into())</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         16 :                             .nth1(port_le[1].into())</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         16 :                             .build()</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">         16 :                     }))</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">         16 :                     .build();</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">         16 :                 let get_node = packed::GetNodes::new_builder()</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">         16 :                     .listen_port(listen_port)</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">         16 :                     .count(count)</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">         16 :                     .version(version)</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">         16 :                     .build();</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">         16 :                 packed::DiscoveryPayload::new_builder()</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">         16 :                     .set(get_node)</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         16 :                     .build()</span></a>
 <a name="96"><span class="lineNum">      96 </span>            :             }</a>
 <a name="97"><span class="lineNum">      97 </span><span class="lineCov">         11 :             DiscoveryMessage::Nodes(Nodes { announce, items }) =&gt; {</span></a>
 <a name="98"><span class="lineNum">      98 </span><span class="lineCov">         11 :                 let bool_ = if announce { 1u8 } else { 0 };</span></a>
@@ -182,11 +182,11 @@
 <a name="120"><span class="lineNum">     120 </span>            :             }</a>
 <a name="121"><span class="lineNum">     121 </span>            :         };</a>
 <a name="122"><span class="lineNum">     122 </span>            : </a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         26 :         packed::DiscoveryMessage::new_builder()</span></a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         26 :             .payload(playload)</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         26 :             .build()</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         26 :             .as_bytes()</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         26 :     }</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         27 :         packed::DiscoveryMessage::new_builder()</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         27 :             .payload(playload)</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         27 :             .build()</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         27 :             .as_bytes()</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         27 :     }</span></a>
 <a name="128"><span class="lineNum">     128 </span>            : </a>
 <a name="129"><span class="lineNum">     129 </span><span class="lineCov">         26 :     pub fn decode(data: &amp;[u8]) -&gt; Option&lt;Self&gt; {</span></a>
 <a name="130"><span class="lineNum">     130 </span><span class="lineCov">         26 :         let reader = packed::DiscoveryMessageReader::from_compatible_slice(data).ok()?;</span></a>
@@ -267,61 +267,6 @@
 <a name="205"><span class="lineNum">     205 </span><span class="lineNoCov">          0 :         Ok(())</span></a>
 <a name="206"><span class="lineNum">     206 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="207"><span class="lineNum">     207 </span>            : }</a>
-<a name="208"><span class="lineNum">     208 </span>            : </a>
-<a name="209"><span class="lineNum">     209 </span>            : #[cfg(test)]</a>
-<a name="210"><span class="lineNum">     210 </span>            : mod test {</a>
-<a name="211"><span class="lineNum">     211 </span>            :     use super::{decode, encode, DiscoveryMessage};</a>
-<a name="212"><span class="lineNum">     212 </span>            : </a>
-<a name="213"><span class="lineNum">     213 </span><span class="lineCov">          1 :     #[test]</span></a>
-<a name="214"><span class="lineNum">     214 </span><span class="lineCov">          1 :     fn test_codec() {</span></a>
-<a name="215"><span class="lineNum">     215 </span><span class="lineCov">          1 :         let msg1 = DiscoveryMessage::GetNodes {</span></a>
-<a name="216"><span class="lineNum">     216 </span><span class="lineCov">          1 :             version: 0,</span></a>
-<a name="217"><span class="lineNum">     217 </span><span class="lineCov">          1 :             count: 1,</span></a>
-<a name="218"><span class="lineNum">     218 </span><span class="lineCov">          1 :             listen_port: Some(1),</span></a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">          1 :         };</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">          1 : </span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">          1 :         let msg2 = DiscoveryMessage::GetNodes {</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">          1 :             version: 0,</span></a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">          1 :             count: 1,</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">          1 :             listen_port: Some(2),</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">          1 :         };</span></a>
-<a name="226"><span class="lineNum">     226 </span><span class="lineCov">          1 : </span></a>
-<a name="227"><span class="lineNum">     227 </span><span class="lineCov">          1 :         let b1 = encode(msg1.clone(), false);</span></a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">          1 : </span></a>
-<a name="229"><span class="lineNum">     229 </span><span class="lineCov">          1 :         let decode1 = decode(&amp;b1, false).unwrap();</span></a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">          1 :         assert_eq!(decode1, msg1);</span></a>
-<a name="231"><span class="lineNum">     231 </span>            : </a>
-<a name="232"><span class="lineNum">     232 </span><span class="lineCov">          1 :         let b2 = encode(msg2.clone(), false);</span></a>
-<a name="233"><span class="lineNum">     233 </span><span class="lineCov">          1 : </span></a>
-<a name="234"><span class="lineNum">     234 </span><span class="lineCov">          1 :         let decode2 = decode(&amp;b2, false).unwrap();</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">          1 :         assert_eq!(decode2, msg2);</span></a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineCov">          1 :     }</span></a>
-<a name="237"><span class="lineNum">     237 </span>            : </a>
-<a name="238"><span class="lineNum">     238 </span><span class="lineCov">          1 :     #[test]</span></a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">          1 :     fn test_codec_v2() {</span></a>
-<a name="240"><span class="lineNum">     240 </span><span class="lineCov">          1 :         let msg1 = DiscoveryMessage::GetNodes {</span></a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineCov">          1 :             version: 0,</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineCov">          1 :             count: 1,</span></a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineCov">          1 :             listen_port: Some(1),</span></a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineCov">          1 :         };</span></a>
-<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          1 : </span></a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          1 :         let msg2 = DiscoveryMessage::GetNodes {</span></a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">          1 :             version: 0,</span></a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineCov">          1 :             count: 1,</span></a>
-<a name="249"><span class="lineNum">     249 </span><span class="lineCov">          1 :             listen_port: Some(2),</span></a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineCov">          1 :         };</span></a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineCov">          1 : </span></a>
-<a name="252"><span class="lineNum">     252 </span><span class="lineCov">          1 :         let b1 = encode(msg1.clone(), true);</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineCov">          1 : </span></a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineCov">          1 :         let decode1 = decode(&amp;b1, true).unwrap();</span></a>
-<a name="255"><span class="lineNum">     255 </span><span class="lineCov">          1 :         assert_eq!(decode1, msg1);</span></a>
-<a name="256"><span class="lineNum">     256 </span>            : </a>
-<a name="257"><span class="lineNum">     257 </span><span class="lineCov">          1 :         let b2 = encode(msg2.clone(), true);</span></a>
-<a name="258"><span class="lineNum">     258 </span><span class="lineCov">          1 : </span></a>
-<a name="259"><span class="lineNum">     259 </span><span class="lineCov">          1 :         let decode2 = decode(&amp;b2, true).unwrap();</span></a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineCov">          1 :         assert_eq!(decode2, msg2);</span></a>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">          1 :     }</span></a>
-<a name="262"><span class="lineNum">     262 </span>            : }</a>
 </pre>
       </td>
     </tr>

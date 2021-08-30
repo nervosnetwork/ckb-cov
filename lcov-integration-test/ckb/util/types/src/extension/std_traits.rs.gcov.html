@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">15</td>
@@ -66,17 +66,17 @@
 <a name="4"><span class="lineNum">       4 </span>            :     ($struct:ident) =&gt; {</a>
 <a name="5"><span class="lineNum">       5 </span>            :         impl PartialEq for packed::$struct {</a>
 <a name="6"><span class="lineNum">       6 </span>            :             #[inline]</a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">    2154932 :             fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">    2154932 :                 self.as_slice() == other.as_slice()</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">    2154932 :             }</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov">    2057141 :             fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">    2057141 :                 self.as_slice() == other.as_slice()</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">    2057141 :             }</span></a>
 <a name="10"><span class="lineNum">      10 </span>            :         }</a>
 <a name="11"><span class="lineNum">      11 </span>            :         impl Eq for packed::$struct {}</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
 <a name="13"><span class="lineNum">      13 </span>            :         impl ::std::hash::Hash for packed::$struct {</a>
 <a name="14"><span class="lineNum">      14 </span>            :             #[inline]</a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">    6216612 :             fn hash&lt;H: ::std::hash::Hasher&gt;(&amp;self, state: &amp;mut H) {</span></a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">    6216612 :                 state.write(self.as_slice())</span></a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">    6216612 :             }</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">    6400079 :             fn hash&lt;H: ::std::hash::Hasher&gt;(&amp;self, state: &amp;mut H) {</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">    6400079 :                 state.write(self.as_slice())</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">    6400079 :             }</span></a>
 <a name="18"><span class="lineNum">      18 </span>            :         }</a>
 <a name="19"><span class="lineNum">      19 </span>            :     };</a>
 <a name="20"><span class="lineNum">      20 </span>            : }</a>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -68,12 +68,12 @@
 <a name="6"><span class="lineNum">       6 </span>            : use thiserror::Error;</a>
 <a name="7"><span class="lineNum">       7 </span>            : </a>
 <a name="8"><span class="lineNum">       8 </span>            : /// An error with no reason.</a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">       1728 : #[derive(Error, Debug, Clone, Copy)]</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        896 : #[derive(Error, Debug, Clone, Copy)]</span></a>
 <a name="10"><span class="lineNum">      10 </span>            : #[error(&quot;no reason is provided&quot;)]</a>
 <a name="11"><span class="lineNum">      11 </span>            : pub struct SilentError;</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
 <a name="13"><span class="lineNum">      13 </span>            : /// An error with only a string as the reason.</a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">         54 : #[derive(Error, Debug, Clone)]</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">         28 : #[derive(Error, Debug, Clone)]</span></a>
 <a name="15"><span class="lineNum">      15 </span>            : #[error(&quot;{0}&quot;)]</a>
 <a name="16"><span class="lineNum">      16 </span>            : pub struct OtherError(String);</a>
 <a name="17"><span class="lineNum">      17 </span>            : </a>
@@ -84,7 +84,7 @@
 <a name="22"><span class="lineNum">      22 </span>            : /// It is used with the [`InternalError`].</a>
 <a name="23"><span class="lineNum">      23 </span>            : ///</a>
 <a name="24"><span class="lineNum">      24 </span>            : /// [`InternalError`]: ../ckb_error/struct.InternalError.html</a>
-<a name="25"><span class="lineNum">      25 </span><span class="lineCov">        164 : #[derive(Debug, PartialEq, Eq, Clone, Copy, Display)]</span></a>
+<a name="25"><span class="lineNum">      25 </span><span class="lineCov">         85 : #[derive(Debug, PartialEq, Eq, Clone, Copy, Display)]</span></a>
 <a name="26"><span class="lineNum">      26 </span><span class="lineNoCov">          0 : pub enum InternalErrorKind {</span></a>
 <a name="27"><span class="lineNum">      27 </span>            :     /// An arithmetic overflow occurs during capacity calculation, e.g. `Capacity::safe_add`</a>
 <a name="28"><span class="lineNum">      28 </span>            :     CapacityOverflow,</a>
@@ -122,12 +122,12 @@
 <a name="60"><span class="lineNum">      60 </span>            : </a>
 <a name="61"><span class="lineNum">      61 </span>            : impl OtherError {</a>
 <a name="62"><span class="lineNum">      62 </span>            :     /// Creates an error with only a string as the reason.</a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">     622748 :     pub fn new&lt;T&gt;(reason: T) -&gt; Self</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">     622748 :     where</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">     622748 :         T: fmt::Display,</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">     622748 :     {</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">     622748 :         Self(reason.to_string())</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">     622748 :     }</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">     324720 :     pub fn new&lt;T&gt;(reason: T) -&gt; Self</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">     324720 :     where</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">     324720 :         T: fmt::Display,</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">     324720 :     {</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">     324720 :         Self(reason.to_string())</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">     324720 :     }</span></a>
 <a name="69"><span class="lineNum">      69 </span>            : }</a>
 </pre>
       </td>

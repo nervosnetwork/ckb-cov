@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">13</td>
@@ -115,12 +115,12 @@
 <a name="53"><span class="lineNum">      53 </span>            : </a>
 <a name="54"><span class="lineNum">      54 </span>            : impl SupportProtocols {</a>
 <a name="55"><span class="lineNum">      55 </span>            :     /// Protocol id</a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">       1011 :     pub fn protocol_id(&amp;self) -&gt; ProtocolId {</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">       1011 :         match self {</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">       1011 :             SupportProtocols::Ping =&gt; 0,</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">       1016 :     pub fn protocol_id(&amp;self) -&gt; ProtocolId {</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">       1016 :         match self {</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">       1016 :             SupportProtocols::Ping =&gt; 0,</span></a>
 <a name="59"><span class="lineNum">      59 </span><span class="lineCov">         37 :             SupportProtocols::Discovery =&gt; 1,</span></a>
 <a name="60"><span class="lineNum">      60 </span><span class="lineCov">        432 :             SupportProtocols::Identify =&gt; 2,</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         81 :             SupportProtocols::Feeler =&gt; 3,</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         85 :             SupportProtocols::Feeler =&gt; 3,</span></a>
 <a name="62"><span class="lineNum">      62 </span><span class="lineCov">         11 :             SupportProtocols::DisconnectMessage =&gt; 4,</span></a>
 <a name="63"><span class="lineNum">      63 </span><span class="lineCov">        300 :             SupportProtocols::Sync =&gt; 100,</span></a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineCov">        114 :             SupportProtocols::Relay =&gt; 101,</span></a>
@@ -128,16 +128,16 @@
 <a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :             SupportProtocols::RelayV2 =&gt; 103,</span></a>
 <a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :             SupportProtocols::Alert =&gt; 110,</span></a>
 <a name="68"><span class="lineNum">      68 </span>            :         }</a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">       1011 :         .into()</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">       1011 :     }</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">       1016 :         .into()</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">       1016 :     }</span></a>
 <a name="71"><span class="lineNum">      71 </span>            : </a>
 <a name="72"><span class="lineNum">      72 </span>            :     /// Protocol name</a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">       1206 :     pub fn name(&amp;self) -&gt; String {</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">       1206 :         match self {</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">       1206 :             SupportProtocols::Ping =&gt; &quot;/ckb/ping&quot;,</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">        118 :             SupportProtocols::Discovery =&gt; &quot;/ckb/discovery&quot;,</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">        864 :             SupportProtocols::Identify =&gt; &quot;/ckb/identify&quot;,</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">        108 :             SupportProtocols::Feeler =&gt; &quot;/ckb/flr&quot;,</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">       1213 :     pub fn name(&amp;self) -&gt; String {</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">       1213 :         match self {</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">       1213 :             SupportProtocols::Ping =&gt; &quot;/ckb/ping&quot;,</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">        119 :             SupportProtocols::Discovery =&gt; &quot;/ckb/discovery&quot;,</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">        866 :             SupportProtocols::Identify =&gt; &quot;/ckb/identify&quot;,</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">        109 :             SupportProtocols::Feeler =&gt; &quot;/ckb/flr&quot;,</span></a>
 <a name="79"><span class="lineNum">      79 </span><span class="lineNoCov">          0 :             SupportProtocols::DisconnectMessage =&gt; &quot;/ckb/disconnectmsg&quot;,</span></a>
 <a name="80"><span class="lineNum">      80 </span><span class="lineNoCov">          0 :             SupportProtocols::Sync =&gt; &quot;/ckb/syn&quot;,</span></a>
 <a name="81"><span class="lineNum">      81 </span><span class="lineNoCov">          0 :             SupportProtocols::Relay =&gt; &quot;/ckb/rel&quot;,</span></a>
@@ -145,8 +145,8 @@
 <a name="83"><span class="lineNum">      83 </span><span class="lineNoCov">          0 :             SupportProtocols::Time =&gt; &quot;/ckb/tim&quot;,</span></a>
 <a name="84"><span class="lineNum">      84 </span><span class="lineNoCov">          0 :             SupportProtocols::Alert =&gt; &quot;/ckb/alt&quot;,</span></a>
 <a name="85"><span class="lineNum">      85 </span>            :         }</a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">       1206 :         .to_owned()</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">       1206 :     }</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">       1213 :         .to_owned()</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">       1213 :     }</span></a>
 <a name="88"><span class="lineNum">      88 </span>            : </a>
 <a name="89"><span class="lineNum">      89 </span>            :     /// Support versions</a>
 <a name="90"><span class="lineNum">      90 </span><span class="lineCov">        516 :     pub fn support_versions(&amp;self) -&gt; Vec&lt;String&gt; {</span></a>
@@ -168,10 +168,10 @@
 <a name="106"><span class="lineNum">     106 </span><span class="lineCov">        516 :     }</span></a>
 <a name="107"><span class="lineNum">     107 </span>            : </a>
 <a name="108"><span class="lineNum">     108 </span>            :     /// Protocol message max length</a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">        442 :     pub fn max_frame_length(&amp;self) -&gt; usize {</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">        442 :         match self {</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">        442 :             SupportProtocols::Ping =&gt; 1024,              // 1   KB</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         17 :             SupportProtocols::Discovery =&gt; 512 * 1024,   // 512 KB</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">        444 :     pub fn max_frame_length(&amp;self) -&gt; usize {</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">        444 :         match self {</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">        444 :             SupportProtocols::Ping =&gt; 1024,              // 1   KB</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         18 :             SupportProtocols::Discovery =&gt; 512 * 1024,   // 512 KB</span></a>
 <a name="113"><span class="lineNum">     113 </span><span class="lineCov">        390 :             SupportProtocols::Identify =&gt; 2 * 1024,      // 2   KB</span></a>
 <a name="114"><span class="lineNum">     114 </span><span class="lineCov">         18 :             SupportProtocols::Feeler =&gt; 1024,            // 1   KB</span></a>
 <a name="115"><span class="lineNum">     115 </span><span class="lineNoCov">          0 :             SupportProtocols::DisconnectMessage =&gt; 1024, // 1   KB</span></a>
@@ -180,7 +180,7 @@
 <a name="118"><span class="lineNum">     118 </span><span class="lineNoCov">          0 :             SupportProtocols::Time =&gt; 1024,              // 1   KB</span></a>
 <a name="119"><span class="lineNum">     119 </span><span class="lineNoCov">          0 :             SupportProtocols::Alert =&gt; 128 * 1024,       // 128 KB</span></a>
 <a name="120"><span class="lineNum">     120 </span>            :         }</a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">        442 :     }</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">        444 :     }</span></a>
 <a name="122"><span class="lineNum">     122 </span>            : </a>
 <a name="123"><span class="lineNum">     123 </span>            :     /// Blocking flag</a>
 <a name="124"><span class="lineNum">     124 </span><span class="lineCov">        444 :     pub fn flag(&amp;self) -&gt; BlockingFlag {</span></a>
@@ -220,21 +220,21 @@
 <a name="158"><span class="lineNum">     158 </span>            : }</a>
 <a name="159"><span class="lineNum">     159 </span>            : </a>
 <a name="160"><span class="lineNum">     160 </span>            : impl From&lt;SupportProtocols&gt; for MetaBuilder {</a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">        319 :     fn from(p: SupportProtocols) -&gt; Self {</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        319 :         let max_frame_length = p.max_frame_length();</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        319 :         MetaBuilder::default()</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">        319 :             .id(p.protocol_id())</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">        319 :             .support_versions(p.support_versions())</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">        319 :             .flag(p.flag())</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1135 :             .name(move |_| p.name())</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">        322 :             .codec(move || {</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">         74 :                 Box::new(</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">         74 :                     length_delimited::Builder::new()</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">         74 :                         .max_frame_length(max_frame_length)</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">         74 :                         .new_codec(),</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">         74 :                 )</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">        322 :             })</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        319 :     }</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">        320 :     fn from(p: SupportProtocols) -&gt; Self {</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        320 :         let max_frame_length = p.max_frame_length();</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        320 :         MetaBuilder::default()</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">        320 :             .id(p.protocol_id())</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">        320 :             .support_versions(p.support_versions())</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">        320 :             .flag(p.flag())</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1141 :             .name(move |_| p.name())</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">        326 :             .codec(move || {</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">         78 :                 Box::new(</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">         78 :                     length_delimited::Builder::new()</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">         78 :                         .max_frame_length(max_frame_length)</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">         78 :                         .new_codec(),</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">         78 :                 )</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">        326 :             })</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        320 :     }</span></a>
 <a name="176"><span class="lineNum">     176 </span>            : }</a>
 </pre>
       </td>

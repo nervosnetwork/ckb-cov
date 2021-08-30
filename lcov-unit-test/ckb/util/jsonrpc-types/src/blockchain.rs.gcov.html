@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-unit-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">532</td>
-            <td class="headerCovTableEntry">642</td>
-            <td class="headerCovTableEntryMed">82.9 %</td>
+            <td class="headerCovTableEntry">387</td>
+            <td class="headerCovTableEntry">495</td>
+            <td class="headerCovTableEntryMed">78.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">195</td>
-            <td class="headerCovTableEntry">729</td>
-            <td class="headerCovTableEntryLo">26.7 %</td>
+            <td class="headerCovTableEntry">183</td>
+            <td class="headerCovTableEntry">717</td>
+            <td class="headerCovTableEntryLo">25.5 %</td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -77,7 +77,7 @@
 <a name="15"><span class="lineNum">      15 </span>            : /// Refer to the section [Code Locating](https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0022-transaction-structure/0022-transaction-structure.md#code-locating)</a>
 <a name="16"><span class="lineNum">      16 </span>            : /// and [Upgradable Script](https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0022-transaction-structure/0022-transaction-structure.md#upgradable-script)</a>
 <a name="17"><span class="lineNum">      17 </span>            : /// in the RFC *CKB Transaction Structure*.</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">      59468 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">      32081 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="19"><span class="lineNum">      19 </span>            : #[serde(rename_all = &quot;snake_case&quot;)]</a>
 <a name="20"><span class="lineNum">      20 </span>            : pub enum ScriptHashType {</a>
 <a name="21"><span class="lineNum">      21 </span>            :     /// Type &quot;data&quot; matches script code via cell data hash, and run the script code in v0 CKB VM.</a>
@@ -95,23 +95,23 @@
 <a name="33"><span class="lineNum">      33 </span>            : }</a>
 <a name="34"><span class="lineNum">      34 </span>            : </a>
 <a name="35"><span class="lineNum">      35 </span>            : impl From&lt;ScriptHashType&gt; for core::ScriptHashType {</a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineCov">     110500 :     fn from(json: ScriptHashType) -&gt; Self {</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineCov">     110500 :         match json {</span></a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineCov">     110500 :             ScriptHashType::Data =&gt; core::ScriptHashType::Data,</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">      98676 :             ScriptHashType::Type =&gt; core::ScriptHashType::Type,</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">      57950 :     fn from(json: ScriptHashType) -&gt; Self {</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineCov">      57950 :         match json {</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">      57950 :             ScriptHashType::Data =&gt; core::ScriptHashType::Data,</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">      50202 :             ScriptHashType::Type =&gt; core::ScriptHashType::Type,</span></a>
 <a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :             ScriptHashType::Data1 =&gt; core::ScriptHashType::Data1,</span></a>
 <a name="41"><span class="lineNum">      41 </span>            :         }</a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineCov">     110500 :     }</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">      57950 :     }</span></a>
 <a name="43"><span class="lineNum">      43 </span>            : }</a>
 <a name="44"><span class="lineNum">      44 </span>            : </a>
 <a name="45"><span class="lineNum">      45 </span>            : impl From&lt;core::ScriptHashType&gt; for ScriptHashType {</a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">       7360 :     fn from(core: core::ScriptHashType) -&gt; ScriptHashType {</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">       7360 :         match core {</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">       7360 :             core::ScriptHashType::Data =&gt; ScriptHashType::Data,</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">       3680 :     fn from(core: core::ScriptHashType) -&gt; ScriptHashType {</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">       3680 :         match core {</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">       3680 :             core::ScriptHashType::Data =&gt; ScriptHashType::Data,</span></a>
 <a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :             core::ScriptHashType::Type =&gt; ScriptHashType::Type,</span></a>
 <a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :             core::ScriptHashType::Data1 =&gt; ScriptHashType::Data1,</span></a>
 <a name="51"><span class="lineNum">      51 </span>            :         }</a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">       7360 :     }</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">       3680 :     }</span></a>
 <a name="53"><span class="lineNum">      53 </span>            : }</a>
 <a name="54"><span class="lineNum">      54 </span>            : </a>
 <a name="55"><span class="lineNum">      55 </span>            : impl fmt::Display for ScriptHashType {</a>
@@ -137,7 +137,7 @@
 <a name="75"><span class="lineNum">      75 </span>            : /// }</a>
 <a name="76"><span class="lineNum">      76 </span>            : /// # &quot;#).unwrap();</a>
 <a name="77"><span class="lineNum">      77 </span>            : /// ```</a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">     189304 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">      99650 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="79"><span class="lineNum">      79 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="80"><span class="lineNum">      80 </span>            : pub struct Script {</a>
 <a name="81"><span class="lineNum">      81 </span>            :     /// The hash used to match the script code.</a>
@@ -149,31 +149,31 @@
 <a name="87"><span class="lineNum">      87 </span>            : }</a>
 <a name="88"><span class="lineNum">      88 </span>            : </a>
 <a name="89"><span class="lineNum">      89 </span>            : impl From&lt;Script&gt; for packed::Script {</a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">     109240 :     fn from(json: Script) -&gt; Self {</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">     109240 :         let Script {</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">     109240 :             args,</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">     109240 :             code_hash,</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">     109240 :             hash_type,</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">     109240 :         } = json;</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">     109240 :         let hash_type: core::ScriptHashType = hash_type.into();</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">     109240 :         packed::Script::new_builder()</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">     109240 :             .args(args.into_bytes().pack())</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">     109240 :             .code_hash(code_hash.pack())</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">     109240 :             .hash_type(hash_type.into())</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">     109240 :             .build()</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">     109240 :     }</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">      57320 :     fn from(json: Script) -&gt; Self {</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">      57320 :         let Script {</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">      57320 :             args,</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">      57320 :             code_hash,</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">      57320 :             hash_type,</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">      57320 :         } = json;</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">      57320 :         let hash_type: core::ScriptHashType = hash_type.into();</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">      57320 :         packed::Script::new_builder()</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">      57320 :             .args(args.into_bytes().pack())</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">      57320 :             .code_hash(code_hash.pack())</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">      57320 :             .hash_type(hash_type.into())</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">      57320 :             .build()</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineCov">      57320 :     }</span></a>
 <a name="103"><span class="lineNum">     103 </span>            : }</a>
 <a name="104"><span class="lineNum">     104 </span>            : </a>
 <a name="105"><span class="lineNum">     105 </span>            : impl From&lt;packed::Script&gt; for Script {</a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">       7360 :     fn from(input: packed::Script) -&gt; Script {</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">       7360 :         Script {</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">       7360 :             code_hash: input.code_hash().unpack(),</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">       7360 :             args: JsonBytes::from_bytes(input.args().unpack()),</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">       7360 :             hash_type: core::ScriptHashType::try_from(input.hash_type())</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">       7360 :                 .expect(&quot;checked data&quot;)</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">       7360 :                 .into(),</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">       7360 :         }</span></a>
-<a name="114"><span class="lineNum">     114 </span><span class="lineCov">       7360 :     }</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">       3680 :     fn from(input: packed::Script) -&gt; Script {</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">       3680 :         Script {</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">       3680 :             code_hash: input.code_hash().unpack(),</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">       3680 :             args: JsonBytes::from_bytes(input.args().unpack()),</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">       3680 :             hash_type: core::ScriptHashType::try_from(input.hash_type())</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">       3680 :                 .expect(&quot;checked data&quot;)</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">       3680 :                 .into(),</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">       3680 :         }</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">       3680 :     }</span></a>
 <a name="115"><span class="lineNum">     115 </span>            : }</a>
 <a name="116"><span class="lineNum">     116 </span>            : </a>
 <a name="117"><span class="lineNum">     117 </span>            : /// The fields of an output cell except the cell data.</a>
@@ -193,7 +193,7 @@
 <a name="131"><span class="lineNum">     131 </span>            : /// }</a>
 <a name="132"><span class="lineNum">     132 </span>            : /// # &quot;#).unwrap();</a>
 <a name="133"><span class="lineNum">     133 </span>            : /// ```</a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">       5264 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">       2464 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="135"><span class="lineNum">     135 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="136"><span class="lineNum">     136 </span>            : pub struct CellOutput {</a>
 <a name="137"><span class="lineNum">     137 </span>            :     /// The cell capacity.</a>
@@ -211,34 +211,34 @@
 <a name="149"><span class="lineNum">     149 </span>            : }</a>
 <a name="150"><span class="lineNum">     150 </span>            : </a>
 <a name="151"><span class="lineNum">     151 </span>            : impl From&lt;packed::CellOutput&gt; for CellOutput {</a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">       6848 :     fn from(input: packed::CellOutput) -&gt; CellOutput {</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">       6848 :         CellOutput {</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       6848 :             capacity: input.capacity().unpack(),</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">       6848 :             lock: input.lock().into(),</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       6848 :             type_: input.type_().to_opt().map(Into::into),</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">       6848 :         }</span></a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">       6848 :     }</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">       3424 :     fn from(input: packed::CellOutput) -&gt; CellOutput {</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">       3424 :         CellOutput {</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       3424 :             capacity: input.capacity().unpack(),</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">       3424 :             lock: input.lock().into(),</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       3424 :             type_: input.type_().to_opt().map(Into::into),</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">       3424 :         }</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">       3424 :     }</span></a>
 <a name="159"><span class="lineNum">     159 </span>            : }</a>
 <a name="160"><span class="lineNum">     160 </span>            : </a>
 <a name="161"><span class="lineNum">     161 </span>            : impl From&lt;CellOutput&gt; for packed::CellOutput {</a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">       1988 :     fn from(json: CellOutput) -&gt; Self {</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">       1988 :         let CellOutput {</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">       1988 :             capacity,</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">       1988 :             lock,</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">       1988 :             type_,</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1988 :         } = json;</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">       1988 :         let type_builder = packed::ScriptOpt::new_builder();</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">       1988 :         let type_ = match type_ {</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">        512 :             Some(type_) =&gt; type_builder.set(Some(type_.into())),</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       1476 :             None =&gt; type_builder,</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        994 :     fn from(json: CellOutput) -&gt; Self {</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        994 :         let CellOutput {</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">        994 :             capacity,</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">        994 :             lock,</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">        994 :             type_,</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">        994 :         } = json;</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">        994 :         let type_builder = packed::ScriptOpt::new_builder();</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">        994 :         let type_ = match type_ {</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">        256 :             Some(type_) =&gt; type_builder.set(Some(type_.into())),</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">        738 :             None =&gt; type_builder,</span></a>
 <a name="172"><span class="lineNum">     172 </span>            :         }</a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">       1988 :         .build();</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">       1988 :         packed::CellOutput::new_builder()</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">       1988 :             .capacity(capacity.pack())</span></a>
-<a name="176"><span class="lineNum">     176 </span><span class="lineCov">       1988 :             .lock(lock.into())</span></a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">       1988 :             .type_(type_)</span></a>
-<a name="178"><span class="lineNum">     178 </span><span class="lineCov">       1988 :             .build()</span></a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">       1988 :     }</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        994 :         .build();</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">        994 :         packed::CellOutput::new_builder()</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        994 :             .capacity(capacity.pack())</span></a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineCov">        994 :             .lock(lock.into())</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">        994 :             .type_(type_)</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">        994 :             .build()</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">        994 :     }</span></a>
 <a name="180"><span class="lineNum">     180 </span>            : }</a>
 <a name="181"><span class="lineNum">     181 </span>            : </a>
 <a name="182"><span class="lineNum">     182 </span>            : /// Reference to a cell via transaction hash and output index.</a>
@@ -253,7 +253,7 @@
 <a name="191"><span class="lineNum">     191 </span>            : /// }</a>
 <a name="192"><span class="lineNum">     192 </span>            : /// # &quot;#).unwrap();</a>
 <a name="193"><span class="lineNum">     193 </span>            : /// ```</a>
-<a name="194"><span class="lineNum">     194 </span><span class="lineCov">       3588 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineCov">       1640 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="195"><span class="lineNum">     195 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="196"><span class="lineNum">     196 </span>            : pub struct OutPoint {</a>
 <a name="197"><span class="lineNum">     197 </span>            :     /// Transaction hash in which the cell is an output.</a>
@@ -263,24 +263,24 @@
 <a name="201"><span class="lineNum">     201 </span>            : }</a>
 <a name="202"><span class="lineNum">     202 </span>            : </a>
 <a name="203"><span class="lineNum">     203 </span>            : impl From&lt;packed::OutPoint&gt; for OutPoint {</a>
-<a name="204"><span class="lineNum">     204 </span><span class="lineCov">       6164 :     fn from(input: packed::OutPoint) -&gt; OutPoint {</span></a>
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       6164 :         let index: u32 = input.index().unpack();</span></a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       6164 :         OutPoint {</span></a>
-<a name="207"><span class="lineNum">     207 </span><span class="lineCov">       6164 :             tx_hash: input.tx_hash().unpack(),</span></a>
-<a name="208"><span class="lineNum">     208 </span><span class="lineCov">       6164 :             index: index.into(),</span></a>
-<a name="209"><span class="lineNum">     209 </span><span class="lineCov">       6164 :         }</span></a>
-<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       6164 :     }</span></a>
+<a name="204"><span class="lineNum">     204 </span><span class="lineCov">       3082 :     fn from(input: packed::OutPoint) -&gt; OutPoint {</span></a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       3082 :         let index: u32 = input.index().unpack();</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       3082 :         OutPoint {</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">       3082 :             tx_hash: input.tx_hash().unpack(),</span></a>
+<a name="208"><span class="lineNum">     208 </span><span class="lineCov">       3082 :             index: index.into(),</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">       3082 :         }</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       3082 :     }</span></a>
 <a name="211"><span class="lineNum">     211 </span>            : }</a>
 <a name="212"><span class="lineNum">     212 </span>            : </a>
 <a name="213"><span class="lineNum">     213 </span>            : impl From&lt;OutPoint&gt; for packed::OutPoint {</a>
-<a name="214"><span class="lineNum">     214 </span><span class="lineCov">       3068 :     fn from(json: OutPoint) -&gt; Self {</span></a>
-<a name="215"><span class="lineNum">     215 </span><span class="lineCov">       3068 :         let OutPoint { tx_hash, index } = json;</span></a>
-<a name="216"><span class="lineNum">     216 </span><span class="lineCov">       3068 :         let index = index.value() as u32;</span></a>
-<a name="217"><span class="lineNum">     217 </span><span class="lineCov">       3068 :         packed::OutPoint::new_builder()</span></a>
-<a name="218"><span class="lineNum">     218 </span><span class="lineCov">       3068 :             .tx_hash(tx_hash.pack())</span></a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">       3068 :             .index(index.pack())</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">       3068 :             .build()</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">       3068 :     }</span></a>
+<a name="214"><span class="lineNum">     214 </span><span class="lineCov">       1534 :     fn from(json: OutPoint) -&gt; Self {</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineCov">       1534 :         let OutPoint { tx_hash, index } = json;</span></a>
+<a name="216"><span class="lineNum">     216 </span><span class="lineCov">       1534 :         let index = index.value() as u32;</span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineCov">       1534 :         packed::OutPoint::new_builder()</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">       1534 :             .tx_hash(tx_hash.pack())</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">       1534 :             .index(index.pack())</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">       1534 :             .build()</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">       1534 :     }</span></a>
 <a name="222"><span class="lineNum">     222 </span>            : }</a>
 <a name="223"><span class="lineNum">     223 </span>            : </a>
 <a name="224"><span class="lineNum">     224 </span>            : /// The input cell of a transaction.</a>
@@ -298,7 +298,7 @@
 <a name="236"><span class="lineNum">     236 </span>            : /// }</a>
 <a name="237"><span class="lineNum">     237 </span>            : /// # &quot;#).unwrap();</a>
 <a name="238"><span class="lineNum">     238 </span>            : /// ```</a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">       3318 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">       1532 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="240"><span class="lineNum">     240 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="241"><span class="lineNum">     241 </span>            : pub struct CellInput {</a>
 <a name="242"><span class="lineNum">     242 </span>            :     /// Restrict when the transaction can be committed into the chain.</a>
@@ -310,29 +310,29 @@
 <a name="248"><span class="lineNum">     248 </span>            : }</a>
 <a name="249"><span class="lineNum">     249 </span>            : </a>
 <a name="250"><span class="lineNum">     250 </span>            : impl From&lt;packed::CellInput&gt; for CellInput {</a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineCov">       5048 :     fn from(input: packed::CellInput) -&gt; CellInput {</span></a>
-<a name="252"><span class="lineNum">     252 </span><span class="lineCov">       5048 :         CellInput {</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineCov">       5048 :             previous_output: input.previous_output().into(),</span></a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineCov">       5048 :             since: input.since().unpack(),</span></a>
-<a name="255"><span class="lineNum">     255 </span><span class="lineCov">       5048 :         }</span></a>
-<a name="256"><span class="lineNum">     256 </span><span class="lineCov">       5048 :     }</span></a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineCov">       2524 :     fn from(input: packed::CellInput) -&gt; CellInput {</span></a>
+<a name="252"><span class="lineNum">     252 </span><span class="lineCov">       2524 :         CellInput {</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineCov">       2524 :             previous_output: input.previous_output().into(),</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">       2524 :             since: input.since().unpack(),</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineCov">       2524 :         }</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineCov">       2524 :     }</span></a>
 <a name="257"><span class="lineNum">     257 </span>            : }</a>
 <a name="258"><span class="lineNum">     258 </span>            : </a>
 <a name="259"><span class="lineNum">     259 </span>            : impl From&lt;CellInput&gt; for packed::CellInput {</a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineCov">       1844 :     fn from(json: CellInput) -&gt; Self {</span></a>
-<a name="261"><span class="lineNum">     261 </span><span class="lineCov">       1844 :         let CellInput {</span></a>
-<a name="262"><span class="lineNum">     262 </span><span class="lineCov">       1844 :             previous_output,</span></a>
-<a name="263"><span class="lineNum">     263 </span><span class="lineCov">       1844 :             since,</span></a>
-<a name="264"><span class="lineNum">     264 </span><span class="lineCov">       1844 :         } = json;</span></a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">       1844 :         packed::CellInput::new_builder()</span></a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">       1844 :             .previous_output(previous_output.into())</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">       1844 :             .since(since.pack())</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">       1844 :             .build()</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineCov">       1844 :     }</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">        922 :     fn from(json: CellInput) -&gt; Self {</span></a>
+<a name="261"><span class="lineNum">     261 </span><span class="lineCov">        922 :         let CellInput {</span></a>
+<a name="262"><span class="lineNum">     262 </span><span class="lineCov">        922 :             previous_output,</span></a>
+<a name="263"><span class="lineNum">     263 </span><span class="lineCov">        922 :             since,</span></a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">        922 :         } = json;</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">        922 :         packed::CellInput::new_builder()</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">        922 :             .previous_output(previous_output.into())</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">        922 :             .since(since.pack())</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">        922 :             .build()</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">        922 :     }</span></a>
 <a name="270"><span class="lineNum">     270 </span>            : }</a>
 <a name="271"><span class="lineNum">     271 </span>            : </a>
 <a name="272"><span class="lineNum">     272 </span>            : /// The dep cell type. Allowed values: &quot;code&quot; and &quot;dep_group&quot;.</a>
-<a name="273"><span class="lineNum">     273 </span><span class="lineCov">        270 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">        108 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="274"><span class="lineNum">     274 </span>            : #[serde(rename_all = &quot;snake_case&quot;)]</a>
 <a name="275"><span class="lineNum">     275 </span>            : pub enum DepType {</a>
 <a name="276"><span class="lineNum">     276 </span>            :     /// Type &quot;code&quot;.</a>
@@ -356,21 +356,21 @@
 <a name="294"><span class="lineNum">     294 </span>            : }</a>
 <a name="295"><span class="lineNum">     295 </span>            : </a>
 <a name="296"><span class="lineNum">     296 </span>            : impl From&lt;DepType&gt; for core::DepType {</a>
-<a name="297"><span class="lineNum">     297 </span><span class="lineCov">       1152 :     fn from(json: DepType) -&gt; Self {</span></a>
-<a name="298"><span class="lineNum">     298 </span><span class="lineCov">       1152 :         match json {</span></a>
-<a name="299"><span class="lineNum">     299 </span><span class="lineCov">       1152 :             DepType::Code =&gt; core::DepType::Code,</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">        576 :     fn from(json: DepType) -&gt; Self {</span></a>
+<a name="298"><span class="lineNum">     298 </span><span class="lineCov">        576 :         match json {</span></a>
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">        576 :             DepType::Code =&gt; core::DepType::Code,</span></a>
 <a name="300"><span class="lineNum">     300 </span><span class="lineNoCov">          0 :             DepType::DepGroup =&gt; core::DepType::DepGroup,</span></a>
 <a name="301"><span class="lineNum">     301 </span>            :         }</a>
-<a name="302"><span class="lineNum">     302 </span><span class="lineCov">       1152 :     }</span></a>
+<a name="302"><span class="lineNum">     302 </span><span class="lineCov">        576 :     }</span></a>
 <a name="303"><span class="lineNum">     303 </span>            : }</a>
 <a name="304"><span class="lineNum">     304 </span>            : </a>
 <a name="305"><span class="lineNum">     305 </span>            : impl From&lt;core::DepType&gt; for DepType {</a>
-<a name="306"><span class="lineNum">     306 </span><span class="lineCov">       1116 :     fn from(core: core::DepType) -&gt; DepType {</span></a>
-<a name="307"><span class="lineNum">     307 </span><span class="lineCov">       1116 :         match core {</span></a>
-<a name="308"><span class="lineNum">     308 </span><span class="lineCov">       1116 :             core::DepType::Code =&gt; DepType::Code,</span></a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">        558 :     fn from(core: core::DepType) -&gt; DepType {</span></a>
+<a name="307"><span class="lineNum">     307 </span><span class="lineCov">        558 :         match core {</span></a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">        558 :             core::DepType::Code =&gt; DepType::Code,</span></a>
 <a name="309"><span class="lineNum">     309 </span><span class="lineNoCov">          0 :             core::DepType::DepGroup =&gt; DepType::DepGroup,</span></a>
 <a name="310"><span class="lineNum">     310 </span>            :         }</a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineCov">       1116 :     }</span></a>
+<a name="311"><span class="lineNum">     311 </span><span class="lineCov">        558 :     }</span></a>
 <a name="312"><span class="lineNum">     312 </span>            : }</a>
 <a name="313"><span class="lineNum">     313 </span>            : </a>
 <a name="314"><span class="lineNum">     314 </span>            : /// The cell dependency of a transaction.</a>
@@ -388,7 +388,7 @@
 <a name="326"><span class="lineNum">     326 </span>            : /// }</a>
 <a name="327"><span class="lineNum">     327 </span>            : /// # &quot;#).unwrap();</a>
 <a name="328"><span class="lineNum">     328 </span>            : /// ```</a>
-<a name="329"><span class="lineNum">     329 </span><span class="lineCov">        270 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="329"><span class="lineNum">     329 </span><span class="lineCov">        108 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="330"><span class="lineNum">     330 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="331"><span class="lineNum">     331 </span>            : pub struct CellDep {</a>
 <a name="332"><span class="lineNum">     332 </span>            :     /// Reference to the cell.</a>
@@ -398,34 +398,34 @@
 <a name="336"><span class="lineNum">     336 </span>            : }</a>
 <a name="337"><span class="lineNum">     337 </span>            : </a>
 <a name="338"><span class="lineNum">     338 </span>            : impl From&lt;packed::CellDep&gt; for CellDep {</a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineCov">       1116 :     fn from(input: packed::CellDep) -&gt; Self {</span></a>
-<a name="340"><span class="lineNum">     340 </span><span class="lineCov">       1116 :         CellDep {</span></a>
-<a name="341"><span class="lineNum">     341 </span><span class="lineCov">       1116 :             out_point: input.out_point().into(),</span></a>
-<a name="342"><span class="lineNum">     342 </span><span class="lineCov">       1116 :             dep_type: core::DepType::try_from(input.dep_type())</span></a>
-<a name="343"><span class="lineNum">     343 </span><span class="lineCov">       1116 :                 .expect(&quot;checked data&quot;)</span></a>
-<a name="344"><span class="lineNum">     344 </span><span class="lineCov">       1116 :                 .into(),</span></a>
-<a name="345"><span class="lineNum">     345 </span><span class="lineCov">       1116 :         }</span></a>
-<a name="346"><span class="lineNum">     346 </span><span class="lineCov">       1116 :     }</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineCov">        558 :     fn from(input: packed::CellDep) -&gt; Self {</span></a>
+<a name="340"><span class="lineNum">     340 </span><span class="lineCov">        558 :         CellDep {</span></a>
+<a name="341"><span class="lineNum">     341 </span><span class="lineCov">        558 :             out_point: input.out_point().into(),</span></a>
+<a name="342"><span class="lineNum">     342 </span><span class="lineCov">        558 :             dep_type: core::DepType::try_from(input.dep_type())</span></a>
+<a name="343"><span class="lineNum">     343 </span><span class="lineCov">        558 :                 .expect(&quot;checked data&quot;)</span></a>
+<a name="344"><span class="lineNum">     344 </span><span class="lineCov">        558 :                 .into(),</span></a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineCov">        558 :         }</span></a>
+<a name="346"><span class="lineNum">     346 </span><span class="lineCov">        558 :     }</span></a>
 <a name="347"><span class="lineNum">     347 </span>            : }</a>
 <a name="348"><span class="lineNum">     348 </span>            : </a>
 <a name="349"><span class="lineNum">     349 </span>            : impl From&lt;CellDep&gt; for packed::CellDep {</a>
-<a name="350"><span class="lineNum">     350 </span><span class="lineCov">       1152 :     fn from(json: CellDep) -&gt; Self {</span></a>
-<a name="351"><span class="lineNum">     351 </span><span class="lineCov">       1152 :         let CellDep {</span></a>
-<a name="352"><span class="lineNum">     352 </span><span class="lineCov">       1152 :             out_point,</span></a>
-<a name="353"><span class="lineNum">     353 </span><span class="lineCov">       1152 :             dep_type,</span></a>
-<a name="354"><span class="lineNum">     354 </span><span class="lineCov">       1152 :         } = json;</span></a>
-<a name="355"><span class="lineNum">     355 </span><span class="lineCov">       1152 :         let dep_type: core::DepType = dep_type.into();</span></a>
-<a name="356"><span class="lineNum">     356 </span><span class="lineCov">       1152 :         packed::CellDep::new_builder()</span></a>
-<a name="357"><span class="lineNum">     357 </span><span class="lineCov">       1152 :             .out_point(out_point.into())</span></a>
-<a name="358"><span class="lineNum">     358 </span><span class="lineCov">       1152 :             .dep_type(dep_type.into())</span></a>
-<a name="359"><span class="lineNum">     359 </span><span class="lineCov">       1152 :             .build()</span></a>
-<a name="360"><span class="lineNum">     360 </span><span class="lineCov">       1152 :     }</span></a>
+<a name="350"><span class="lineNum">     350 </span><span class="lineCov">        576 :     fn from(json: CellDep) -&gt; Self {</span></a>
+<a name="351"><span class="lineNum">     351 </span><span class="lineCov">        576 :         let CellDep {</span></a>
+<a name="352"><span class="lineNum">     352 </span><span class="lineCov">        576 :             out_point,</span></a>
+<a name="353"><span class="lineNum">     353 </span><span class="lineCov">        576 :             dep_type,</span></a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineCov">        576 :         } = json;</span></a>
+<a name="355"><span class="lineNum">     355 </span><span class="lineCov">        576 :         let dep_type: core::DepType = dep_type.into();</span></a>
+<a name="356"><span class="lineNum">     356 </span><span class="lineCov">        576 :         packed::CellDep::new_builder()</span></a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineCov">        576 :             .out_point(out_point.into())</span></a>
+<a name="358"><span class="lineNum">     358 </span><span class="lineCov">        576 :             .dep_type(dep_type.into())</span></a>
+<a name="359"><span class="lineNum">     359 </span><span class="lineCov">        576 :             .build()</span></a>
+<a name="360"><span class="lineNum">     360 </span><span class="lineCov">        576 :     }</span></a>
 <a name="361"><span class="lineNum">     361 </span>            : }</a>
 <a name="362"><span class="lineNum">     362 </span>            : </a>
 <a name="363"><span class="lineNum">     363 </span>            : /// The transaction.</a>
 <a name="364"><span class="lineNum">     364 </span>            : ///</a>
 <a name="365"><span class="lineNum">     365 </span>            : /// Refer to RFC [CKB Transaction Structure](https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0022-transaction-structure/0022-transaction-structure.md).</a>
-<a name="366"><span class="lineNum">     366 </span><span class="lineCov">       8886 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineCov">       4324 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="367"><span class="lineNum">     367 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="368"><span class="lineNum">     368 </span>            : pub struct Transaction {</a>
 <a name="369"><span class="lineNum">     369 </span>            :     /// Reserved for future usage. It must equal 0 in current version.</a>
@@ -514,7 +514,7 @@
 <a name="452"><span class="lineNum">     452 </span>            : /// }</a>
 <a name="453"><span class="lineNum">     453 </span>            : /// # &quot;#).unwrap();</a>
 <a name="454"><span class="lineNum">     454 </span>            : /// ```</a>
-<a name="455"><span class="lineNum">     455 </span><span class="lineCov">       5152 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="455"><span class="lineNum">     455 </span><span class="lineCov">       2576 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="456"><span class="lineNum">     456 </span>            : pub struct TransactionView {</a>
 <a name="457"><span class="lineNum">     457 </span>            :     /// All the fields in `Transaction` are included in `TransactionView` in JSON.</a>
 <a name="458"><span class="lineNum">     458 </span>            :     #[serde(flatten)]</a>
@@ -524,61 +524,61 @@
 <a name="462"><span class="lineNum">     462 </span>            : }</a>
 <a name="463"><span class="lineNum">     463 </span>            : </a>
 <a name="464"><span class="lineNum">     464 </span>            : impl From&lt;packed::Transaction&gt; for Transaction {</a>
-<a name="465"><span class="lineNum">     465 </span><span class="lineCov">       5048 :     fn from(input: packed::Transaction) -&gt; Self {</span></a>
-<a name="466"><span class="lineNum">     466 </span><span class="lineCov">       5048 :         let raw = input.raw();</span></a>
-<a name="467"><span class="lineNum">     467 </span><span class="lineCov">       5048 :         Self {</span></a>
-<a name="468"><span class="lineNum">     468 </span><span class="lineCov">       5048 :             version: raw.version().unpack(),</span></a>
-<a name="469"><span class="lineNum">     469 </span><span class="lineCov">       5048 :             cell_deps: raw.cell_deps().into_iter().map(Into::into).collect(),</span></a>
-<a name="470"><span class="lineNum">     470 </span><span class="lineCov">       5048 :             header_deps: raw</span></a>
-<a name="471"><span class="lineNum">     471 </span><span class="lineCov">       5048 :                 .header_deps()</span></a>
-<a name="472"><span class="lineNum">     472 </span><span class="lineCov">       5048 :                 .into_iter()</span></a>
-<a name="473"><span class="lineNum">     473 </span><span class="lineCov">       5048 :                 .map(|d| Unpack::&lt;H256&gt;::unpack(&amp;d))</span></a>
-<a name="474"><span class="lineNum">     474 </span><span class="lineCov">       5048 :                 .collect(),</span></a>
-<a name="475"><span class="lineNum">     475 </span><span class="lineCov">       5048 :             inputs: raw.inputs().into_iter().map(Into::into).collect(),</span></a>
-<a name="476"><span class="lineNum">     476 </span><span class="lineCov">       5048 :             outputs: raw.outputs().into_iter().map(Into::into).collect(),</span></a>
-<a name="477"><span class="lineNum">     477 </span><span class="lineCov">       5048 :             outputs_data: raw.outputs_data().into_iter().map(Into::into).collect(),</span></a>
-<a name="478"><span class="lineNum">     478 </span><span class="lineCov">       5048 :             witnesses: input.witnesses().into_iter().map(Into::into).collect(),</span></a>
-<a name="479"><span class="lineNum">     479 </span><span class="lineCov">       5048 :         }</span></a>
-<a name="480"><span class="lineNum">     480 </span><span class="lineCov">       5048 :     }</span></a>
+<a name="465"><span class="lineNum">     465 </span><span class="lineCov">       2524 :     fn from(input: packed::Transaction) -&gt; Self {</span></a>
+<a name="466"><span class="lineNum">     466 </span><span class="lineCov">       2524 :         let raw = input.raw();</span></a>
+<a name="467"><span class="lineNum">     467 </span><span class="lineCov">       2524 :         Self {</span></a>
+<a name="468"><span class="lineNum">     468 </span><span class="lineCov">       2524 :             version: raw.version().unpack(),</span></a>
+<a name="469"><span class="lineNum">     469 </span><span class="lineCov">       2524 :             cell_deps: raw.cell_deps().into_iter().map(Into::into).collect(),</span></a>
+<a name="470"><span class="lineNum">     470 </span><span class="lineCov">       2524 :             header_deps: raw</span></a>
+<a name="471"><span class="lineNum">     471 </span><span class="lineCov">       2524 :                 .header_deps()</span></a>
+<a name="472"><span class="lineNum">     472 </span><span class="lineCov">       2524 :                 .into_iter()</span></a>
+<a name="473"><span class="lineNum">     473 </span><span class="lineCov">       2524 :                 .map(|d| Unpack::&lt;H256&gt;::unpack(&amp;d))</span></a>
+<a name="474"><span class="lineNum">     474 </span><span class="lineCov">       2524 :                 .collect(),</span></a>
+<a name="475"><span class="lineNum">     475 </span><span class="lineCov">       2524 :             inputs: raw.inputs().into_iter().map(Into::into).collect(),</span></a>
+<a name="476"><span class="lineNum">     476 </span><span class="lineCov">       2524 :             outputs: raw.outputs().into_iter().map(Into::into).collect(),</span></a>
+<a name="477"><span class="lineNum">     477 </span><span class="lineCov">       2524 :             outputs_data: raw.outputs_data().into_iter().map(Into::into).collect(),</span></a>
+<a name="478"><span class="lineNum">     478 </span><span class="lineCov">       2524 :             witnesses: input.witnesses().into_iter().map(Into::into).collect(),</span></a>
+<a name="479"><span class="lineNum">     479 </span><span class="lineCov">       2524 :         }</span></a>
+<a name="480"><span class="lineNum">     480 </span><span class="lineCov">       2524 :     }</span></a>
 <a name="481"><span class="lineNum">     481 </span>            : }</a>
 <a name="482"><span class="lineNum">     482 </span>            : </a>
 <a name="483"><span class="lineNum">     483 </span>            : impl From&lt;core::TransactionView&gt; for TransactionView {</a>
-<a name="484"><span class="lineNum">     484 </span><span class="lineCov">         36 :     fn from(input: core::TransactionView) -&gt; Self {</span></a>
-<a name="485"><span class="lineNum">     485 </span><span class="lineCov">         36 :         Self {</span></a>
-<a name="486"><span class="lineNum">     486 </span><span class="lineCov">         36 :             inner: input.data().into(),</span></a>
-<a name="487"><span class="lineNum">     487 </span><span class="lineCov">         36 :             hash: input.hash().unpack(),</span></a>
-<a name="488"><span class="lineNum">     488 </span><span class="lineCov">         36 :         }</span></a>
-<a name="489"><span class="lineNum">     489 </span><span class="lineCov">         36 :     }</span></a>
+<a name="484"><span class="lineNum">     484 </span><span class="lineCov">         18 :     fn from(input: core::TransactionView) -&gt; Self {</span></a>
+<a name="485"><span class="lineNum">     485 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="486"><span class="lineNum">     486 </span><span class="lineCov">         18 :             inner: input.data().into(),</span></a>
+<a name="487"><span class="lineNum">     487 </span><span class="lineCov">         18 :             hash: input.hash().unpack(),</span></a>
+<a name="488"><span class="lineNum">     488 </span><span class="lineCov">         18 :         }</span></a>
+<a name="489"><span class="lineNum">     489 </span><span class="lineCov">         18 :     }</span></a>
 <a name="490"><span class="lineNum">     490 </span>            : }</a>
 <a name="491"><span class="lineNum">     491 </span>            : </a>
 <a name="492"><span class="lineNum">     492 </span>            : impl From&lt;Transaction&gt; for packed::Transaction {</a>
-<a name="493"><span class="lineNum">     493 </span><span class="lineCov">       1844 :     fn from(json: Transaction) -&gt; Self {</span></a>
-<a name="494"><span class="lineNum">     494 </span><span class="lineCov">       1844 :         let Transaction {</span></a>
-<a name="495"><span class="lineNum">     495 </span><span class="lineCov">       1844 :             version,</span></a>
-<a name="496"><span class="lineNum">     496 </span><span class="lineCov">       1844 :             cell_deps,</span></a>
-<a name="497"><span class="lineNum">     497 </span><span class="lineCov">       1844 :             header_deps,</span></a>
-<a name="498"><span class="lineNum">     498 </span><span class="lineCov">       1844 :             inputs,</span></a>
-<a name="499"><span class="lineNum">     499 </span><span class="lineCov">       1844 :             outputs,</span></a>
-<a name="500"><span class="lineNum">     500 </span><span class="lineCov">       1844 :             witnesses,</span></a>
-<a name="501"><span class="lineNum">     501 </span><span class="lineCov">       1844 :             outputs_data,</span></a>
-<a name="502"><span class="lineNum">     502 </span><span class="lineCov">       1844 :         } = json;</span></a>
-<a name="503"><span class="lineNum">     503 </span><span class="lineCov">       1844 :         let raw = packed::RawTransaction::new_builder()</span></a>
-<a name="504"><span class="lineNum">     504 </span><span class="lineCov">       1844 :             .version(version.pack())</span></a>
-<a name="505"><span class="lineNum">     505 </span><span class="lineCov">       1844 :             .cell_deps(cell_deps.into_iter().map(Into::into).pack())</span></a>
-<a name="506"><span class="lineNum">     506 </span><span class="lineCov">       1844 :             .header_deps(header_deps.iter().map(Pack::pack).pack())</span></a>
-<a name="507"><span class="lineNum">     507 </span><span class="lineCov">       1844 :             .inputs(inputs.into_iter().map(Into::into).pack())</span></a>
-<a name="508"><span class="lineNum">     508 </span><span class="lineCov">       1844 :             .outputs(outputs.into_iter().map(Into::into).pack())</span></a>
-<a name="509"><span class="lineNum">     509 </span><span class="lineCov">       1844 :             .outputs_data(outputs_data.into_iter().map(Into::into).pack())</span></a>
-<a name="510"><span class="lineNum">     510 </span><span class="lineCov">       1844 :             .build();</span></a>
-<a name="511"><span class="lineNum">     511 </span><span class="lineCov">       1844 :         packed::Transaction::new_builder()</span></a>
-<a name="512"><span class="lineNum">     512 </span><span class="lineCov">       1844 :             .raw(raw)</span></a>
-<a name="513"><span class="lineNum">     513 </span><span class="lineCov">       1844 :             .witnesses(witnesses.into_iter().map(Into::into).pack())</span></a>
-<a name="514"><span class="lineNum">     514 </span><span class="lineCov">       1844 :             .build()</span></a>
-<a name="515"><span class="lineNum">     515 </span><span class="lineCov">       1844 :     }</span></a>
+<a name="493"><span class="lineNum">     493 </span><span class="lineCov">        922 :     fn from(json: Transaction) -&gt; Self {</span></a>
+<a name="494"><span class="lineNum">     494 </span><span class="lineCov">        922 :         let Transaction {</span></a>
+<a name="495"><span class="lineNum">     495 </span><span class="lineCov">        922 :             version,</span></a>
+<a name="496"><span class="lineNum">     496 </span><span class="lineCov">        922 :             cell_deps,</span></a>
+<a name="497"><span class="lineNum">     497 </span><span class="lineCov">        922 :             header_deps,</span></a>
+<a name="498"><span class="lineNum">     498 </span><span class="lineCov">        922 :             inputs,</span></a>
+<a name="499"><span class="lineNum">     499 </span><span class="lineCov">        922 :             outputs,</span></a>
+<a name="500"><span class="lineNum">     500 </span><span class="lineCov">        922 :             witnesses,</span></a>
+<a name="501"><span class="lineNum">     501 </span><span class="lineCov">        922 :             outputs_data,</span></a>
+<a name="502"><span class="lineNum">     502 </span><span class="lineCov">        922 :         } = json;</span></a>
+<a name="503"><span class="lineNum">     503 </span><span class="lineCov">        922 :         let raw = packed::RawTransaction::new_builder()</span></a>
+<a name="504"><span class="lineNum">     504 </span><span class="lineCov">        922 :             .version(version.pack())</span></a>
+<a name="505"><span class="lineNum">     505 </span><span class="lineCov">        922 :             .cell_deps(cell_deps.into_iter().map(Into::into).pack())</span></a>
+<a name="506"><span class="lineNum">     506 </span><span class="lineCov">        922 :             .header_deps(header_deps.iter().map(Pack::pack).pack())</span></a>
+<a name="507"><span class="lineNum">     507 </span><span class="lineCov">        922 :             .inputs(inputs.into_iter().map(Into::into).pack())</span></a>
+<a name="508"><span class="lineNum">     508 </span><span class="lineCov">        922 :             .outputs(outputs.into_iter().map(Into::into).pack())</span></a>
+<a name="509"><span class="lineNum">     509 </span><span class="lineCov">        922 :             .outputs_data(outputs_data.into_iter().map(Into::into).pack())</span></a>
+<a name="510"><span class="lineNum">     510 </span><span class="lineCov">        922 :             .build();</span></a>
+<a name="511"><span class="lineNum">     511 </span><span class="lineCov">        922 :         packed::Transaction::new_builder()</span></a>
+<a name="512"><span class="lineNum">     512 </span><span class="lineCov">        922 :             .raw(raw)</span></a>
+<a name="513"><span class="lineNum">     513 </span><span class="lineCov">        922 :             .witnesses(witnesses.into_iter().map(Into::into).pack())</span></a>
+<a name="514"><span class="lineNum">     514 </span><span class="lineCov">        922 :             .build()</span></a>
+<a name="515"><span class="lineNum">     515 </span><span class="lineCov">        922 :     }</span></a>
 <a name="516"><span class="lineNum">     516 </span>            : }</a>
 <a name="517"><span class="lineNum">     517 </span>            : </a>
 <a name="518"><span class="lineNum">     518 </span>            : /// The JSON view of a transaction as well as its status.</a>
-<a name="519"><span class="lineNum">     519 </span><span class="lineCov">          8 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="519"><span class="lineNum">     519 </span><span class="lineCov">          4 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="520"><span class="lineNum">     520 </span>            : pub struct TransactionWithStatus {</a>
 <a name="521"><span class="lineNum">     521 </span>            :     /// The transaction.</a>
 <a name="522"><span class="lineNum">     522 </span>            :     pub transaction: TransactionView,</a>
@@ -588,12 +588,12 @@
 <a name="526"><span class="lineNum">     526 </span>            : </a>
 <a name="527"><span class="lineNum">     527 </span>            : impl TransactionWithStatus {</a>
 <a name="528"><span class="lineNum">     528 </span>            :     /// Build with pending status</a>
-<a name="529"><span class="lineNum">     529 </span><span class="lineCov">         36 :     pub fn with_pending(tx: core::TransactionView) -&gt; Self {</span></a>
-<a name="530"><span class="lineNum">     530 </span><span class="lineCov">         36 :         Self {</span></a>
-<a name="531"><span class="lineNum">     531 </span><span class="lineCov">         36 :             tx_status: TxStatus::pending(),</span></a>
-<a name="532"><span class="lineNum">     532 </span><span class="lineCov">         36 :             transaction: tx.into(),</span></a>
-<a name="533"><span class="lineNum">     533 </span><span class="lineCov">         36 :         }</span></a>
-<a name="534"><span class="lineNum">     534 </span><span class="lineCov">         36 :     }</span></a>
+<a name="529"><span class="lineNum">     529 </span><span class="lineCov">         18 :     pub fn with_pending(tx: core::TransactionView) -&gt; Self {</span></a>
+<a name="530"><span class="lineNum">     530 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="531"><span class="lineNum">     531 </span><span class="lineCov">         18 :             tx_status: TxStatus::pending(),</span></a>
+<a name="532"><span class="lineNum">     532 </span><span class="lineCov">         18 :             transaction: tx.into(),</span></a>
+<a name="533"><span class="lineNum">     533 </span><span class="lineCov">         18 :         }</span></a>
+<a name="534"><span class="lineNum">     534 </span><span class="lineCov">         18 :     }</span></a>
 <a name="535"><span class="lineNum">     535 </span>            : </a>
 <a name="536"><span class="lineNum">     536 </span>            :     /// Build with proposed status</a>
 <a name="537"><span class="lineNum">     537 </span><span class="lineNoCov">          0 :     pub fn with_proposed(tx: core::TransactionView) -&gt; Self {</span></a>
@@ -613,7 +613,7 @@
 <a name="551"><span class="lineNum">     551 </span>            : }</a>
 <a name="552"><span class="lineNum">     552 </span>            : </a>
 <a name="553"><span class="lineNum">     553 </span>            : /// Status for transaction</a>
-<a name="554"><span class="lineNum">     554 </span><span class="lineCov">          8 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="554"><span class="lineNum">     554 </span><span class="lineCov">          4 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="555"><span class="lineNum">     555 </span>            : #[serde(rename_all = &quot;lowercase&quot;)]</a>
 <a name="556"><span class="lineNum">     556 </span>            : pub enum Status {</a>
 <a name="557"><span class="lineNum">     557 </span>            :     /// Status &quot;pending&quot;. The transaction is in the pool, and not proposed yet.</a>
@@ -625,7 +625,7 @@
 <a name="563"><span class="lineNum">     563 </span>            : }</a>
 <a name="564"><span class="lineNum">     564 </span>            : </a>
 <a name="565"><span class="lineNum">     565 </span>            : /// Transaction status and the block hash if it is committed.</a>
-<a name="566"><span class="lineNum">     566 </span><span class="lineCov">          8 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="566"><span class="lineNum">     566 </span><span class="lineCov">          4 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="567"><span class="lineNum">     567 </span>            : pub struct TxStatus {</a>
 <a name="568"><span class="lineNum">     568 </span>            :     /// The transaction status, allowed values: &quot;pending&quot;, &quot;proposed&quot; and &quot;committed&quot;.</a>
 <a name="569"><span class="lineNum">     569 </span>            :     pub status: Status,</a>
@@ -635,12 +635,12 @@
 <a name="573"><span class="lineNum">     573 </span>            : </a>
 <a name="574"><span class="lineNum">     574 </span>            : impl TxStatus {</a>
 <a name="575"><span class="lineNum">     575 </span>            :     /// Pending transaction which is in the memory pool and must be proposed first.</a>
-<a name="576"><span class="lineNum">     576 </span><span class="lineCov">         36 :     pub fn pending() -&gt; Self {</span></a>
-<a name="577"><span class="lineNum">     577 </span><span class="lineCov">         36 :         Self {</span></a>
-<a name="578"><span class="lineNum">     578 </span><span class="lineCov">         36 :             status: Status::Pending,</span></a>
-<a name="579"><span class="lineNum">     579 </span><span class="lineCov">         36 :             block_hash: None,</span></a>
-<a name="580"><span class="lineNum">     580 </span><span class="lineCov">         36 :         }</span></a>
-<a name="581"><span class="lineNum">     581 </span><span class="lineCov">         36 :     }</span></a>
+<a name="576"><span class="lineNum">     576 </span><span class="lineCov">         18 :     pub fn pending() -&gt; Self {</span></a>
+<a name="577"><span class="lineNum">     577 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="578"><span class="lineNum">     578 </span><span class="lineCov">         18 :             status: Status::Pending,</span></a>
+<a name="579"><span class="lineNum">     579 </span><span class="lineCov">         18 :             block_hash: None,</span></a>
+<a name="580"><span class="lineNum">     580 </span><span class="lineCov">         18 :         }</span></a>
+<a name="581"><span class="lineNum">     581 </span><span class="lineCov">         18 :     }</span></a>
 <a name="582"><span class="lineNum">     582 </span>            : </a>
 <a name="583"><span class="lineNum">     583 </span>            :     /// Transaction which has been proposed but not committed yet.</a>
 <a name="584"><span class="lineNum">     584 </span><span class="lineNoCov">          0 :     pub fn proposed() -&gt; Self {</span></a>
@@ -666,7 +666,7 @@
 <a name="604"><span class="lineNum">     604 </span>            : /// The block header.</a>
 <a name="605"><span class="lineNum">     605 </span>            : ///</a>
 <a name="606"><span class="lineNum">     606 </span>            : /// Refer to RFC [CKB Block Structure](https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0027-block-structure/0027-block-structure.md).</a>
-<a name="607"><span class="lineNum">     607 </span><span class="lineCov">      23742 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="607"><span class="lineNum">     607 </span><span class="lineCov">      11868 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="608"><span class="lineNum">     608 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="609"><span class="lineNum">     609 </span>            : pub struct Header {</a>
 <a name="610"><span class="lineNum">     610 </span>            :     /// The block version.</a>
@@ -751,7 +751,7 @@
 <a name="689"><span class="lineNum">     689 </span>            : /// }</a>
 <a name="690"><span class="lineNum">     690 </span>            : /// # &quot;#).unwrap();</a>
 <a name="691"><span class="lineNum">     691 </span>            : /// ```</a>
-<a name="692"><span class="lineNum">     692 </span><span class="lineCov">      14384 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="692"><span class="lineNum">     692 </span><span class="lineCov">       7192 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="693"><span class="lineNum">     693 </span>            : pub struct HeaderView {</a>
 <a name="694"><span class="lineNum">     694 </span>            :     /// All the fields in `Header` are included in `HeaderView` in JSON.</a>
 <a name="695"><span class="lineNum">     695 </span>            :     #[serde(flatten)]</a>
@@ -761,31 +761,31 @@
 <a name="699"><span class="lineNum">     699 </span>            : }</a>
 <a name="700"><span class="lineNum">     700 </span>            : </a>
 <a name="701"><span class="lineNum">     701 </span>            : impl From&lt;packed::Header&gt; for Header {</a>
-<a name="702"><span class="lineNum">     702 </span><span class="lineCov">       1348 :     fn from(input: packed::Header) -&gt; Self {</span></a>
-<a name="703"><span class="lineNum">     703 </span><span class="lineCov">       1348 :         let raw = input.raw();</span></a>
-<a name="704"><span class="lineNum">     704 </span><span class="lineCov">       1348 :         Self {</span></a>
-<a name="705"><span class="lineNum">     705 </span><span class="lineCov">       1348 :             version: raw.version().unpack(),</span></a>
-<a name="706"><span class="lineNum">     706 </span><span class="lineCov">       1348 :             parent_hash: raw.parent_hash().unpack(),</span></a>
-<a name="707"><span class="lineNum">     707 </span><span class="lineCov">       1348 :             timestamp: raw.timestamp().unpack(),</span></a>
-<a name="708"><span class="lineNum">     708 </span><span class="lineCov">       1348 :             number: raw.number().unpack(),</span></a>
-<a name="709"><span class="lineNum">     709 </span><span class="lineCov">       1348 :             epoch: raw.epoch().unpack(),</span></a>
-<a name="710"><span class="lineNum">     710 </span><span class="lineCov">       1348 :             transactions_root: raw.transactions_root().unpack(),</span></a>
-<a name="711"><span class="lineNum">     711 </span><span class="lineCov">       1348 :             proposals_hash: raw.proposals_hash().unpack(),</span></a>
-<a name="712"><span class="lineNum">     712 </span><span class="lineCov">       1348 :             compact_target: raw.compact_target().unpack(),</span></a>
-<a name="713"><span class="lineNum">     713 </span><span class="lineCov">       1348 :             extra_hash: raw.extra_hash().unpack(),</span></a>
-<a name="714"><span class="lineNum">     714 </span><span class="lineCov">       1348 :             dao: raw.dao().into(),</span></a>
-<a name="715"><span class="lineNum">     715 </span><span class="lineCov">       1348 :             nonce: input.nonce().unpack(),</span></a>
-<a name="716"><span class="lineNum">     716 </span><span class="lineCov">       1348 :         }</span></a>
-<a name="717"><span class="lineNum">     717 </span><span class="lineCov">       1348 :     }</span></a>
+<a name="702"><span class="lineNum">     702 </span><span class="lineCov">        674 :     fn from(input: packed::Header) -&gt; Self {</span></a>
+<a name="703"><span class="lineNum">     703 </span><span class="lineCov">        674 :         let raw = input.raw();</span></a>
+<a name="704"><span class="lineNum">     704 </span><span class="lineCov">        674 :         Self {</span></a>
+<a name="705"><span class="lineNum">     705 </span><span class="lineCov">        674 :             version: raw.version().unpack(),</span></a>
+<a name="706"><span class="lineNum">     706 </span><span class="lineCov">        674 :             parent_hash: raw.parent_hash().unpack(),</span></a>
+<a name="707"><span class="lineNum">     707 </span><span class="lineCov">        674 :             timestamp: raw.timestamp().unpack(),</span></a>
+<a name="708"><span class="lineNum">     708 </span><span class="lineCov">        674 :             number: raw.number().unpack(),</span></a>
+<a name="709"><span class="lineNum">     709 </span><span class="lineCov">        674 :             epoch: raw.epoch().unpack(),</span></a>
+<a name="710"><span class="lineNum">     710 </span><span class="lineCov">        674 :             transactions_root: raw.transactions_root().unpack(),</span></a>
+<a name="711"><span class="lineNum">     711 </span><span class="lineCov">        674 :             proposals_hash: raw.proposals_hash().unpack(),</span></a>
+<a name="712"><span class="lineNum">     712 </span><span class="lineCov">        674 :             compact_target: raw.compact_target().unpack(),</span></a>
+<a name="713"><span class="lineNum">     713 </span><span class="lineCov">        674 :             extra_hash: raw.extra_hash().unpack(),</span></a>
+<a name="714"><span class="lineNum">     714 </span><span class="lineCov">        674 :             dao: raw.dao().into(),</span></a>
+<a name="715"><span class="lineNum">     715 </span><span class="lineCov">        674 :             nonce: input.nonce().unpack(),</span></a>
+<a name="716"><span class="lineNum">     716 </span><span class="lineCov">        674 :         }</span></a>
+<a name="717"><span class="lineNum">     717 </span><span class="lineCov">        674 :     }</span></a>
 <a name="718"><span class="lineNum">     718 </span>            : }</a>
 <a name="719"><span class="lineNum">     719 </span>            : </a>
 <a name="720"><span class="lineNum">     720 </span>            : impl From&lt;core::HeaderView&gt; for HeaderView {</a>
-<a name="721"><span class="lineNum">     721 </span><span class="lineCov">        108 :     fn from(input: core::HeaderView) -&gt; Self {</span></a>
-<a name="722"><span class="lineNum">     722 </span><span class="lineCov">        108 :         Self {</span></a>
-<a name="723"><span class="lineNum">     723 </span><span class="lineCov">        108 :             inner: input.data().into(),</span></a>
-<a name="724"><span class="lineNum">     724 </span><span class="lineCov">        108 :             hash: input.hash().unpack(),</span></a>
-<a name="725"><span class="lineNum">     725 </span><span class="lineCov">        108 :         }</span></a>
-<a name="726"><span class="lineNum">     726 </span><span class="lineCov">        108 :     }</span></a>
+<a name="721"><span class="lineNum">     721 </span><span class="lineCov">         54 :     fn from(input: core::HeaderView) -&gt; Self {</span></a>
+<a name="722"><span class="lineNum">     722 </span><span class="lineCov">         54 :         Self {</span></a>
+<a name="723"><span class="lineNum">     723 </span><span class="lineCov">         54 :             inner: input.data().into(),</span></a>
+<a name="724"><span class="lineNum">     724 </span><span class="lineCov">         54 :             hash: input.hash().unpack(),</span></a>
+<a name="725"><span class="lineNum">     725 </span><span class="lineCov">         54 :         }</span></a>
+<a name="726"><span class="lineNum">     726 </span><span class="lineCov">         54 :     }</span></a>
 <a name="727"><span class="lineNum">     727 </span>            : }</a>
 <a name="728"><span class="lineNum">     728 </span>            : </a>
 <a name="729"><span class="lineNum">     729 </span>            : impl From&lt;HeaderView&gt; for core::HeaderView {</a>
@@ -796,37 +796,37 @@
 <a name="734"><span class="lineNum">     734 </span>            : }</a>
 <a name="735"><span class="lineNum">     735 </span>            : </a>
 <a name="736"><span class="lineNum">     736 </span>            : impl From&lt;Header&gt; for packed::Header {</a>
-<a name="737"><span class="lineNum">     737 </span><span class="lineCov">       1060 :     fn from(json: Header) -&gt; Self {</span></a>
-<a name="738"><span class="lineNum">     738 </span><span class="lineCov">       1060 :         let Header {</span></a>
-<a name="739"><span class="lineNum">     739 </span><span class="lineCov">       1060 :             version,</span></a>
-<a name="740"><span class="lineNum">     740 </span><span class="lineCov">       1060 :             parent_hash,</span></a>
-<a name="741"><span class="lineNum">     741 </span><span class="lineCov">       1060 :             timestamp,</span></a>
-<a name="742"><span class="lineNum">     742 </span><span class="lineCov">       1060 :             number,</span></a>
-<a name="743"><span class="lineNum">     743 </span><span class="lineCov">       1060 :             epoch,</span></a>
-<a name="744"><span class="lineNum">     744 </span><span class="lineCov">       1060 :             transactions_root,</span></a>
-<a name="745"><span class="lineNum">     745 </span><span class="lineCov">       1060 :             proposals_hash,</span></a>
-<a name="746"><span class="lineNum">     746 </span><span class="lineCov">       1060 :             compact_target,</span></a>
-<a name="747"><span class="lineNum">     747 </span><span class="lineCov">       1060 :             extra_hash,</span></a>
-<a name="748"><span class="lineNum">     748 </span><span class="lineCov">       1060 :             dao,</span></a>
-<a name="749"><span class="lineNum">     749 </span><span class="lineCov">       1060 :             nonce,</span></a>
-<a name="750"><span class="lineNum">     750 </span><span class="lineCov">       1060 :         } = json;</span></a>
-<a name="751"><span class="lineNum">     751 </span><span class="lineCov">       1060 :         let raw = packed::RawHeader::new_builder()</span></a>
-<a name="752"><span class="lineNum">     752 </span><span class="lineCov">       1060 :             .version(version.pack())</span></a>
-<a name="753"><span class="lineNum">     753 </span><span class="lineCov">       1060 :             .parent_hash(parent_hash.pack())</span></a>
-<a name="754"><span class="lineNum">     754 </span><span class="lineCov">       1060 :             .timestamp(timestamp.pack())</span></a>
-<a name="755"><span class="lineNum">     755 </span><span class="lineCov">       1060 :             .number(number.pack())</span></a>
-<a name="756"><span class="lineNum">     756 </span><span class="lineCov">       1060 :             .epoch(epoch.pack())</span></a>
-<a name="757"><span class="lineNum">     757 </span><span class="lineCov">       1060 :             .transactions_root(transactions_root.pack())</span></a>
-<a name="758"><span class="lineNum">     758 </span><span class="lineCov">       1060 :             .proposals_hash(proposals_hash.pack())</span></a>
-<a name="759"><span class="lineNum">     759 </span><span class="lineCov">       1060 :             .compact_target(compact_target.pack())</span></a>
-<a name="760"><span class="lineNum">     760 </span><span class="lineCov">       1060 :             .extra_hash(extra_hash.pack())</span></a>
-<a name="761"><span class="lineNum">     761 </span><span class="lineCov">       1060 :             .dao(dao.into())</span></a>
-<a name="762"><span class="lineNum">     762 </span><span class="lineCov">       1060 :             .build();</span></a>
-<a name="763"><span class="lineNum">     763 </span><span class="lineCov">       1060 :         packed::Header::new_builder()</span></a>
-<a name="764"><span class="lineNum">     764 </span><span class="lineCov">       1060 :             .raw(raw)</span></a>
-<a name="765"><span class="lineNum">     765 </span><span class="lineCov">       1060 :             .nonce(nonce.pack())</span></a>
-<a name="766"><span class="lineNum">     766 </span><span class="lineCov">       1060 :             .build()</span></a>
-<a name="767"><span class="lineNum">     767 </span><span class="lineCov">       1060 :     }</span></a>
+<a name="737"><span class="lineNum">     737 </span><span class="lineCov">        530 :     fn from(json: Header) -&gt; Self {</span></a>
+<a name="738"><span class="lineNum">     738 </span><span class="lineCov">        530 :         let Header {</span></a>
+<a name="739"><span class="lineNum">     739 </span><span class="lineCov">        530 :             version,</span></a>
+<a name="740"><span class="lineNum">     740 </span><span class="lineCov">        530 :             parent_hash,</span></a>
+<a name="741"><span class="lineNum">     741 </span><span class="lineCov">        530 :             timestamp,</span></a>
+<a name="742"><span class="lineNum">     742 </span><span class="lineCov">        530 :             number,</span></a>
+<a name="743"><span class="lineNum">     743 </span><span class="lineCov">        530 :             epoch,</span></a>
+<a name="744"><span class="lineNum">     744 </span><span class="lineCov">        530 :             transactions_root,</span></a>
+<a name="745"><span class="lineNum">     745 </span><span class="lineCov">        530 :             proposals_hash,</span></a>
+<a name="746"><span class="lineNum">     746 </span><span class="lineCov">        530 :             compact_target,</span></a>
+<a name="747"><span class="lineNum">     747 </span><span class="lineCov">        530 :             extra_hash,</span></a>
+<a name="748"><span class="lineNum">     748 </span><span class="lineCov">        530 :             dao,</span></a>
+<a name="749"><span class="lineNum">     749 </span><span class="lineCov">        530 :             nonce,</span></a>
+<a name="750"><span class="lineNum">     750 </span><span class="lineCov">        530 :         } = json;</span></a>
+<a name="751"><span class="lineNum">     751 </span><span class="lineCov">        530 :         let raw = packed::RawHeader::new_builder()</span></a>
+<a name="752"><span class="lineNum">     752 </span><span class="lineCov">        530 :             .version(version.pack())</span></a>
+<a name="753"><span class="lineNum">     753 </span><span class="lineCov">        530 :             .parent_hash(parent_hash.pack())</span></a>
+<a name="754"><span class="lineNum">     754 </span><span class="lineCov">        530 :             .timestamp(timestamp.pack())</span></a>
+<a name="755"><span class="lineNum">     755 </span><span class="lineCov">        530 :             .number(number.pack())</span></a>
+<a name="756"><span class="lineNum">     756 </span><span class="lineCov">        530 :             .epoch(epoch.pack())</span></a>
+<a name="757"><span class="lineNum">     757 </span><span class="lineCov">        530 :             .transactions_root(transactions_root.pack())</span></a>
+<a name="758"><span class="lineNum">     758 </span><span class="lineCov">        530 :             .proposals_hash(proposals_hash.pack())</span></a>
+<a name="759"><span class="lineNum">     759 </span><span class="lineCov">        530 :             .compact_target(compact_target.pack())</span></a>
+<a name="760"><span class="lineNum">     760 </span><span class="lineCov">        530 :             .extra_hash(extra_hash.pack())</span></a>
+<a name="761"><span class="lineNum">     761 </span><span class="lineCov">        530 :             .dao(dao.into())</span></a>
+<a name="762"><span class="lineNum">     762 </span><span class="lineCov">        530 :             .build();</span></a>
+<a name="763"><span class="lineNum">     763 </span><span class="lineCov">        530 :         packed::Header::new_builder()</span></a>
+<a name="764"><span class="lineNum">     764 </span><span class="lineCov">        530 :             .raw(raw)</span></a>
+<a name="765"><span class="lineNum">     765 </span><span class="lineCov">        530 :             .nonce(nonce.pack())</span></a>
+<a name="766"><span class="lineNum">     766 </span><span class="lineCov">        530 :             .build()</span></a>
+<a name="767"><span class="lineNum">     767 </span><span class="lineCov">        530 :     }</span></a>
 <a name="768"><span class="lineNum">     768 </span>            : }</a>
 <a name="769"><span class="lineNum">     769 </span>            : </a>
 <a name="770"><span class="lineNum">     770 </span>            : /// The uncle block used as a parameter in the RPC.</a>
@@ -862,7 +862,7 @@
 <a name="800"><span class="lineNum">     800 </span>            : /// 2. B2 block number is larger than B1;</a>
 <a name="801"><span class="lineNum">     801 </span>            : /// 3. B1's parent is either B2's ancestor or an uncle embedded in B2 or any of B2's ancestors.</a>
 <a name="802"><span class="lineNum">     802 </span>            : /// 4. B2 is the first block in its chain to refer to B1.</a>
-<a name="803"><span class="lineNum">     803 </span><span class="lineCov">       2560 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="803"><span class="lineNum">     803 </span><span class="lineCov">       1280 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="804"><span class="lineNum">     804 </span>            : pub struct UncleBlockView {</a>
 <a name="805"><span class="lineNum">     805 </span>            :     /// The uncle block header.</a>
 <a name="806"><span class="lineNum">     806 </span>            :     pub header: HeaderView,</a>
@@ -898,17 +898,17 @@
 <a name="836"><span class="lineNum">     836 </span>            : }</a>
 <a name="837"><span class="lineNum">     837 </span>            : </a>
 <a name="838"><span class="lineNum">     838 </span>            : impl From&lt;UncleBlock&gt; for packed::UncleBlock {</a>
-<a name="839"><span class="lineNum">     839 </span><span class="lineCov">        512 :     fn from(json: UncleBlock) -&gt; Self {</span></a>
-<a name="840"><span class="lineNum">     840 </span><span class="lineCov">        512 :         let UncleBlock { header, proposals } = json;</span></a>
-<a name="841"><span class="lineNum">     841 </span><span class="lineCov">        512 :         packed::UncleBlock::new_builder()</span></a>
-<a name="842"><span class="lineNum">     842 </span><span class="lineCov">        512 :             .header(header.into())</span></a>
-<a name="843"><span class="lineNum">     843 </span><span class="lineCov">        512 :             .proposals(proposals.into_iter().map(Into::into).pack())</span></a>
-<a name="844"><span class="lineNum">     844 </span><span class="lineCov">        512 :             .build()</span></a>
-<a name="845"><span class="lineNum">     845 </span><span class="lineCov">        512 :     }</span></a>
+<a name="839"><span class="lineNum">     839 </span><span class="lineCov">        256 :     fn from(json: UncleBlock) -&gt; Self {</span></a>
+<a name="840"><span class="lineNum">     840 </span><span class="lineCov">        256 :         let UncleBlock { header, proposals } = json;</span></a>
+<a name="841"><span class="lineNum">     841 </span><span class="lineCov">        256 :         packed::UncleBlock::new_builder()</span></a>
+<a name="842"><span class="lineNum">     842 </span><span class="lineCov">        256 :             .header(header.into())</span></a>
+<a name="843"><span class="lineNum">     843 </span><span class="lineCov">        256 :             .proposals(proposals.into_iter().map(Into::into).pack())</span></a>
+<a name="844"><span class="lineNum">     844 </span><span class="lineCov">        256 :             .build()</span></a>
+<a name="845"><span class="lineNum">     845 </span><span class="lineCov">        256 :     }</span></a>
 <a name="846"><span class="lineNum">     846 </span>            : }</a>
 <a name="847"><span class="lineNum">     847 </span>            : </a>
 <a name="848"><span class="lineNum">     848 </span>            : /// The JSON view of a Block used as a parameter in the RPC.</a>
-<a name="849"><span class="lineNum">     849 </span><span class="lineCov">         72 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="849"><span class="lineNum">     849 </span><span class="lineCov">         36 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="850"><span class="lineNum">     850 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="851"><span class="lineNum">     851 </span>            : pub struct Block {</a>
 <a name="852"><span class="lineNum">     852 </span>            :     /// The block header.</a>
@@ -928,7 +928,7 @@
 <a name="866"><span class="lineNum">     866 </span>            : }</a>
 <a name="867"><span class="lineNum">     867 </span>            : </a>
 <a name="868"><span class="lineNum">     868 </span>            : /// The JSON view of a Block including header and body.</a>
-<a name="869"><span class="lineNum">     869 </span><span class="lineCov">       4632 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="869"><span class="lineNum">     869 </span><span class="lineCov">       2316 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="870"><span class="lineNum">     870 </span>            : pub struct BlockView {</a>
 <a name="871"><span class="lineNum">     871 </span>            :     /// The block header.</a>
 <a name="872"><span class="lineNum">     872 </span>            :     pub header: HeaderView,</a>
@@ -959,56 +959,56 @@
 <a name="897"><span class="lineNum">     897 </span>            : }</a>
 <a name="898"><span class="lineNum">     898 </span>            : </a>
 <a name="899"><span class="lineNum">     899 </span>            : impl From&lt;core::BlockView&gt; for BlockView {</a>
-<a name="900"><span class="lineNum">     900 </span><span class="lineCov">        620 :     fn from(input: core::BlockView) -&gt; Self {</span></a>
-<a name="901"><span class="lineNum">     901 </span><span class="lineCov">        620 :         let block = input.data();</span></a>
-<a name="902"><span class="lineNum">     902 </span><span class="lineCov">        620 :         let header = HeaderView {</span></a>
-<a name="903"><span class="lineNum">     903 </span><span class="lineCov">        620 :             inner: block.header().into(),</span></a>
-<a name="904"><span class="lineNum">     904 </span><span class="lineCov">        620 :             hash: input.hash().unpack(),</span></a>
-<a name="905"><span class="lineNum">     905 </span><span class="lineCov">        620 :         };</span></a>
-<a name="906"><span class="lineNum">     906 </span><span class="lineCov">        620 :         let uncles = block</span></a>
-<a name="907"><span class="lineNum">     907 </span><span class="lineCov">        620 :             .uncles()</span></a>
-<a name="908"><span class="lineNum">     908 </span><span class="lineCov">        620 :             .into_iter()</span></a>
-<a name="909"><span class="lineNum">     909 </span><span class="lineCov">        620 :             .zip(input.uncle_hashes().into_iter())</span></a>
-<a name="910"><span class="lineNum">     910 </span><span class="lineCov">        620 :             .map(|(uncle, hash)| {</span></a>
-<a name="911"><span class="lineNum">     911 </span><span class="lineCov">        512 :                 let header = HeaderView {</span></a>
-<a name="912"><span class="lineNum">     912 </span><span class="lineCov">        512 :                     inner: uncle.header().into(),</span></a>
-<a name="913"><span class="lineNum">     913 </span><span class="lineCov">        512 :                     hash: hash.unpack(),</span></a>
-<a name="914"><span class="lineNum">     914 </span><span class="lineCov">        512 :                 };</span></a>
-<a name="915"><span class="lineNum">     915 </span><span class="lineCov">        512 :                 UncleBlockView {</span></a>
-<a name="916"><span class="lineNum">     916 </span><span class="lineCov">        512 :                     header,</span></a>
-<a name="917"><span class="lineNum">     917 </span><span class="lineCov">        512 :                     proposals: uncle.proposals().into_iter().map(Into::into).collect(),</span></a>
-<a name="918"><span class="lineNum">     918 </span><span class="lineCov">        512 :                 }</span></a>
-<a name="919"><span class="lineNum">     919 </span><span class="lineCov">        620 :             })</span></a>
-<a name="920"><span class="lineNum">     920 </span><span class="lineCov">        620 :             .collect();</span></a>
-<a name="921"><span class="lineNum">     921 </span><span class="lineCov">        620 :         let transactions = block</span></a>
-<a name="922"><span class="lineNum">     922 </span><span class="lineCov">        620 :             .transactions()</span></a>
-<a name="923"><span class="lineNum">     923 </span><span class="lineCov">        620 :             .into_iter()</span></a>
-<a name="924"><span class="lineNum">     924 </span><span class="lineCov">        620 :             .zip(input.tx_hashes().iter())</span></a>
-<a name="925"><span class="lineNum">     925 </span><span class="lineCov">        620 :             .map(|(tx, hash)| TransactionView {</span></a>
-<a name="926"><span class="lineNum">     926 </span><span class="lineCov">        620 :                 inner: tx.into(),</span></a>
-<a name="927"><span class="lineNum">     927 </span><span class="lineCov">        620 :                 hash: hash.unpack(),</span></a>
-<a name="928"><span class="lineNum">     928 </span><span class="lineCov">        620 :             })</span></a>
-<a name="929"><span class="lineNum">     929 </span><span class="lineCov">        620 :             .collect();</span></a>
-<a name="930"><span class="lineNum">     930 </span><span class="lineCov">        620 :         Self {</span></a>
-<a name="931"><span class="lineNum">     931 </span><span class="lineCov">        620 :             header,</span></a>
-<a name="932"><span class="lineNum">     932 </span><span class="lineCov">        620 :             uncles,</span></a>
-<a name="933"><span class="lineNum">     933 </span><span class="lineCov">        620 :             transactions,</span></a>
-<a name="934"><span class="lineNum">     934 </span><span class="lineCov">        620 :             proposals: block.proposals().into_iter().map(Into::into).collect(),</span></a>
-<a name="935"><span class="lineNum">     935 </span><span class="lineCov">        620 :             extension: block.extension().map(Into::into),</span></a>
-<a name="936"><span class="lineNum">     936 </span><span class="lineCov">        620 :         }</span></a>
-<a name="937"><span class="lineNum">     937 </span><span class="lineCov">        620 :     }</span></a>
+<a name="900"><span class="lineNum">     900 </span><span class="lineCov">        310 :     fn from(input: core::BlockView) -&gt; Self {</span></a>
+<a name="901"><span class="lineNum">     901 </span><span class="lineCov">        310 :         let block = input.data();</span></a>
+<a name="902"><span class="lineNum">     902 </span><span class="lineCov">        310 :         let header = HeaderView {</span></a>
+<a name="903"><span class="lineNum">     903 </span><span class="lineCov">        310 :             inner: block.header().into(),</span></a>
+<a name="904"><span class="lineNum">     904 </span><span class="lineCov">        310 :             hash: input.hash().unpack(),</span></a>
+<a name="905"><span class="lineNum">     905 </span><span class="lineCov">        310 :         };</span></a>
+<a name="906"><span class="lineNum">     906 </span><span class="lineCov">        310 :         let uncles = block</span></a>
+<a name="907"><span class="lineNum">     907 </span><span class="lineCov">        310 :             .uncles()</span></a>
+<a name="908"><span class="lineNum">     908 </span><span class="lineCov">        310 :             .into_iter()</span></a>
+<a name="909"><span class="lineNum">     909 </span><span class="lineCov">        310 :             .zip(input.uncle_hashes().into_iter())</span></a>
+<a name="910"><span class="lineNum">     910 </span><span class="lineCov">        310 :             .map(|(uncle, hash)| {</span></a>
+<a name="911"><span class="lineNum">     911 </span><span class="lineCov">        256 :                 let header = HeaderView {</span></a>
+<a name="912"><span class="lineNum">     912 </span><span class="lineCov">        256 :                     inner: uncle.header().into(),</span></a>
+<a name="913"><span class="lineNum">     913 </span><span class="lineCov">        256 :                     hash: hash.unpack(),</span></a>
+<a name="914"><span class="lineNum">     914 </span><span class="lineCov">        256 :                 };</span></a>
+<a name="915"><span class="lineNum">     915 </span><span class="lineCov">        256 :                 UncleBlockView {</span></a>
+<a name="916"><span class="lineNum">     916 </span><span class="lineCov">        256 :                     header,</span></a>
+<a name="917"><span class="lineNum">     917 </span><span class="lineCov">        256 :                     proposals: uncle.proposals().into_iter().map(Into::into).collect(),</span></a>
+<a name="918"><span class="lineNum">     918 </span><span class="lineCov">        256 :                 }</span></a>
+<a name="919"><span class="lineNum">     919 </span><span class="lineCov">        310 :             })</span></a>
+<a name="920"><span class="lineNum">     920 </span><span class="lineCov">        310 :             .collect();</span></a>
+<a name="921"><span class="lineNum">     921 </span><span class="lineCov">        310 :         let transactions = block</span></a>
+<a name="922"><span class="lineNum">     922 </span><span class="lineCov">        310 :             .transactions()</span></a>
+<a name="923"><span class="lineNum">     923 </span><span class="lineCov">        310 :             .into_iter()</span></a>
+<a name="924"><span class="lineNum">     924 </span><span class="lineCov">        310 :             .zip(input.tx_hashes().iter())</span></a>
+<a name="925"><span class="lineNum">     925 </span><span class="lineCov">        310 :             .map(|(tx, hash)| TransactionView {</span></a>
+<a name="926"><span class="lineNum">     926 </span><span class="lineCov">        310 :                 inner: tx.into(),</span></a>
+<a name="927"><span class="lineNum">     927 </span><span class="lineCov">        310 :                 hash: hash.unpack(),</span></a>
+<a name="928"><span class="lineNum">     928 </span><span class="lineCov">        310 :             })</span></a>
+<a name="929"><span class="lineNum">     929 </span><span class="lineCov">        310 :             .collect();</span></a>
+<a name="930"><span class="lineNum">     930 </span><span class="lineCov">        310 :         Self {</span></a>
+<a name="931"><span class="lineNum">     931 </span><span class="lineCov">        310 :             header,</span></a>
+<a name="932"><span class="lineNum">     932 </span><span class="lineCov">        310 :             uncles,</span></a>
+<a name="933"><span class="lineNum">     933 </span><span class="lineCov">        310 :             transactions,</span></a>
+<a name="934"><span class="lineNum">     934 </span><span class="lineCov">        310 :             proposals: block.proposals().into_iter().map(Into::into).collect(),</span></a>
+<a name="935"><span class="lineNum">     935 </span><span class="lineCov">        310 :             extension: block.extension().map(Into::into),</span></a>
+<a name="936"><span class="lineNum">     936 </span><span class="lineCov">        310 :         }</span></a>
+<a name="937"><span class="lineNum">     937 </span><span class="lineCov">        310 :     }</span></a>
 <a name="938"><span class="lineNum">     938 </span>            : }</a>
 <a name="939"><span class="lineNum">     939 </span>            : </a>
 <a name="940"><span class="lineNum">     940 </span>            : impl From&lt;Block&gt; for packed::Block {</a>
-<a name="941"><span class="lineNum">     941 </span><span class="lineCov">        548 :     fn from(json: Block) -&gt; Self {</span></a>
-<a name="942"><span class="lineNum">     942 </span><span class="lineCov">        548 :         let Block {</span></a>
-<a name="943"><span class="lineNum">     943 </span><span class="lineCov">        548 :             header,</span></a>
-<a name="944"><span class="lineNum">     944 </span><span class="lineCov">        548 :             uncles,</span></a>
-<a name="945"><span class="lineNum">     945 </span><span class="lineCov">        548 :             transactions,</span></a>
-<a name="946"><span class="lineNum">     946 </span><span class="lineCov">        548 :             proposals,</span></a>
-<a name="947"><span class="lineNum">     947 </span><span class="lineCov">        548 :             extension,</span></a>
+<a name="941"><span class="lineNum">     941 </span><span class="lineCov">        274 :     fn from(json: Block) -&gt; Self {</span></a>
+<a name="942"><span class="lineNum">     942 </span><span class="lineCov">        274 :         let Block {</span></a>
+<a name="943"><span class="lineNum">     943 </span><span class="lineCov">        274 :             header,</span></a>
+<a name="944"><span class="lineNum">     944 </span><span class="lineCov">        274 :             uncles,</span></a>
+<a name="945"><span class="lineNum">     945 </span><span class="lineCov">        274 :             transactions,</span></a>
+<a name="946"><span class="lineNum">     946 </span><span class="lineCov">        274 :             proposals,</span></a>
+<a name="947"><span class="lineNum">     947 </span><span class="lineCov">        274 :             extension,</span></a>
 <a name="948"><span class="lineNum">     948 </span>            :         } = json;</a>
-<a name="949"><span class="lineNum">     949 </span><span class="lineCov">        548 :         if let Some(extension) = extension {</span></a>
+<a name="949"><span class="lineNum">     949 </span><span class="lineCov">        274 :         if let Some(extension) = extension {</span></a>
 <a name="950"><span class="lineNum">     950 </span><span class="lineNoCov">          0 :             let extension: packed::Bytes = extension.into();</span></a>
 <a name="951"><span class="lineNum">     951 </span><span class="lineNoCov">          0 :             packed::BlockV1::new_builder()</span></a>
 <a name="952"><span class="lineNum">     952 </span><span class="lineNoCov">          0 :                 .header(header.into())</span></a>
@@ -1019,44 +1019,44 @@
 <a name="957"><span class="lineNum">     957 </span><span class="lineNoCov">          0 :                 .build()</span></a>
 <a name="958"><span class="lineNum">     958 </span><span class="lineNoCov">          0 :                 .as_v0()</span></a>
 <a name="959"><span class="lineNum">     959 </span>            :         } else {</a>
-<a name="960"><span class="lineNum">     960 </span><span class="lineCov">        548 :             packed::Block::new_builder()</span></a>
-<a name="961"><span class="lineNum">     961 </span><span class="lineCov">        548 :                 .header(header.into())</span></a>
-<a name="962"><span class="lineNum">     962 </span><span class="lineCov">        548 :                 .uncles(uncles.into_iter().map(Into::into).pack())</span></a>
-<a name="963"><span class="lineNum">     963 </span><span class="lineCov">        548 :                 .transactions(transactions.into_iter().map(Into::into).pack())</span></a>
-<a name="964"><span class="lineNum">     964 </span><span class="lineCov">        548 :                 .proposals(proposals.into_iter().map(Into::into).pack())</span></a>
-<a name="965"><span class="lineNum">     965 </span><span class="lineCov">        548 :                 .build()</span></a>
+<a name="960"><span class="lineNum">     960 </span><span class="lineCov">        274 :             packed::Block::new_builder()</span></a>
+<a name="961"><span class="lineNum">     961 </span><span class="lineCov">        274 :                 .header(header.into())</span></a>
+<a name="962"><span class="lineNum">     962 </span><span class="lineCov">        274 :                 .uncles(uncles.into_iter().map(Into::into).pack())</span></a>
+<a name="963"><span class="lineNum">     963 </span><span class="lineCov">        274 :                 .transactions(transactions.into_iter().map(Into::into).pack())</span></a>
+<a name="964"><span class="lineNum">     964 </span><span class="lineCov">        274 :                 .proposals(proposals.into_iter().map(Into::into).pack())</span></a>
+<a name="965"><span class="lineNum">     965 </span><span class="lineCov">        274 :                 .build()</span></a>
 <a name="966"><span class="lineNum">     966 </span>            :         }</a>
-<a name="967"><span class="lineNum">     967 </span><span class="lineCov">        548 :     }</span></a>
+<a name="967"><span class="lineNum">     967 </span><span class="lineCov">        274 :     }</span></a>
 <a name="968"><span class="lineNum">     968 </span>            : }</a>
 <a name="969"><span class="lineNum">     969 </span>            : </a>
 <a name="970"><span class="lineNum">     970 </span>            : impl From&lt;BlockView&gt; for core::BlockView {</a>
-<a name="971"><span class="lineNum">     971 </span><span class="lineCov">        512 :     fn from(input: BlockView) -&gt; Self {</span></a>
-<a name="972"><span class="lineNum">     972 </span><span class="lineCov">        512 :         let BlockView {</span></a>
-<a name="973"><span class="lineNum">     973 </span><span class="lineCov">        512 :             header,</span></a>
-<a name="974"><span class="lineNum">     974 </span><span class="lineCov">        512 :             uncles,</span></a>
-<a name="975"><span class="lineNum">     975 </span><span class="lineCov">        512 :             transactions,</span></a>
-<a name="976"><span class="lineNum">     976 </span><span class="lineCov">        512 :             proposals,</span></a>
-<a name="977"><span class="lineNum">     977 </span><span class="lineCov">        512 :             extension,</span></a>
-<a name="978"><span class="lineNum">     978 </span><span class="lineCov">        512 :         } = input;</span></a>
-<a name="979"><span class="lineNum">     979 </span><span class="lineCov">        512 :         let block = Block {</span></a>
-<a name="980"><span class="lineNum">     980 </span><span class="lineCov">        512 :             header: header.inner,</span></a>
-<a name="981"><span class="lineNum">     981 </span><span class="lineCov">        512 :             uncles: uncles</span></a>
-<a name="982"><span class="lineNum">     982 </span><span class="lineCov">        512 :                 .into_iter()</span></a>
-<a name="983"><span class="lineNum">     983 </span><span class="lineCov">        512 :                 .map(|u| {</span></a>
-<a name="984"><span class="lineNum">     984 </span><span class="lineCov">        512 :                     let UncleBlockView { header, proposals } = u;</span></a>
-<a name="985"><span class="lineNum">     985 </span><span class="lineCov">        512 :                     UncleBlock {</span></a>
-<a name="986"><span class="lineNum">     986 </span><span class="lineCov">        512 :                         header: header.inner,</span></a>
-<a name="987"><span class="lineNum">     987 </span><span class="lineCov">        512 :                         proposals,</span></a>
-<a name="988"><span class="lineNum">     988 </span><span class="lineCov">        512 :                     }</span></a>
-<a name="989"><span class="lineNum">     989 </span><span class="lineCov">        512 :                 })</span></a>
-<a name="990"><span class="lineNum">     990 </span><span class="lineCov">        512 :                 .collect(),</span></a>
-<a name="991"><span class="lineNum">     991 </span><span class="lineCov">        512 :             transactions: transactions.into_iter().map(|tx| tx.inner).collect(),</span></a>
-<a name="992"><span class="lineNum">     992 </span><span class="lineCov">        512 :             proposals,</span></a>
-<a name="993"><span class="lineNum">     993 </span><span class="lineCov">        512 :             extension,</span></a>
-<a name="994"><span class="lineNum">     994 </span><span class="lineCov">        512 :         };</span></a>
-<a name="995"><span class="lineNum">     995 </span><span class="lineCov">        512 :         let block: packed::Block = block.into();</span></a>
-<a name="996"><span class="lineNum">     996 </span><span class="lineCov">        512 :         block.into_view()</span></a>
-<a name="997"><span class="lineNum">     997 </span><span class="lineCov">        512 :     }</span></a>
+<a name="971"><span class="lineNum">     971 </span><span class="lineCov">        256 :     fn from(input: BlockView) -&gt; Self {</span></a>
+<a name="972"><span class="lineNum">     972 </span><span class="lineCov">        256 :         let BlockView {</span></a>
+<a name="973"><span class="lineNum">     973 </span><span class="lineCov">        256 :             header,</span></a>
+<a name="974"><span class="lineNum">     974 </span><span class="lineCov">        256 :             uncles,</span></a>
+<a name="975"><span class="lineNum">     975 </span><span class="lineCov">        256 :             transactions,</span></a>
+<a name="976"><span class="lineNum">     976 </span><span class="lineCov">        256 :             proposals,</span></a>
+<a name="977"><span class="lineNum">     977 </span><span class="lineCov">        256 :             extension,</span></a>
+<a name="978"><span class="lineNum">     978 </span><span class="lineCov">        256 :         } = input;</span></a>
+<a name="979"><span class="lineNum">     979 </span><span class="lineCov">        256 :         let block = Block {</span></a>
+<a name="980"><span class="lineNum">     980 </span><span class="lineCov">        256 :             header: header.inner,</span></a>
+<a name="981"><span class="lineNum">     981 </span><span class="lineCov">        256 :             uncles: uncles</span></a>
+<a name="982"><span class="lineNum">     982 </span><span class="lineCov">        256 :                 .into_iter()</span></a>
+<a name="983"><span class="lineNum">     983 </span><span class="lineCov">        256 :                 .map(|u| {</span></a>
+<a name="984"><span class="lineNum">     984 </span><span class="lineCov">        256 :                     let UncleBlockView { header, proposals } = u;</span></a>
+<a name="985"><span class="lineNum">     985 </span><span class="lineCov">        256 :                     UncleBlock {</span></a>
+<a name="986"><span class="lineNum">     986 </span><span class="lineCov">        256 :                         header: header.inner,</span></a>
+<a name="987"><span class="lineNum">     987 </span><span class="lineCov">        256 :                         proposals,</span></a>
+<a name="988"><span class="lineNum">     988 </span><span class="lineCov">        256 :                     }</span></a>
+<a name="989"><span class="lineNum">     989 </span><span class="lineCov">        256 :                 })</span></a>
+<a name="990"><span class="lineNum">     990 </span><span class="lineCov">        256 :                 .collect(),</span></a>
+<a name="991"><span class="lineNum">     991 </span><span class="lineCov">        256 :             transactions: transactions.into_iter().map(|tx| tx.inner).collect(),</span></a>
+<a name="992"><span class="lineNum">     992 </span><span class="lineCov">        256 :             proposals,</span></a>
+<a name="993"><span class="lineNum">     993 </span><span class="lineCov">        256 :             extension,</span></a>
+<a name="994"><span class="lineNum">     994 </span><span class="lineCov">        256 :         };</span></a>
+<a name="995"><span class="lineNum">     995 </span><span class="lineCov">        256 :         let block: packed::Block = block.into();</span></a>
+<a name="996"><span class="lineNum">     996 </span><span class="lineCov">        256 :         block.into_view()</span></a>
+<a name="997"><span class="lineNum">     997 </span><span class="lineCov">        256 :     }</span></a>
 <a name="998"><span class="lineNum">     998 </span>            : }</a>
 <a name="999"><span class="lineNum">     999 </span>            : </a>
 <a name="1000"><span class="lineNum">    1000 </span>            : /// JSON view of an epoch.</a>
@@ -1075,7 +1075,7 @@
 <a name="1013"><span class="lineNum">    1013 </span>            : /// }</a>
 <a name="1014"><span class="lineNum">    1014 </span>            : /// # &quot;#).unwrap();</a>
 <a name="1015"><span class="lineNum">    1015 </span>            : /// ```</a>
-<a name="1016"><span class="lineNum">    1016 </span><span class="lineCov">         16 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="1016"><span class="lineNum">    1016 </span><span class="lineCov">          8 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="1017"><span class="lineNum">    1017 </span>            : pub struct EpochView {</a>
 <a name="1018"><span class="lineNum">    1018 </span>            :     /// Consecutive epoch number starting from 0.</a>
 <a name="1019"><span class="lineNum">    1019 </span>            :     pub number: EpochNumber,</a>
@@ -1092,18 +1092,18 @@
 <a name="1030"><span class="lineNum">    1030 </span>            : </a>
 <a name="1031"><span class="lineNum">    1031 </span>            : impl EpochView {</a>
 <a name="1032"><span class="lineNum">    1032 </span>            :     /// Creates the view from the stored ext.</a>
-<a name="1033"><span class="lineNum">    1033 </span><span class="lineCov">         72 :     pub fn from_ext(ext: packed::EpochExt) -&gt; EpochView {</span></a>
-<a name="1034"><span class="lineNum">    1034 </span><span class="lineCov">         72 :         EpochView {</span></a>
-<a name="1035"><span class="lineNum">    1035 </span><span class="lineCov">         72 :             number: ext.number().unpack(),</span></a>
-<a name="1036"><span class="lineNum">    1036 </span><span class="lineCov">         72 :             start_number: ext.start_number().unpack(),</span></a>
-<a name="1037"><span class="lineNum">    1037 </span><span class="lineCov">         72 :             length: ext.length().unpack(),</span></a>
-<a name="1038"><span class="lineNum">    1038 </span><span class="lineCov">         72 :             compact_target: ext.compact_target().unpack(),</span></a>
-<a name="1039"><span class="lineNum">    1039 </span><span class="lineCov">         72 :         }</span></a>
-<a name="1040"><span class="lineNum">    1040 </span><span class="lineCov">         72 :     }</span></a>
+<a name="1033"><span class="lineNum">    1033 </span><span class="lineCov">         36 :     pub fn from_ext(ext: packed::EpochExt) -&gt; EpochView {</span></a>
+<a name="1034"><span class="lineNum">    1034 </span><span class="lineCov">         36 :         EpochView {</span></a>
+<a name="1035"><span class="lineNum">    1035 </span><span class="lineCov">         36 :             number: ext.number().unpack(),</span></a>
+<a name="1036"><span class="lineNum">    1036 </span><span class="lineCov">         36 :             start_number: ext.start_number().unpack(),</span></a>
+<a name="1037"><span class="lineNum">    1037 </span><span class="lineCov">         36 :             length: ext.length().unpack(),</span></a>
+<a name="1038"><span class="lineNum">    1038 </span><span class="lineCov">         36 :             compact_target: ext.compact_target().unpack(),</span></a>
+<a name="1039"><span class="lineNum">    1039 </span><span class="lineCov">         36 :         }</span></a>
+<a name="1040"><span class="lineNum">    1040 </span><span class="lineCov">         36 :     }</span></a>
 <a name="1041"><span class="lineNum">    1041 </span>            : }</a>
 <a name="1042"><span class="lineNum">    1042 </span>            : </a>
 <a name="1043"><span class="lineNum">    1043 </span>            : /// Block base rewards.</a>
-<a name="1044"><span class="lineNum">    1044 </span><span class="lineCov">          8 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="1044"><span class="lineNum">    1044 </span><span class="lineCov">          4 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="1045"><span class="lineNum">    1045 </span>            : pub struct BlockIssuance {</a>
 <a name="1046"><span class="lineNum">    1046 </span>            :     /// The primary base rewards.</a>
 <a name="1047"><span class="lineNum">    1047 </span>            :     pub primary: Capacity,</a>
@@ -1112,12 +1112,12 @@
 <a name="1050"><span class="lineNum">    1050 </span>            : }</a>
 <a name="1051"><span class="lineNum">    1051 </span>            : </a>
 <a name="1052"><span class="lineNum">    1052 </span>            : impl From&lt;core::BlockIssuance&gt; for BlockIssuance {</a>
-<a name="1053"><span class="lineNum">    1053 </span><span class="lineCov">         36 :     fn from(core: core::BlockIssuance) -&gt; Self {</span></a>
-<a name="1054"><span class="lineNum">    1054 </span><span class="lineCov">         36 :         Self {</span></a>
-<a name="1055"><span class="lineNum">    1055 </span><span class="lineCov">         36 :             primary: core.primary.into(),</span></a>
-<a name="1056"><span class="lineNum">    1056 </span><span class="lineCov">         36 :             secondary: core.secondary.into(),</span></a>
-<a name="1057"><span class="lineNum">    1057 </span><span class="lineCov">         36 :         }</span></a>
-<a name="1058"><span class="lineNum">    1058 </span><span class="lineCov">         36 :     }</span></a>
+<a name="1053"><span class="lineNum">    1053 </span><span class="lineCov">         18 :     fn from(core: core::BlockIssuance) -&gt; Self {</span></a>
+<a name="1054"><span class="lineNum">    1054 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="1055"><span class="lineNum">    1055 </span><span class="lineCov">         18 :             primary: core.primary.into(),</span></a>
+<a name="1056"><span class="lineNum">    1056 </span><span class="lineCov">         18 :             secondary: core.secondary.into(),</span></a>
+<a name="1057"><span class="lineNum">    1057 </span><span class="lineCov">         18 :         }</span></a>
+<a name="1058"><span class="lineNum">    1058 </span><span class="lineCov">         18 :     }</span></a>
 <a name="1059"><span class="lineNum">    1059 </span>            : }</a>
 <a name="1060"><span class="lineNum">    1060 </span>            : </a>
 <a name="1061"><span class="lineNum">    1061 </span>            : impl From&lt;BlockIssuance&gt; for core::BlockIssuance {</a>
@@ -1130,7 +1130,7 @@
 <a name="1068"><span class="lineNum">    1068 </span>            : }</a>
 <a name="1069"><span class="lineNum">    1069 </span>            : </a>
 <a name="1070"><span class="lineNum">    1070 </span>            : /// Block rewards for miners.</a>
-<a name="1071"><span class="lineNum">    1071 </span><span class="lineCov">          8 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="1071"><span class="lineNum">    1071 </span><span class="lineCov">          4 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="1072"><span class="lineNum">    1072 </span>            : pub struct MinerReward {</a>
 <a name="1073"><span class="lineNum">    1073 </span>            :     /// The primary base block reward allocated to miners.</a>
 <a name="1074"><span class="lineNum">    1074 </span>            :     pub primary: Capacity,</a>
@@ -1149,14 +1149,14 @@
 <a name="1087"><span class="lineNum">    1087 </span>            : }</a>
 <a name="1088"><span class="lineNum">    1088 </span>            : </a>
 <a name="1089"><span class="lineNum">    1089 </span>            : impl From&lt;core::MinerReward&gt; for MinerReward {</a>
-<a name="1090"><span class="lineNum">    1090 </span><span class="lineCov">         36 :     fn from(core: core::MinerReward) -&gt; Self {</span></a>
-<a name="1091"><span class="lineNum">    1091 </span><span class="lineCov">         36 :         Self {</span></a>
-<a name="1092"><span class="lineNum">    1092 </span><span class="lineCov">         36 :             primary: core.primary.into(),</span></a>
-<a name="1093"><span class="lineNum">    1093 </span><span class="lineCov">         36 :             secondary: core.secondary.into(),</span></a>
-<a name="1094"><span class="lineNum">    1094 </span><span class="lineCov">         36 :             committed: core.committed.into(),</span></a>
-<a name="1095"><span class="lineNum">    1095 </span><span class="lineCov">         36 :             proposal: core.proposal.into(),</span></a>
-<a name="1096"><span class="lineNum">    1096 </span><span class="lineCov">         36 :         }</span></a>
-<a name="1097"><span class="lineNum">    1097 </span><span class="lineCov">         36 :     }</span></a>
+<a name="1090"><span class="lineNum">    1090 </span><span class="lineCov">         18 :     fn from(core: core::MinerReward) -&gt; Self {</span></a>
+<a name="1091"><span class="lineNum">    1091 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="1092"><span class="lineNum">    1092 </span><span class="lineCov">         18 :             primary: core.primary.into(),</span></a>
+<a name="1093"><span class="lineNum">    1093 </span><span class="lineCov">         18 :             secondary: core.secondary.into(),</span></a>
+<a name="1094"><span class="lineNum">    1094 </span><span class="lineCov">         18 :             committed: core.committed.into(),</span></a>
+<a name="1095"><span class="lineNum">    1095 </span><span class="lineCov">         18 :             proposal: core.proposal.into(),</span></a>
+<a name="1096"><span class="lineNum">    1096 </span><span class="lineCov">         18 :         }</span></a>
+<a name="1097"><span class="lineNum">    1097 </span><span class="lineCov">         18 :     }</span></a>
 <a name="1098"><span class="lineNum">    1098 </span>            : }</a>
 <a name="1099"><span class="lineNum">    1099 </span>            : </a>
 <a name="1100"><span class="lineNum">    1100 </span>            : impl From&lt;MinerReward&gt; for core::MinerReward {</a>
@@ -1173,7 +1173,7 @@
 <a name="1111"><span class="lineNum">    1111 </span>            : /// Block Economic State.</a>
 <a name="1112"><span class="lineNum">    1112 </span>            : ///</a>
 <a name="1113"><span class="lineNum">    1113 </span>            : /// It includes the rewards details and when it is finalized.</a>
-<a name="1114"><span class="lineNum">    1114 </span><span class="lineCov">          8 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="1114"><span class="lineNum">    1114 </span><span class="lineCov">          4 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="1115"><span class="lineNum">    1115 </span>            : pub struct BlockEconomicState {</a>
 <a name="1116"><span class="lineNum">    1116 </span>            :     /// Block base rewards.</a>
 <a name="1117"><span class="lineNum">    1117 </span>            :     pub issuance: BlockIssuance,</a>
@@ -1186,14 +1186,14 @@
 <a name="1124"><span class="lineNum">    1124 </span>            : }</a>
 <a name="1125"><span class="lineNum">    1125 </span>            : </a>
 <a name="1126"><span class="lineNum">    1126 </span>            : impl From&lt;core::BlockEconomicState&gt; for BlockEconomicState {</a>
-<a name="1127"><span class="lineNum">    1127 </span><span class="lineCov">         36 :     fn from(core: core::BlockEconomicState) -&gt; Self {</span></a>
-<a name="1128"><span class="lineNum">    1128 </span><span class="lineCov">         36 :         Self {</span></a>
-<a name="1129"><span class="lineNum">    1129 </span><span class="lineCov">         36 :             issuance: core.issuance.into(),</span></a>
-<a name="1130"><span class="lineNum">    1130 </span><span class="lineCov">         36 :             miner_reward: core.miner_reward.into(),</span></a>
-<a name="1131"><span class="lineNum">    1131 </span><span class="lineCov">         36 :             txs_fee: core.txs_fee.into(),</span></a>
-<a name="1132"><span class="lineNum">    1132 </span><span class="lineCov">         36 :             finalized_at: core.finalized_at.unpack(),</span></a>
-<a name="1133"><span class="lineNum">    1133 </span><span class="lineCov">         36 :         }</span></a>
-<a name="1134"><span class="lineNum">    1134 </span><span class="lineCov">         36 :     }</span></a>
+<a name="1127"><span class="lineNum">    1127 </span><span class="lineCov">         18 :     fn from(core: core::BlockEconomicState) -&gt; Self {</span></a>
+<a name="1128"><span class="lineNum">    1128 </span><span class="lineCov">         18 :         Self {</span></a>
+<a name="1129"><span class="lineNum">    1129 </span><span class="lineCov">         18 :             issuance: core.issuance.into(),</span></a>
+<a name="1130"><span class="lineNum">    1130 </span><span class="lineCov">         18 :             miner_reward: core.miner_reward.into(),</span></a>
+<a name="1131"><span class="lineNum">    1131 </span><span class="lineCov">         18 :             txs_fee: core.txs_fee.into(),</span></a>
+<a name="1132"><span class="lineNum">    1132 </span><span class="lineCov">         18 :             finalized_at: core.finalized_at.unpack(),</span></a>
+<a name="1133"><span class="lineNum">    1133 </span><span class="lineCov">         18 :         }</span></a>
+<a name="1134"><span class="lineNum">    1134 </span><span class="lineCov">         18 :     }</span></a>
 <a name="1135"><span class="lineNum">    1135 </span>            : }</a>
 <a name="1136"><span class="lineNum">    1136 </span>            : </a>
 <a name="1137"><span class="lineNum">    1137 </span>            : impl From&lt;BlockEconomicState&gt; for core::BlockEconomicState {</a>
@@ -1208,7 +1208,7 @@
 <a name="1146"><span class="lineNum">    1146 </span>            : }</a>
 <a name="1147"><span class="lineNum">    1147 </span>            : </a>
 <a name="1148"><span class="lineNum">    1148 </span>            : /// Merkle proof for transactions in a block.</a>
-<a name="1149"><span class="lineNum">    1149 </span><span class="lineCov">         56 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="1149"><span class="lineNum">    1149 </span><span class="lineCov">         28 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="1150"><span class="lineNum">    1150 </span>            : pub struct TransactionProof {</a>
 <a name="1151"><span class="lineNum">    1151 </span>            :     /// Block hash</a>
 <a name="1152"><span class="lineNum">    1152 </span>            :     pub block_hash: H256,</a>
@@ -1221,7 +1221,7 @@
 <a name="1159"><span class="lineNum">    1159 </span>            : /// Proof of CKB Merkle Tree.</a>
 <a name="1160"><span class="lineNum">    1160 </span>            : ///</a>
 <a name="1161"><span class="lineNum">    1161 </span>            : /// CKB Merkle Tree is a [CBMT](https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0006-merkle-tree/0006-merkle-tree.md) using CKB blake2b hash as the merge function.</a>
-<a name="1162"><span class="lineNum">    1162 </span><span class="lineCov">         40 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="1162"><span class="lineNum">    1162 </span><span class="lineCov">         20 : #[derive(Clone, Default, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="1163"><span class="lineNum">    1163 </span>            : pub struct MerkleProof {</a>
 <a name="1164"><span class="lineNum">    1164 </span>            :     /// Leaves indices in the CBMT that are proved present in the block.</a>
 <a name="1165"><span class="lineNum">    1165 </span>            :     ///</a>
@@ -1249,7 +1249,7 @@
 <a name="1187"><span class="lineNum">    1187 </span>            : ///                               \</a>
 <a name="1188"><span class="lineNum">    1188 </span>            : ///                             commit</a>
 <a name="1189"><span class="lineNum">    1189 </span>            : /// ```</a>
-<a name="1190"><span class="lineNum">    1190 </span><span class="lineCov">          8 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]</span></a>
+<a name="1190"><span class="lineNum">    1190 </span><span class="lineCov">          4 : #[derive(Clone, Serialize, Deserialize, PartialEq, Eq, Debug)]</span></a>
 <a name="1191"><span class="lineNum">    1191 </span>            : pub struct ProposalWindow {</a>
 <a name="1192"><span class="lineNum">    1192 </span>            :     /// The closest distance between the proposal and the commitment.</a>
 <a name="1193"><span class="lineNum">    1193 </span>            :     pub closest: BlockNumber,</a>
@@ -1258,7 +1258,7 @@
 <a name="1196"><span class="lineNum">    1196 </span>            : }</a>
 <a name="1197"><span class="lineNum">    1197 </span>            : </a>
 <a name="1198"><span class="lineNum">    1198 </span>            : /// Consensus defines various parameters that influence chain consensus</a>
-<a name="1199"><span class="lineNum">    1199 </span><span class="lineCov">          8 : #[derive(Clone, Serialize, Deserialize, Debug)]</span></a>
+<a name="1199"><span class="lineNum">    1199 </span><span class="lineCov">          4 : #[derive(Clone, Serialize, Deserialize, Debug)]</span></a>
 <a name="1200"><span class="lineNum">    1200 </span>            : pub struct Consensus {</a>
 <a name="1201"><span class="lineNum">    1201 </span>            :     /// Names the network.</a>
 <a name="1202"><span class="lineNum">    1202 </span>            :     pub id: String,</a>
@@ -1309,7 +1309,7 @@
 <a name="1247"><span class="lineNum">    1247 </span>            : }</a>
 <a name="1248"><span class="lineNum">    1248 </span>            : </a>
 <a name="1249"><span class="lineNum">    1249 </span>            : /// The information about one hardfork feature.</a>
-<a name="1250"><span class="lineNum">    1250 </span><span class="lineCov">         56 : #[derive(Clone, Serialize, Deserialize, Debug)]</span></a>
+<a name="1250"><span class="lineNum">    1250 </span><span class="lineCov">         28 : #[derive(Clone, Serialize, Deserialize, Debug)]</span></a>
 <a name="1251"><span class="lineNum">    1251 </span>            : pub struct HardForkFeature {</a>
 <a name="1252"><span class="lineNum">    1252 </span>            :     /// The related RFC ID.</a>
 <a name="1253"><span class="lineNum">    1253 </span>            :     pub rfc: String,</a>
@@ -1317,209 +1317,36 @@
 <a name="1255"><span class="lineNum">    1255 </span>            :     pub epoch_number: Option&lt;EpochNumber&gt;,</a>
 <a name="1256"><span class="lineNum">    1256 </span>            : }</a>
 <a name="1257"><span class="lineNum">    1257 </span>            : </a>
-<a name="1258"><span class="lineNum">    1258 </span><span class="lineCov">        252 : fn convert(number: core::EpochNumber) -&gt; Option&lt;EpochNumber&gt; {</span></a>
-<a name="1259"><span class="lineNum">    1259 </span><span class="lineCov">        252 :     if number == core::EpochNumber::MAX {</span></a>
-<a name="1260"><span class="lineNum">    1260 </span><span class="lineCov">        252 :         None</span></a>
+<a name="1258"><span class="lineNum">    1258 </span><span class="lineCov">        126 : fn convert(number: core::EpochNumber) -&gt; Option&lt;EpochNumber&gt; {</span></a>
+<a name="1259"><span class="lineNum">    1259 </span><span class="lineCov">        126 :     if number == core::EpochNumber::MAX {</span></a>
+<a name="1260"><span class="lineNum">    1260 </span><span class="lineCov">        126 :         None</span></a>
 <a name="1261"><span class="lineNum">    1261 </span>            :     } else {</a>
 <a name="1262"><span class="lineNum">    1262 </span><span class="lineNoCov">          0 :         Some(number.into())</span></a>
 <a name="1263"><span class="lineNum">    1263 </span>            :     }</a>
-<a name="1264"><span class="lineNum">    1264 </span><span class="lineCov">        252 : }</span></a>
+<a name="1264"><span class="lineNum">    1264 </span><span class="lineCov">        126 : }</span></a>
 <a name="1265"><span class="lineNum">    1265 </span>            : </a>
 <a name="1266"><span class="lineNum">    1266 </span>            : impl HardForkFeature {</a>
 <a name="1267"><span class="lineNum">    1267 </span>            :     /// Creates a new struct.</a>
-<a name="1268"><span class="lineNum">    1268 </span><span class="lineCov">        252 :     pub fn new(rfc: &amp;str, epoch_number: Option&lt;EpochNumber&gt;) -&gt; Self {</span></a>
-<a name="1269"><span class="lineNum">    1269 </span><span class="lineCov">        252 :         Self {</span></a>
-<a name="1270"><span class="lineNum">    1270 </span><span class="lineCov">        252 :             rfc: rfc.to_owned(),</span></a>
-<a name="1271"><span class="lineNum">    1271 </span><span class="lineCov">        252 :             epoch_number,</span></a>
-<a name="1272"><span class="lineNum">    1272 </span><span class="lineCov">        252 :         }</span></a>
-<a name="1273"><span class="lineNum">    1273 </span><span class="lineCov">        252 :     }</span></a>
+<a name="1268"><span class="lineNum">    1268 </span><span class="lineCov">        126 :     pub fn new(rfc: &amp;str, epoch_number: Option&lt;EpochNumber&gt;) -&gt; Self {</span></a>
+<a name="1269"><span class="lineNum">    1269 </span><span class="lineCov">        126 :         Self {</span></a>
+<a name="1270"><span class="lineNum">    1270 </span><span class="lineCov">        126 :             rfc: rfc.to_owned(),</span></a>
+<a name="1271"><span class="lineNum">    1271 </span><span class="lineCov">        126 :             epoch_number,</span></a>
+<a name="1272"><span class="lineNum">    1272 </span><span class="lineCov">        126 :         }</span></a>
+<a name="1273"><span class="lineNum">    1273 </span><span class="lineCov">        126 :     }</span></a>
 <a name="1274"><span class="lineNum">    1274 </span>            : </a>
 <a name="1275"><span class="lineNum">    1275 </span>            :     /// Returns a list of hardfork features from a hardfork switch.</a>
-<a name="1276"><span class="lineNum">    1276 </span><span class="lineCov">         36 :     pub fn load_list_from_switch(switch: &amp;core::hardfork::HardForkSwitch) -&gt; Vec&lt;Self&gt; {</span></a>
-<a name="1277"><span class="lineNum">    1277 </span><span class="lineCov">         36 :         vec![</span></a>
-<a name="1278"><span class="lineNum">    1278 </span><span class="lineCov">         36 :             Self::new(&quot;0028&quot;, convert(switch.rfc_0028())),</span></a>
-<a name="1279"><span class="lineNum">    1279 </span><span class="lineCov">         36 :             Self::new(&quot;0029&quot;, convert(switch.rfc_0029())),</span></a>
-<a name="1280"><span class="lineNum">    1280 </span><span class="lineCov">         36 :             Self::new(&quot;0030&quot;, convert(switch.rfc_0030())),</span></a>
-<a name="1281"><span class="lineNum">    1281 </span><span class="lineCov">         36 :             Self::new(&quot;0031&quot;, convert(switch.rfc_0031())),</span></a>
-<a name="1282"><span class="lineNum">    1282 </span><span class="lineCov">         36 :             Self::new(&quot;0032&quot;, convert(switch.rfc_0032())),</span></a>
-<a name="1283"><span class="lineNum">    1283 </span><span class="lineCov">         36 :             Self::new(&quot;0036&quot;, convert(switch.rfc_0036())),</span></a>
-<a name="1284"><span class="lineNum">    1284 </span><span class="lineCov">         36 :             Self::new(&quot;0038&quot;, convert(switch.rfc_0038())),</span></a>
-<a name="1285"><span class="lineNum">    1285 </span><span class="lineCov">         36 :         ]</span></a>
-<a name="1286"><span class="lineNum">    1286 </span><span class="lineCov">         36 :     }</span></a>
+<a name="1276"><span class="lineNum">    1276 </span><span class="lineCov">         18 :     pub fn load_list_from_switch(switch: &amp;core::hardfork::HardForkSwitch) -&gt; Vec&lt;Self&gt; {</span></a>
+<a name="1277"><span class="lineNum">    1277 </span><span class="lineCov">         18 :         vec![</span></a>
+<a name="1278"><span class="lineNum">    1278 </span><span class="lineCov">         18 :             Self::new(&quot;0028&quot;, convert(switch.rfc_0028())),</span></a>
+<a name="1279"><span class="lineNum">    1279 </span><span class="lineCov">         18 :             Self::new(&quot;0029&quot;, convert(switch.rfc_0029())),</span></a>
+<a name="1280"><span class="lineNum">    1280 </span><span class="lineCov">         18 :             Self::new(&quot;0030&quot;, convert(switch.rfc_0030())),</span></a>
+<a name="1281"><span class="lineNum">    1281 </span><span class="lineCov">         18 :             Self::new(&quot;0031&quot;, convert(switch.rfc_0031())),</span></a>
+<a name="1282"><span class="lineNum">    1282 </span><span class="lineCov">         18 :             Self::new(&quot;0032&quot;, convert(switch.rfc_0032())),</span></a>
+<a name="1283"><span class="lineNum">    1283 </span><span class="lineCov">         18 :             Self::new(&quot;0036&quot;, convert(switch.rfc_0036())),</span></a>
+<a name="1284"><span class="lineNum">    1284 </span><span class="lineCov">         18 :             Self::new(&quot;0038&quot;, convert(switch.rfc_0038())),</span></a>
+<a name="1285"><span class="lineNum">    1285 </span><span class="lineCov">         18 :         ]</span></a>
+<a name="1286"><span class="lineNum">    1286 </span><span class="lineCov">         18 :     }</span></a>
 <a name="1287"><span class="lineNum">    1287 </span>            : }</a>
-<a name="1288"><span class="lineNum">    1288 </span>            : </a>
-<a name="1289"><span class="lineNum">    1289 </span>            : #[cfg(test)]</a>
-<a name="1290"><span class="lineNum">    1290 </span>            : mod tests {</a>
-<a name="1291"><span class="lineNum">    1291 </span>            :     use super::*;</a>
-<a name="1292"><span class="lineNum">    1292 </span>            :     use ckb_types::{bytes::Bytes, core::TransactionBuilder, h256, packed::Byte32, H256};</a>
-<a name="1293"><span class="lineNum">    1293 </span>            :     use lazy_static::lazy_static;</a>
-<a name="1294"><span class="lineNum">    1294 </span>            :     use proptest::{collection::size_range, prelude::*};</a>
-<a name="1295"><span class="lineNum">    1295 </span>            :     use regex::Regex;</a>
-<a name="1296"><span class="lineNum">    1296 </span>            : </a>
-<a name="1297"><span class="lineNum">    1297 </span><span class="lineCov">        512 :     fn mock_script(arg: Bytes) -&gt; packed::Script {</span></a>
-<a name="1298"><span class="lineNum">    1298 </span><span class="lineCov">        512 :         packed::ScriptBuilder::default()</span></a>
-<a name="1299"><span class="lineNum">    1299 </span><span class="lineCov">        512 :             .code_hash(Byte32::zero())</span></a>
-<a name="1300"><span class="lineNum">    1300 </span><span class="lineCov">        512 :             .args(arg.pack())</span></a>
-<a name="1301"><span class="lineNum">    1301 </span><span class="lineCov">        512 :             .hash_type(core::ScriptHashType::Data.into())</span></a>
-<a name="1302"><span class="lineNum">    1302 </span><span class="lineCov">        512 :             .build()</span></a>
-<a name="1303"><span class="lineNum">    1303 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1304"><span class="lineNum">    1304 </span>            : </a>
-<a name="1305"><span class="lineNum">    1305 </span><span class="lineCov">        512 :     fn mock_cell_output(arg: Bytes) -&gt; packed::CellOutput {</span></a>
-<a name="1306"><span class="lineNum">    1306 </span><span class="lineCov">        512 :         packed::CellOutputBuilder::default()</span></a>
-<a name="1307"><span class="lineNum">    1307 </span><span class="lineCov">        512 :             .capacity(core::Capacity::zero().pack())</span></a>
-<a name="1308"><span class="lineNum">    1308 </span><span class="lineCov">        512 :             .lock(packed::Script::default())</span></a>
-<a name="1309"><span class="lineNum">    1309 </span><span class="lineCov">        512 :             .type_(Some(mock_script(arg)).pack())</span></a>
-<a name="1310"><span class="lineNum">    1310 </span><span class="lineCov">        512 :             .build()</span></a>
-<a name="1311"><span class="lineNum">    1311 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1312"><span class="lineNum">    1312 </span>            : </a>
-<a name="1313"><span class="lineNum">    1313 </span><span class="lineCov">        512 :     fn mock_cell_input() -&gt; packed::CellInput {</span></a>
-<a name="1314"><span class="lineNum">    1314 </span><span class="lineCov">        512 :         packed::CellInput::new(packed::OutPoint::default(), 0)</span></a>
-<a name="1315"><span class="lineNum">    1315 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1316"><span class="lineNum">    1316 </span>            : </a>
-<a name="1317"><span class="lineNum">    1317 </span><span class="lineCov">        512 :     fn mock_full_tx(data: Bytes, arg: Bytes) -&gt; core::TransactionView {</span></a>
-<a name="1318"><span class="lineNum">    1318 </span><span class="lineCov">        512 :         TransactionBuilder::default()</span></a>
-<a name="1319"><span class="lineNum">    1319 </span><span class="lineCov">        512 :             .inputs(vec![mock_cell_input()])</span></a>
-<a name="1320"><span class="lineNum">    1320 </span><span class="lineCov">        512 :             .outputs(vec![mock_cell_output(arg.clone())])</span></a>
-<a name="1321"><span class="lineNum">    1321 </span><span class="lineCov">        512 :             .outputs_data(vec![data.pack()])</span></a>
-<a name="1322"><span class="lineNum">    1322 </span><span class="lineCov">        512 :             .witness(arg.pack())</span></a>
-<a name="1323"><span class="lineNum">    1323 </span><span class="lineCov">        512 :             .build()</span></a>
-<a name="1324"><span class="lineNum">    1324 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1325"><span class="lineNum">    1325 </span>            : </a>
-<a name="1326"><span class="lineNum">    1326 </span><span class="lineCov">        512 :     fn mock_uncle() -&gt; core::UncleBlockView {</span></a>
-<a name="1327"><span class="lineNum">    1327 </span><span class="lineCov">        512 :         core::BlockBuilder::default()</span></a>
-<a name="1328"><span class="lineNum">    1328 </span><span class="lineCov">        512 :             .proposals(vec![packed::ProposalShortId::default()].pack())</span></a>
-<a name="1329"><span class="lineNum">    1329 </span><span class="lineCov">        512 :             .build()</span></a>
-<a name="1330"><span class="lineNum">    1330 </span><span class="lineCov">        512 :             .as_uncle()</span></a>
-<a name="1331"><span class="lineNum">    1331 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1332"><span class="lineNum">    1332 </span>            : </a>
-<a name="1333"><span class="lineNum">    1333 </span><span class="lineCov">        512 :     fn mock_full_block(data: Bytes, arg: Bytes) -&gt; core::BlockView {</span></a>
-<a name="1334"><span class="lineNum">    1334 </span><span class="lineCov">        512 :         core::BlockBuilder::default()</span></a>
-<a name="1335"><span class="lineNum">    1335 </span><span class="lineCov">        512 :             .transactions(vec![mock_full_tx(data, arg)])</span></a>
-<a name="1336"><span class="lineNum">    1336 </span><span class="lineCov">        512 :             .uncles(vec![mock_uncle()])</span></a>
-<a name="1337"><span class="lineNum">    1337 </span><span class="lineCov">        512 :             .proposals(vec![packed::ProposalShortId::default()])</span></a>
-<a name="1338"><span class="lineNum">    1338 </span><span class="lineCov">        512 :             .build()</span></a>
-<a name="1339"><span class="lineNum">    1339 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1340"><span class="lineNum">    1340 </span>            : </a>
-<a name="1341"><span class="lineNum">    1341 </span><span class="lineCov">          2 :     #[test]</span></a>
-<a name="1342"><span class="lineNum">    1342 </span><span class="lineCov">          2 :     fn test_script_serialization() {</span></a>
-<a name="1343"><span class="lineNum">    1343 </span><span class="lineCov">          6 :         for (original, entity) in &amp;[</span></a>
-<a name="1344"><span class="lineNum">    1344 </span><span class="lineCov">          2 :             (</span></a>
-<a name="1345"><span class="lineNum">    1345 </span><span class="lineCov">          2 :                 &quot;{\</span></a>
-<a name="1346"><span class="lineNum">    1346 </span><span class="lineCov">          2 :                     \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1347"><span class="lineNum">    1347 </span><span class="lineCov">          2 :                                     00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1348"><span class="lineNum">    1348 </span><span class="lineCov">          2 :                     \&quot;hash_type\&quot;:\&quot;data\&quot;,\</span></a>
-<a name="1349"><span class="lineNum">    1349 </span><span class="lineCov">          2 :                     \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1350"><span class="lineNum">    1350 </span><span class="lineCov">          2 :                 }&quot;,</span></a>
-<a name="1351"><span class="lineNum">    1351 </span><span class="lineCov">          2 :                 Script {</span></a>
-<a name="1352"><span class="lineNum">    1352 </span><span class="lineCov">          2 :                     code_hash: h256!(&quot;0x0&quot;),</span></a>
-<a name="1353"><span class="lineNum">    1353 </span><span class="lineCov">          2 :                     hash_type: ScriptHashType::Data,</span></a>
-<a name="1354"><span class="lineNum">    1354 </span><span class="lineCov">          2 :                     args: JsonBytes::default(),</span></a>
-<a name="1355"><span class="lineNum">    1355 </span><span class="lineCov">          2 :                 },</span></a>
-<a name="1356"><span class="lineNum">    1356 </span><span class="lineCov">          2 :             ),</span></a>
-<a name="1357"><span class="lineNum">    1357 </span><span class="lineCov">          2 :             (</span></a>
-<a name="1358"><span class="lineNum">    1358 </span><span class="lineCov">          2 :                 &quot;{\</span></a>
-<a name="1359"><span class="lineNum">    1359 </span><span class="lineCov">          2 :                     \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1360"><span class="lineNum">    1360 </span><span class="lineCov">          2 :                                     00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1361"><span class="lineNum">    1361 </span><span class="lineCov">          2 :                     \&quot;hash_type\&quot;:\&quot;type\&quot;,\</span></a>
-<a name="1362"><span class="lineNum">    1362 </span><span class="lineCov">          2 :                     \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1363"><span class="lineNum">    1363 </span><span class="lineCov">          2 :                 }&quot;,</span></a>
-<a name="1364"><span class="lineNum">    1364 </span><span class="lineCov">          2 :                 Script {</span></a>
-<a name="1365"><span class="lineNum">    1365 </span><span class="lineCov">          2 :                     code_hash: h256!(&quot;0x0&quot;),</span></a>
-<a name="1366"><span class="lineNum">    1366 </span><span class="lineCov">          2 :                     hash_type: ScriptHashType::Type,</span></a>
-<a name="1367"><span class="lineNum">    1367 </span><span class="lineCov">          2 :                     args: JsonBytes::default(),</span></a>
-<a name="1368"><span class="lineNum">    1368 </span><span class="lineCov">          2 :                 },</span></a>
-<a name="1369"><span class="lineNum">    1369 </span><span class="lineCov">          2 :             ),</span></a>
-<a name="1370"><span class="lineNum">    1370 </span><span class="lineCov">          2 :             (</span></a>
-<a name="1371"><span class="lineNum">    1371 </span><span class="lineCov">          2 :                 &quot;{\</span></a>
-<a name="1372"><span class="lineNum">    1372 </span><span class="lineCov">          2 :                     \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1373"><span class="lineNum">    1373 </span><span class="lineCov">          2 :                                       00000000000000000000000000000001\&quot;,\</span></a>
-<a name="1374"><span class="lineNum">    1374 </span><span class="lineCov">          2 :                     \&quot;hash_type\&quot;:\&quot;data1\&quot;,\</span></a>
-<a name="1375"><span class="lineNum">    1375 </span><span class="lineCov">          2 :                     \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1376"><span class="lineNum">    1376 </span><span class="lineCov">          2 :                 }&quot;,</span></a>
-<a name="1377"><span class="lineNum">    1377 </span><span class="lineCov">          2 :                 Script {</span></a>
-<a name="1378"><span class="lineNum">    1378 </span><span class="lineCov">          2 :                     code_hash: h256!(&quot;0x1&quot;),</span></a>
-<a name="1379"><span class="lineNum">    1379 </span><span class="lineCov">          2 :                     hash_type: ScriptHashType::Data1,</span></a>
-<a name="1380"><span class="lineNum">    1380 </span><span class="lineCov">          2 :                     args: JsonBytes::default(),</span></a>
-<a name="1381"><span class="lineNum">    1381 </span><span class="lineCov">          2 :                 },</span></a>
-<a name="1382"><span class="lineNum">    1382 </span><span class="lineCov">          2 :             ),</span></a>
-<a name="1383"><span class="lineNum">    1383 </span><span class="lineCov">          2 :         ] {</span></a>
-<a name="1384"><span class="lineNum">    1384 </span><span class="lineCov">          6 :             let decoded: Script = serde_json::from_str(&amp;original).unwrap();</span></a>
-<a name="1385"><span class="lineNum">    1385 </span><span class="lineCov">          6 :             assert_eq!(&amp;decoded, entity);</span></a>
-<a name="1386"><span class="lineNum">    1386 </span><span class="lineCov">          6 :             let encoded = serde_json::to_string(&amp;decoded).unwrap();</span></a>
-<a name="1387"><span class="lineNum">    1387 </span><span class="lineCov">          6 :             assert_eq!(&amp;encoded, original);</span></a>
-<a name="1388"><span class="lineNum">    1388 </span>            :         }</a>
-<a name="1389"><span class="lineNum">    1389 </span><span class="lineCov">         10 :         for malformed in &amp;[</span></a>
-<a name="1390"><span class="lineNum">    1390 </span><span class="lineCov">         10 :             &quot;{\</span></a>
-<a name="1391"><span class="lineNum">    1391 </span><span class="lineCov">         10 :                 \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1392"><span class="lineNum">    1392 </span><span class="lineCov">         10 :                                 00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1393"><span class="lineNum">    1393 </span><span class="lineCov">         10 :                 \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1394"><span class="lineNum">    1394 </span><span class="lineCov">         10 :             }&quot;,</span></a>
-<a name="1395"><span class="lineNum">    1395 </span><span class="lineCov">         10 :             &quot;{\</span></a>
-<a name="1396"><span class="lineNum">    1396 </span><span class="lineCov">         10 :                 \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1397"><span class="lineNum">    1397 </span><span class="lineCov">         10 :                                 00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1398"><span class="lineNum">    1398 </span><span class="lineCov">         10 :                 \&quot;hash_type\&quot;:null,\</span></a>
-<a name="1399"><span class="lineNum">    1399 </span><span class="lineCov">         10 :                 \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1400"><span class="lineNum">    1400 </span><span class="lineCov">         10 :             }&quot;,</span></a>
-<a name="1401"><span class="lineNum">    1401 </span><span class="lineCov">         10 :             &quot;{\</span></a>
-<a name="1402"><span class="lineNum">    1402 </span><span class="lineCov">         10 :                 \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1403"><span class="lineNum">    1403 </span><span class="lineCov">         10 :                                 00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1404"><span class="lineNum">    1404 </span><span class="lineCov">         10 :                 \&quot;hash_type\&quot;:type,\</span></a>
-<a name="1405"><span class="lineNum">    1405 </span><span class="lineCov">         10 :                 \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1406"><span class="lineNum">    1406 </span><span class="lineCov">         10 :             }&quot;,</span></a>
-<a name="1407"><span class="lineNum">    1407 </span><span class="lineCov">         10 :             &quot;{\</span></a>
-<a name="1408"><span class="lineNum">    1408 </span><span class="lineCov">         10 :                 \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1409"><span class="lineNum">    1409 </span><span class="lineCov">         10 :                                 00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1410"><span class="lineNum">    1410 </span><span class="lineCov">         10 :                 \&quot;hash_type\&quot;:\&quot;data2\&quot;,\</span></a>
-<a name="1411"><span class="lineNum">    1411 </span><span class="lineCov">         10 :                 \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1412"><span class="lineNum">    1412 </span><span class="lineCov">         10 :             }&quot;,</span></a>
-<a name="1413"><span class="lineNum">    1413 </span><span class="lineCov">         10 :             &quot;{\</span></a>
-<a name="1414"><span class="lineNum">    1414 </span><span class="lineCov">         10 :                 \&quot;code_hash\&quot;:\&quot;0x00000000000000000000000000000000\</span></a>
-<a name="1415"><span class="lineNum">    1415 </span><span class="lineCov">         10 :                                 00000000000000000000000000000000\&quot;,\</span></a>
-<a name="1416"><span class="lineNum">    1416 </span><span class="lineCov">         10 :                 \&quot;hash_type\&quot;:\&quot;data\&quot;,\</span></a>
-<a name="1417"><span class="lineNum">    1417 </span><span class="lineCov">         10 :                 \&quot;unknown_field\&quot;:0,\</span></a>
-<a name="1418"><span class="lineNum">    1418 </span><span class="lineCov">         10 :                 \&quot;args\&quot;:\&quot;0x\&quot;\</span></a>
-<a name="1419"><span class="lineNum">    1419 </span><span class="lineCov">         10 :             }&quot;,</span></a>
-<a name="1420"><span class="lineNum">    1420 </span><span class="lineCov">         10 :         ] {</span></a>
-<a name="1421"><span class="lineNum">    1421 </span><span class="lineCov">         10 :             let result: Result&lt;Script, _&gt; = serde_json::from_str(&amp;malformed);</span></a>
-<a name="1422"><span class="lineNum">    1422 </span><span class="lineCov">         10 :             assert!(</span></a>
-<a name="1423"><span class="lineNum">    1423 </span><span class="lineCov">         10 :                 result.is_err(),</span></a>
-<a name="1424"><span class="lineNum">    1424 </span><span class="lineNoCov">          0 :                 &quot;should reject malformed json: [{}]&quot;,</span></a>
-<a name="1425"><span class="lineNum">    1425 </span><span class="lineNoCov">          0 :                 malformed</span></a>
-<a name="1426"><span class="lineNum">    1426 </span>            :             )</a>
-<a name="1427"><span class="lineNum">    1427 </span>            :         }</a>
-<a name="1428"><span class="lineNum">    1428 </span><span class="lineCov">          2 :     }</span></a>
-<a name="1429"><span class="lineNum">    1429 </span>            : </a>
-<a name="1430"><span class="lineNum">    1430 </span><span class="lineCov">        512 :     fn _test_block_convert(data: Bytes, arg: Bytes) -&gt; Result&lt;(), TestCaseError&gt; {</span></a>
-<a name="1431"><span class="lineNum">    1431 </span><span class="lineCov">        512 :         let block = mock_full_block(data, arg);</span></a>
-<a name="1432"><span class="lineNum">    1432 </span><span class="lineCov">        512 :         let json_block: BlockView = block.clone().into();</span></a>
-<a name="1433"><span class="lineNum">    1433 </span><span class="lineCov">        512 :         let encoded = serde_json::to_string(&amp;json_block).unwrap();</span></a>
-<a name="1434"><span class="lineNum">    1434 </span><span class="lineCov">        512 :         let decode: BlockView = serde_json::from_str(&amp;encoded).unwrap();</span></a>
-<a name="1435"><span class="lineNum">    1435 </span><span class="lineCov">        512 :         let decode_block: core::BlockView = decode.into();</span></a>
-<a name="1436"><span class="lineNum">    1436 </span><span class="lineCov">        512 :         header_field_format_check(&amp;encoded);</span></a>
-<a name="1437"><span class="lineNum">    1437 </span><span class="lineCov">        512 :         prop_assert_eq!(decode_block.data(), block.data());</span></a>
-<a name="1438"><span class="lineNum">    1438 </span><span class="lineCov">        512 :         prop_assert_eq!(decode_block, block);</span></a>
-<a name="1439"><span class="lineNum">    1439 </span><span class="lineCov">        512 :         Ok(())</span></a>
-<a name="1440"><span class="lineNum">    1440 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1441"><span class="lineNum">    1441 </span>            : </a>
-<a name="1442"><span class="lineNum">    1442 </span><span class="lineCov">        512 :     fn header_field_format_check(json: &amp;str) {</span></a>
-<a name="1443"><span class="lineNum">    1443 </span>            :         lazy_static! {</a>
-<a name="1444"><span class="lineNum">    1444 </span>            :             static ref RE: Regex = Regex::new(&quot;\&quot;(version|compact_target|parent_hash|timestamp|number|epoch|transactions_root|proposals_hash|extra_hash|dao|nonce)\&quot;:\&quot;(?P&lt;value&gt;.*?\&quot;)&quot;).unwrap();</a>
-<a name="1445"><span class="lineNum">    1445 </span>            :         }</a>
-<a name="1446"><span class="lineNum">    1446 </span><span class="lineCov">      11776 :         for caps in RE.captures_iter(json) {</span></a>
-<a name="1447"><span class="lineNum">    1447 </span><span class="lineCov">      11776 :             assert!(&amp;caps[&quot;value&quot;].starts_with(&quot;0x&quot;));</span></a>
-<a name="1448"><span class="lineNum">    1448 </span>            :         }</a>
-<a name="1449"><span class="lineNum">    1449 </span><span class="lineCov">        512 :     }</span></a>
-<a name="1450"><span class="lineNum">    1450 </span>            : </a>
-<a name="1451"><span class="lineNum">    1451 </span><span class="lineCov">        512 :     proptest! {</span></a>
-<a name="1452"><span class="lineNum">    1452 </span><span class="lineCov">        512 :         #[test]</span></a>
-<a name="1453"><span class="lineNum">    1453 </span><span class="lineCov">        512 :         fn test_block_convert(</span></a>
-<a name="1454"><span class="lineNum">    1454 </span><span class="lineCov">        512 :             data in any_with::&lt;Vec&lt;u8&gt;&gt;(size_range(80).lift()),</span></a>
-<a name="1455"><span class="lineNum">    1455 </span><span class="lineCov">        512 :             arg in any_with::&lt;Vec&lt;u8&gt;&gt;(size_range(80).lift()),</span></a>
-<a name="1456"><span class="lineNum">    1456 </span><span class="lineCov">        512 :         ) {</span></a>
-<a name="1457"><span class="lineNum">    1457 </span><span class="lineCov">        512 :             _test_block_convert(Bytes::from(data), Bytes::from(arg))?;</span></a>
-<a name="1458"><span class="lineNum">    1458 </span><span class="lineCov">        514 :         }</span></a>
-<a name="1459"><span class="lineNum">    1459 </span><span class="lineCov">        514 :     }</span></a>
-<a name="1460"><span class="lineNum">    1460 </span>            : }</a>
 </pre>
       </td>
     </tr>

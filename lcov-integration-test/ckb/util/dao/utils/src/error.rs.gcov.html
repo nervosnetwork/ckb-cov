@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -65,7 +65,7 @@
 <a name="3"><span class="lineNum">       3 </span>            : /// Errors due to the fact that the NervosDAO rules are not respected.</a>
 <a name="4"><span class="lineNum">       4 </span>            : ///</a>
 <a name="5"><span class="lineNum">       5 </span>            : /// [NervosDAO]: https://github.com/nervosnetwork/rfcs/blob/master/rfcs/0023-dao-deposit-withdraw/0023-dao-deposit-withdraw.md</a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">         18 : #[derive(Error, Debug, PartialEq, Clone, Eq)]</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">         20 : #[derive(Error, Debug, PartialEq, Clone, Eq)]</span></a>
 <a name="7"><span class="lineNum">       7 </span>            : pub enum DaoError {</a>
 <a name="8"><span class="lineNum">       8 </span>            :     /// This error occurs during calculating the dao field for a block, which broadly indicates that it cannot find a required block.</a>
 <a name="9"><span class="lineNum">       9 </span>            :     #[error(&quot;InvalidHeader&quot;)]</a>
@@ -103,9 +103,9 @@
 <a name="41"><span class="lineNum">      41 </span>            : }</a>
 <a name="42"><span class="lineNum">      42 </span>            : </a>
 <a name="43"><span class="lineNum">      43 </span>            : impl From&lt;DaoError&gt; for Error {</a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">         18 :     fn from(error: DaoError) -&gt; Self {</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">         18 :         ErrorKind::Dao.because(error)</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">         18 :     }</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">         20 :     fn from(error: DaoError) -&gt; Self {</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">         20 :         ErrorKind::Dao.because(error)</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">         20 :     }</span></a>
 <a name="47"><span class="lineNum">      47 </span>            : }</a>
 </pre>
       </td>

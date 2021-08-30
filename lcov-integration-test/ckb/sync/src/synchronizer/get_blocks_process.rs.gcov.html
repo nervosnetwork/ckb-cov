@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">38</td>
-            <td class="headerCovTableEntry">56</td>
-            <td class="headerCovTableEntryLo">67.9 %</td>
+            <td class="headerCovTableEntry">48</td>
+            <td class="headerCovTableEntryMed">79.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -118,23 +118,23 @@
 <a name="56"><span class="lineNum">      56 </span><span class="lineNoCov">          0 :                 .take(NEW_INIT_BLOCKS_IN_TRANSIT_PER_PEER),</span></a>
 <a name="57"><span class="lineNum">      57 </span>            :         };</a>
 <a name="58"><span class="lineNum">      58 </span><span class="lineCov">          2 :         for block_hash in iter {</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineNoCov">          0 :             debug!(&quot;get_blocks {} from peer {:?}&quot;, block_hash, self.peer);</span></a>
+<a name="59"><span class="lineNum">      59 </span>            :             debug!(&quot;get_blocks {} from peer {:?}&quot;, block_hash, self.peer);</a>
 <a name="60"><span class="lineNum">      60 </span><span class="lineCov">          2 :             let block_hash = block_hash.to_entity();</span></a>
 <a name="61"><span class="lineNum">      61 </span><span class="lineCov">          2 : </span></a>
 <a name="62"><span class="lineNum">      62 </span><span class="lineCov">          2 :             if !active_chain.contains_block_status(&amp;block_hash, BlockStatus::BLOCK_VALID) {</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :                 debug!(</a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :                     &quot;ignoring get_block {} request from peer={} for unverified&quot;,</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :                     block_hash, self.peer</span></a>
+<a name="64"><span class="lineNum">      64 </span>            :                     &quot;ignoring get_block {} request from peer={} for unverified&quot;,</a>
+<a name="65"><span class="lineNum">      65 </span>            :                     block_hash, self.peer</a>
 <a name="66"><span class="lineNum">      66 </span>            :                 );</a>
 <a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :                 continue;</span></a>
 <a name="68"><span class="lineNum">      68 </span><span class="lineCov">          2 :             }</span></a>
 <a name="69"><span class="lineNum">      69 </span>            : </a>
 <a name="70"><span class="lineNum">      70 </span><span class="lineCov">          2 :             if let Some(block) = active_chain.get_block(&amp;block_hash) {</span></a>
 <a name="71"><span class="lineNum">      71 </span>            :                 debug!(</a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineNoCov">          0 :                     &quot;respond_block {} {} to peer {:?}&quot;,</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineNoCov">          0 :                     block.number(),</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineNoCov">          0 :                     block.hash(),</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineNoCov">          0 :                     self.peer,</span></a>
+<a name="72"><span class="lineNum">      72 </span>            :                     &quot;respond_block {} {} to peer {:?}&quot;,</a>
+<a name="73"><span class="lineNum">      73 </span>            :                     block.number(),</a>
+<a name="74"><span class="lineNum">      74 </span>            :                     block.hash(),</a>
+<a name="75"><span class="lineNum">      75 </span>            :                     self.peer,</a>
 <a name="76"><span class="lineNum">      76 </span>            :                 );</a>
 <a name="77"><span class="lineNum">      77 </span><span class="lineCov">          2 :                 let content = packed::SendBlock::new_builder().block(block.data()).build();</span></a>
 <a name="78"><span class="lineNum">      78 </span><span class="lineCov">          2 :                 let message = packed::SyncMessage::new_builder().set(content).build();</span></a>
@@ -147,7 +147,7 @@
 <a name="85"><span class="lineNum">      85 </span>            :                 // We expect that `block_hashes` is sorted descending by height.</a>
 <a name="86"><span class="lineNum">      86 </span>            :                 // So if we cannot find the current one from local, we cannot find</a>
 <a name="87"><span class="lineNum">      87 </span>            :                 // the next either.</a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineNoCov">          0 :                 debug!(&quot;getblocks stopping since {} is not found&quot;, block_hash);</span></a>
+<a name="88"><span class="lineNum">      88 </span>            :                 debug!(&quot;getblocks stopping since {} is not found&quot;, block_hash);</a>
 <a name="89"><span class="lineNum">      89 </span><span class="lineNoCov">          0 :                 break;</span></a>
 <a name="90"><span class="lineNum">      90 </span>            :             }</a>
 <a name="91"><span class="lineNum">      91 </span>            :         }</a>

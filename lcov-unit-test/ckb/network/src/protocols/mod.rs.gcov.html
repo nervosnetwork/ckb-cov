@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">3</td>
-            <td class="headerCovTableEntry">312</td>
+            <td class="headerCovTableEntry">290</td>
             <td class="headerCovTableEntryLo">1.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -68,7 +68,7 @@
 <a name="6"><span class="lineNum">       6 </span>            : pub(crate) mod support_protocols;</a>
 <a name="7"><span class="lineNum">       7 </span>            : </a>
 <a name="8"><span class="lineNum">       8 </span>            : #[cfg(test)]</a>
-<a name="9"><span class="lineNum">       9 </span>            : mod test;</a>
+<a name="9"><span class="lineNum">       9 </span>            : mod tests;</a>
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span>            : use ckb_logger::{debug, trace};</a>
 <a name="12"><span class="lineNum">      12 </span>            : use futures::{Future, FutureExt};</a>
@@ -149,9 +149,9 @@
 <a name="87"><span class="lineNum">      87 </span>            :     /// current protocol id</a>
 <a name="88"><span class="lineNum">      88 </span>            :     fn protocol_id(&amp;self) -&gt; ProtocolId;</a>
 <a name="89"><span class="lineNum">      89 </span>            :     /// Raw tentacle controller</a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">         18 :     fn p2p_control(&amp;self) -&gt; Option&lt;&amp;ServiceControl&gt; {</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">         18 :         None</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">         18 :     }</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">          8 :     fn p2p_control(&amp;self) -&gt; Option&lt;&amp;ServiceControl&gt; {</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">          8 :         None</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">          8 :     }</span></a>
 <a name="93"><span class="lineNum">      93 </span>            : }</a>
 <a name="94"><span class="lineNum">      94 </span>            : </a>
 <a name="95"><span class="lineNum">      95 </span>            : /// Abstract protocol handle base on tentacle service handle</a>
@@ -370,10 +370,10 @@
 <a name="308"><span class="lineNum">     308 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="309"><span class="lineNum">     309 </span>            : </a>
 <a name="310"><span class="lineNum">     310 </span>            :         trace!(</a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineNoCov">          0 :             &quot;[received message]: {}, {}, length={}&quot;,</span></a>
-<a name="312"><span class="lineNum">     312 </span><span class="lineNoCov">          0 :             self.proto_id,</span></a>
-<a name="313"><span class="lineNum">     313 </span><span class="lineNoCov">          0 :             context.session.id,</span></a>
-<a name="314"><span class="lineNum">     314 </span><span class="lineNoCov">          0 :             data.len()</span></a>
+<a name="311"><span class="lineNum">     311 </span>            :             &quot;[received message]: {}, {}, length={}&quot;,</a>
+<a name="312"><span class="lineNum">     312 </span>            :             self.proto_id,</a>
+<a name="313"><span class="lineNum">     313 </span>            :             context.session.id,</a>
+<a name="314"><span class="lineNum">     314 </span>            :             data.len()</a>
 <a name="315"><span class="lineNum">     315 </span>            :         );</a>
 <a name="316"><span class="lineNum">     316 </span><span class="lineNoCov">          0 :         let nc = DefaultCKBProtocolContext {</span></a>
 <a name="317"><span class="lineNum">     317 </span><span class="lineNoCov">          0 :             proto_id: self.proto_id,</span></a>
@@ -390,7 +390,7 @@
 <a name="328"><span class="lineNum">     328 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="329"><span class="lineNum">     329 </span><span class="lineNoCov">          0 : </span></a>
 <a name="330"><span class="lineNum">     330 </span><span class="lineNoCov">          0 :         if token == std::u64::MAX {</span></a>
-<a name="331"><span class="lineNum">     331 </span><span class="lineNoCov">          0 :             trace!(&quot;protocol handler heart beat {}&quot;, self.proto_id);</span></a>
+<a name="331"><span class="lineNum">     331 </span>            :             trace!(&quot;protocol handler heart beat {}&quot;, self.proto_id);</a>
 <a name="332"><span class="lineNum">     332 </span><span class="lineNoCov">          0 :         } else {</span></a>
 <a name="333"><span class="lineNum">     333 </span><span class="lineNoCov">          0 :             let nc = DefaultCKBProtocolContext {</span></a>
 <a name="334"><span class="lineNum">     334 </span><span class="lineNoCov">          0 :                 proto_id: self.proto_id,</span></a>
@@ -444,10 +444,10 @@
 <a name="382"><span class="lineNum">     382 </span>            :         data: Bytes,</a>
 <a name="383"><span class="lineNum">     383 </span>            :     ) -&gt; Result&lt;(), Error&gt; {</a>
 <a name="384"><span class="lineNum">     384 </span>            :         trace!(</a>
-<a name="385"><span class="lineNum">     385 </span><span class="lineNoCov">          0 :             &quot;[send message]: {}, to={}, length={}&quot;,</span></a>
-<a name="386"><span class="lineNum">     386 </span><span class="lineNoCov">          0 :             proto_id,</span></a>
-<a name="387"><span class="lineNum">     387 </span><span class="lineNoCov">          0 :             peer_index,</span></a>
-<a name="388"><span class="lineNum">     388 </span><span class="lineNoCov">          0 :             data.len()</span></a>
+<a name="385"><span class="lineNum">     385 </span>            :             &quot;[send message]: {}, to={}, length={}&quot;,</a>
+<a name="386"><span class="lineNum">     386 </span>            :             proto_id,</a>
+<a name="387"><span class="lineNum">     387 </span>            :             peer_index,</a>
+<a name="388"><span class="lineNum">     388 </span>            :             data.len()</a>
 <a name="389"><span class="lineNum">     389 </span>            :         );</a>
 <a name="390"><span class="lineNum">     390 </span><span class="lineNoCov">          0 :         self.p2p_control</span></a>
 <a name="391"><span class="lineNum">     391 </span><span class="lineNoCov">          0 :             .quick_send_message_to(peer_index, proto_id, data)?;</span></a>
@@ -455,10 +455,10 @@
 <a name="393"><span class="lineNum">     393 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="394"><span class="lineNum">     394 </span>            :     fn quick_send_message_to(&amp;self, peer_index: PeerIndex, data: Bytes) -&gt; Result&lt;(), Error&gt; {</a>
 <a name="395"><span class="lineNum">     395 </span>            :         trace!(</a>
-<a name="396"><span class="lineNum">     396 </span><span class="lineNoCov">          0 :             &quot;[send message to]: {}, to={}, length={}&quot;,</span></a>
-<a name="397"><span class="lineNum">     397 </span><span class="lineNoCov">          0 :             self.proto_id,</span></a>
-<a name="398"><span class="lineNum">     398 </span><span class="lineNoCov">          0 :             peer_index,</span></a>
-<a name="399"><span class="lineNum">     399 </span><span class="lineNoCov">          0 :             data.len()</span></a>
+<a name="396"><span class="lineNum">     396 </span>            :             &quot;[send message to]: {}, to={}, length={}&quot;,</a>
+<a name="397"><span class="lineNum">     397 </span>            :             self.proto_id,</a>
+<a name="398"><span class="lineNum">     398 </span>            :             peer_index,</a>
+<a name="399"><span class="lineNum">     399 </span>            :             data.len()</a>
 <a name="400"><span class="lineNum">     400 </span>            :         );</a>
 <a name="401"><span class="lineNum">     401 </span><span class="lineNoCov">          0 :         self.p2p_control</span></a>
 <a name="402"><span class="lineNum">     402 </span><span class="lineNoCov">          0 :             .quick_send_message_to(peer_index, self.proto_id, data)?;</span></a>
@@ -485,10 +485,10 @@
 <a name="423"><span class="lineNum">     423 </span>            :         data: Bytes,</a>
 <a name="424"><span class="lineNum">     424 </span>            :     ) -&gt; Result&lt;(), Error&gt; {</a>
 <a name="425"><span class="lineNum">     425 </span>            :         trace!(</a>
-<a name="426"><span class="lineNum">     426 </span><span class="lineNoCov">          0 :             &quot;[send message]: {}, to={}, length={}&quot;,</span></a>
-<a name="427"><span class="lineNum">     427 </span><span class="lineNoCov">          0 :             proto_id,</span></a>
-<a name="428"><span class="lineNum">     428 </span><span class="lineNoCov">          0 :             peer_index,</span></a>
-<a name="429"><span class="lineNum">     429 </span><span class="lineNoCov">          0 :             data.len()</span></a>
+<a name="426"><span class="lineNum">     426 </span>            :             &quot;[send message]: {}, to={}, length={}&quot;,</a>
+<a name="427"><span class="lineNum">     427 </span>            :             proto_id,</a>
+<a name="428"><span class="lineNum">     428 </span>            :             peer_index,</a>
+<a name="429"><span class="lineNum">     429 </span>            :             data.len()</a>
 <a name="430"><span class="lineNum">     430 </span>            :         );</a>
 <a name="431"><span class="lineNum">     431 </span><span class="lineNoCov">          0 :         self.p2p_control</span></a>
 <a name="432"><span class="lineNum">     432 </span><span class="lineNoCov">          0 :             .send_message_to(peer_index, proto_id, data)?;</span></a>
@@ -496,10 +496,10 @@
 <a name="434"><span class="lineNum">     434 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="435"><span class="lineNum">     435 </span>            :     fn send_message_to(&amp;self, peer_index: PeerIndex, data: Bytes) -&gt; Result&lt;(), Error&gt; {</a>
 <a name="436"><span class="lineNum">     436 </span>            :         trace!(</a>
-<a name="437"><span class="lineNum">     437 </span><span class="lineNoCov">          0 :             &quot;[send message to]: {}, to={}, length={}&quot;,</span></a>
-<a name="438"><span class="lineNum">     438 </span><span class="lineNoCov">          0 :             self.proto_id,</span></a>
-<a name="439"><span class="lineNum">     439 </span><span class="lineNoCov">          0 :             peer_index,</span></a>
-<a name="440"><span class="lineNum">     440 </span><span class="lineNoCov">          0 :             data.len()</span></a>
+<a name="437"><span class="lineNum">     437 </span>            :             &quot;[send message to]: {}, to={}, length={}&quot;,</a>
+<a name="438"><span class="lineNum">     438 </span>            :             self.proto_id,</a>
+<a name="439"><span class="lineNum">     439 </span>            :             peer_index,</a>
+<a name="440"><span class="lineNum">     440 </span>            :             data.len()</a>
 <a name="441"><span class="lineNum">     441 </span>            :         );</a>
 <a name="442"><span class="lineNum">     442 </span><span class="lineNoCov">          0 :         self.p2p_control</span></a>
 <a name="443"><span class="lineNum">     443 </span><span class="lineNoCov">          0 :             .send_message_to(peer_index, self.proto_id, data)?;</span></a>
@@ -511,7 +511,7 @@
 <a name="449"><span class="lineNum">     449 </span><span class="lineNoCov">          0 :         Ok(())</span></a>
 <a name="450"><span class="lineNum">     450 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="451"><span class="lineNum">     451 </span>            :     fn disconnect(&amp;self, peer_index: PeerIndex, message: &amp;str) -&gt; Result&lt;(), Error&gt; {</a>
-<a name="452"><span class="lineNum">     452 </span><span class="lineNoCov">          0 :         debug!(&quot;disconnect peer: {}, message: {}&quot;, peer_index, message);</span></a>
+<a name="452"><span class="lineNum">     452 </span>            :         debug!(&quot;disconnect peer: {}, message: {}&quot;, peer_index, message);</a>
 <a name="453"><span class="lineNum">     453 </span><span class="lineNoCov">          0 :         disconnect_with_message(&amp;self.p2p_control, peer_index, message)?;</span></a>
 <a name="454"><span class="lineNum">     454 </span><span class="lineNoCov">          0 :         Ok(())</span></a>
 <a name="455"><span class="lineNum">     455 </span><span class="lineNoCov">          0 :     }</span></a>

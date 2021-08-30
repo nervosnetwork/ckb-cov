@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! A lightweight metrics facade used in CKB.</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          1 : //! A lightweight metrics facade used in CKB.</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : //!</a>
 <a name="3"><span class="lineNum">       3 </span>            : //! The `ckb-metrics` crate is a set of tools for metrics.</a>
 <a name="4"><span class="lineNum">       4 </span>            : //! The crate [`ckb-metrics-service`] is the runtime which handles the metrics data in CKB.</a>
@@ -94,23 +94,23 @@
 <a name="32"><span class="lineNum">      32 </span>            : pub use opentelemetry as internal;</a>
 <a name="33"><span class="lineNum">      33 </span>            : </a>
 <a name="34"><span class="lineNum">      34 </span>            : /// Returns a global meter.</a>
-<a name="35"><span class="lineNum">      35 </span><span class="lineCov">    1157124 : pub fn global_meter() -&gt; Meter {</span></a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineCov">    1157124 :     opentelemetry::global::meter(&quot;ckb-metrics&quot;)</span></a>
-<a name="37"><span class="lineNum">      37 </span><span class="lineCov">    1157124 : }</span></a>
+<a name="35"><span class="lineNum">      35 </span><span class="lineCov">     530167 : pub fn global_meter() -&gt; Meter {</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">     530167 :     opentelemetry::global::meter(&quot;ckb-metrics&quot;)</span></a>
+<a name="37"><span class="lineNum">      37 </span><span class="lineCov">     530167 : }</span></a>
 <a name="38"><span class="lineNum">      38 </span>            : </a>
 <a name="39"><span class="lineNum">      39 </span>            : /// A simple timer which is used to time how much time elapsed.</a>
 <a name="40"><span class="lineNum">      40 </span>            : pub struct Timer(Instant);</a>
 <a name="41"><span class="lineNum">      41 </span>            : </a>
 <a name="42"><span class="lineNum">      42 </span>            : impl Timer {</a>
 <a name="43"><span class="lineNum">      43 </span>            :     /// Starts a new timer.</a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">     807828 :     pub fn start() -&gt; Self {</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">     807828 :         Self(Instant::now())</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">     807828 :     }</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">     370194 :     pub fn start() -&gt; Self {</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">     370194 :         Self(Instant::now())</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">     370194 :     }</span></a>
 <a name="47"><span class="lineNum">      47 </span>            : </a>
 <a name="48"><span class="lineNum">      48 </span>            :     /// Stops the timer and return how much time elapsed.</a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">     807168 :     pub fn stop(self) -&gt; Duration {</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">     807168 :         Instant::now() - self.0</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">     807168 :     }</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">     367873 :     pub fn stop(self) -&gt; Duration {</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">     367873 :         Instant::now() - self.0</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">     367873 :     }</span></a>
 <a name="52"><span class="lineNum">      52 </span>            : }</a>
 <a name="53"><span class="lineNum">      53 </span>            : </a>
 <a name="54"><span class="lineNum">      54 </span>            : /// Out-of-the-box macros for metrics.</a>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -68,7 +68,7 @@
 <a name="6"><span class="lineNum">       6 </span>            : </a>
 <a name="7"><span class="lineNum">       7 </span>            : // The default values are set in the legacy version.</a>
 <a name="8"><span class="lineNum">       8 </span>            : /// Transaction pool configuration</a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        640 : #[derive(Clone, Debug, Serialize)]</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        256 : #[derive(Clone, Debug, Serialize)]</span></a>
 <a name="10"><span class="lineNum">      10 </span>            : pub struct TxPoolConfig {</a>
 <a name="11"><span class="lineNum">      11 </span>            :     /// Keep the transaction pool below &lt;max_mem_size&gt; mb</a>
 <a name="12"><span class="lineNum">      12 </span>            :     pub max_mem_size: usize,</a>
@@ -121,16 +121,16 @@
 <a name="59"><span class="lineNum">      59 </span>            :     ///</a>
 <a name="60"><span class="lineNum">      60 </span>            :     /// If `self.path` is relative, convert them to absolute path using</a>
 <a name="61"><span class="lineNum">      61 </span>            :     /// `root_dir` as current working directory.</a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">         10 :     pub fn adjust&lt;P: AsRef&lt;Path&gt;&gt;(&amp;mut self, root_dir: &amp;Path, data_dir: P) {</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">         10 :         if self.persisted_data.to_str().is_none() || self.persisted_data.to_str() == Some(&quot;&quot;) {</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         10 :             self.persisted_data = data_dir</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">         10 :                 .as_ref()</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         10 :                 .to_path_buf()</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">         10 :                 .join(&quot;tx_pool_persisted_data&quot;);</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         10 :         } else if self.persisted_data.is_relative() {</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">          5 :     pub fn adjust&lt;P: AsRef&lt;Path&gt;&gt;(&amp;mut self, root_dir: &amp;Path, data_dir: P) {</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">          5 :         if self.persisted_data.to_str().is_none() || self.persisted_data.to_str() == Some(&quot;&quot;) {</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">          5 :             self.persisted_data = data_dir</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">          5 :                 .as_ref()</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">          5 :                 .to_path_buf()</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">          5 :                 .join(&quot;tx_pool_persisted_data&quot;);</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">          5 :         } else if self.persisted_data.is_relative() {</span></a>
 <a name="69"><span class="lineNum">      69 </span><span class="lineNoCov">          0 :             self.persisted_data = root_dir.to_path_buf().join(&amp;self.persisted_data)</span></a>
 <a name="70"><span class="lineNum">      70 </span><span class="lineNoCov">          0 :         }</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         10 :     }</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">          5 :     }</span></a>
 <a name="72"><span class="lineNum">      72 </span>            : }</a>
 </pre>
       </td>

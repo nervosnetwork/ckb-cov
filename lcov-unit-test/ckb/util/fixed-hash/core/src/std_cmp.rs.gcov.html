@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
@@ -66,22 +66,22 @@
 <a name="4"><span class="lineNum">       4 </span>            :     ($name:ident, $bytes_size:expr) =&gt; {</a>
 <a name="5"><span class="lineNum">       5 </span>            :         impl ::std::cmp::PartialEq for $name {</a>
 <a name="6"><span class="lineNum">       6 </span>            :             #[inline]</a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">        390 :             fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">        390 :                 &amp;self.0[..] == &amp;other.0[..]</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        390 :             }</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov">        297 :             fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">        297 :                 &amp;self.0[..] == &amp;other.0[..]</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        297 :             }</span></a>
 <a name="10"><span class="lineNum">      10 </span>            :         }</a>
 <a name="11"><span class="lineNum">      11 </span>            :         impl ::std::cmp::Eq for $name {}</a>
 <a name="12"><span class="lineNum">      12 </span>            :         impl ::std::cmp::Ord for $name {</a>
 <a name="13"><span class="lineNum">      13 </span>            :             #[inline]</a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        472 :             fn cmp(&amp;self, other: &amp;Self) -&gt; ::std::cmp::Ordering {</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">        472 :                 self.0[..].cmp(&amp;other.0[..])</span></a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">        472 :             }</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        236 :             fn cmp(&amp;self, other: &amp;Self) -&gt; ::std::cmp::Ordering {</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">        236 :                 self.0[..].cmp(&amp;other.0[..])</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">        236 :             }</span></a>
 <a name="17"><span class="lineNum">      17 </span>            :         }</a>
 <a name="18"><span class="lineNum">      18 </span>            :         impl ::std::cmp::PartialOrd for $name {</a>
 <a name="19"><span class="lineNum">      19 </span>            :             #[inline]</a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">        472 :             fn partial_cmp(&amp;self, other: &amp;Self) -&gt; Option&lt;::std::cmp::Ordering&gt; {</span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        472 :                 Some(self.cmp(other))</span></a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov">        472 :             }</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">        236 :             fn partial_cmp(&amp;self, other: &amp;Self) -&gt; Option&lt;::std::cmp::Ordering&gt; {</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        236 :                 Some(self.cmp(other))</span></a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov">        236 :             }</span></a>
 <a name="23"><span class="lineNum">      23 </span>            :         }</a>
 <a name="24"><span class="lineNum">      24 </span>            :     };</a>
 <a name="25"><span class="lineNum">      25 </span>            : }</a>

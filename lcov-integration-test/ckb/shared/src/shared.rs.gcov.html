@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">81</td>
-            <td class="headerCovTableEntry">237</td>
-            <td class="headerCovTableEntryLo">34.2 %</td>
+            <td class="headerCovTableEntry">225</td>
+            <td class="headerCovTableEntryLo">36.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">14</td>
@@ -110,7 +110,7 @@
 <a name="48"><span class="lineNum">      48 </span>            : }</a>
 <a name="49"><span class="lineNum">      49 </span>            : </a>
 <a name="50"><span class="lineNum">      50 </span>            : /// TODO(doc): @quake</a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">       2390 : #[derive(Clone)]</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">       2381 : #[derive(Clone)]</span></a>
 <a name="52"><span class="lineNum">      52 </span>            : pub struct Shared {</a>
 <a name="53"><span class="lineNum">      53 </span>            :     pub(crate) store: ChainDB,</a>
 <a name="54"><span class="lineNum">      54 </span>            :     pub(crate) tx_pool_controller: TxPoolController,</a>
@@ -152,7 +152,7 @@
 <a name="90"><span class="lineNum">      90 </span>            :     /// Spawn freeze background thread that periodically checks and moves ancient data from the kv database into the freezer.</a>
 <a name="91"><span class="lineNum">      91 </span>            :     pub fn spawn_freeze(&amp;self) -&gt; Option&lt;FreezerClose&gt; {</a>
 <a name="92"><span class="lineNum">      92 </span><span class="lineNoCov">          0 :         if let Some(freezer) = self.store.freezer() {</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineNoCov">          0 :             ckb_logger::info!(&quot;Freezer enable&quot;);</span></a>
+<a name="93"><span class="lineNum">      93 </span>            :             ckb_logger::info!(&quot;Freezer enable&quot;);</a>
 <a name="94"><span class="lineNum">      94 </span><span class="lineNoCov">          0 :             let (signal_sender, signal_receiver) =</span></a>
 <a name="95"><span class="lineNum">      95 </span><span class="lineNoCov">          0 :                 ckb_channel::bounded::&lt;()&gt;(service::SIGNAL_CHANNEL_SIZE);</span></a>
 <a name="96"><span class="lineNum">      96 </span><span class="lineNoCov">          0 :             let shared = self.clone();</span></a>
@@ -161,12 +161,12 @@
 <a name="99"><span class="lineNum">      99 </span><span class="lineNoCov">          0 :                     match signal_receiver.recv_timeout(FREEZER_INTERVAL) {</span></a>
 <a name="100"><span class="lineNum">     100 </span><span class="lineNoCov">          0 :                         Err(_) =&gt; {</span></a>
 <a name="101"><span class="lineNum">     101 </span><span class="lineNoCov">          0 :                             if let Err(e) = shared.freeze() {</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineNoCov">          0 :                                 ckb_logger::error!(&quot;Freezer error {}&quot;, e);</span></a>
+<a name="102"><span class="lineNum">     102 </span>            :                                 ckb_logger::error!(&quot;Freezer error {}&quot;, e);</a>
 <a name="103"><span class="lineNum">     103 </span><span class="lineNoCov">          0 :                                 break;</span></a>
 <a name="104"><span class="lineNum">     104 </span><span class="lineNoCov">          0 :                             }</span></a>
 <a name="105"><span class="lineNum">     105 </span>            :                         }</a>
 <a name="106"><span class="lineNum">     106 </span>            :                         Ok(_) =&gt; {</a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineNoCov">          0 :                             ckb_logger::info!(&quot;Freezer closing&quot;);</span></a>
+<a name="107"><span class="lineNum">     107 </span>            :                             ckb_logger::info!(&quot;Freezer closing&quot;);</a>
 <a name="108"><span class="lineNum">     108 </span><span class="lineNoCov">          0 :                             break;</span></a>
 <a name="109"><span class="lineNum">     109 </span>            :                         }</a>
 <a name="110"><span class="lineNum">     110 </span>            :                     }</a>
@@ -188,12 +188,12 @@
 <a name="126"><span class="lineNum">     126 </span><span class="lineNoCov">          0 :         let current_epoch = snapshot.epoch_ext().number();</span></a>
 <a name="127"><span class="lineNum">     127 </span><span class="lineNoCov">          0 : </span></a>
 <a name="128"><span class="lineNum">     128 </span><span class="lineNoCov">          0 :         if self.is_initial_block_download() {</span></a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineNoCov">          0 :             ckb_logger::trace!(&quot;is_initial_block_download freeze skip&quot;);</span></a>
+<a name="129"><span class="lineNum">     129 </span>            :             ckb_logger::trace!(&quot;is_initial_block_download freeze skip&quot;);</a>
 <a name="130"><span class="lineNum">     130 </span><span class="lineNoCov">          0 :             return Ok(());</span></a>
 <a name="131"><span class="lineNum">     131 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="132"><span class="lineNum">     132 </span><span class="lineNoCov">          0 : </span></a>
 <a name="133"><span class="lineNum">     133 </span><span class="lineNoCov">          0 :         if current_epoch &lt;= THRESHOLD_EPOCH {</span></a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineNoCov">          0 :             ckb_logger::trace!(&quot;freezer loaf&quot;);</span></a>
+<a name="134"><span class="lineNum">     134 </span>            :             ckb_logger::trace!(&quot;freezer loaf&quot;);</a>
 <a name="135"><span class="lineNum">     135 </span><span class="lineNoCov">          0 :             return Ok(());</span></a>
 <a name="136"><span class="lineNum">     136 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="137"><span class="lineNum">     137 </span><span class="lineNoCov">          0 : </span></a>
@@ -233,7 +233,7 @@
 <a name="171"><span class="lineNum">     171 </span><span class="lineNoCov">          0 :         // Wipe out frozen data</span></a>
 <a name="172"><span class="lineNum">     172 </span><span class="lineNoCov">          0 :         self.wipe_out_frozen_data(&amp;snapshot, ret, stopped)?;</span></a>
 <a name="173"><span class="lineNum">     173 </span>            : </a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineNoCov">          0 :         ckb_logger::trace!(&quot;freezer finish&quot;);</span></a>
+<a name="174"><span class="lineNum">     174 </span>            :         ckb_logger::trace!(&quot;freezer finish&quot;);</a>
 <a name="175"><span class="lineNum">     175 </span>            : </a>
 <a name="176"><span class="lineNum">     176 </span><span class="lineNoCov">          0 :         Ok(())</span></a>
 <a name="177"><span class="lineNum">     177 </span><span class="lineNoCov">          0 :     }</span></a>
@@ -247,13 +247,13 @@
 <a name="185"><span class="lineNum">     185 </span><span class="lineNoCov">          0 :         let mut side = BTreeMap::new();</span></a>
 <a name="186"><span class="lineNum">     186 </span><span class="lineNoCov">          0 :         let mut batch = self.store.new_write_batch();</span></a>
 <a name="187"><span class="lineNum">     187 </span>            : </a>
-<a name="188"><span class="lineNum">     188 </span><span class="lineNoCov">          0 :         ckb_logger::trace!(&quot;freezer wipe_out_frozen_data {} &quot;, frozen.len());</span></a>
+<a name="188"><span class="lineNum">     188 </span>            :         ckb_logger::trace!(&quot;freezer wipe_out_frozen_data {} &quot;, frozen.len());</a>
 <a name="189"><span class="lineNum">     189 </span>            : </a>
 <a name="190"><span class="lineNum">     190 </span><span class="lineNoCov">          0 :         if !frozen.is_empty() {</span></a>
 <a name="191"><span class="lineNum">     191 </span>            :             // remain header</a>
 <a name="192"><span class="lineNum">     192 </span><span class="lineNoCov">          0 :             for (hash, (number, txs)) in &amp;frozen {</span></a>
 <a name="193"><span class="lineNum">     193 </span><span class="lineNoCov">          0 :                 batch.delete_block_body(*number, hash, *txs).map_err(|e| {</span></a>
-<a name="194"><span class="lineNum">     194 </span><span class="lineNoCov">          0 :                     ckb_logger::error!(&quot;freezer delete_block_body failed {}&quot;, e);</span></a>
+<a name="194"><span class="lineNum">     194 </span>            :                     ckb_logger::error!(&quot;freezer delete_block_body failed {}&quot;, e);</a>
 <a name="195"><span class="lineNum">     195 </span><span class="lineNoCov">          0 :                     e</span></a>
 <a name="196"><span class="lineNum">     196 </span><span class="lineNoCov">          0 :                 })?;</span></a>
 <a name="197"><span class="lineNum">     197 </span>            : </a>
@@ -276,7 +276,7 @@
 <a name="214"><span class="lineNum">     214 </span>            :                 }</a>
 <a name="215"><span class="lineNum">     215 </span>            :             }</a>
 <a name="216"><span class="lineNum">     216 </span><span class="lineNoCov">          0 :             self.store.write_sync(&amp;batch).map_err(|e| {</span></a>
-<a name="217"><span class="lineNum">     217 </span><span class="lineNoCov">          0 :                 ckb_logger::error!(&quot;freezer write_batch delete failed {}&quot;, e);</span></a>
+<a name="217"><span class="lineNum">     217 </span>            :                 ckb_logger::error!(&quot;freezer write_batch delete failed {}&quot;, e);</a>
 <a name="218"><span class="lineNum">     218 </span><span class="lineNoCov">          0 :                 e</span></a>
 <a name="219"><span class="lineNum">     219 </span><span class="lineNoCov">          0 :             })?;</span></a>
 <a name="220"><span class="lineNum">     220 </span><span class="lineNoCov">          0 :             batch.clear()?;</span></a>
@@ -294,13 +294,13 @@
 <a name="232"><span class="lineNum">     232 </span><span class="lineNoCov">          0 :                 batch</span></a>
 <a name="233"><span class="lineNum">     233 </span><span class="lineNoCov">          0 :                     .delete_block(number.unpack(), hash, *txs)</span></a>
 <a name="234"><span class="lineNum">     234 </span><span class="lineNoCov">          0 :                     .map_err(|e| {</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineNoCov">          0 :                         ckb_logger::error!(&quot;freezer delete_block_body failed {}&quot;, e);</span></a>
+<a name="235"><span class="lineNum">     235 </span>            :                         ckb_logger::error!(&quot;freezer delete_block_body failed {}&quot;, e);</a>
 <a name="236"><span class="lineNum">     236 </span><span class="lineNoCov">          0 :                         e</span></a>
 <a name="237"><span class="lineNum">     237 </span><span class="lineNoCov">          0 :                     })?;</span></a>
 <a name="238"><span class="lineNum">     238 </span>            :             }</a>
 <a name="239"><span class="lineNum">     239 </span>            : </a>
 <a name="240"><span class="lineNum">     240 </span><span class="lineNoCov">          0 :             self.store.write(&amp;batch).map_err(|e| {</span></a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineNoCov">          0 :                 ckb_logger::error!(&quot;freezer write_batch delete failed {}&quot;, e);</span></a>
+<a name="241"><span class="lineNum">     241 </span>            :                 ckb_logger::error!(&quot;freezer write_batch delete failed {}&quot;, e);</a>
 <a name="242"><span class="lineNum">     242 </span><span class="lineNoCov">          0 :                 e</span></a>
 <a name="243"><span class="lineNum">     243 </span><span class="lineNoCov">          0 :             })?;</span></a>
 <a name="244"><span class="lineNum">     244 </span>            : </a>
@@ -329,19 +329,19 @@
 <a name="267"><span class="lineNum">     267 </span><span class="lineNoCov">          0 :             Some(start_t.as_slice()),</span></a>
 <a name="268"><span class="lineNum">     268 </span><span class="lineNoCov">          0 :             Some(end_t.as_slice()),</span></a>
 <a name="269"><span class="lineNum">     269 </span><span class="lineNoCov">          0 :         ) {</span></a>
-<a name="270"><span class="lineNum">     270 </span><span class="lineNoCov">          0 :             ckb_logger::error!(&quot;freezer compact_range {}-{} error {}&quot;, start, end, e);</span></a>
+<a name="270"><span class="lineNum">     270 </span>            :             ckb_logger::error!(&quot;freezer compact_range {}-{} error {}&quot;, start, end, e);</a>
 <a name="271"><span class="lineNum">     271 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="272"><span class="lineNum">     272 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="273"><span class="lineNum">     273 </span>            : </a>
 <a name="274"><span class="lineNum">     274 </span>            :     /// TODO(doc): @quake</a>
-<a name="275"><span class="lineNum">     275 </span><span class="lineCov">     108276 :     pub fn tx_pool_controller(&amp;self) -&gt; &amp;TxPoolController {</span></a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineCov">     108276 :         &amp;self.tx_pool_controller</span></a>
-<a name="277"><span class="lineNum">     277 </span><span class="lineCov">     108276 :     }</span></a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">     108324 :     pub fn tx_pool_controller(&amp;self) -&gt; &amp;TxPoolController {</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">     108324 :         &amp;self.tx_pool_controller</span></a>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">     108324 :     }</span></a>
 <a name="278"><span class="lineNum">     278 </span>            : </a>
 <a name="279"><span class="lineNum">     279 </span>            :     /// TODO(doc): @quake</a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineCov">      48340 :     pub fn txs_verify_cache(&amp;self) -&gt; Arc&lt;TokioRwLock&lt;TxVerificationCache&gt;&gt; {</span></a>
-<a name="281"><span class="lineNum">     281 </span><span class="lineCov">      48340 :         Arc::clone(&amp;self.txs_verify_cache)</span></a>
-<a name="282"><span class="lineNum">     282 </span><span class="lineCov">      48340 :     }</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">      48332 :     pub fn txs_verify_cache(&amp;self) -&gt; Arc&lt;TokioRwLock&lt;TxVerificationCache&gt;&gt; {</span></a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">      48332 :         Arc::clone(&amp;self.txs_verify_cache)</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">      48332 :     }</span></a>
 <a name="283"><span class="lineNum">     283 </span>            : </a>
 <a name="284"><span class="lineNum">     284 </span>            :     /// TODO(doc): @quake</a>
 <a name="285"><span class="lineNum">     285 </span><span class="lineCov">      48296 :     pub fn notify_controller(&amp;self) -&gt; &amp;NotifyController {</span></a>
@@ -349,43 +349,43 @@
 <a name="287"><span class="lineNum">     287 </span><span class="lineCov">      48296 :     }</span></a>
 <a name="288"><span class="lineNum">     288 </span>            : </a>
 <a name="289"><span class="lineNum">     289 </span>            :     /// TODO(doc): @quake</a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineCov">     132940 :     pub fn snapshot(&amp;self) -&gt; Guard&lt;Arc&lt;Snapshot&gt;&gt; {</span></a>
-<a name="291"><span class="lineNum">     291 </span><span class="lineCov">     132940 :         self.snapshot_mgr.load()</span></a>
-<a name="292"><span class="lineNum">     292 </span><span class="lineCov">     132940 :     }</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">     132920 :     pub fn snapshot(&amp;self) -&gt; Guard&lt;Arc&lt;Snapshot&gt;&gt; {</span></a>
+<a name="291"><span class="lineNum">     291 </span><span class="lineCov">     132920 :         self.snapshot_mgr.load()</span></a>
+<a name="292"><span class="lineNum">     292 </span><span class="lineCov">     132920 :     }</span></a>
 <a name="293"><span class="lineNum">     293 </span>            : </a>
 <a name="294"><span class="lineNum">     294 </span>            :     /// TODO(doc): @quake</a>
-<a name="295"><span class="lineNum">     295 </span><span class="lineCov">      59428 :     pub fn store_snapshot(&amp;self, snapshot: Arc&lt;Snapshot&gt;) {</span></a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineCov">      59428 :         self.snapshot_mgr.store(snapshot)</span></a>
-<a name="297"><span class="lineNum">     297 </span><span class="lineCov">      59428 :     }</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">      59244 :     pub fn store_snapshot(&amp;self, snapshot: Arc&lt;Snapshot&gt;) {</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">      59244 :         self.snapshot_mgr.store(snapshot)</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">      59244 :     }</span></a>
 <a name="298"><span class="lineNum">     298 </span>            : </a>
 <a name="299"><span class="lineNum">     299 </span>            :     /// TODO(doc): @quake</a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineCov">      11116 :     pub fn refresh_snapshot(&amp;self) {</span></a>
-<a name="301"><span class="lineNum">     301 </span><span class="lineCov">      11116 :         let new = self.snapshot().refresh(self.store.get_snapshot());</span></a>
-<a name="302"><span class="lineNum">     302 </span><span class="lineCov">      11116 :         self.store_snapshot(Arc::new(new));</span></a>
-<a name="303"><span class="lineNum">     303 </span><span class="lineCov">      11116 :     }</span></a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">      11032 :     pub fn refresh_snapshot(&amp;self) {</span></a>
+<a name="301"><span class="lineNum">     301 </span><span class="lineCov">      11032 :         let new = self.snapshot().refresh(self.store.get_snapshot());</span></a>
+<a name="302"><span class="lineNum">     302 </span><span class="lineCov">      11032 :         self.store_snapshot(Arc::new(new));</span></a>
+<a name="303"><span class="lineNum">     303 </span><span class="lineCov">      11032 :     }</span></a>
 <a name="304"><span class="lineNum">     304 </span>            : </a>
 <a name="305"><span class="lineNum">     305 </span>            :     /// TODO(doc): @quake</a>
-<a name="306"><span class="lineNum">     306 </span><span class="lineCov">      48280 :     pub fn new_snapshot(</span></a>
-<a name="307"><span class="lineNum">     307 </span><span class="lineCov">      48280 :         &amp;self,</span></a>
-<a name="308"><span class="lineNum">     308 </span><span class="lineCov">      48280 :         tip_header: HeaderView,</span></a>
-<a name="309"><span class="lineNum">     309 </span><span class="lineCov">      48280 :         total_difficulty: U256,</span></a>
-<a name="310"><span class="lineNum">     310 </span><span class="lineCov">      48280 :         epoch_ext: EpochExt,</span></a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineCov">      48280 :         proposals: ProposalView,</span></a>
-<a name="312"><span class="lineNum">     312 </span><span class="lineCov">      48280 :     ) -&gt; Arc&lt;Snapshot&gt; {</span></a>
-<a name="313"><span class="lineNum">     313 </span><span class="lineCov">      48280 :         Arc::new(Snapshot::new(</span></a>
-<a name="314"><span class="lineNum">     314 </span><span class="lineCov">      48280 :             tip_header,</span></a>
-<a name="315"><span class="lineNum">     315 </span><span class="lineCov">      48280 :             total_difficulty,</span></a>
-<a name="316"><span class="lineNum">     316 </span><span class="lineCov">      48280 :             epoch_ext,</span></a>
-<a name="317"><span class="lineNum">     317 </span><span class="lineCov">      48280 :             self.store.get_snapshot(),</span></a>
-<a name="318"><span class="lineNum">     318 </span><span class="lineCov">      48280 :             proposals,</span></a>
-<a name="319"><span class="lineNum">     319 </span><span class="lineCov">      48280 :             Arc::clone(&amp;self.consensus),</span></a>
-<a name="320"><span class="lineNum">     320 </span><span class="lineCov">      48280 :         ))</span></a>
-<a name="321"><span class="lineNum">     321 </span><span class="lineCov">      48280 :     }</span></a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">      48312 :     pub fn new_snapshot(</span></a>
+<a name="307"><span class="lineNum">     307 </span><span class="lineCov">      48312 :         &amp;self,</span></a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">      48312 :         tip_header: HeaderView,</span></a>
+<a name="309"><span class="lineNum">     309 </span><span class="lineCov">      48312 :         total_difficulty: U256,</span></a>
+<a name="310"><span class="lineNum">     310 </span><span class="lineCov">      48312 :         epoch_ext: EpochExt,</span></a>
+<a name="311"><span class="lineNum">     311 </span><span class="lineCov">      48312 :         proposals: ProposalView,</span></a>
+<a name="312"><span class="lineNum">     312 </span><span class="lineCov">      48312 :     ) -&gt; Arc&lt;Snapshot&gt; {</span></a>
+<a name="313"><span class="lineNum">     313 </span><span class="lineCov">      48312 :         Arc::new(Snapshot::new(</span></a>
+<a name="314"><span class="lineNum">     314 </span><span class="lineCov">      48312 :             tip_header,</span></a>
+<a name="315"><span class="lineNum">     315 </span><span class="lineCov">      48312 :             total_difficulty,</span></a>
+<a name="316"><span class="lineNum">     316 </span><span class="lineCov">      48312 :             epoch_ext,</span></a>
+<a name="317"><span class="lineNum">     317 </span><span class="lineCov">      48312 :             self.store.get_snapshot(),</span></a>
+<a name="318"><span class="lineNum">     318 </span><span class="lineCov">      48312 :             proposals,</span></a>
+<a name="319"><span class="lineNum">     319 </span><span class="lineCov">      48312 :             Arc::clone(&amp;self.consensus),</span></a>
+<a name="320"><span class="lineNum">     320 </span><span class="lineCov">      48312 :         ))</span></a>
+<a name="321"><span class="lineNum">     321 </span><span class="lineCov">      48312 :     }</span></a>
 <a name="322"><span class="lineNum">     322 </span>            : </a>
 <a name="323"><span class="lineNum">     323 </span>            :     /// TODO(doc): @quake</a>
-<a name="324"><span class="lineNum">     324 </span><span class="lineCov">     260480 :     pub fn consensus(&amp;self) -&gt; &amp;Consensus {</span></a>
-<a name="325"><span class="lineNum">     325 </span><span class="lineCov">     260480 :         &amp;self.consensus</span></a>
-<a name="326"><span class="lineNum">     326 </span><span class="lineCov">     260480 :     }</span></a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">     260404 :     pub fn consensus(&amp;self) -&gt; &amp;Consensus {</span></a>
+<a name="325"><span class="lineNum">     325 </span><span class="lineCov">     260404 :         &amp;self.consensus</span></a>
+<a name="326"><span class="lineNum">     326 </span><span class="lineCov">     260404 :     }</span></a>
 <a name="327"><span class="lineNum">     327 </span>            : </a>
 <a name="328"><span class="lineNum">     328 </span>            :     /// Return async runtime handle</a>
 <a name="329"><span class="lineNum">     329 </span><span class="lineCov">        248 :     pub fn async_handle(&amp;self) -&gt; &amp;Handle {</span></a>
@@ -398,15 +398,15 @@
 <a name="336"><span class="lineNum">     336 </span><span class="lineCov">          4 :     }</span></a>
 <a name="337"><span class="lineNum">     337 </span>            : </a>
 <a name="338"><span class="lineNum">     338 </span>            :     /// TODO(doc): @quake</a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineCov">     217260 :     pub fn store(&amp;self) -&gt; &amp;ChainDB {</span></a>
-<a name="340"><span class="lineNum">     340 </span><span class="lineCov">     217260 :         &amp;self.store</span></a>
-<a name="341"><span class="lineNum">     341 </span><span class="lineCov">     217260 :     }</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineCov">     217296 :     pub fn store(&amp;self) -&gt; &amp;ChainDB {</span></a>
+<a name="340"><span class="lineNum">     340 </span><span class="lineCov">     217296 :         &amp;self.store</span></a>
+<a name="341"><span class="lineNum">     341 </span><span class="lineCov">     217296 :     }</span></a>
 <a name="342"><span class="lineNum">     342 </span>            : </a>
 <a name="343"><span class="lineNum">     343 </span>            :     /// Return whether chain is in initial block download</a>
-<a name="344"><span class="lineNum">     344 </span><span class="lineCov">        260 :     pub fn is_initial_block_download(&amp;self) -&gt; bool {</span></a>
-<a name="345"><span class="lineNum">     345 </span><span class="lineCov">        260 :         // Once this function has returned false, it must remain false.</span></a>
-<a name="346"><span class="lineNum">     346 </span><span class="lineCov">        260 :         if self.ibd_finished.load(Ordering::Relaxed) {</span></a>
-<a name="347"><span class="lineNum">     347 </span><span class="lineCov">        228 :             false</span></a>
+<a name="344"><span class="lineNum">     344 </span><span class="lineCov">        232 :     pub fn is_initial_block_download(&amp;self) -&gt; bool {</span></a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineCov">        232 :         // Once this function has returned false, it must remain false.</span></a>
+<a name="346"><span class="lineNum">     346 </span><span class="lineCov">        232 :         if self.ibd_finished.load(Ordering::Relaxed) {</span></a>
+<a name="347"><span class="lineNum">     347 </span><span class="lineCov">        200 :             false</span></a>
 <a name="348"><span class="lineNum">     348 </span><span class="lineCov">         32 :         } else if unix_time_as_millis().saturating_sub(self.snapshot().tip_header().timestamp())</span></a>
 <a name="349"><span class="lineNum">     349 </span><span class="lineCov">         32 :             &gt; MAX_TIP_AGE</span></a>
 <a name="350"><span class="lineNum">     350 </span>            :         {</a>
@@ -415,7 +415,7 @@
 <a name="353"><span class="lineNum">     353 </span><span class="lineCov">          8 :             self.ibd_finished.store(true, Ordering::Relaxed);</span></a>
 <a name="354"><span class="lineNum">     354 </span><span class="lineCov">          8 :             false</span></a>
 <a name="355"><span class="lineNum">     355 </span>            :         }</a>
-<a name="356"><span class="lineNum">     356 </span><span class="lineCov">        260 :     }</span></a>
+<a name="356"><span class="lineNum">     356 </span><span class="lineCov">        232 :     }</span></a>
 <a name="357"><span class="lineNum">     357 </span>            : }</a>
 </pre>
       </td>

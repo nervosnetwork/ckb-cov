@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/hash/src/lib.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/hash/src/lib.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">24</td>
-            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntry">23</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">14</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          3 : //! CKB default hash function.</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! CKB default hash function.</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : //!</a>
 <a name="3"><span class="lineNum">       3 </span>            : //! CKB uses [blake2b] with following configurations as the default hash function.</a>
 <a name="4"><span class="lineNum">       4 </span>            : //!</a>
@@ -108,11 +108,11 @@
 <a name="46"><span class="lineNum">      46 </span>            : /// let mut result = [0u8; 32];</a>
 <a name="47"><span class="lineNum">      47 </span>            : /// hasher.finalize(&amp;mut result); // Saves hash result</a>
 <a name="48"><span class="lineNum">      48 </span>            : /// ```</a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">    7227951 : pub fn new_blake2b() -&gt; Blake2b {</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">    7227951 :     Blake2bBuilder::new(32)</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">    7227951 :         .personal(CKB_HASH_PERSONALIZATION)</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">    7227951 :         .build()</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">    7227951 : }</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">    5231298 : pub fn new_blake2b() -&gt; Blake2b {</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">    5231298 :     Blake2bBuilder::new(32)</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">    5231298 :         .personal(CKB_HASH_PERSONALIZATION)</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">    5231298 :         .build()</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">    5231298 : }</span></a>
 <a name="54"><span class="lineNum">      54 </span>            : </a>
 <a name="55"><span class="lineNum">      55 </span>            : /// Hashes the slice of binary and returns the digest.</a>
 <a name="56"><span class="lineNum">      56 </span>            : ///</a>
@@ -125,26 +125,26 @@
 <a name="63"><span class="lineNum">      63 </span>            : /// let digest = blake2b_256(&amp;input);</a>
 <a name="64"><span class="lineNum">      64 </span>            : /// println!(&quot;ckbhash({:?}) = {:?}&quot;, input, digest);</a>
 <a name="65"><span class="lineNum">      65 </span>            : /// ```</a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">    4690274 : pub fn blake2b_256&lt;T: AsRef&lt;[u8]&gt;&gt;(s: T) -&gt; [u8; 32] {</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">    4690274 :     if s.as_ref().is_empty() {</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         72 :         return BLANK_HASH;</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">    4690202 :     }</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">    4690202 :     inner_blake2b_256(s)</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">    4690274 : }</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">    3432104 : pub fn blake2b_256&lt;T: AsRef&lt;[u8]&gt;&gt;(s: T) -&gt; [u8; 32] {</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">    3432104 :     if s.as_ref().is_empty() {</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         52 :         return BLANK_HASH;</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">    3432052 :     }</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">    3432052 :     inner_blake2b_256(s)</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">    3432104 : }</span></a>
 <a name="72"><span class="lineNum">      72 </span>            : </a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">    4690101 : fn inner_blake2b_256&lt;T: AsRef&lt;[u8]&gt;&gt;(s: T) -&gt; [u8; 32] {</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">    4690101 :     let mut result = [0u8; 32];</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">    4690101 :     let mut blake2b = new_blake2b();</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">    4690101 :     blake2b.update(s.as_ref());</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">    4690101 :     blake2b.finalize(&amp;mut result);</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">    4690101 :     result</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">    4690101 : }</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">    3431954 : fn inner_blake2b_256&lt;T: AsRef&lt;[u8]&gt;&gt;(s: T) -&gt; [u8; 32] {</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">    3431954 :     let mut result = [0u8; 32];</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">    3431954 :     let mut blake2b = new_blake2b();</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">    3431954 :     blake2b.update(s.as_ref());</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">    3431954 :     blake2b.finalize(&amp;mut result);</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">    3431954 :     result</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">    3431954 : }</span></a>
 <a name="80"><span class="lineNum">      80 </span>            : </a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          3 : #[test]</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          3 : fn empty_blake2b() {</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          3 :     let actual = inner_blake2b_256([]);</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">          3 :     assert_eq!(actual, BLANK_HASH);</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          3 : }</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">          2 : #[test]</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">          2 : fn empty_blake2b() {</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">          2 :     let actual = inner_blake2b_256([]);</span></a>
+<a name="84"><span class="lineNum">      84 </span>            :     assert_eq!(actual, BLANK_HASH);</a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">          2 : }</span></a>
 </pre>
       </td>
     </tr>

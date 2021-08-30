@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">221</td>
-            <td class="headerCovTableEntry">332</td>
-            <td class="headerCovTableEntryLo">66.6 %</td>
+            <td class="headerCovTableEntry">331</td>
+            <td class="headerCovTableEntryLo">66.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">18</td>
@@ -145,7 +145,7 @@
 <a name="83"><span class="lineNum">      83 </span><span class="lineNoCov">          0 :                     );</span></a>
 <a name="84"><span class="lineNum">      84 </span><span class="lineNoCov">          0 :                     Err(ExitCode::Failure)</span></a>
 <a name="85"><span class="lineNum">      85 </span>            :                 } else {</a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineNoCov">          0 :                     info!(&quot;process fast migrations ...&quot;);</span></a>
+<a name="86"><span class="lineNum">      86 </span>            :                     info!(&quot;process fast migrations ...&quot;);</a>
 <a name="87"><span class="lineNum">      87 </span>            : </a>
 <a name="88"><span class="lineNum">      88 </span><span class="lineNoCov">          0 :                     let bulk_load_db_db = migrate.open_bulk_load_db().map_err(|e| {</span></a>
 <a name="89"><span class="lineNum">      89 </span><span class="lineNoCov">          0 :                         eprintln!(&quot;migrate error {}&quot;, e);</span></a>
@@ -197,29 +197,29 @@
 <a name="135"><span class="lineNum">     135 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="136"><span class="lineNum">     136 </span>            : </a>
 <a name="137"><span class="lineNum">     137 </span>            :     /// Generates the SharedBuilder with temp db</a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        456 :     pub fn with_temp_db() -&gt; Self {</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        456 :         use once_cell::unsync;</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">        456 :         use std::borrow::Borrow;</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">        456 : </span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">        456 :         // once #[thread_local] is stable</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">        456 :         // #[thread_local]</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineCov">        456 :         // static RUNTIME_HANDLE: unsync::OnceCell&lt;...</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">        456 : </span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">        456 :         thread_local! {</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">        456 :             static RUNTIME_HANDLE: unsync::OnceCell&lt;(Handle, StopHandler&lt;()&gt;)&gt; = unsync::OnceCell::new();</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">        456 :         }</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">        456 : </span></a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineCov">        456 :         RUNTIME_HANDLE.with(|runtime| SharedBuilder {</span></a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineCov">        456 :             db: RocksDB::open_tmp(COLUMNS),</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">        456 :             ancient_path: None,</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">        456 :             consensus: None,</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">        456 :             tx_pool_config: None,</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        456 :             notify_config: None,</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">        456 :             store_config: None,</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">        456 :             block_assembler_config: None,</span></a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">        456 :             async_handle: runtime.borrow().get_or_init(new_global_runtime).0.clone(),</span></a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">        456 :         })</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">        456 :     }</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        452 :     pub fn with_temp_db() -&gt; Self {</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        452 :         use once_cell::unsync;</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">        452 :         use std::borrow::Borrow;</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">        452 : </span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">        452 :         // once #[thread_local] is stable</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">        452 :         // #[thread_local]</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">        452 :         // static RUNTIME_HANDLE: unsync::OnceCell&lt;...</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">        452 : </span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">        452 :         thread_local! {</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">        452 :             static RUNTIME_HANDLE: unsync::OnceCell&lt;(Handle, StopHandler&lt;()&gt;)&gt; = unsync::OnceCell::new();</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">        452 :         }</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">        452 : </span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineCov">        452 :         RUNTIME_HANDLE.with(|runtime| SharedBuilder {</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">        436 :             db: RocksDB::open_tmp(COLUMNS),</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">        436 :             ancient_path: None,</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">        436 :             consensus: None,</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">        436 :             tx_pool_config: None,</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        436 :             notify_config: None,</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">        436 :             store_config: None,</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">        436 :             block_assembler_config: None,</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">        436 :             async_handle: runtime.borrow().get_or_init(new_global_runtime).0.clone(),</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">        452 :         })</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">        452 :     }</span></a>
 <a name="161"><span class="lineNum">     161 </span>            : }</a>
 <a name="162"><span class="lineNum">     162 </span>            : </a>
 <a name="163"><span class="lineNum">     163 </span>            : impl SharedBuilder {</a>
@@ -424,9 +424,9 @@
 <a name="362"><span class="lineNum">     362 </span>            : </a>
 <a name="363"><span class="lineNum">     363 </span>            : impl SharedPackage {</a>
 <a name="364"><span class="lineNum">     364 </span>            :     /// Takes the roposal_table out of the package, leaving a None in its place.</a>
-<a name="365"><span class="lineNum">     365 </span><span class="lineCov">        448 :     pub fn take_proposal_table(&amp;mut self) -&gt; ProposalTable {</span></a>
-<a name="366"><span class="lineNum">     366 </span><span class="lineCov">        448 :         self.table.take().expect(&quot;take proposal_table&quot;)</span></a>
-<a name="367"><span class="lineNum">     367 </span><span class="lineCov">        448 :     }</span></a>
+<a name="365"><span class="lineNum">     365 </span><span class="lineCov">        452 :     pub fn take_proposal_table(&amp;mut self) -&gt; ProposalTable {</span></a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineCov">        452 :         self.table.take().expect(&quot;take proposal_table&quot;)</span></a>
+<a name="367"><span class="lineNum">     367 </span><span class="lineCov">        452 :     }</span></a>
 <a name="368"><span class="lineNum">     368 </span>            : </a>
 <a name="369"><span class="lineNum">     369 </span>            :     /// Takes the tx_pool_builder out of the package, leaving a None in its place.</a>
 <a name="370"><span class="lineNum">     370 </span><span class="lineCov">        248 :     pub fn take_tx_pool_builder(&amp;mut self) -&gt; TxPoolServiceBuilder {</span></a>
@@ -462,17 +462,17 @@
 <a name="400"><span class="lineNum">     400 </span><span class="lineCov">        456 : fn register_tx_pool_callback(tx_pool_builder: &amp;mut TxPoolServiceBuilder, notify: NotifyController) {</span></a>
 <a name="401"><span class="lineNum">     401 </span><span class="lineCov">        456 :     let notify_pending = notify.clone();</span></a>
 <a name="402"><span class="lineNum">     402 </span><span class="lineCov">        456 :     tx_pool_builder.register_pending(Box::new(move |tx_pool: &amp;mut TxPool, entry: &amp;TxEntry| {</span></a>
-<a name="403"><span class="lineNum">     403 </span><span class="lineCov">         40 :         // update statics</span></a>
-<a name="404"><span class="lineNum">     404 </span><span class="lineCov">         40 :         tx_pool.update_statics_for_add_tx(entry.size, entry.cycles);</span></a>
-<a name="405"><span class="lineNum">     405 </span><span class="lineCov">         40 : </span></a>
-<a name="406"><span class="lineNum">     406 </span><span class="lineCov">         40 :         // notify</span></a>
-<a name="407"><span class="lineNum">     407 </span><span class="lineCov">         40 :         let notify_tx_entry = PoolTransactionEntry {</span></a>
-<a name="408"><span class="lineNum">     408 </span><span class="lineCov">         40 :             transaction: entry.rtx.transaction.clone(),</span></a>
-<a name="409"><span class="lineNum">     409 </span><span class="lineCov">         40 :             cycles: entry.cycles,</span></a>
-<a name="410"><span class="lineNum">     410 </span><span class="lineCov">         40 :             size: entry.size,</span></a>
-<a name="411"><span class="lineNum">     411 </span><span class="lineCov">         40 :             fee: entry.fee,</span></a>
-<a name="412"><span class="lineNum">     412 </span><span class="lineCov">         40 :         };</span></a>
-<a name="413"><span class="lineNum">     413 </span><span class="lineCov">         40 :         notify_pending.notify_new_transaction(notify_tx_entry);</span></a>
+<a name="403"><span class="lineNum">     403 </span><span class="lineCov">         36 :         // update statics</span></a>
+<a name="404"><span class="lineNum">     404 </span><span class="lineCov">         36 :         tx_pool.update_statics_for_add_tx(entry.size, entry.cycles);</span></a>
+<a name="405"><span class="lineNum">     405 </span><span class="lineCov">         36 : </span></a>
+<a name="406"><span class="lineNum">     406 </span><span class="lineCov">         36 :         // notify</span></a>
+<a name="407"><span class="lineNum">     407 </span><span class="lineCov">         36 :         let notify_tx_entry = PoolTransactionEntry {</span></a>
+<a name="408"><span class="lineNum">     408 </span><span class="lineCov">         36 :             transaction: entry.rtx.transaction.clone(),</span></a>
+<a name="409"><span class="lineNum">     409 </span><span class="lineCov">         36 :             cycles: entry.cycles,</span></a>
+<a name="410"><span class="lineNum">     410 </span><span class="lineCov">         36 :             size: entry.size,</span></a>
+<a name="411"><span class="lineNum">     411 </span><span class="lineCov">         36 :             fee: entry.fee,</span></a>
+<a name="412"><span class="lineNum">     412 </span><span class="lineCov">         36 :         };</span></a>
+<a name="413"><span class="lineNum">     413 </span><span class="lineCov">         36 :         notify_pending.notify_new_transaction(notify_tx_entry);</span></a>
 <a name="414"><span class="lineNum">     414 </span><span class="lineCov">        456 :     }));</span></a>
 <a name="415"><span class="lineNum">     415 </span><span class="lineCov">        456 : </span></a>
 <a name="416"><span class="lineNum">     416 </span><span class="lineCov">        456 :     let notify_proposed = notify.clone();</span></a>

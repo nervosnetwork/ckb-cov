@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-integration-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">448</td>
-            <td class="headerCovTableEntry">469</td>
-            <td class="headerCovTableEntryHi">95.5 %</td>
+            <td class="headerCovTableEntry">390</td>
+            <td class="headerCovTableEntry">405</td>
+            <td class="headerCovTableEntryHi">96.3 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">20</td>
-            <td class="headerCovTableEntry">22</td>
-            <td class="headerCovTableEntryHi">90.9 %</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryMed">87.5 %</td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -176,7 +176,7 @@
 <a name="114"><span class="lineNum">     114 </span>            : /// Command line arguments group `ba` for block assembler.</a>
 <a name="115"><span class="lineNum">     115 </span>            : const GROUP_BA: &amp;str = &quot;ba&quot;;</a>
 <a name="116"><span class="lineNum">     116 </span>            : </a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">          5 : fn basic_app&lt;'b&gt;() -&gt; App&lt;'static, 'b&gt; {</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">          5 : pub(crate) fn basic_app&lt;'b&gt;() -&gt; App&lt;'static, 'b&gt; {</span></a>
 <a name="118"><span class="lineNum">     118 </span><span class="lineCov">          5 :     App::new(BIN_NAME)</span></a>
 <a name="119"><span class="lineNum">     119 </span><span class="lineCov">          5 :         .author(&quot;Nervos Core Dev &lt;dev@nervos.org&gt;&quot;)</span></a>
 <a name="120"><span class="lineNum">     120 </span><span class="lineCov">          5 :         .about(&quot;Nervos CKB - The Common Knowledge Base&quot;)</span></a>
@@ -604,82 +604,6 @@
 <a name="542"><span class="lineNum">     542 </span><span class="lineNoCov">          0 :         Err(&quot;Must 0x-prefixed hexadecimal string&quot;.to_string())</span></a>
 <a name="543"><span class="lineNum">     543 </span>            :     }</a>
 <a name="544"><span class="lineNum">     544 </span><span class="lineCov">          7 : }</span></a>
-<a name="545"><span class="lineNum">     545 </span>            : </a>
-<a name="546"><span class="lineNum">     546 </span>            : #[cfg(test)]</a>
-<a name="547"><span class="lineNum">     547 </span>            : mod tests {</a>
-<a name="548"><span class="lineNum">     548 </span>            :     use super::*;</a>
-<a name="549"><span class="lineNum">     549 </span>            : </a>
-<a name="550"><span class="lineNum">     550 </span><span class="lineCov">          1 :     #[test]</span></a>
-<a name="551"><span class="lineNum">     551 </span><span class="lineCov">          1 :     fn ba_message_requires_ba_arg_or_ba_code_hash() {</span></a>
-<a name="552"><span class="lineNum">     552 </span><span class="lineCov">          1 :         let ok_ba_arg = basic_app().get_matches_from_safe(&amp;[</span></a>
-<a name="553"><span class="lineNum">     553 </span><span class="lineCov">          1 :             BIN_NAME,</span></a>
-<a name="554"><span class="lineNum">     554 </span><span class="lineCov">          1 :             &quot;init&quot;,</span></a>
-<a name="555"><span class="lineNum">     555 </span><span class="lineCov">          1 :             &quot;--ba-message&quot;,</span></a>
-<a name="556"><span class="lineNum">     556 </span><span class="lineCov">          1 :             &quot;0x00&quot;,</span></a>
-<a name="557"><span class="lineNum">     557 </span><span class="lineCov">          1 :             &quot;--ba-arg&quot;,</span></a>
-<a name="558"><span class="lineNum">     558 </span><span class="lineCov">          1 :             &quot;0x00&quot;,</span></a>
-<a name="559"><span class="lineNum">     559 </span><span class="lineCov">          1 :         ]);</span></a>
-<a name="560"><span class="lineNum">     560 </span><span class="lineCov">          1 :         let ok_ba_code_hash = basic_app().get_matches_from_safe(&amp;[</span></a>
-<a name="561"><span class="lineNum">     561 </span><span class="lineCov">          1 :             BIN_NAME,</span></a>
-<a name="562"><span class="lineNum">     562 </span><span class="lineCov">          1 :             &quot;init&quot;,</span></a>
-<a name="563"><span class="lineNum">     563 </span><span class="lineCov">          1 :             &quot;--ba-message&quot;,</span></a>
-<a name="564"><span class="lineNum">     564 </span><span class="lineCov">          1 :             &quot;0x00&quot;,</span></a>
-<a name="565"><span class="lineNum">     565 </span><span class="lineCov">          1 :             &quot;--ba-code-hash&quot;,</span></a>
-<a name="566"><span class="lineNum">     566 </span><span class="lineCov">          1 :             &quot;0x00&quot;,</span></a>
-<a name="567"><span class="lineNum">     567 </span><span class="lineCov">          1 :         ]);</span></a>
-<a name="568"><span class="lineNum">     568 </span><span class="lineCov">          1 :         let err = basic_app().get_matches_from_safe(&amp;[BIN_NAME, &quot;init&quot;, &quot;--ba-message&quot;, &quot;0x00&quot;]);</span></a>
-<a name="569"><span class="lineNum">     569 </span><span class="lineCov">          1 : </span></a>
-<a name="570"><span class="lineNum">     570 </span><span class="lineCov">          1 :         assert!(</span></a>
-<a name="571"><span class="lineNum">     571 </span><span class="lineCov">          1 :             ok_ba_arg.is_ok(),</span></a>
-<a name="572"><span class="lineNum">     572 </span><span class="lineNoCov">          0 :             &quot;--ba-message is ok with --ba-arg, but gets error: {:?}&quot;,</span></a>
-<a name="573"><span class="lineNum">     573 </span><span class="lineNoCov">          0 :             ok_ba_arg.err()</span></a>
-<a name="574"><span class="lineNum">     574 </span>            :         );</a>
-<a name="575"><span class="lineNum">     575 </span><span class="lineCov">          1 :         assert!(</span></a>
-<a name="576"><span class="lineNum">     576 </span><span class="lineCov">          1 :             ok_ba_code_hash.is_ok(),</span></a>
-<a name="577"><span class="lineNum">     577 </span><span class="lineNoCov">          0 :             &quot;--ba-message is ok with --ba-code-hash, but gets error: {:?}&quot;,</span></a>
-<a name="578"><span class="lineNum">     578 </span><span class="lineNoCov">          0 :             ok_ba_code_hash.err()</span></a>
-<a name="579"><span class="lineNum">     579 </span>            :         );</a>
-<a name="580"><span class="lineNum">     580 </span><span class="lineCov">          1 :         assert!(</span></a>
-<a name="581"><span class="lineNum">     581 </span><span class="lineCov">          1 :             err.is_err(),</span></a>
-<a name="582"><span class="lineNum">     582 </span><span class="lineCov">          1 :             &quot;--ba-message requires --ba-arg or --ba-code-hash&quot;</span></a>
-<a name="583"><span class="lineNum">     583 </span><span class="lineCov">          1 :         );</span></a>
-<a name="584"><span class="lineNum">     584 </span>            : </a>
-<a name="585"><span class="lineNum">     585 </span><span class="lineCov">          1 :         let err = err.err().unwrap();</span></a>
-<a name="586"><span class="lineNum">     586 </span><span class="lineCov">          1 :         assert_eq!(clap::ErrorKind::MissingRequiredArgument, err.kind);</span></a>
-<a name="587"><span class="lineNum">     587 </span><span class="lineCov">          1 :         assert!(err</span></a>
-<a name="588"><span class="lineNum">     588 </span><span class="lineCov">          1 :             .message</span></a>
-<a name="589"><span class="lineNum">     589 </span><span class="lineCov">          1 :             .contains(&quot;The following required arguments were not provided&quot;));</span></a>
-<a name="590"><span class="lineNum">     590 </span><span class="lineCov">          1 :         assert!(err.message.contains(&quot;--ba-arg&quot;));</span></a>
-<a name="591"><span class="lineNum">     591 </span><span class="lineCov">          1 :         assert!(err.message.contains(&quot;--ba-code-hash&quot;));</span></a>
-<a name="592"><span class="lineNum">     592 </span><span class="lineCov">          1 :     }</span></a>
-<a name="593"><span class="lineNum">     593 </span>            : </a>
-<a name="594"><span class="lineNum">     594 </span><span class="lineCov">          1 :     #[test]</span></a>
-<a name="595"><span class="lineNum">     595 </span><span class="lineCov">          1 :     fn ba_arg_and_ba_code_hash() {</span></a>
-<a name="596"><span class="lineNum">     596 </span><span class="lineCov">          1 :         let ok_matches = basic_app().get_matches_from_safe(&amp;[</span></a>
-<a name="597"><span class="lineNum">     597 </span><span class="lineCov">          1 :             BIN_NAME,</span></a>
-<a name="598"><span class="lineNum">     598 </span><span class="lineCov">          1 :             &quot;init&quot;,</span></a>
-<a name="599"><span class="lineNum">     599 </span><span class="lineCov">          1 :             &quot;--ba-code-hash&quot;,</span></a>
-<a name="600"><span class="lineNum">     600 </span><span class="lineCov">          1 :             &quot;0x00&quot;,</span></a>
-<a name="601"><span class="lineNum">     601 </span><span class="lineCov">          1 :             &quot;--ba-arg&quot;,</span></a>
-<a name="602"><span class="lineNum">     602 </span><span class="lineCov">          1 :             &quot;0x00&quot;,</span></a>
-<a name="603"><span class="lineNum">     603 </span><span class="lineCov">          1 :         ]);</span></a>
-<a name="604"><span class="lineNum">     604 </span><span class="lineCov">          1 :         assert!(</span></a>
-<a name="605"><span class="lineNum">     605 </span><span class="lineCov">          1 :             ok_matches.is_ok(),</span></a>
-<a name="606"><span class="lineNum">     606 </span><span class="lineNoCov">          0 :             &quot;--ba-code-hash is OK with --ba-arg, but gets error: {:?}&quot;,</span></a>
-<a name="607"><span class="lineNum">     607 </span><span class="lineNoCov">          0 :             ok_matches.err()</span></a>
-<a name="608"><span class="lineNum">     608 </span>            :         );</a>
-<a name="609"><span class="lineNum">     609 </span><span class="lineCov">          1 :     }</span></a>
-<a name="610"><span class="lineNum">     610 </span>            : </a>
-<a name="611"><span class="lineNum">     611 </span><span class="lineCov">          1 :     #[test]</span></a>
-<a name="612"><span class="lineNum">     612 </span><span class="lineCov">          1 :     fn ba_advanced() {</span></a>
-<a name="613"><span class="lineNum">     613 </span><span class="lineCov">          1 :         let matches = basic_app()</span></a>
-<a name="614"><span class="lineNum">     614 </span><span class="lineCov">          1 :             .get_matches_from_safe(&amp;[BIN_NAME, &quot;run&quot;, &quot;--ba-advanced&quot;])</span></a>
-<a name="615"><span class="lineNum">     615 </span><span class="lineCov">          1 :             .unwrap();</span></a>
-<a name="616"><span class="lineNum">     616 </span><span class="lineCov">          1 :         let sub_matches = matches.subcommand().1.unwrap();</span></a>
-<a name="617"><span class="lineNum">     617 </span><span class="lineCov">          1 : </span></a>
-<a name="618"><span class="lineNum">     618 </span><span class="lineCov">          1 :         assert_eq!(1, sub_matches.occurrences_of(ARG_BA_ADVANCED));</span></a>
-<a name="619"><span class="lineNum">     619 </span><span class="lineCov">          1 :     }</span></a>
-<a name="620"><span class="lineNum">     620 </span>            : }</a>
 </pre>
       </td>
     </tr>

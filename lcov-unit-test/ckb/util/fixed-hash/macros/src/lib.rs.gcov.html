@@ -31,13 +31,13 @@
             <td class="headerValue">lcov-unit-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">23</td>
+            <td class="headerCovTableEntry">22</td>
             <td class="headerCovTableEntry">28</td>
-            <td class="headerCovTableEntryMed">82.1 %</td>
+            <td class="headerCovTableEntryMed">78.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! Provide several proc-macros to construct const fixed-sized hashes.</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          1 : //! Provide several proc-macros to construct const fixed-sized hashes.</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : //!</a>
 <a name="3"><span class="lineNum">       3 </span>            : //! If we use an array to construct const fixed-sized hashes, it's difficult to read.</a>
 <a name="4"><span class="lineNum">       4 </span>            : //!</a>
@@ -97,37 +97,37 @@
 <a name="35"><span class="lineNum">      35 </span>            :         #[doc = &quot;`]:&quot;]</a>
 <a name="36"><span class="lineNum">      36 </span>            :         #[doc = $link_str]</a>
 <a name="37"><span class="lineNum">      37 </span>            :         #[proc_macro]</a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineCov">        400 :         pub fn $name(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">        400 :             let input = parse_macro_input!(input as syn::LitStr);</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">        400 :             let expanded = {</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineCov">        400 :                 let input = input.value().replace(&quot;_&quot;, &quot;&quot;);</span></a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineCov">        400 :                 if input.len() &lt; 3 || &amp;input[..2] != &quot;0x&quot; {</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">        176 :         pub fn $name(input: proc_macro::TokenStream) -&gt; proc_macro::TokenStream {</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">        176 :             let input = parse_macro_input!(input as syn::LitStr);</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineCov">        176 :             let expanded = {</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">        176 :                 let input = input.value().replace(&quot;_&quot;, &quot;&quot;);</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">        176 :                 if input.len() &lt; 3 || &amp;input[..2] != &quot;0x&quot; {</span></a>
 <a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :                     panic!(&quot;Input has to be a hexadecimal string with 0x-prefix.&quot;);</span></a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">        400 :                 };</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">        400 :                 let input_str = &amp;input[2..];</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        400 :                 let value = match &amp;input_str[..1] {</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        400 :                     &quot;0&quot; =&gt; {</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">         22 :                         if input_str.len() &gt; 1 {</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">          8 :                             ckb_fixed_hash_core::$type::from_str(input_str)</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">        176 :                 };</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">        176 :                 let input_str = &amp;input[2..];</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        176 :                 let value = match &amp;input_str[..1] {</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        176 :                     &quot;0&quot; =&gt; {</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">          4 :                         if input_str.len() &gt; 1 {</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :                             ckb_fixed_hash_core::$type::from_str(input_str)</span></a>
 <a name="50"><span class="lineNum">      50 </span>            :                         } else {</a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">         14 :                             ckb_fixed_hash_core::$type::from_trimmed_str(input_str)</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          4 :                             ckb_fixed_hash_core::$type::from_trimmed_str(input_str)</span></a>
 <a name="52"><span class="lineNum">      52 </span>            :                         }</a>
 <a name="53"><span class="lineNum">      53 </span>            :                     },</a>
 <a name="54"><span class="lineNum">      54 </span>            :                     _ =&gt; {</a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">        378 :                         ckb_fixed_hash_core::$type::from_trimmed_str(input_str)</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">        172 :                         ckb_fixed_hash_core::$type::from_trimmed_str(input_str)</span></a>
 <a name="56"><span class="lineNum">      56 </span>            :                     },</a>
 <a name="57"><span class="lineNum">      57 </span>            :                 }</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        400 :                 .unwrap_or_else(|err| {</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        176 :                 .unwrap_or_else(|err| {</span></a>
 <a name="59"><span class="lineNum">      59 </span>            :                     panic!(&quot;Failed to parse the input hexadecimal string: {}&quot;, err);</a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">        400 :                 });</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        400 :                 let eval_str = format!(&quot;{:?}&quot;, value);</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        400 :                 let eval_ts: proc_macro2::TokenStream = eval_str.parse().unwrap_or_else(|_| {</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">        176 :                 });</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        176 :                 let eval_str = format!(&quot;{:?}&quot;, value);</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        176 :                 let eval_ts: proc_macro2::TokenStream = eval_str.parse().unwrap_or_else(|_| {</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :                     panic!(&quot;Failed to parse the string \&quot;{}\&quot; to TokenStream.&quot;, eval_str);</a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        400 :                 });</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        400 :                 quote!(#eval_ts)</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        400 :             };</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        400 :             expanded.into()</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        400 :         }</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        176 :                 });</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        176 :                 quote!(#eval_ts)</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        176 :             };</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        176 :             expanded.into()</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        176 :         }</span></a>
 <a name="69"><span class="lineNum">      69 </span>            :     };</a>
 <a name="70"><span class="lineNum">      70 </span>            :     ($name:ident, $type:ident) =&gt; {</a>
 <a name="71"><span class="lineNum">      71 </span>            :         impl_hack!($name, $type, stringify!($type), concat!(&quot;../ckb_fixed_hash_core/struct.&quot;, stringify!($type), &quot;.html&quot;));</a>

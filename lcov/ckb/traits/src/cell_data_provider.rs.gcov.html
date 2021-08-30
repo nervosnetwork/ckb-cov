@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/traits/src/cell_data_provider.rs</title>
+  <title>LCOV - Unit + Integration - ckb/traits/src/cell_data_provider.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">12</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">9</td>
@@ -69,20 +69,20 @@
 <a name="7"><span class="lineNum">       7 </span>            : /// TODO(doc): @quake</a>
 <a name="8"><span class="lineNum">       8 </span>            : pub trait CellDataProvider {</a>
 <a name="9"><span class="lineNum">       9 </span>            :     /// load cell_data from memory, fallback to storage access</a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">        255 :     fn load_cell_data(&amp;self, cell: &amp;CellMeta) -&gt; Option&lt;Bytes&gt; {</span></a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">        255 :         cell.mem_cell_data</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">        255 :             .as_ref()</span></a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        255 :             .map(ToOwned::to_owned)</span></a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        255 :             .or_else(|| self.get_cell_data(&amp;cell.out_point))</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">        255 :     }</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">        218 :     fn load_cell_data(&amp;self, cell: &amp;CellMeta) -&gt; Option&lt;Bytes&gt; {</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineCov">        218 :         cell.mem_cell_data</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">        218 :             .as_ref()</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        218 :             .map(ToOwned::to_owned)</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        218 :             .or_else(|| self.get_cell_data(&amp;cell.out_point))</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">        218 :     }</span></a>
 <a name="16"><span class="lineNum">      16 </span>            : </a>
 <a name="17"><span class="lineNum">      17 </span>            :     /// load cell_data_hash from memory, fallback to storage access</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">       1170 :     fn load_cell_data_hash(&amp;self, cell: &amp;CellMeta) -&gt; Option&lt;Byte32&gt; {</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">       1170 :         cell.mem_cell_data_hash</span></a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">       1170 :             .as_ref()</span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">       1170 :             .map(ToOwned::to_owned)</span></a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov">       1170 :             .or_else(|| self.get_cell_data_hash(&amp;cell.out_point))</span></a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">       1170 :     }</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        824 :     fn load_cell_data_hash(&amp;self, cell: &amp;CellMeta) -&gt; Option&lt;Byte32&gt; {</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">        824 :         cell.mem_cell_data_hash</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">        824 :             .as_ref()</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        824 :             .map(ToOwned::to_owned)</span></a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov">        824 :             .or_else(|| self.get_cell_data_hash(&amp;cell.out_point))</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">        824 :     }</span></a>
 <a name="24"><span class="lineNum">      24 </span>            : </a>
 <a name="25"><span class="lineNum">      25 </span>            :     /// fetch cell_data from storage</a>
 <a name="26"><span class="lineNum">      26 </span>            :     fn get_cell_data(&amp;self, out_point: &amp;OutPoint) -&gt; Option&lt;Bytes&gt;;</a>

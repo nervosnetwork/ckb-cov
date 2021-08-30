@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/types/src/core/service.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/types/src/core/service.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">8</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -83,14 +83,14 @@
 <a name="21"><span class="lineNum">      21 </span>            : </a>
 <a name="22"><span class="lineNum">      22 </span>            : impl&lt;A, R&gt; Request&lt;A, R&gt; {</a>
 <a name="23"><span class="lineNum">      23 </span>            :     /// Call the service with the arguments and wait for the response.</a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">     179396 :     pub fn call(sender: &amp;Sender&lt;Request&lt;A, R&gt;&gt;, arguments: A) -&gt; Option&lt;R&gt; {</span></a>
-<a name="25"><span class="lineNum">      25 </span><span class="lineCov">     179396 :         let (responder, response) = mpsc::channel();</span></a>
-<a name="26"><span class="lineNum">      26 </span><span class="lineCov">     179396 :         let _ = sender.send(Request {</span></a>
-<a name="27"><span class="lineNum">      27 </span><span class="lineCov">     179396 :             responder,</span></a>
-<a name="28"><span class="lineNum">      28 </span><span class="lineCov">     179396 :             arguments,</span></a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">     179396 :         });</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">     179396 :         response.recv().ok()</span></a>
-<a name="31"><span class="lineNum">      31 </span><span class="lineCov">     179396 :     }</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">     119608 :     pub fn call(sender: &amp;Sender&lt;Request&lt;A, R&gt;&gt;, arguments: A) -&gt; Option&lt;R&gt; {</span></a>
+<a name="25"><span class="lineNum">      25 </span><span class="lineCov">     119608 :         let (responder, response) = mpsc::channel();</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineCov">     119608 :         let _ = sender.send(Request {</span></a>
+<a name="27"><span class="lineNum">      27 </span><span class="lineCov">     119608 :             responder,</span></a>
+<a name="28"><span class="lineNum">      28 </span><span class="lineCov">     119608 :             arguments,</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">     119608 :         });</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">     119608 :         response.recv().ok()</span></a>
+<a name="31"><span class="lineNum">      31 </span><span class="lineCov">     119608 :     }</span></a>
 <a name="32"><span class="lineNum">      32 </span>            : }</a>
 <a name="33"><span class="lineNum">      33 </span>            : </a>
 <a name="34"><span class="lineNum">      34 </span>            : /// Notify pool transaction entry</a>

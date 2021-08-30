@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -60,13 +60,13 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! CKB executable main entry.</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          1 : //! CKB executable main entry.</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : use ckb_bin::run_app;</a>
 <a name="3"><span class="lineNum">       3 </span>            : use ckb_build_info::Version;</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
 <a name="5"><span class="lineNum">       5 </span>            : #[cfg(all(not(target_env = &quot;msvc&quot;), not(target_os = &quot;macos&quot;)))]</a>
 <a name="6"><span class="lineNum">       6 </span>            : #[global_allocator]</a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">       2320 : static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov">       1160 : static ALLOC: jemallocator::Jemalloc = jemallocator::Jemalloc;</span></a>
 <a name="8"><span class="lineNum">       8 </span>            : </a>
 <a name="9"><span class="lineNum">       9 </span><span class="lineNoCov">          0 : fn main() {</span></a>
 <a name="10"><span class="lineNum">      10 </span><span class="lineNoCov">          0 :     let version = get_version();</span></a>

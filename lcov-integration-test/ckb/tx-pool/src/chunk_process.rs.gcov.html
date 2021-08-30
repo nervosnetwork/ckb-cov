@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -102,18 +102,18 @@
 <a name="40"><span class="lineNum">      40 </span>            : }</a>
 <a name="41"><span class="lineNum">      41 </span>            : </a>
 <a name="42"><span class="lineNum">      42 </span>            : impl TxChunkProcess {</a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineCov">        310 :     pub fn new(service: TxPoolService, handle: Handle, recv: Receiver&lt;Command&gt;) -&gt; Self {</span></a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">        310 :         TxChunkProcess {</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">        310 :             service,</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        310 :             handle,</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        310 :             recv,</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        310 :             p_state: ProcessState::Normal,</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        310 :         }</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">        310 :     }</span></a>
+<a name="43"><span class="lineNum">      43 </span><span class="lineCov">        248 :     pub fn new(service: TxPoolService, handle: Handle, recv: Receiver&lt;Command&gt;) -&gt; Self {</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">        248 :         TxChunkProcess {</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">        248 :             service,</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        248 :             handle,</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        248 :             recv,</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        248 :             p_state: ProcessState::Normal,</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        248 :         }</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">        248 :     }</span></a>
 <a name="51"><span class="lineNum">      51 </span>            : </a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">     193810 :     pub fn run(&amp;mut self) {</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">     193810 :         loop {</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">     193810 :             select! {</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">     133916 :     pub fn run(&amp;mut self) {</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">     133916 :         loop {</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">     133916 :             select! {</span></a>
 <a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :                 recv(self.recv) -&gt; res =&gt; {</span></a>
 <a name="56"><span class="lineNum">      56 </span><span class="lineNoCov">          0 :                     match res {</span></a>
 <a name="57"><span class="lineNum">      57 </span><span class="lineNoCov">          0 :                         Ok(cmd) =&gt; match cmd {</span></a>
@@ -140,20 +140,20 @@
 <a name="78"><span class="lineNum">      78 </span><span class="lineNoCov">          0 :                         }</span></a>
 <a name="79"><span class="lineNum">      79 </span><span class="lineNoCov">          0 :                     }</span></a>
 <a name="80"><span class="lineNum">      80 </span><span class="lineNoCov">          0 :                 }</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">     193810 :             }</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">     193810 :         }</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        310 :     }</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">     133916 :             }</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">     133916 :         }</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        248 :     }</span></a>
 <a name="84"><span class="lineNum">      84 </span>            : </a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">     145075 :     fn try_process(&amp;mut self) -&gt; Stop {</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">     145075 :         match self.handle.block_on(self.get_front()) {</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">      96580 :     fn try_process(&amp;mut self) -&gt; Stop {</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">      96580 :         match self.handle.block_on(self.get_front()) {</span></a>
 <a name="87"><span class="lineNum">      87 </span><span class="lineNoCov">          0 :             Some(entry) =&gt; self.process(entry),</span></a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">     145075 :             None =&gt; false,</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">      96580 :             None =&gt; false,</span></a>
 <a name="89"><span class="lineNum">      89 </span>            :         }</a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">     145075 :     }</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">      96580 :     }</span></a>
 <a name="91"><span class="lineNum">      91 </span>            : </a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">     145005 :     async fn get_front(&amp;self) -&gt; Option&lt;Entry&gt; {</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">     145195 :         self.service.chunk.write().await.pop_front()</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">     145115 :     }</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">      96580 :     async fn get_front(&amp;self) -&gt; Option&lt;Entry&gt; {</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">      96668 :         self.service.chunk.write().await.pop_front()</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">      96512 :     }</span></a>
 <a name="95"><span class="lineNum">      95 </span>            : </a>
 <a name="96"><span class="lineNum">      96 </span><span class="lineNoCov">          0 :     async fn remove_front(&amp;self) {</span></a>
 <a name="97"><span class="lineNum">      97 </span><span class="lineNoCov">          0 :         let mut guard = self.service.chunk.write().await;</span></a>

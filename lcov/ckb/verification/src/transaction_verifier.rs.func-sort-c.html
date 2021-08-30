@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/verification/src/transaction_verifier.rs - functions</title>
+  <title>LCOV - Unit + Integration - ckb/verification/src/transaction_verifier.rs - functions</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,21 +28,21 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">467</td>
+            <td class="headerCovTableEntry">451</td>
             <td class="headerCovTableEntry">590</td>
-            <td class="headerCovTableEntryMed">79.2 %</td>
+            <td class="headerCovTableEntryMed">76.4 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">61</td>
+            <td class="headerCovTableEntry">59</td>
             <td class="headerCovTableEntry">119</td>
-            <td class="headerCovTableEntryLo">51.3 %</td>
+            <td class="headerCovTableEntryLo">49.6 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -85,6 +85,10 @@
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#165">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::complete</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#133">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::resumable_verify</a></td>
               <td class="coverFnLo">0</td>
             </tr>
     <tr>
@@ -149,6 +153,10 @@
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#380">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::inner</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#334">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::resumable_verify</a></td>
               <td class="coverFnLo">0</td>
             </tr>
     <tr>
@@ -293,155 +301,147 @@
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#426">&lt;ckb_verification::transaction_verifier::CompatibleVerifier&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#438">&lt;ckb_verification::transaction_verifier::CompatibleVerifier&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#451">&lt;ckb_verification::transaction_verifier::CompatibleVerifier&gt;::verify::{closure#0}</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#112">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
-            </tr>
-    <tr>
-              <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#133">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::resumable_verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#147">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#112">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#147">&lt;ckb_verification::transaction_verifier::ContextualTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#224">&lt;ckb_verification::transaction_verifier::FeeCalculator&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#236">&lt;ckb_verification::transaction_verifier::FeeCalculator&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::transaction_fee</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#224">&lt;ckb_verification::transaction_verifier::FeeCalculator&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#236">&lt;ckb_verification::transaction_verifier::FeeCalculator&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::transaction_fee</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#70">&lt;ckb_verification::transaction_verifier::NonContextualTransactionVerifier&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#82">&lt;ckb_verification::transaction_verifier::NonContextualTransactionVerifier&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#309">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
-            </tr>
-    <tr>
-              <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#334">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::resumable_verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#326">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#309">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#326">&lt;ckb_verification::transaction_verifier::ScriptVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#676">&lt;ckb_verification::transaction_verifier::Since&gt;::is_relative</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#715">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_snapshot::Snapshot&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#848">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_snapshot::Snapshot&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#715">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#848">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#715">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#848">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#734">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_test_chain_utils::median_time::MockMedianTime&gt;&gt;::block_median_time</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#715">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_test_chain_utils::median_time::MockMedianTime&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#729">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_test_chain_utils::median_time::MockMedianTime&gt;&gt;::parent_median_time</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#848">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_test_chain_utils::median_time::MockMedianTime&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#740">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_test_chain_utils::median_time::MockMedianTime&gt;&gt;::verify_absolute_lock</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#781">&lt;ckb_verification::transaction_verifier::SinceVerifier&lt;ckb_test_chain_utils::median_time::MockMedianTime&gt;&gt;::verify_relative_lock</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#31">&lt;ckb_verification::transaction_verifier::TimeRelativeTransactionVerifier&lt;ckb_snapshot::Snapshot&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#45">&lt;ckb_verification::transaction_verifier::TimeRelativeTransactionVerifier&lt;ckb_snapshot::Snapshot&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#31">&lt;ckb_verification::transaction_verifier::TimeRelativeTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#45">&lt;ckb_verification::transaction_verifier::TimeRelativeTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_snapshot::Snapshot&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#31">&lt;ckb_verification::transaction_verifier::TimeRelativeTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::new</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#45">&lt;ckb_verification::transaction_verifier::TimeRelativeTransactionVerifier&lt;ckb_store::data_loader_wrapper::DataLoaderWrapper&lt;ckb_store::transaction::StoreTransaction&gt;&gt;&gt;::verify</a></td>
-              <td class="coverFnHi">3</td>
+              <td class="coverFnHi">2</td>
             </tr>
     <tr>
               <td class="coverFn"><a href="transaction_verifier.rs.gcov.html#579">&lt;ckb_verification::transaction_verifier::CapacityVerifier&gt;::new</a></td>

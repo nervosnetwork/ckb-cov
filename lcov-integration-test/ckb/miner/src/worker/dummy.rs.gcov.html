@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">63</td>
+            <td class="headerCovTableEntry">62</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -160,7 +160,7 @@
 <a name="98"><span class="lineNum">      98 </span><span class="lineNoCov">          0 :     fn solve(&amp;self, pow_hash: Byte32, work: Work, nonce: u128) {</span></a>
 <a name="99"><span class="lineNum">      99 </span><span class="lineNoCov">          0 :         thread::sleep(self.delay.duration());</span></a>
 <a name="100"><span class="lineNum">     100 </span><span class="lineNoCov">          0 :         if let Err(err) = self.nonce_tx.send((pow_hash, work, nonce)) {</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineNoCov">          0 :             error!(&quot;nonce_tx send error {:?}&quot;, err);</span></a>
+<a name="101"><span class="lineNum">     101 </span>            :             error!(&quot;nonce_tx send error {:?}&quot;, err);</a>
 <a name="102"><span class="lineNum">     102 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="103"><span class="lineNum">     103 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="104"><span class="lineNum">     104 </span>            : }</a>

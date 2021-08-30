@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-integration-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">41</td>
-            <td class="headerCovTableEntry">69</td>
-            <td class="headerCovTableEntryLo">59.4 %</td>
+            <td class="headerCovTableEntry">33</td>
+            <td class="headerCovTableEntry">61</td>
+            <td class="headerCovTableEntryLo">54.1 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">15</td>
-            <td class="headerCovTableEntry">132</td>
-            <td class="headerCovTableEntryLo">11.4 %</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">130</td>
+            <td class="headerCovTableEntryLo">10.0 %</td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -183,16 +183,16 @@
 <a name="121"><span class="lineNum">     121 </span>            : }</a>
 <a name="122"><span class="lineNum">     122 </span>            : </a>
 <a name="123"><span class="lineNum">     123 </span>            : impl From&lt;TxEntryInfo&gt; for TxVerbosity {</a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         18 :     fn from(info: TxEntryInfo) -&gt; Self {</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         18 :         TxVerbosity {</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         18 :             cycles: info.cycles.into(),</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         18 :             size: info.size.into(),</span></a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         18 :             fee: info.fee.into(),</span></a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineCov">         18 :             ancestors_size: info.ancestors_size.into(),</span></a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">         18 :             ancestors_cycles: info.ancestors_cycles.into(),</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">         18 :             ancestors_count: info.ancestors_count.into(),</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">         18 :         }</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">         18 :     }</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         20 :     fn from(info: TxEntryInfo) -&gt; Self {</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         20 :         TxVerbosity {</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         20 :             cycles: info.cycles.into(),</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         20 :             size: info.size.into(),</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         20 :             fee: info.fee.into(),</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineCov">         20 :             ancestors_size: info.ancestors_size.into(),</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">         20 :             ancestors_cycles: info.ancestors_cycles.into(),</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">         20 :             ancestors_count: info.ancestors_count.into(),</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">         20 :         }</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">         20 :     }</span></a>
 <a name="134"><span class="lineNum">     134 </span>            : }</a>
 <a name="135"><span class="lineNum">     135 </span>            : </a>
 <a name="136"><span class="lineNum">     136 </span>            : /// Tx-pool verbose object</a>
@@ -205,20 +205,20 @@
 <a name="143"><span class="lineNum">     143 </span>            : }</a>
 <a name="144"><span class="lineNum">     144 </span>            : </a>
 <a name="145"><span class="lineNum">     145 </span>            : impl From&lt;TxPoolEntryInfo&gt; for TxPoolVerbosity {</a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         18 :     fn from(info: TxPoolEntryInfo) -&gt; Self {</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">         18 :         let TxPoolEntryInfo { pending, proposed } = info;</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">         18 : </span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         18 :         TxPoolVerbosity {</span></a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineCov">         18 :             pending: pending</span></a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineCov">         18 :                 .into_iter()</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">         18 :                 .map(|(hash, entry)| (hash.unpack(), entry.into()))</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">         18 :                 .collect(),</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">         18 :             proposed: proposed</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">         18 :                 .into_iter()</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">         18 :                 .map(|(hash, entry)| (hash.unpack(), entry.into()))</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">         18 :                 .collect(),</span></a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">         18 :         }</span></a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">         18 :     }</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">         20 :     fn from(info: TxPoolEntryInfo) -&gt; Self {</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">         20 :         let TxPoolEntryInfo { pending, proposed } = info;</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">         20 : </span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         20 :         TxPoolVerbosity {</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineCov">         20 :             pending: pending</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">         20 :                 .into_iter()</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">         20 :                 .map(|(hash, entry)| (hash.unpack(), entry.into()))</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">         20 :                 .collect(),</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">         20 :             proposed: proposed</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">         20 :                 .into_iter()</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">         20 :                 .map(|(hash, entry)| (hash.unpack(), entry.into()))</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">         20 :                 .collect(),</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">         20 :         }</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">         20 :     }</span></a>
 <a name="160"><span class="lineNum">     160 </span>            : }</a>
 <a name="161"><span class="lineNum">     161 </span>            : </a>
 <a name="162"><span class="lineNum">     162 </span>            : /// All transactions in tx-pool.</a>
@@ -277,20 +277,6 @@
 <a name="215"><span class="lineNum">     215 </span>            :         }</a>
 <a name="216"><span class="lineNum">     216 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="217"><span class="lineNum">     217 </span>            : }</a>
-<a name="218"><span class="lineNum">     218 </span>            : </a>
-<a name="219"><span class="lineNum">     219 </span>            : #[cfg(test)]</a>
-<a name="220"><span class="lineNum">     220 </span>            : mod tests {</a>
-<a name="221"><span class="lineNum">     221 </span>            :     use super::*;</a>
-<a name="222"><span class="lineNum">     222 </span>            : </a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">          1 :     #[test]</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">          1 :     fn test_outputs_validator_json_display() {</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">          1 :         assert_eq!(</span></a>
-<a name="226"><span class="lineNum">     226 </span><span class="lineCov">          1 :             &quot;well_known_scripts_only&quot;,</span></a>
-<a name="227"><span class="lineNum">     227 </span><span class="lineCov">          1 :             OutputsValidator::WellKnownScriptsOnly.json_display()</span></a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">          1 :         );</span></a>
-<a name="229"><span class="lineNum">     229 </span><span class="lineCov">          1 :         assert_eq!(&quot;passthrough&quot;, OutputsValidator::Passthrough.json_display());</span></a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">          1 :     }</span></a>
-<a name="231"><span class="lineNum">     231 </span>            : }</a>
 </pre>
       </td>
     </tr>

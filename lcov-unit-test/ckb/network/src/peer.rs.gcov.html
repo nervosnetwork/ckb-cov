@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
@@ -67,14 +67,14 @@
 <a name="5"><span class="lineNum">       5 </span>            : use std::time::{Duration, Instant};</a>
 <a name="6"><span class="lineNum">       6 </span>            : </a>
 <a name="7"><span class="lineNum">       7 </span>            : /// Peer info from identify protocol message</a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">          2 : #[derive(Clone, Debug)]</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">          1 : #[derive(Clone, Debug)]</span></a>
 <a name="9"><span class="lineNum">       9 </span>            : pub struct PeerIdentifyInfo {</a>
 <a name="10"><span class="lineNum">      10 </span>            :     /// Node version</a>
 <a name="11"><span class="lineNum">      11 </span>            :     pub client_version: String,</a>
 <a name="12"><span class="lineNum">      12 </span>            : }</a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span>            : /// Peer info</a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">        144 : #[derive(Clone, Debug)]</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         72 : #[derive(Clone, Debug)]</span></a>
 <a name="16"><span class="lineNum">      16 </span>            : pub struct Peer {</a>
 <a name="17"><span class="lineNum">      17 </span>            :     /// Peer address</a>
 <a name="18"><span class="lineNum">      18 </span>            :     pub connected_addr: Multiaddr,</a>
@@ -102,41 +102,41 @@
 <a name="40"><span class="lineNum">      40 </span>            : </a>
 <a name="41"><span class="lineNum">      41 </span>            : impl Peer {</a>
 <a name="42"><span class="lineNum">      42 </span>            :     /// Init session info</a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineCov">        445 :     pub fn new(</span></a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">        445 :         session_id: SessionId,</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">        445 :         session_type: SessionType,</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        445 :         connected_addr: Multiaddr,</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        445 :         is_whitelist: bool,</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        445 :     ) -&gt; Self {</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        445 :         Peer {</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">        445 :             connected_addr,</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">        445 :             listened_addrs: Vec::new(),</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">        445 :             identify_info: None,</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">        445 :             ping_rtt: None,</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">        445 :             last_ping_protocol_message_received_at: None,</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">        445 :             connected_time: Instant::now(),</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">        445 :             is_feeler: false,</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">        445 :             session_id,</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        445 :             session_type,</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">        445 :             protocols: HashMap::with_capacity_and_hasher(1, Default::default()),</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">        445 :             is_whitelist,</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        445 :         }</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        445 :     }</span></a>
+<a name="43"><span class="lineNum">      43 </span><span class="lineCov">        223 :     pub fn new(</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">        223 :         session_id: SessionId,</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">        223 :         session_type: SessionType,</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">        223 :         connected_addr: Multiaddr,</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        223 :         is_whitelist: bool,</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        223 :     ) -&gt; Self {</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        223 :         Peer {</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">        223 :             connected_addr,</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">        223 :             listened_addrs: Vec::new(),</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">        223 :             identify_info: None,</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">        223 :             ping_rtt: None,</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">        223 :             last_ping_protocol_message_received_at: None,</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">        223 :             connected_time: Instant::now(),</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">        223 :             is_feeler: false,</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">        223 :             session_id,</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        223 :             session_type,</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">        223 :             protocols: HashMap::with_capacity_and_hasher(1, Default::default()),</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">        223 :             is_whitelist,</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        223 :         }</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        223 :     }</span></a>
 <a name="63"><span class="lineNum">      63 </span>            : </a>
 <a name="64"><span class="lineNum">      64 </span>            :     /// Whether outbound session</a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        918 :     pub fn is_outbound(&amp;self) -&gt; bool {</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        918 :         self.session_type.is_outbound()</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        918 :     }</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        459 :     pub fn is_outbound(&amp;self) -&gt; bool {</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        459 :         self.session_type.is_outbound()</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        459 :     }</span></a>
 <a name="68"><span class="lineNum">      68 </span>            : </a>
 <a name="69"><span class="lineNum">      69 </span>            :     /// Whether inbound session</a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         66 :     pub fn is_inbound(&amp;self) -&gt; bool {</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         66 :         self.session_type.is_inbound()</span></a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineCov">         66 :     }</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         33 :     pub fn is_inbound(&amp;self) -&gt; bool {</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         33 :         self.session_type.is_inbound()</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineCov">         33 :     }</span></a>
 <a name="73"><span class="lineNum">      73 </span>            : </a>
 <a name="74"><span class="lineNum">      74 </span>            :     /// Get net group</a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">         14 :     pub fn network_group(&amp;self) -&gt; Group {</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">         14 :         (&amp;self.connected_addr).into()</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">         14 :     }</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">          7 :     pub fn network_group(&amp;self) -&gt; Group {</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">          7 :         (&amp;self.connected_addr).into()</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">          7 :     }</span></a>
 <a name="78"><span class="lineNum">      78 </span>            : </a>
 <a name="79"><span class="lineNum">      79 </span>            :     /// Opened protocol version</a>
 <a name="80"><span class="lineNum">      80 </span><span class="lineNoCov">          0 :     pub fn protocol_version(&amp;self, protocol_id: ProtocolId) -&gt; Option&lt;ProtocolVersion&gt; {</span></a>

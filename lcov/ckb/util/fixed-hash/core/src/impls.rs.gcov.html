@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/fixed-hash/core/src/impls.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/fixed-hash/core/src/impls.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">9</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -67,20 +67,20 @@
 <a name="5"><span class="lineNum">       5 </span>            :         impl $name {</a>
 <a name="6"><span class="lineNum">       6 </span>            :             /// Converts `Self` to a byte slice.</a>
 <a name="7"><span class="lineNum">       7 </span>            :             #[inline]</a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">     503001 :             pub fn as_bytes(&amp;self) -&gt; &amp;[u8] {</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">     503001 :                 &amp;self.0[..]</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">     503001 :             }</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">     384720 :             pub fn as_bytes(&amp;self) -&gt; &amp;[u8] {</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">     384720 :                 &amp;self.0[..]</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">     384720 :             }</span></a>
 <a name="11"><span class="lineNum">      11 </span>            :             /// To convert the byte slice back into `Self`.</a>
 <a name="12"><span class="lineNum">      12 </span>            :             #[inline]</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">     300889 :             pub fn from_slice(input: &amp;[u8]) -&gt; Result&lt;Self, FromSliceError&gt; {</span></a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">     300889 :                 if input.len() != $bytes_size {</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">     219838 :             pub fn from_slice(input: &amp;[u8]) -&gt; Result&lt;Self, FromSliceError&gt; {</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">     219838 :                 if input.len() != $bytes_size {</span></a>
 <a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :                     Err(FromSliceError::InvalidLength(input.len()))</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :                 } else {</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">     300889 :                     let mut ret = Self::default();</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">     300889 :                     ret.0[..].copy_from_slice(input);</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">     300889 :                     Ok(ret)</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">     219838 :                     let mut ret = Self::default();</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">     219838 :                     ret.0[..].copy_from_slice(input);</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">     219838 :                     Ok(ret)</span></a>
 <a name="20"><span class="lineNum">      20 </span>            :                 }</a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">     300889 :             }</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">     219838 :             }</span></a>
 <a name="22"><span class="lineNum">      22 </span>            :         }</a>
 <a name="23"><span class="lineNum">      23 </span>            :     };</a>
 <a name="24"><span class="lineNum">      24 </span>            : }</a>

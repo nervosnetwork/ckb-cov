@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/script/src/types.rs</title>
+  <title>LCOV - Unit + Integration - ckb/script/src/types.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,21 +28,21 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">55</td>
-            <td class="headerCovTableEntry">122</td>
-            <td class="headerCovTableEntryLo">45.1 %</td>
+            <td class="headerCovTableEntry">100</td>
+            <td class="headerCovTableEntry">126</td>
+            <td class="headerCovTableEntryMed">79.4 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">13</td>
-            <td class="headerCovTableEntry">41</td>
-            <td class="headerCovTableEntryLo">31.7 %</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntry">42</td>
+            <td class="headerCovTableEntryLo">45.2 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -99,7 +99,7 @@
 <a name="37"><span class="lineNum">      37 </span>            : pub type CoreMachine = DefaultCoreMachine&lt;u64, WXorXMemory&lt;SparseMemory&lt;u64&gt;&gt;&gt;;</a>
 <a name="38"><span class="lineNum">      38 </span>            : </a>
 <a name="39"><span class="lineNum">      39 </span>            : /// The version of CKB Script Verifier.</a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineCov">       1020 : #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineCov">        652 : #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]</span></a>
 <a name="41"><span class="lineNum">      41 </span>            : pub enum ScriptVersion {</a>
 <a name="42"><span class="lineNum">      42 </span>            :     /// CKB VM 0 with Syscall version 1.</a>
 <a name="43"><span class="lineNum">      43 </span>            :     V0 = 0,</a>
@@ -114,20 +114,20 @@
 <a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="53"><span class="lineNum">      53 </span>            : </a>
 <a name="54"><span class="lineNum">      54 </span>            :     /// Returns the ISA set of CKB VM in current script version.</a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">      24634 :     pub fn vm_isa(self) -&gt; VmIsa {</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">      24634 :         match self {</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">      24634 :             Self::V0 =&gt; ISA_IMC,</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">      11693 :             Self::V1 =&gt; ISA_IMC | ISA_B | ISA_MOP,</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">      16490 :     pub fn vm_isa(self) -&gt; VmIsa {</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">      16490 :         match self {</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">      16490 :             Self::V0 =&gt; ISA_IMC,</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">       7834 :             Self::V1 =&gt; ISA_IMC | ISA_B | ISA_MOP,</span></a>
 <a name="59"><span class="lineNum">      59 </span>            :         }</a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">      24634 :     }</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">      16490 :     }</span></a>
 <a name="61"><span class="lineNum">      61 </span>            : </a>
 <a name="62"><span class="lineNum">      62 </span>            :     /// Returns the version of CKB VM in current script version.</a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">      24640 :     pub fn vm_version(self) -&gt; VmVersion {</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">      24640 :         match self {</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">      24640 :             Self::V0 =&gt; VERSION0,</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">      11696 :             Self::V1 =&gt; VERSION1,</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">      16494 :     pub fn vm_version(self) -&gt; VmVersion {</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">      16494 :         match self {</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">      16494 :             Self::V0 =&gt; VERSION0,</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">       7836 :             Self::V1 =&gt; VERSION1,</span></a>
 <a name="67"><span class="lineNum">      67 </span>            :         }</a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">      24640 :     }</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">      16494 :     }</span></a>
 <a name="69"><span class="lineNum">      69 </span>            : </a>
 <a name="70"><span class="lineNum">      70 </span>            :     /// Returns the specific data script hash type.</a>
 <a name="71"><span class="lineNum">      71 </span>            :     ///</a>
@@ -144,16 +144,16 @@
 <a name="82"><span class="lineNum">      82 </span>            :     /// Creates a CKB VM core machine without cycles limit.</a>
 <a name="83"><span class="lineNum">      83 </span>            :     ///</a>
 <a name="84"><span class="lineNum">      84 </span>            :     /// In fact, there is still a limit of `max_cycles` which is set to `2^64-1`.</a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">      23320 :     pub fn init_core_machine_without_limit(self) -&gt; CoreMachine {</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">      23320 :         self.init_core_machine(u64::MAX)</span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">      23320 :     }</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">      15546 :     pub fn init_core_machine_without_limit(self) -&gt; CoreMachine {</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">      15546 :         self.init_core_machine(u64::MAX)</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">      15546 :     }</span></a>
 <a name="88"><span class="lineNum">      88 </span>            : </a>
 <a name="89"><span class="lineNum">      89 </span>            :     /// Creates a CKB VM core machine.</a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">      24634 :     pub fn init_core_machine(self, max_cycles: Cycle) -&gt; CoreMachine {</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">      24634 :         let isa = self.vm_isa();</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">      24634 :         let version = self.vm_version();</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">      24634 :         CoreMachineType::new(isa, version, max_cycles)</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">      24634 :     }</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">      16492 :     pub fn init_core_machine(self, max_cycles: Cycle) -&gt; CoreMachine {</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">      16492 :         let isa = self.vm_isa();</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">      16492 :         let version = self.vm_version();</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">      16492 :         CoreMachineType::new(isa, version, max_cycles)</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">      16492 :     }</span></a>
 <a name="95"><span class="lineNum">      95 </span>            : }</a>
 <a name="96"><span class="lineNum">      96 </span>            : </a>
 <a name="97"><span class="lineNum">      97 </span>            : #[cfg(has_asm)]</a>
@@ -167,25 +167,25 @@
 <a name="105"><span class="lineNum">     105 </span>            : }</a>
 <a name="106"><span class="lineNum">     106 </span>            : </a>
 <a name="107"><span class="lineNum">     107 </span>            : impl&lt;'a&gt; ResumableMachine&lt;'a&gt; {</a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">         18 :     pub(crate) fn new(machine: Machine&lt;'a&gt;, program_loaded: bool) -&gt; Self {</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         18 :         ResumableMachine {</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">         18 :             machine,</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         18 :             program_loaded,</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         18 :         }</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         18 :     }</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">         48 :     pub(crate) fn new(machine: Machine&lt;'a&gt;, program_loaded: bool) -&gt; Self {</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         48 :         ResumableMachine {</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">         48 :             machine,</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         48 :             program_loaded,</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         48 :         }</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         48 :     }</span></a>
 <a name="114"><span class="lineNum">     114 </span>            : </a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         72 :     pub(crate) fn cycles(&amp;self) -&gt; Cycle {</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">         72 :         self.machine.machine.cycles()</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         72 :     }</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         92 :     pub(crate) fn cycles(&amp;self) -&gt; Cycle {</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">         92 :         self.machine.machine.cycles()</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         92 :     }</span></a>
 <a name="118"><span class="lineNum">     118 </span>            : </a>
 <a name="119"><span class="lineNum">     119 </span>            :     #[cfg(test)]</a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">         54 :     pub(crate) fn set_cycles(&amp;mut self, cycles: Cycle) {</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         54 :         self.machine.machine.set_cycles(cycles)</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         54 :     }</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">         36 :     pub(crate) fn set_cycles(&amp;mut self, cycles: Cycle) {</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         36 :         self.machine.machine.set_cycles(cycles)</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         36 :     }</span></a>
 <a name="123"><span class="lineNum">     123 </span>            : </a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineNoCov">          0 :     pub(crate) fn set_max_cycles(&amp;mut self, cycles: Cycle) {</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineNoCov">          0 :         set_vm_max_cycles(&amp;mut self.machine, cycles)</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         36 :     pub(crate) fn set_max_cycles(&amp;mut self, cycles: Cycle) {</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">         36 :         set_vm_max_cycles(&amp;mut self.machine, cycles)</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         36 :     }</span></a>
 <a name="127"><span class="lineNum">     127 </span>            : </a>
 <a name="128"><span class="lineNum">     128 </span><span class="lineNoCov">          0 :     pub fn program_loaded(&amp;self) -&gt; bool {</span></a>
 <a name="129"><span class="lineNum">     129 </span><span class="lineNoCov">          0 :         self.program_loaded</span></a>
@@ -193,9 +193,9 @@
 <a name="131"><span class="lineNum">     131 </span>            : }</a>
 <a name="132"><span class="lineNum">     132 </span>            : </a>
 <a name="133"><span class="lineNum">     133 </span>            : #[cfg(has_asm)]</a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineNoCov">          0 : pub(crate) fn set_vm_max_cycles(vm: &amp;mut Machine&lt;'_&gt;, cycles: Cycle) {</span></a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineNoCov">          0 :     vm.set_max_cycles(cycles)</span></a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineNoCov">          0 : }</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">         36 : pub(crate) fn set_vm_max_cycles(vm: &amp;mut Machine&lt;'_&gt;, cycles: Cycle) {</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">         36 :     vm.set_max_cycles(cycles)</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">         36 : }</span></a>
 <a name="137"><span class="lineNum">     137 </span>            : </a>
 <a name="138"><span class="lineNum">     138 </span>            : #[cfg(not(has_asm))]</a>
 <a name="139"><span class="lineNum">     139 </span>            : pub(crate) fn set_vm_max_cycles(vm: &amp;mut Machine&lt;'_&gt;, cycles: Cycle) {</a>
@@ -222,31 +222,31 @@
 <a name="160"><span class="lineNum">     160 </span>            : </a>
 <a name="161"><span class="lineNum">     161 </span>            : impl ScriptGroup {</a>
 <a name="162"><span class="lineNum">     162 </span>            :     /// Creates a new script group struct.</a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">       1362 :     pub fn new(script: &amp;Script, group_type: ScriptGroupType) -&gt; Self {</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">       1362 :         Self {</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">       1362 :             group_type,</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">       1362 :             script: script.to_owned(),</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1362 :             input_indices: vec![],</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">       1362 :             output_indices: vec![],</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">       1362 :         }</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">       1362 :     }</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        926 :     pub fn new(script: &amp;Script, group_type: ScriptGroupType) -&gt; Self {</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">        926 :         Self {</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">        926 :             group_type,</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">        926 :             script: script.to_owned(),</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">        926 :             input_indices: vec![],</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">        926 :             output_indices: vec![],</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">        926 :         }</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">        926 :     }</span></a>
 <a name="171"><span class="lineNum">     171 </span>            : </a>
 <a name="172"><span class="lineNum">     172 </span>            :     /// Creates a lock script group.</a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">       1296 :     pub fn from_lock_script(script: &amp;Script) -&gt; Self {</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">       1296 :         Self::new(script, ScriptGroupType::Lock)</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">       1296 :     }</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        868 :     pub fn from_lock_script(script: &amp;Script) -&gt; Self {</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">        868 :         Self::new(script, ScriptGroupType::Lock)</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        868 :     }</span></a>
 <a name="176"><span class="lineNum">     176 </span>            : </a>
 <a name="177"><span class="lineNum">     177 </span>            :     /// Creates a type script group.</a>
-<a name="178"><span class="lineNum">     178 </span><span class="lineCov">         66 :     pub fn from_type_script(script: &amp;Script) -&gt; Self {</span></a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">         66 :         Self::new(script, ScriptGroupType::Type)</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">         66 :     }</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">         44 :     pub fn from_type_script(script: &amp;Script) -&gt; Self {</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">         44 :         Self::new(script, ScriptGroupType::Type)</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">         44 :     }</span></a>
 <a name="181"><span class="lineNum">     181 </span>            : }</a>
 <a name="182"><span class="lineNum">     182 </span>            : </a>
 <a name="183"><span class="lineNum">     183 </span>            : /// The script group type.</a>
 <a name="184"><span class="lineNum">     184 </span>            : ///</a>
 <a name="185"><span class="lineNum">     185 </span>            : /// A cell can have a lock script and an optional type script. Even they reference the same script,</a>
 <a name="186"><span class="lineNum">     186 </span>            : /// lock script and type script will not be grouped together.</a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineNoCov">          0 : #[derive(Copy, Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">         20 : #[derive(Copy, Clone, Serialize, Deserialize, PartialEq, Eq, Hash, Debug)]</span></a>
 <a name="188"><span class="lineNum">     188 </span>            : #[serde(rename_all = &quot;snake_case&quot;)]</a>
 <a name="189"><span class="lineNum">     189 </span>            : pub enum ScriptGroupType {</a>
 <a name="190"><span class="lineNum">     190 </span>            :     /// Lock script group.</a>
@@ -256,12 +256,12 @@
 <a name="194"><span class="lineNum">     194 </span>            : }</a>
 <a name="195"><span class="lineNum">     195 </span>            : </a>
 <a name="196"><span class="lineNum">     196 </span>            : impl fmt::Display for ScriptGroupType {</a>
-<a name="197"><span class="lineNum">     197 </span><span class="lineCov">        114 :     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {</span></a>
-<a name="198"><span class="lineNum">     198 </span><span class="lineCov">        114 :         match self {</span></a>
-<a name="199"><span class="lineNum">     199 </span><span class="lineCov">        114 :             ScriptGroupType::Lock =&gt; write!(f, &quot;Lock&quot;),</span></a>
-<a name="200"><span class="lineNum">     200 </span><span class="lineCov">         60 :             ScriptGroupType::Type =&gt; write!(f, &quot;Type&quot;),</span></a>
+<a name="197"><span class="lineNum">     197 </span><span class="lineCov">         78 :     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {</span></a>
+<a name="198"><span class="lineNum">     198 </span><span class="lineCov">         78 :         match self {</span></a>
+<a name="199"><span class="lineNum">     199 </span><span class="lineCov">         78 :             ScriptGroupType::Lock =&gt; write!(f, &quot;Lock&quot;),</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">         40 :             ScriptGroupType::Type =&gt; write!(f, &quot;Type&quot;),</span></a>
 <a name="201"><span class="lineNum">     201 </span>            :         }</a>
-<a name="202"><span class="lineNum">     202 </span><span class="lineCov">        114 :     }</span></a>
+<a name="202"><span class="lineNum">     202 </span><span class="lineCov">         78 :     }</span></a>
 <a name="203"><span class="lineNum">     203 </span>            : }</a>
 <a name="204"><span class="lineNum">     204 </span>            : </a>
 <a name="205"><span class="lineNum">     205 </span>            : /// Struct specifies which script has verified so far.</a>
@@ -296,94 +296,99 @@
 <a name="234"><span class="lineNum">     234 </span>            : </a>
 <a name="235"><span class="lineNum">     235 </span>            : impl TransactionState&lt;'_&gt; {</a>
 <a name="236"><span class="lineNum">     236 </span>            :     /// Return next limit cycles according to max_cycles and step_cycles</a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineNoCov">          0 :     pub fn next_limit_cycles(&amp;self, step_cycles: Cycle, max_cycles: Cycle) -&gt; (Cycle, bool) {</span></a>
-<a name="238"><span class="lineNum">     238 </span><span class="lineNoCov">          0 :         let remain = max_cycles - self.current_cycles;</span></a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineNoCov">          0 :         let next_limit = self.limit_cycles + step_cycles;</span></a>
-<a name="240"><span class="lineNum">     240 </span><span class="lineNoCov">          0 : </span></a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineNoCov">          0 :         if next_limit &lt; remain {</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineNoCov">          0 :             (next_limit, false)</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         36 :     pub fn next_limit_cycles(&amp;self, step_cycles: Cycle, max_cycles: Cycle) -&gt; (Cycle, bool) {</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">         36 :         let remain = max_cycles - self.current_cycles;</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         36 :         let next_limit = self.limit_cycles + step_cycles;</span></a>
+<a name="240"><span class="lineNum">     240 </span><span class="lineCov">         36 : </span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">         36 :         if next_limit &lt; remain {</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">         32 :             (next_limit, false)</span></a>
 <a name="243"><span class="lineNum">     243 </span>            :         } else {</a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineNoCov">          0 :             (remain, true)</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineCov">          4 :             (remain, true)</span></a>
 <a name="245"><span class="lineNum">     245 </span>            :         }</a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">         36 :     }</span></a>
 <a name="247"><span class="lineNum">     247 </span>            : }</a>
 <a name="248"><span class="lineNum">     248 </span>            : </a>
 <a name="249"><span class="lineNum">     249 </span>            : impl TransactionSnapshot {</a>
 <a name="250"><span class="lineNum">     250 </span>            :     /// Return next limit cycles according to max_cycles and step_cycles</a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineNoCov">          0 :     pub fn next_limit_cycles(&amp;self, step_cycles: Cycle, max_cycles: Cycle) -&gt; (Cycle, bool) {</span></a>
-<a name="252"><span class="lineNum">     252 </span><span class="lineNoCov">          0 :         let remain = max_cycles - self.current_cycles;</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :         let next_limit = self.limit_cycles + step_cycles;</span></a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineNoCov">          0 : </span></a>
-<a name="255"><span class="lineNum">     255 </span><span class="lineNoCov">          0 :         if next_limit &lt; remain {</span></a>
-<a name="256"><span class="lineNum">     256 </span><span class="lineNoCov">          0 :             (next_limit, false)</span></a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineCov">         24 :     pub fn next_limit_cycles(&amp;self, step_cycles: Cycle, max_cycles: Cycle) -&gt; (Cycle, bool) {</span></a>
+<a name="252"><span class="lineNum">     252 </span><span class="lineCov">         24 :         let remain = max_cycles - self.current_cycles;</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineCov">         24 :         let next_limit = self.limit_cycles + step_cycles;</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">         24 : </span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineCov">         24 :         if next_limit &lt; remain {</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineCov">         20 :             (next_limit, false)</span></a>
 <a name="257"><span class="lineNum">     257 </span>            :         } else {</a>
-<a name="258"><span class="lineNum">     258 </span><span class="lineNoCov">          0 :             (remain, true)</span></a>
+<a name="258"><span class="lineNum">     258 </span><span class="lineCov">          4 :             (remain, true)</span></a>
 <a name="259"><span class="lineNum">     259 </span>            :         }</a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">         24 :     }</span></a>
 <a name="261"><span class="lineNum">     261 </span>            : }</a>
 <a name="262"><span class="lineNum">     262 </span>            : </a>
 <a name="263"><span class="lineNum">     263 </span>            : impl TryFrom&lt;TransactionState&lt;'_&gt;&gt; for TransactionSnapshot {</a>
 <a name="264"><span class="lineNum">     264 </span>            :     type Error = Error;</a>
 <a name="265"><span class="lineNum">     265 </span>            : </a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineNoCov">          0 :     fn try_from(state: TransactionState&lt;'_&gt;) -&gt; Result&lt;Self, Self::Error&gt; {</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineNoCov">          0 :         let TransactionState {</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineNoCov">          0 :             current,</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineNoCov">          0 :             remain,</span></a>
-<a name="270"><span class="lineNum">     270 </span><span class="lineNoCov">          0 :             mut vm,</span></a>
-<a name="271"><span class="lineNum">     271 </span><span class="lineNoCov">          0 :             current_cycles,</span></a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineNoCov">          0 :             limit_cycles,</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">         28 :     fn try_from(state: TransactionState&lt;'_&gt;) -&gt; Result&lt;Self, Self::Error&gt; {</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">         28 :         let TransactionState {</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">         28 :             current,</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">         28 :             remain,</span></a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">         28 :             mut vm,</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">         28 :             current_cycles,</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">         28 :             limit_cycles,</span></a>
 <a name="273"><span class="lineNum">     273 </span>            :         } = state;</a>
 <a name="274"><span class="lineNum">     274 </span>            : </a>
 <a name="275"><span class="lineNum">     275 </span>            :         // we should not capture snapshot if load program failed by exceeded cycles</a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineNoCov">          0 :         let snap =</span></a>
-<a name="277"><span class="lineNum">     277 </span><span class="lineNoCov">          0 :             if vm.program_loaded {</span></a>
-<a name="278"><span class="lineNum">     278 </span><span class="lineNoCov">          0 :                 Some(make_snapshot(&amp;mut vm.machine.machine).map_err(|e| {</span></a>
-<a name="279"><span class="lineNum">     279 </span><span class="lineNoCov">          0 :                     ScriptError::VMInternalError(format!(&quot;{:?}&quot;, e)).unknown_source()</span></a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineNoCov">          0 :                 })?)</span></a>
-<a name="281"><span class="lineNum">     281 </span>            :             } else {</a>
-<a name="282"><span class="lineNum">     282 </span><span class="lineNoCov">          0 :                 None</span></a>
-<a name="283"><span class="lineNum">     283 </span>            :             };</a>
-<a name="284"><span class="lineNum">     284 </span>            : </a>
-<a name="285"><span class="lineNum">     285 </span><span class="lineNoCov">          0 :         Ok(TransactionSnapshot {</span></a>
-<a name="286"><span class="lineNum">     286 </span><span class="lineNoCov">          0 :             current,</span></a>
-<a name="287"><span class="lineNum">     287 </span><span class="lineNoCov">          0 :             remain,</span></a>
-<a name="288"><span class="lineNum">     288 </span><span class="lineNoCov">          0 :             snap,</span></a>
-<a name="289"><span class="lineNum">     289 </span><span class="lineNoCov">          0 :             current_cycles,</span></a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineNoCov">          0 :             limit_cycles,</span></a>
-<a name="291"><span class="lineNum">     291 </span><span class="lineNoCov">          0 :         })</span></a>
-<a name="292"><span class="lineNum">     292 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="293"><span class="lineNum">     293 </span>            : }</a>
-<a name="294"><span class="lineNum">     294 </span>            : </a>
-<a name="295"><span class="lineNum">     295 </span>            : /// Enum represent resumable verify result</a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineNoCov">          0 : #[derive(Debug)]</span></a>
-<a name="297"><span class="lineNum">     297 </span>            : pub enum VerifyResult&lt;'a&gt; {</a>
-<a name="298"><span class="lineNum">     298 </span>            :     /// Completed total cycles</a>
-<a name="299"><span class="lineNum">     299 </span>            :     Completed(Cycle),</a>
-<a name="300"><span class="lineNum">     300 </span>            :     /// Suspended state</a>
-<a name="301"><span class="lineNum">     301 </span>            :     Suspended(TransactionState&lt;'a&gt;),</a>
-<a name="302"><span class="lineNum">     302 </span>            : }</a>
-<a name="303"><span class="lineNum">     303 </span>            : </a>
-<a name="304"><span class="lineNum">     304 </span>            : impl std::fmt::Debug for TransactionSnapshot {</a>
-<a name="305"><span class="lineNum">     305 </span><span class="lineNoCov">          0 :     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; std::fmt::Result {</span></a>
-<a name="306"><span class="lineNum">     306 </span><span class="lineNoCov">          0 :         f.debug_struct(&quot;TransactionSnapshot&quot;)</span></a>
-<a name="307"><span class="lineNum">     307 </span><span class="lineNoCov">          0 :             .field(&quot;current&quot;, &amp;self.current)</span></a>
-<a name="308"><span class="lineNum">     308 </span><span class="lineNoCov">          0 :             .field(&quot;remain&quot;, &amp;self.remain)</span></a>
-<a name="309"><span class="lineNum">     309 </span><span class="lineNoCov">          0 :             .field(&quot;current_cycles&quot;, &amp;self.current_cycles)</span></a>
-<a name="310"><span class="lineNum">     310 </span><span class="lineNoCov">          0 :             .field(&quot;limit_cycles&quot;, &amp;self.limit_cycles)</span></a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineNoCov">          0 :             .finish()</span></a>
-<a name="312"><span class="lineNum">     312 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="313"><span class="lineNum">     313 </span>            : }</a>
-<a name="314"><span class="lineNum">     314 </span>            : </a>
-<a name="315"><span class="lineNum">     315 </span>            : impl std::fmt::Debug for TransactionState&lt;'_&gt; {</a>
-<a name="316"><span class="lineNum">     316 </span><span class="lineNoCov">          0 :     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; std::fmt::Result {</span></a>
-<a name="317"><span class="lineNum">     317 </span><span class="lineNoCov">          0 :         f.debug_struct(&quot;TransactionState&quot;)</span></a>
-<a name="318"><span class="lineNum">     318 </span><span class="lineNoCov">          0 :             .field(&quot;current&quot;, &amp;self.current)</span></a>
-<a name="319"><span class="lineNum">     319 </span><span class="lineNoCov">          0 :             .field(&quot;remain&quot;, &amp;self.remain)</span></a>
-<a name="320"><span class="lineNum">     320 </span><span class="lineNoCov">          0 :             .field(&quot;current_cycles&quot;, &amp;self.current_cycles)</span></a>
-<a name="321"><span class="lineNum">     321 </span><span class="lineNoCov">          0 :             .field(&quot;limit_cycles&quot;, &amp;self.limit_cycles)</span></a>
-<a name="322"><span class="lineNum">     322 </span><span class="lineNoCov">          0 :             .finish()</span></a>
-<a name="323"><span class="lineNum">     323 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="324"><span class="lineNum">     324 </span>            : }</a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">         28 :         let (snap, current_cycles) = if vm.program_loaded {</span></a>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">         28 :             let vm_cycles = vm.cycles();</span></a>
+<a name="278"><span class="lineNum">     278 </span><span class="lineCov">         28 :             (</span></a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineCov">         28 :                 Some(make_snapshot(&amp;mut vm.machine.machine).map_err(|e| {</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineNoCov">          0 :                     ScriptError::VMInternalError(format!(&quot;{:?}&quot;, e)).unknown_source()</span></a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">         28 :                 })?),</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">         28 :                 current_cycles.checked_add(vm_cycles).ok_or_else(|| {</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineNoCov">          0 :                     ScriptError::CyclesOverflow(current_cycles, vm_cycles).unknown_source()</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">         28 :                 })?,</span></a>
+<a name="285"><span class="lineNum">     285 </span>            :             )</a>
+<a name="286"><span class="lineNum">     286 </span>            :         } else {</a>
+<a name="287"><span class="lineNum">     287 </span><span class="lineNoCov">          0 :             (None, current_cycles)</span></a>
+<a name="288"><span class="lineNum">     288 </span>            :         };</a>
+<a name="289"><span class="lineNum">     289 </span>            : </a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">         28 :         Ok(TransactionSnapshot {</span></a>
+<a name="291"><span class="lineNum">     291 </span><span class="lineCov">         28 :             current,</span></a>
+<a name="292"><span class="lineNum">     292 </span><span class="lineCov">         28 :             remain,</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">         28 :             snap,</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">         28 :             current_cycles,</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">         28 :             limit_cycles,</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">         28 :         })</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">         28 :     }</span></a>
+<a name="298"><span class="lineNum">     298 </span>            : }</a>
+<a name="299"><span class="lineNum">     299 </span>            : </a>
+<a name="300"><span class="lineNum">     300 </span>            : /// Enum represent resumable verify result</a>
+<a name="301"><span class="lineNum">     301 </span><span class="lineNoCov">          0 : #[derive(Debug)]</span></a>
+<a name="302"><span class="lineNum">     302 </span>            : pub enum VerifyResult&lt;'a&gt; {</a>
+<a name="303"><span class="lineNum">     303 </span>            :     /// Completed total cycles</a>
+<a name="304"><span class="lineNum">     304 </span>            :     Completed(Cycle),</a>
+<a name="305"><span class="lineNum">     305 </span>            :     /// Suspended state</a>
+<a name="306"><span class="lineNum">     306 </span>            :     Suspended(TransactionState&lt;'a&gt;),</a>
+<a name="307"><span class="lineNum">     307 </span>            : }</a>
+<a name="308"><span class="lineNum">     308 </span>            : </a>
+<a name="309"><span class="lineNum">     309 </span>            : impl std::fmt::Debug for TransactionSnapshot {</a>
+<a name="310"><span class="lineNum">     310 </span><span class="lineNoCov">          0 :     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; std::fmt::Result {</span></a>
+<a name="311"><span class="lineNum">     311 </span><span class="lineNoCov">          0 :         f.debug_struct(&quot;TransactionSnapshot&quot;)</span></a>
+<a name="312"><span class="lineNum">     312 </span><span class="lineNoCov">          0 :             .field(&quot;current&quot;, &amp;self.current)</span></a>
+<a name="313"><span class="lineNum">     313 </span><span class="lineNoCov">          0 :             .field(&quot;remain&quot;, &amp;self.remain)</span></a>
+<a name="314"><span class="lineNum">     314 </span><span class="lineNoCov">          0 :             .field(&quot;current_cycles&quot;, &amp;self.current_cycles)</span></a>
+<a name="315"><span class="lineNum">     315 </span><span class="lineNoCov">          0 :             .field(&quot;limit_cycles&quot;, &amp;self.limit_cycles)</span></a>
+<a name="316"><span class="lineNum">     316 </span><span class="lineNoCov">          0 :             .finish()</span></a>
+<a name="317"><span class="lineNum">     317 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="318"><span class="lineNum">     318 </span>            : }</a>
+<a name="319"><span class="lineNum">     319 </span>            : </a>
+<a name="320"><span class="lineNum">     320 </span>            : impl std::fmt::Debug for TransactionState&lt;'_&gt; {</a>
+<a name="321"><span class="lineNum">     321 </span><span class="lineNoCov">          0 :     fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter) -&gt; std::fmt::Result {</span></a>
+<a name="322"><span class="lineNum">     322 </span><span class="lineNoCov">          0 :         f.debug_struct(&quot;TransactionState&quot;)</span></a>
+<a name="323"><span class="lineNum">     323 </span><span class="lineNoCov">          0 :             .field(&quot;current&quot;, &amp;self.current)</span></a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineNoCov">          0 :             .field(&quot;remain&quot;, &amp;self.remain)</span></a>
+<a name="325"><span class="lineNum">     325 </span><span class="lineNoCov">          0 :             .field(&quot;current_cycles&quot;, &amp;self.current_cycles)</span></a>
+<a name="326"><span class="lineNum">     326 </span><span class="lineNoCov">          0 :             .field(&quot;limit_cycles&quot;, &amp;self.limit_cycles)</span></a>
+<a name="327"><span class="lineNum">     327 </span><span class="lineNoCov">          0 :             .finish()</span></a>
+<a name="328"><span class="lineNum">     328 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="329"><span class="lineNum">     329 </span>            : }</a>
 </pre>
       </td>
     </tr>

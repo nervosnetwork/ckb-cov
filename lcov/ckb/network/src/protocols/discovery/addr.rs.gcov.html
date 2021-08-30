@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/network/src/protocols/discovery/addr.rs</title>
+  <title>LCOV - Unit + Integration - ckb/network/src/protocols/discovery/addr.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">23</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -112,29 +112,29 @@
 <a name="50"><span class="lineNum">      50 </span>            : }</a>
 <a name="51"><span class="lineNum">      51 </span>            : </a>
 <a name="52"><span class="lineNum">      52 </span>            : impl AddrKnown {</a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">         68 :     pub(crate) fn new(buckets_num: usize) -&gt; AddrKnown {</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">         68 :         AddrKnown {</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">         68 :             filters: StableBloomFilter::new(</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">         68 :                 buckets_num,</span></a>
-<a name="57"><span class="lineNum">      57 </span><span class="lineCov">         68 :                 3,</span></a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">         68 :                 0.03,</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">         68 :                 DefaultBuildHashKernels::new(rand::random(), RandomState::default()),</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">         68 :             ),</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         68 :         }</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">         68 :     }</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">         48 :     pub(crate) fn new(buckets_num: usize) -&gt; AddrKnown {</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">         48 :         AddrKnown {</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">         48 :             filters: StableBloomFilter::new(</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">         48 :                 buckets_num,</span></a>
+<a name="57"><span class="lineNum">      57 </span><span class="lineCov">         48 :                 3,</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">         48 :                 0.03,</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">         48 :                 DefaultBuildHashKernels::new(rand::random(), RandomState::default()),</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">         48 :             ),</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         48 :         }</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">         48 :     }</span></a>
 <a name="63"><span class="lineNum">      63 </span>            : </a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         67 :     pub(crate) fn insert&lt;T: ::std::hash::Hash&gt;(&amp;mut self, key: T) {</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">         67 :         self.filters.insert(&amp;key)</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         67 :     }</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         46 :     pub(crate) fn insert&lt;T: ::std::hash::Hash&gt;(&amp;mut self, key: T) {</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">         46 :         self.filters.insert(&amp;key)</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">         46 :     }</span></a>
 <a name="67"><span class="lineNum">      67 </span>            : </a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         66 :     pub(crate) fn extend&lt;'a, T: 'a + ::std::hash::Hash&gt;(</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         66 :         &amp;mut self,</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         66 :         keys: impl Iterator&lt;Item = &amp;'a T&gt;,</span></a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         66 :     ) {</span></a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineCov">         60 :         for key in keys {</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">         60 :             self.filters.insert(key)</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         44 :     pub(crate) fn extend&lt;'a, T: 'a + ::std::hash::Hash&gt;(</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">         44 :         &amp;mut self,</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">         44 :         keys: impl Iterator&lt;Item = &amp;'a T&gt;,</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         44 :     ) {</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineCov">         40 :         for key in keys {</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">         40 :             self.filters.insert(key)</span></a>
 <a name="74"><span class="lineNum">      74 </span>            :         }</a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">         66 :     }</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">         44 :     }</span></a>
 <a name="76"><span class="lineNum">      76 </span>            : </a>
 <a name="77"><span class="lineNum">      77 </span><span class="lineNoCov">          0 :     pub(crate) fn contains&lt;T: ::std::hash::Hash&gt;(&amp;self, addr: &amp;T) -&gt; bool {</span></a>
 <a name="78"><span class="lineNum">      78 </span><span class="lineNoCov">          0 :         self.filters.contains(addr)</span></a>
@@ -142,9 +142,9 @@
 <a name="80"><span class="lineNum">      80 </span>            : }</a>
 <a name="81"><span class="lineNum">      81 </span>            : </a>
 <a name="82"><span class="lineNum">      82 </span>            : impl Default for AddrKnown {</a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         68 :     fn default() -&gt; AddrKnown {</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         68 :         AddrKnown::new(DEFAULT_BUCKETS_NUM)</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         68 :     }</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         48 :     fn default() -&gt; AddrKnown {</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         48 :         AddrKnown::new(DEFAULT_BUCKETS_NUM)</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         48 :     }</span></a>
 <a name="86"><span class="lineNum">      86 </span>            : }</a>
 </pre>
       </td>

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -67,20 +67,20 @@
 <a name="5"><span class="lineNum">       5 </span>            :         impl $name {</a>
 <a name="6"><span class="lineNum">       6 </span>            :             /// Converts `Self` to a byte slice.</a>
 <a name="7"><span class="lineNum">       7 </span>            :             #[inline]</a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">     167644 :             pub fn as_bytes(&amp;self) -&gt; &amp;[u8] {</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">     167644 :                 &amp;self.0[..]</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">     167644 :             }</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">     200131 :             pub fn as_bytes(&amp;self) -&gt; &amp;[u8] {</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">     200131 :                 &amp;self.0[..]</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">     200131 :             }</span></a>
 <a name="11"><span class="lineNum">      11 </span>            :             /// To convert the byte slice back into `Self`.</a>
 <a name="12"><span class="lineNum">      12 </span>            :             #[inline]</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">     100304 :             pub fn from_slice(input: &amp;[u8]) -&gt; Result&lt;Self, FromSliceError&gt; {</span></a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">     100304 :                 if input.len() != $bytes_size {</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">     114317 :             pub fn from_slice(input: &amp;[u8]) -&gt; Result&lt;Self, FromSliceError&gt; {</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">     114317 :                 if input.len() != $bytes_size {</span></a>
 <a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :                     Err(FromSliceError::InvalidLength(input.len()))</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :                 } else {</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">     100304 :                     let mut ret = Self::default();</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">     100304 :                     ret.0[..].copy_from_slice(input);</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">     100304 :                     Ok(ret)</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">     114317 :                     let mut ret = Self::default();</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">     114317 :                     ret.0[..].copy_from_slice(input);</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">     114317 :                     Ok(ret)</span></a>
 <a name="20"><span class="lineNum">      20 </span>            :                 }</a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">     100304 :             }</span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">     114317 :             }</span></a>
 <a name="22"><span class="lineNum">      22 </span>            :         }</a>
 <a name="23"><span class="lineNum">      23 </span>            :     };</a>
 <a name="24"><span class="lineNum">      24 </span>            : }</a>

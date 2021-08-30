@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">36</td>
@@ -117,9 +117,9 @@
 <a name="55"><span class="lineNum">      55 </span>            :         impl HardForkSwitch {</a>
 <a name="56"><span class="lineNum">      56 </span>            :             #[doc = $comment_getter]</a>
 <a name="57"><span class="lineNum">      57 </span>            :             #[inline]</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">     136125 :             pub fn $feature(&amp;self) -&gt; EpochNumber {</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">     136125 :                 self.$feature</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">     136125 :             }</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">     155698 :             pub fn $feature(&amp;self) -&gt; EpochNumber {</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">     155698 :                 self.$feature</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">     155698 :             }</span></a>
 <a name="61"><span class="lineNum">      61 </span>            :             #[doc = $comment_getter_alias]</a>
 <a name="62"><span class="lineNum">      62 </span>            :             #[inline]</a>
 <a name="63"><span class="lineNum">      63 </span><span class="lineNoCov">          0 :             pub fn $name_getter_alias(&amp;self) -&gt; EpochNumber {</span></a>
@@ -127,23 +127,23 @@
 <a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :             }</span></a>
 <a name="66"><span class="lineNum">      66 </span>            :             #[doc = $comment_if_enabled]</a>
 <a name="67"><span class="lineNum">      67 </span>            :             #[inline]</a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">     300591 :             pub fn $name_if_enabled(&amp;self, epoch_number: EpochNumber) -&gt; bool {</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">     300591 :                 epoch_number &gt;= self.$feature</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineCov">     300591 :             }</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">     313813 :             pub fn $name_if_enabled(&amp;self, epoch_number: EpochNumber) -&gt; bool {</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">     313813 :                 epoch_number &gt;= self.$feature</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">     313813 :             }</span></a>
 <a name="71"><span class="lineNum">      71 </span>            :         }</a>
 <a name="72"><span class="lineNum">      72 </span>            :         impl HardForkSwitchBuilder {</a>
 <a name="73"><span class="lineNum">      73 </span>            :             #[doc = $comment_setter]</a>
 <a name="74"><span class="lineNum">      74 </span>            :             #[inline]</a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">       9199 :             pub fn $feature(mut self, epoch_number: EpochNumber) -&gt; Self {</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">       9199 :                 self.$feature = Some(epoch_number);</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">       9199 :                 self</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">       9199 :             }</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">      13003 :             pub fn $feature(mut self, epoch_number: EpochNumber) -&gt; Self {</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">      13003 :                 self.$feature = Some(epoch_number);</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      13003 :                 self</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">      13003 :             }</span></a>
 <a name="79"><span class="lineNum">      79 </span>            :             #[doc = $comment_disable]</a>
 <a name="80"><span class="lineNum">      80 </span>            :             #[inline]</a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">      42665 :             pub fn $name_disable(mut self) -&gt; Self {</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">      42665 :                 self.$feature = Some(EpochNumber::MAX);</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">      42665 :                 self</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">      42665 :             }</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">      52884 :             pub fn $name_disable(mut self) -&gt; Self {</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">      52884 :                 self.$feature = Some(EpochNumber::MAX);</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">      52884 :                 self</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">      52884 :             }</span></a>
 <a name="85"><span class="lineNum">      85 </span>            :         }</a>
 <a name="86"><span class="lineNum">      86 </span>            :     };</a>
 <a name="87"><span class="lineNum">      87 </span>            : }</a>
@@ -154,7 +154,7 @@
 <a name="92"><span class="lineNum">      92 </span>            : /// This structure can only be constructed by [`HardForkSwitchBuilder`].</a>
 <a name="93"><span class="lineNum">      93 </span>            : ///</a>
 <a name="94"><span class="lineNum">      94 </span>            : /// [`HardForkSwitchBuilder`]:  struct.HardForkSwitchBuilder.html</a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         14 : #[derive(Debug, Clone)]</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         20 : #[derive(Debug, Clone)]</span></a>
 <a name="96"><span class="lineNum">      96 </span>            : pub struct HardForkSwitch {</a>
 <a name="97"><span class="lineNum">      97 </span>            :     rfc_0028: EpochNumber,</a>
 <a name="98"><span class="lineNum">      98 </span>            :     rfc_0029: EpochNumber,</a>
@@ -168,7 +168,7 @@
 <a name="106"><span class="lineNum">     106 </span>            : /// Builder for [`HardForkSwitch`].</a>
 <a name="107"><span class="lineNum">     107 </span>            : ///</a>
 <a name="108"><span class="lineNum">     108 </span>            : /// [`HardForkSwitch`]:  struct.HardForkSwitch.html</a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">       7590 : #[derive(Debug, Clone, Default)]</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">       9594 : #[derive(Debug, Clone, Default)]</span></a>
 <a name="110"><span class="lineNum">     110 </span>            : pub struct HardForkSwitchBuilder {</a>
 <a name="111"><span class="lineNum">     111 </span>            :     /// Use input cell committing block timestamp as the start time for the relative timestamp in `since`.</a>
 <a name="112"><span class="lineNum">     112 </span>            :     ///</a>
@@ -213,48 +213,48 @@
 <a name="151"><span class="lineNum">     151 </span>            : </a>
 <a name="152"><span class="lineNum">     152 </span>            : impl HardForkSwitch {</a>
 <a name="153"><span class="lineNum">     153 </span>            :     /// Creates a new builder to build an instance.</a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       7544 :     pub fn new_builder() -&gt; HardForkSwitchBuilder {</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">       7544 :         Default::default()</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       7544 :     }</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       9646 :     pub fn new_builder() -&gt; HardForkSwitchBuilder {</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">       9646 :         Default::default()</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       9646 :     }</span></a>
 <a name="157"><span class="lineNum">     157 </span>            : </a>
 <a name="158"><span class="lineNum">     158 </span>            :     /// Creates a new builder based on the current instance.</a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">       1150 :     pub fn as_builder(&amp;self) -&gt; HardForkSwitchBuilder {</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">       1150 :         Self::new_builder()</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">       1150 :             .rfc_0028(self.rfc_0028())</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">       1150 :             .rfc_0029(self.rfc_0029())</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">       1150 :             .rfc_0030(self.rfc_0030())</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">       1150 :             .rfc_0031(self.rfc_0031())</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">       1150 :             .rfc_0032(self.rfc_0032())</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">       1150 :             .rfc_0036(self.rfc_0036())</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1150 :             .rfc_0038(self.rfc_0038())</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">       1150 :     }</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">       1560 :     pub fn as_builder(&amp;self) -&gt; HardForkSwitchBuilder {</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">       1560 :         Self::new_builder()</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">       1560 :             .rfc_0028(self.rfc_0028())</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">       1560 :             .rfc_0029(self.rfc_0029())</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">       1560 :             .rfc_0030(self.rfc_0030())</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">       1560 :             .rfc_0031(self.rfc_0031())</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">       1560 :             .rfc_0032(self.rfc_0032())</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">       1560 :             .rfc_0036(self.rfc_0036())</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       1560 :             .rfc_0038(self.rfc_0038())</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">       1560 :     }</span></a>
 <a name="169"><span class="lineNum">     169 </span>            : </a>
 <a name="170"><span class="lineNum">     170 </span>            :     /// Creates a new instance that all hard fork features are disabled forever.</a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       6095 :     pub fn new_without_any_enabled() -&gt; Self {</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">       6095 :         // Use a builder to ensure all features are set manually.</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">       6095 :         Self::new_builder()</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">       6095 :             .disable_rfc_0028()</span></a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">       6095 :             .disable_rfc_0029()</span></a>
-<a name="176"><span class="lineNum">     176 </span><span class="lineCov">       6095 :             .disable_rfc_0030()</span></a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">       6095 :             .disable_rfc_0031()</span></a>
-<a name="178"><span class="lineNum">     178 </span><span class="lineCov">       6095 :             .disable_rfc_0032()</span></a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">       6095 :             .disable_rfc_0036()</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">       6095 :             .disable_rfc_0038()</span></a>
-<a name="181"><span class="lineNum">     181 </span><span class="lineCov">       6095 :             .build()</span></a>
-<a name="182"><span class="lineNum">     182 </span><span class="lineCov">       6095 :             .unwrap()</span></a>
-<a name="183"><span class="lineNum">     183 </span><span class="lineCov">       6095 :     }</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       7592 :     pub fn new_without_any_enabled() -&gt; Self {</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">       7592 :         // Use a builder to ensure all features are set manually.</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">       7592 :         Self::new_builder()</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">       7592 :             .disable_rfc_0028()</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">       7592 :             .disable_rfc_0029()</span></a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineCov">       7592 :             .disable_rfc_0030()</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">       7592 :             .disable_rfc_0031()</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">       7592 :             .disable_rfc_0032()</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">       7592 :             .disable_rfc_0036()</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">       7592 :             .disable_rfc_0038()</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">       7592 :             .build()</span></a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">       7592 :             .unwrap()</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">       7592 :     }</span></a>
 <a name="184"><span class="lineNum">     184 </span>            : </a>
 <a name="185"><span class="lineNum">     185 </span>            :     /// Returns a vector of epoch numbers, and there are new features which</a>
 <a name="186"><span class="lineNum">     186 </span>            :     /// require refrese tx-pool caches will be enabled at those epochs.</a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">     127949 :     pub fn script_result_changed_at(&amp;self) -&gt; Vec&lt;EpochNumber&gt; {</span></a>
-<a name="188"><span class="lineNum">     188 </span><span class="lineCov">     127949 :         let mut epochs = vec![self.rfc_0032()];</span></a>
-<a name="189"><span class="lineNum">     189 </span><span class="lineCov">     127949 :         // In future, there could be more than one epoch,</span></a>
-<a name="190"><span class="lineNum">     190 </span><span class="lineCov">     127949 :         // we should merge the same epochs and sort all epochs.</span></a>
-<a name="191"><span class="lineNum">     191 </span><span class="lineCov">     127949 :         //epochs.sort_unstable();</span></a>
-<a name="192"><span class="lineNum">     192 </span><span class="lineCov">     127949 :         //epochs.dedup();</span></a>
-<a name="193"><span class="lineNum">     193 </span><span class="lineCov">     127949 :         epochs.retain(|&amp;x| x != 0);</span></a>
-<a name="194"><span class="lineNum">     194 </span><span class="lineCov">     127949 :         epochs</span></a>
-<a name="195"><span class="lineNum">     195 </span><span class="lineCov">     127949 :     }</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">     144638 :     pub fn script_result_changed_at(&amp;self) -&gt; Vec&lt;EpochNumber&gt; {</span></a>
+<a name="188"><span class="lineNum">     188 </span><span class="lineCov">     144638 :         let mut epochs = vec![self.rfc_0032()];</span></a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineCov">     144638 :         // In future, there could be more than one epoch,</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">     144638 :         // we should merge the same epochs and sort all epochs.</span></a>
+<a name="191"><span class="lineNum">     191 </span><span class="lineCov">     144638 :         //epochs.sort_unstable();</span></a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineCov">     144638 :         //epochs.dedup();</span></a>
+<a name="193"><span class="lineNum">     193 </span><span class="lineCov">     144638 :         epochs.retain(|&amp;x| x != 0);</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineCov">     144638 :         epochs</span></a>
+<a name="195"><span class="lineNum">     195 </span><span class="lineCov">     144638 :     }</span></a>
 <a name="196"><span class="lineNum">     196 </span>            : }</a>
 <a name="197"><span class="lineNum">     197 </span>            : </a>
 <a name="198"><span class="lineNum">     198 </span>            : define_methods!(</a>
@@ -314,32 +314,32 @@
 <a name="252"><span class="lineNum">     252 </span>            :     /// on others.</a>
 <a name="253"><span class="lineNum">     253 </span>            :     ///</a>
 <a name="254"><span class="lineNum">     254 </span>            :     /// [`HardForkSwitch`]: struct.HardForkSwitch.html</a>
-<a name="255"><span class="lineNum">     255 </span><span class="lineCov">       7544 :     pub fn build(self) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineCov">       9620 :     pub fn build(self) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
 <a name="256"><span class="lineNum">     256 </span>            :         macro_rules! try_find {</a>
 <a name="257"><span class="lineNum">     257 </span>            :             ($feature:ident) =&gt; {</a>
 <a name="258"><span class="lineNum">     258 </span>            :                 self.$feature.ok_or_else(|| {</a>
 <a name="259"><span class="lineNum">     259 </span>            :                     concat!(&quot;The feature &quot;, stringify!($feature), &quot; isn't configured.&quot;).to_owned()</a>
-<a name="260"><span class="lineNum">     260 </span>            :                 })?;</a>
+<a name="260"><span class="lineNum">     260 </span>            :                 })?</a>
 <a name="261"><span class="lineNum">     261 </span>            :             };</a>
 <a name="262"><span class="lineNum">     262 </span>            :         }</a>
-<a name="263"><span class="lineNum">     263 </span><span class="lineCov">       7544 :         let rfc_0028 = try_find!(rfc_0028);</span></a>
-<a name="264"><span class="lineNum">     264 </span><span class="lineCov">       7544 :         let rfc_0029 = try_find!(rfc_0029);</span></a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">       7544 :         let rfc_0030 = try_find!(rfc_0030);</span></a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">       7544 :         let rfc_0031 = try_find!(rfc_0031);</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">       7544 :         let rfc_0032 = try_find!(rfc_0032);</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">       7544 :         let rfc_0036 = try_find!(rfc_0036);</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineCov">       7590 :         let rfc_0038 = try_find!(rfc_0038);</span></a>
+<a name="263"><span class="lineNum">     263 </span><span class="lineCov">       9620 :         let rfc_0028 = try_find!(rfc_0028);</span></a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">       9620 :         let rfc_0029 = try_find!(rfc_0029);</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">       9620 :         let rfc_0030 = try_find!(rfc_0030);</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">       9620 :         let rfc_0031 = try_find!(rfc_0031);</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">       9620 :         let rfc_0032 = try_find!(rfc_0032);</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">       9620 :         let rfc_0036 = try_find!(rfc_0036);</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">       9672 :         let rfc_0038 = try_find!(rfc_0038);</span></a>
 <a name="270"><span class="lineNum">     270 </span>            : </a>
-<a name="271"><span class="lineNum">     271 </span><span class="lineCov">       7590 :         Ok(HardForkSwitch {</span></a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineCov">       7590 :             rfc_0028,</span></a>
-<a name="273"><span class="lineNum">     273 </span><span class="lineCov">       7590 :             rfc_0029,</span></a>
-<a name="274"><span class="lineNum">     274 </span><span class="lineCov">       7590 :             rfc_0030,</span></a>
-<a name="275"><span class="lineNum">     275 </span><span class="lineCov">       7590 :             rfc_0031,</span></a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineCov">       7590 :             rfc_0032,</span></a>
-<a name="277"><span class="lineNum">     277 </span><span class="lineCov">       7590 :             rfc_0036,</span></a>
-<a name="278"><span class="lineNum">     278 </span><span class="lineCov">       7590 :             rfc_0038,</span></a>
-<a name="279"><span class="lineNum">     279 </span><span class="lineCov">       7590 :         })</span></a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineCov">       7590 :     }</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">       9672 :         Ok(HardForkSwitch {</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">       9672 :             rfc_0028,</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">       9672 :             rfc_0029,</span></a>
+<a name="274"><span class="lineNum">     274 </span><span class="lineCov">       9672 :             rfc_0030,</span></a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">       9672 :             rfc_0031,</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">       9672 :             rfc_0032,</span></a>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">       9672 :             rfc_0036,</span></a>
+<a name="278"><span class="lineNum">     278 </span><span class="lineCov">       9672 :             rfc_0038,</span></a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineCov">       9672 :         })</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">       9672 :     }</span></a>
 <a name="281"><span class="lineNum">     281 </span>            : }</a>
 </pre>
       </td>

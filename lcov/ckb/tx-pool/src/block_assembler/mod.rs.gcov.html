@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/tx-pool/src/block_assembler/mod.rs</title>
+  <title>LCOV - Unit + Integration - ckb/tx-pool/src/block_assembler/mod.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">152</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">14</td>
@@ -62,259 +62,262 @@
 <pre class="source">
 <a name="1"><span class="lineNum">       1 </span>            : mod candidate_uncles;</a>
 <a name="2"><span class="lineNum">       2 </span>            : </a>
-<a name="3"><span class="lineNum">       3 </span>            : use crate::component::entry::TxEntry;</a>
-<a name="4"><span class="lineNum">       4 </span>            : use crate::error::BlockAssemblerError;</a>
-<a name="5"><span class="lineNum">       5 </span>            : pub use candidate_uncles::CandidateUncles;</a>
-<a name="6"><span class="lineNum">       6 </span>            : use ckb_app_config::BlockAssemblerConfig;</a>
-<a name="7"><span class="lineNum">       7 </span>            : use ckb_chain_spec::consensus::Consensus;</a>
-<a name="8"><span class="lineNum">       8 </span>            : use ckb_error::AnyError;</a>
-<a name="9"><span class="lineNum">       9 </span>            : use ckb_jsonrpc_types::{BlockTemplate, CellbaseTemplate, TransactionTemplate, UncleTemplate};</a>
-<a name="10"><span class="lineNum">      10 </span>            : use ckb_reward_calculator::RewardCalculator;</a>
-<a name="11"><span class="lineNum">      11 </span>            : use ckb_snapshot::Snapshot;</a>
-<a name="12"><span class="lineNum">      12 </span>            : use ckb_store::ChainStore;</a>
-<a name="13"><span class="lineNum">      13 </span>            : use ckb_types::{</a>
-<a name="14"><span class="lineNum">      14 </span>            :     bytes::Bytes,</a>
-<a name="15"><span class="lineNum">      15 </span>            :     core::{</a>
-<a name="16"><span class="lineNum">      16 </span>            :         BlockNumber, Capacity, Cycle, EpochExt, HeaderView, TransactionBuilder, TransactionView,</a>
-<a name="17"><span class="lineNum">      17 </span>            :         UncleBlockView, Version,</a>
-<a name="18"><span class="lineNum">      18 </span>            :     },</a>
-<a name="19"><span class="lineNum">      19 </span>            :     packed::{self, Byte32, CellInput, CellOutput, CellbaseWitness, ProposalShortId, Transaction},</a>
-<a name="20"><span class="lineNum">      20 </span>            :     prelude::*,</a>
-<a name="21"><span class="lineNum">      21 </span>            : };</a>
-<a name="22"><span class="lineNum">      22 </span>            : use lru::LruCache;</a>
-<a name="23"><span class="lineNum">      23 </span>            : use std::collections::HashSet;</a>
-<a name="24"><span class="lineNum">      24 </span>            : use std::sync::{atomic::AtomicU64, Arc};</a>
-<a name="25"><span class="lineNum">      25 </span>            : use tokio::sync::Mutex;</a>
-<a name="26"><span class="lineNum">      26 </span>            : use tokio::task::block_in_place;</a>
-<a name="27"><span class="lineNum">      27 </span>            : </a>
-<a name="28"><span class="lineNum">      28 </span>            : const BLOCK_TEMPLATE_TIMEOUT: u64 = 3000;</a>
-<a name="29"><span class="lineNum">      29 </span>            : const TEMPLATE_CACHE_SIZE: usize = 10;</a>
+<a name="3"><span class="lineNum">       3 </span>            : #[cfg(test)]</a>
+<a name="4"><span class="lineNum">       4 </span>            : mod tests;</a>
+<a name="5"><span class="lineNum">       5 </span>            : </a>
+<a name="6"><span class="lineNum">       6 </span>            : use crate::component::entry::TxEntry;</a>
+<a name="7"><span class="lineNum">       7 </span>            : use crate::error::BlockAssemblerError;</a>
+<a name="8"><span class="lineNum">       8 </span>            : pub use candidate_uncles::CandidateUncles;</a>
+<a name="9"><span class="lineNum">       9 </span>            : use ckb_app_config::BlockAssemblerConfig;</a>
+<a name="10"><span class="lineNum">      10 </span>            : use ckb_chain_spec::consensus::Consensus;</a>
+<a name="11"><span class="lineNum">      11 </span>            : use ckb_error::AnyError;</a>
+<a name="12"><span class="lineNum">      12 </span>            : use ckb_jsonrpc_types::{BlockTemplate, CellbaseTemplate, TransactionTemplate, UncleTemplate};</a>
+<a name="13"><span class="lineNum">      13 </span>            : use ckb_reward_calculator::RewardCalculator;</a>
+<a name="14"><span class="lineNum">      14 </span>            : use ckb_snapshot::Snapshot;</a>
+<a name="15"><span class="lineNum">      15 </span>            : use ckb_store::ChainStore;</a>
+<a name="16"><span class="lineNum">      16 </span>            : use ckb_types::{</a>
+<a name="17"><span class="lineNum">      17 </span>            :     bytes::Bytes,</a>
+<a name="18"><span class="lineNum">      18 </span>            :     core::{</a>
+<a name="19"><span class="lineNum">      19 </span>            :         BlockNumber, Capacity, Cycle, EpochExt, HeaderView, TransactionBuilder, TransactionView,</a>
+<a name="20"><span class="lineNum">      20 </span>            :         UncleBlockView, Version,</a>
+<a name="21"><span class="lineNum">      21 </span>            :     },</a>
+<a name="22"><span class="lineNum">      22 </span>            :     packed::{self, Byte32, CellInput, CellOutput, CellbaseWitness, ProposalShortId, Transaction},</a>
+<a name="23"><span class="lineNum">      23 </span>            :     prelude::*,</a>
+<a name="24"><span class="lineNum">      24 </span>            : };</a>
+<a name="25"><span class="lineNum">      25 </span>            : use lru::LruCache;</a>
+<a name="26"><span class="lineNum">      26 </span>            : use std::collections::HashSet;</a>
+<a name="27"><span class="lineNum">      27 </span>            : use std::sync::{atomic::AtomicU64, Arc};</a>
+<a name="28"><span class="lineNum">      28 </span>            : use tokio::sync::Mutex;</a>
+<a name="29"><span class="lineNum">      29 </span>            : use tokio::task::block_in_place;</a>
 <a name="30"><span class="lineNum">      30 </span>            : </a>
-<a name="31"><span class="lineNum">      31 </span>            : pub struct TemplateCache {</a>
-<a name="32"><span class="lineNum">      32 </span>            :     pub time: u64,</a>
-<a name="33"><span class="lineNum">      33 </span>            :     pub uncles_updated_at: u64,</a>
-<a name="34"><span class="lineNum">      34 </span>            :     pub txs_updated_at: u64,</a>
-<a name="35"><span class="lineNum">      35 </span>            :     pub template: BlockTemplate,</a>
-<a name="36"><span class="lineNum">      36 </span>            : }</a>
-<a name="37"><span class="lineNum">      37 </span>            : </a>
-<a name="38"><span class="lineNum">      38 </span>            : impl TemplateCache {</a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :     pub fn is_outdate(&amp;self, current_time: u64) -&gt; bool {</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :         current_time.saturating_sub(self.time) &gt; BLOCK_TEMPLATE_TIMEOUT</span></a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="42"><span class="lineNum">      42 </span>            : </a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :     pub fn is_modified(&amp;self, last_uncles_updated_at: u64, last_txs_updated_at: u64) -&gt; bool {</span></a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :         last_uncles_updated_at != self.uncles_updated_at</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :             || last_txs_updated_at != self.txs_updated_at</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :     }</span></a>
-<a name="47"><span class="lineNum">      47 </span>            : }</a>
-<a name="48"><span class="lineNum">      48 </span>            : </a>
-<a name="49"><span class="lineNum">      49 </span>            : pub type BlockTemplateCacheKey = (Byte32, Cycle, u64, Version);</a>
-<a name="50"><span class="lineNum">      50 </span>            : </a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">     208905 : #[derive(Clone)]</span></a>
-<a name="52"><span class="lineNum">      52 </span>            : pub struct BlockAssembler {</a>
-<a name="53"><span class="lineNum">      53 </span>            :     pub(crate) config: Arc&lt;BlockAssemblerConfig&gt;,</a>
-<a name="54"><span class="lineNum">      54 </span>            :     pub(crate) work_id: Arc&lt;AtomicU64&gt;,</a>
-<a name="55"><span class="lineNum">      55 </span>            :     pub(crate) last_uncles_updated_at: Arc&lt;AtomicU64&gt;,</a>
-<a name="56"><span class="lineNum">      56 </span>            :     pub(crate) template_caches: Arc&lt;Mutex&lt;LruCache&lt;BlockTemplateCacheKey, TemplateCache&gt;&gt;&gt;,</a>
-<a name="57"><span class="lineNum">      57 </span>            :     pub(crate) candidate_uncles: Arc&lt;Mutex&lt;CandidateUncles&gt;&gt;,</a>
-<a name="58"><span class="lineNum">      58 </span>            : }</a>
-<a name="59"><span class="lineNum">      59 </span>            : </a>
-<a name="60"><span class="lineNum">      60 </span>            : impl BlockAssembler {</a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        585 :     pub fn new(config: BlockAssemblerConfig) -&gt; Self {</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        585 :         Self {</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">        585 :             config: Arc::new(config),</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        585 :             work_id: Arc::new(AtomicU64::new(0)),</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        585 :             last_uncles_updated_at: Arc::new(AtomicU64::new(0)),</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        585 :             template_caches: Arc::new(Mutex::new(LruCache::new(TEMPLATE_CACHE_SIZE))),</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        585 :             candidate_uncles: Arc::new(Mutex::new(CandidateUncles::new())),</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        585 :         }</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">        585 :     }</span></a>
-<a name="70"><span class="lineNum">      70 </span>            : </a>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">        525 :     pub(crate) fn transform_params(</span></a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineCov">        525 :         consensus: &amp;Consensus,</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">        525 :         bytes_limit: Option&lt;u64&gt;,</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">        525 :         proposals_limit: Option&lt;u64&gt;,</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">        525 :         max_version: Option&lt;Version&gt;,</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">        525 :     ) -&gt; (u64, u64, Version) {</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">        525 :         let bytes_limit = bytes_limit</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">        525 :             .min(Some(consensus.max_block_bytes()))</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">        525 :             .unwrap_or_else(|| consensus.max_block_bytes());</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">        525 :         let proposals_limit = proposals_limit</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">        525 :             .min(Some(consensus.max_block_proposals_limit()))</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">        525 :             .unwrap_or_else(|| consensus.max_block_proposals_limit());</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        525 :         let version = max_version</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">        525 :             .min(Some(consensus.block_version()))</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">        525 :             .unwrap_or_else(|| consensus.block_version());</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">        525 : </span></a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineCov">        525 :         (bytes_limit, proposals_limit, version)</span></a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">        525 :     }</span></a>
-<a name="89"><span class="lineNum">      89 </span>            : </a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">         45 :     pub(crate) fn transform_uncle(uncle: &amp;UncleBlockView) -&gt; UncleTemplate {</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">         45 :         UncleTemplate {</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">         45 :             hash: uncle.hash().unpack(),</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">         45 :             required: false,</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">         45 :             proposals: uncle</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         45 :                 .data()</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">         45 :                 .proposals()</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">         45 :                 .into_iter()</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">         45 :                 .map(Into::into)</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">         45 :                 .collect(),</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">         45 :             header: uncle.data().header().into(),</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">         45 :         }</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">         45 :     }</span></a>
-<a name="103"><span class="lineNum">     103 </span>            : </a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">        525 :     pub(crate) fn transform_cellbase(</span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        525 :         tx: &amp;TransactionView,</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">        525 :         cycles: Option&lt;Cycle&gt;,</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">        525 :     ) -&gt; CellbaseTemplate {</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">        525 :         CellbaseTemplate {</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">        525 :             hash: tx.hash().unpack(),</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">        525 :             cycles: cycles.map(Into::into),</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">        525 :             data: tx.data().into(),</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">        525 :         }</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">        525 :     }</span></a>
-<a name="114"><span class="lineNum">     114 </span>            : </a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">       1260 :     pub(crate) fn transform_tx(</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">       1260 :         entry: &amp;TxEntry,</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">       1260 :         required: bool,</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">       1260 :         depends: Option&lt;Vec&lt;u32&gt;&gt;,</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">       1260 :     ) -&gt; TransactionTemplate {</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">       1260 :         TransactionTemplate {</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">       1260 :             hash: entry.transaction().hash().unpack(),</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">       1260 :             required,</span></a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">       1260 :             cycles: Some(entry.cycles.into()),</span></a>
-<a name="124"><span class="lineNum">     124 </span><span class="lineCov">       1260 :             depends: depends.map(|deps| deps.into_iter().map(|x| u64::from(x).into()).collect()),</span></a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">       1260 :             data: entry.transaction().data().into(),</span></a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">       1260 :         }</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">       1260 :     }</span></a>
-<a name="128"><span class="lineNum">     128 </span>            : </a>
-<a name="129"><span class="lineNum">     129 </span><span class="lineCov">        525 :     pub(crate) fn calculate_txs_size_limit(</span></a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">        525 :         bytes_limit: u64,</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">        525 :         cellbase: Transaction,</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">        525 :         uncles: &amp;[UncleBlockView],</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">        525 :         proposals: &amp;HashSet&lt;ProposalShortId&gt;,</span></a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">        525 :         extension_opt: Option&lt;packed::Bytes&gt;,</span></a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">        525 :     ) -&gt; Result&lt;usize, AnyError&gt; {</span></a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">        525 :         let empty_dao = packed::Byte32::default();</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">        525 :         let raw_header = packed::RawHeader::new_builder().dao(empty_dao).build();</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        525 :         let header = packed::Header::new_builder().raw(raw_header).build();</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        525 :         let block = if let Some(extension) = extension_opt {</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineNoCov">          0 :             packed::BlockV1::new_builder()</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineNoCov">          0 :                 .header(header)</span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineNoCov">          0 :                 .transactions(vec![cellbase].pack())</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineNoCov">          0 :                 .uncles(uncles.iter().map(|u| u.data()).pack())</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineNoCov">          0 :                 .proposals(</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineNoCov">          0 :                     proposals</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineNoCov">          0 :                         .iter()</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineNoCov">          0 :                         .map(ToOwned::to_owned)</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineNoCov">          0 :                         .collect::&lt;Vec&lt;_&gt;&gt;()</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineNoCov">          0 :                         .pack(),</span></a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineNoCov">          0 :                 )</span></a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineNoCov">          0 :                 .extension(extension)</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineNoCov">          0 :                 .build()</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineNoCov">          0 :                 .as_v0()</span></a>
-<a name="154"><span class="lineNum">     154 </span>            :         } else {</a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">        525 :             packed::Block::new_builder()</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">        525 :                 .header(header)</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">        525 :                 .transactions(vec![cellbase].pack())</span></a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">        525 :                 .uncles(uncles.iter().map(|u| u.data()).pack())</span></a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">        525 :                 .proposals(</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">        525 :                     proposals</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">        525 :                         .iter()</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        525 :                         .map(ToOwned::to_owned)</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        525 :                         .collect::&lt;Vec&lt;_&gt;&gt;()</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">        525 :                         .pack(),</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">        525 :                 )</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">        525 :                 .build()</span></a>
-<a name="167"><span class="lineNum">     167 </span>            :         };</a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">        525 :         let serialized_size = block.serialized_size_without_uncle_proposals();</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">        525 :         let bytes_limit = bytes_limit as usize;</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">        525 :         bytes_limit.checked_sub(serialized_size).ok_or_else(|| {</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineNoCov">          0 :             BlockAssemblerError::InvalidParams(format!(&quot;bytes_limit {}&quot;, bytes_limit)).into()</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">        525 :         })</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        525 :     }</span></a>
-<a name="174"><span class="lineNum">     174 </span>            : </a>
-<a name="175"><span class="lineNum">     175 </span>            :     /// Miner mined block H(c), the block reward will be finalized at H(c + w_far + 1).</a>
-<a name="176"><span class="lineNum">     176 </span>            :     /// Miner specify own lock in cellbase witness.</a>
-<a name="177"><span class="lineNum">     177 </span>            :     /// The cellbase have only one output,</a>
-<a name="178"><span class="lineNum">     178 </span>            :     /// miner should collect the block reward for finalize target H(max(0, c - w_far - 1))</a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">        525 :     pub(crate) fn build_cellbase(</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">        525 :         snapshot: &amp;Snapshot,</span></a>
-<a name="181"><span class="lineNum">     181 </span><span class="lineCov">        525 :         tip: &amp;HeaderView,</span></a>
-<a name="182"><span class="lineNum">     182 </span><span class="lineCov">        525 :         cellbase_witness: CellbaseWitness,</span></a>
-<a name="183"><span class="lineNum">     183 </span><span class="lineCov">        525 :     ) -&gt; Result&lt;TransactionView, AnyError&gt; {</span></a>
-<a name="184"><span class="lineNum">     184 </span><span class="lineCov">        525 :         let candidate_number = tip.number() + 1;</span></a>
-<a name="185"><span class="lineNum">     185 </span>            : </a>
-<a name="186"><span class="lineNum">     186 </span><span class="lineCov">        525 :         let tx = {</span></a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">        525 :             let (target_lock, block_reward) = block_in_place(|| {</span></a>
-<a name="188"><span class="lineNum">     188 </span><span class="lineCov">        525 :                 RewardCalculator::new(snapshot.consensus(), snapshot).block_reward_to_finalize(tip)</span></a>
-<a name="189"><span class="lineNum">     189 </span><span class="lineCov">        525 :             })?;</span></a>
-<a name="190"><span class="lineNum">     190 </span><span class="lineCov">        525 :             let input = CellInput::new_cellbase_input(candidate_number);</span></a>
-<a name="191"><span class="lineNum">     191 </span><span class="lineCov">        525 :             let output = CellOutput::new_builder()</span></a>
-<a name="192"><span class="lineNum">     192 </span><span class="lineCov">        525 :                 .capacity(block_reward.total.pack())</span></a>
-<a name="193"><span class="lineNum">     193 </span><span class="lineCov">        525 :                 .lock(target_lock)</span></a>
-<a name="194"><span class="lineNum">     194 </span><span class="lineCov">        525 :                 .build();</span></a>
-<a name="195"><span class="lineNum">     195 </span><span class="lineCov">        525 : </span></a>
-<a name="196"><span class="lineNum">     196 </span><span class="lineCov">        525 :             let witness = cellbase_witness.as_bytes().pack();</span></a>
-<a name="197"><span class="lineNum">     197 </span><span class="lineCov">        525 :             let no_finalization_target =</span></a>
-<a name="198"><span class="lineNum">     198 </span><span class="lineCov">        525 :                 candidate_number &lt;= snapshot.consensus().finalization_delay_length();</span></a>
-<a name="199"><span class="lineNum">     199 </span><span class="lineCov">        525 :             let tx_builder = TransactionBuilder::default().input(input).witness(witness);</span></a>
-<a name="200"><span class="lineNum">     200 </span><span class="lineCov">        525 :             let insufficient_reward_to_create_cell = output.is_lack_of_capacity(Capacity::zero())?;</span></a>
-<a name="201"><span class="lineNum">     201 </span><span class="lineCov">        525 :             if no_finalization_target || insufficient_reward_to_create_cell {</span></a>
-<a name="202"><span class="lineNum">     202 </span><span class="lineCov">        510 :                 tx_builder.build()</span></a>
-<a name="203"><span class="lineNum">     203 </span>            :             } else {</a>
-<a name="204"><span class="lineNum">     204 </span><span class="lineCov">         15 :                 tx_builder</span></a>
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">         15 :                     .output(output)</span></a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">         15 :                     .output_data(Bytes::default().pack())</span></a>
-<a name="207"><span class="lineNum">     207 </span><span class="lineCov">         15 :                     .build()</span></a>
-<a name="208"><span class="lineNum">     208 </span>            :             }</a>
-<a name="209"><span class="lineNum">     209 </span>            :         };</a>
-<a name="210"><span class="lineNum">     210 </span>            : </a>
-<a name="211"><span class="lineNum">     211 </span><span class="lineCov">        525 :         Ok(tx)</span></a>
-<a name="212"><span class="lineNum">     212 </span><span class="lineCov">        525 :     }</span></a>
+<a name="31"><span class="lineNum">      31 </span>            : const BLOCK_TEMPLATE_TIMEOUT: u64 = 3000;</a>
+<a name="32"><span class="lineNum">      32 </span>            : const TEMPLATE_CACHE_SIZE: usize = 10;</a>
+<a name="33"><span class="lineNum">      33 </span>            : </a>
+<a name="34"><span class="lineNum">      34 </span>            : pub struct TemplateCache {</a>
+<a name="35"><span class="lineNum">      35 </span>            :     pub time: u64,</a>
+<a name="36"><span class="lineNum">      36 </span>            :     pub uncles_updated_at: u64,</a>
+<a name="37"><span class="lineNum">      37 </span>            :     pub txs_updated_at: u64,</a>
+<a name="38"><span class="lineNum">      38 </span>            :     pub template: BlockTemplate,</a>
+<a name="39"><span class="lineNum">      39 </span>            : }</a>
+<a name="40"><span class="lineNum">      40 </span>            : </a>
+<a name="41"><span class="lineNum">      41 </span>            : impl TemplateCache {</a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :     pub fn is_outdate(&amp;self, current_time: u64) -&gt; bool {</span></a>
+<a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :         current_time.saturating_sub(self.time) &gt; BLOCK_TEMPLATE_TIMEOUT</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="45"><span class="lineNum">      45 </span>            : </a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :     pub fn is_modified(&amp;self, last_uncles_updated_at: u64, last_txs_updated_at: u64) -&gt; bool {</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :         last_uncles_updated_at != self.uncles_updated_at</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :             || last_txs_updated_at != self.txs_updated_at</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineNoCov">          0 :     }</span></a>
+<a name="50"><span class="lineNum">      50 </span>            : }</a>
+<a name="51"><span class="lineNum">      51 </span>            : </a>
+<a name="52"><span class="lineNum">      52 </span>            : pub type BlockTemplateCacheKey = (Byte32, Cycle, u64, Version);</a>
+<a name="53"><span class="lineNum">      53 </span>            : </a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">     111424 : #[derive(Clone)]</span></a>
+<a name="55"><span class="lineNum">      55 </span>            : pub struct BlockAssembler {</a>
+<a name="56"><span class="lineNum">      56 </span>            :     pub(crate) config: Arc&lt;BlockAssemblerConfig&gt;,</a>
+<a name="57"><span class="lineNum">      57 </span>            :     pub(crate) work_id: Arc&lt;AtomicU64&gt;,</a>
+<a name="58"><span class="lineNum">      58 </span>            :     pub(crate) last_uncles_updated_at: Arc&lt;AtomicU64&gt;,</a>
+<a name="59"><span class="lineNum">      59 </span>            :     pub(crate) template_caches: Arc&lt;Mutex&lt;LruCache&lt;BlockTemplateCacheKey, TemplateCache&gt;&gt;&gt;,</a>
+<a name="60"><span class="lineNum">      60 </span>            :     pub(crate) candidate_uncles: Arc&lt;Mutex&lt;CandidateUncles&gt;&gt;,</a>
+<a name="61"><span class="lineNum">      61 </span>            : }</a>
+<a name="62"><span class="lineNum">      62 </span>            : </a>
+<a name="63"><span class="lineNum">      63 </span>            : impl BlockAssembler {</a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        312 :     pub fn new(config: BlockAssemblerConfig) -&gt; Self {</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        312 :         Self {</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        312 :             config: Arc::new(config),</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        312 :             work_id: Arc::new(AtomicU64::new(0)),</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        312 :             last_uncles_updated_at: Arc::new(AtomicU64::new(0)),</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">        312 :             template_caches: Arc::new(Mutex::new(LruCache::new(TEMPLATE_CACHE_SIZE))),</span></a>
+<a name="70"><span class="lineNum">      70 </span><span class="lineCov">        312 :             candidate_uncles: Arc::new(Mutex::new(CandidateUncles::new())),</span></a>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">        312 :         }</span></a>
+<a name="72"><span class="lineNum">      72 </span><span class="lineCov">        312 :     }</span></a>
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">        280 :     pub(crate) fn transform_params(</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">        280 :         consensus: &amp;Consensus,</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">        280 :         bytes_limit: Option&lt;u64&gt;,</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">        280 :         proposals_limit: Option&lt;u64&gt;,</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">        280 :         max_version: Option&lt;Version&gt;,</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">        280 :     ) -&gt; (u64, u64, Version) {</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">        280 :         let bytes_limit = bytes_limit</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">        280 :             .min(Some(consensus.max_block_bytes()))</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">        280 :             .unwrap_or_else(|| consensus.max_block_bytes());</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">        280 :         let proposals_limit = proposals_limit</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">        280 :             .min(Some(consensus.max_block_proposals_limit()))</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">        280 :             .unwrap_or_else(|| consensus.max_block_proposals_limit());</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">        280 :         let version = max_version</span></a>
+<a name="87"><span class="lineNum">      87 </span><span class="lineCov">        280 :             .min(Some(consensus.block_version()))</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">        280 :             .unwrap_or_else(|| consensus.block_version());</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">        280 : </span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">        280 :         (bytes_limit, proposals_limit, version)</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">        280 :     }</span></a>
+<a name="92"><span class="lineNum">      92 </span>            : </a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">         24 :     pub(crate) fn transform_uncle(uncle: &amp;UncleBlockView) -&gt; UncleTemplate {</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">         24 :         UncleTemplate {</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         24 :             hash: uncle.hash().unpack(),</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">         24 :             required: false,</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">         24 :             proposals: uncle</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">         24 :                 .data()</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">         24 :                 .proposals()</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">         24 :                 .into_iter()</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">         24 :                 .map(Into::into)</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineCov">         24 :                 .collect(),</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineCov">         24 :             header: uncle.data().header().into(),</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">         24 :         }</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">         24 :     }</span></a>
+<a name="106"><span class="lineNum">     106 </span>            : </a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">        280 :     pub(crate) fn transform_cellbase(</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">        280 :         tx: &amp;TransactionView,</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">        280 :         cycles: Option&lt;Cycle&gt;,</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">        280 :     ) -&gt; CellbaseTemplate {</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">        280 :         CellbaseTemplate {</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">        280 :             hash: tx.hash().unpack(),</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">        280 :             cycles: cycles.map(Into::into),</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">        280 :             data: tx.data().into(),</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">        280 :         }</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">        280 :     }</span></a>
+<a name="117"><span class="lineNum">     117 </span>            : </a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">        672 :     pub(crate) fn transform_tx(</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">        672 :         entry: &amp;TxEntry,</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">        672 :         required: bool,</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">        672 :         depends: Option&lt;Vec&lt;u32&gt;&gt;,</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">        672 :     ) -&gt; TransactionTemplate {</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">        672 :         TransactionTemplate {</span></a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">        672 :             hash: entry.transaction().hash().unpack(),</span></a>
+<a name="125"><span class="lineNum">     125 </span><span class="lineCov">        672 :             required,</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">        672 :             cycles: Some(entry.cycles.into()),</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">        672 :             depends: depends.map(|deps| deps.into_iter().map(|x| u64::from(x).into()).collect()),</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">        672 :             data: entry.transaction().data().into(),</span></a>
+<a name="129"><span class="lineNum">     129 </span><span class="lineCov">        672 :         }</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">        672 :     }</span></a>
+<a name="131"><span class="lineNum">     131 </span>            : </a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">        280 :     pub(crate) fn calculate_txs_size_limit(</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">        280 :         bytes_limit: u64,</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">        280 :         cellbase: Transaction,</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">        280 :         uncles: &amp;[UncleBlockView],</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">        280 :         proposals: &amp;HashSet&lt;ProposalShortId&gt;,</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">        280 :         extension_opt: Option&lt;packed::Bytes&gt;,</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        280 :     ) -&gt; Result&lt;usize, AnyError&gt; {</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        280 :         let empty_dao = packed::Byte32::default();</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">        280 :         let raw_header = packed::RawHeader::new_builder().dao(empty_dao).build();</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">        280 :         let header = packed::Header::new_builder().raw(raw_header).build();</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">        280 :         let block = if let Some(extension) = extension_opt {</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineNoCov">          0 :             packed::BlockV1::new_builder()</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineNoCov">          0 :                 .header(header)</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineNoCov">          0 :                 .transactions(vec![cellbase].pack())</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineNoCov">          0 :                 .uncles(uncles.iter().map(|u| u.data()).pack())</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineNoCov">          0 :                 .proposals(</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineNoCov">          0 :                     proposals</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineNoCov">          0 :                         .iter()</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineNoCov">          0 :                         .map(ToOwned::to_owned)</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineNoCov">          0 :                         .collect::&lt;Vec&lt;_&gt;&gt;()</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineNoCov">          0 :                         .pack(),</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineNoCov">          0 :                 )</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineNoCov">          0 :                 .extension(extension)</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineNoCov">          0 :                 .build()</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineNoCov">          0 :                 .as_v0()</span></a>
+<a name="157"><span class="lineNum">     157 </span>            :         } else {</a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">        280 :             packed::Block::new_builder()</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">        280 :                 .header(header)</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">        280 :                 .transactions(vec![cellbase].pack())</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">        280 :                 .uncles(uncles.iter().map(|u| u.data()).pack())</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">        280 :                 .proposals(</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">        280 :                     proposals</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">        280 :                         .iter()</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">        280 :                         .map(ToOwned::to_owned)</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">        280 :                         .collect::&lt;Vec&lt;_&gt;&gt;()</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">        280 :                         .pack(),</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">        280 :                 )</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">        280 :                 .build()</span></a>
+<a name="170"><span class="lineNum">     170 </span>            :         };</a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">        280 :         let serialized_size = block.serialized_size_without_uncle_proposals();</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">        280 :         let bytes_limit = bytes_limit as usize;</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        280 :         bytes_limit.checked_sub(serialized_size).ok_or_else(|| {</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineNoCov">          0 :             BlockAssemblerError::InvalidParams(format!(&quot;bytes_limit {}&quot;, bytes_limit)).into()</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        280 :         })</span></a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineCov">        280 :     }</span></a>
+<a name="177"><span class="lineNum">     177 </span>            : </a>
+<a name="178"><span class="lineNum">     178 </span>            :     /// Miner mined block H(c), the block reward will be finalized at H(c + w_far + 1).</a>
+<a name="179"><span class="lineNum">     179 </span>            :     /// Miner specify own lock in cellbase witness.</a>
+<a name="180"><span class="lineNum">     180 </span>            :     /// The cellbase have only one output,</a>
+<a name="181"><span class="lineNum">     181 </span>            :     /// miner should collect the block reward for finalize target H(max(0, c - w_far - 1))</a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">        280 :     pub(crate) fn build_cellbase(</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">        280 :         snapshot: &amp;Snapshot,</span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineCov">        280 :         tip: &amp;HeaderView,</span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">        280 :         cellbase_witness: CellbaseWitness,</span></a>
+<a name="186"><span class="lineNum">     186 </span><span class="lineCov">        280 :     ) -&gt; Result&lt;TransactionView, AnyError&gt; {</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">        280 :         let candidate_number = tip.number() + 1;</span></a>
+<a name="188"><span class="lineNum">     188 </span>            : </a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineCov">        280 :         let tx = {</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">        280 :             let (target_lock, block_reward) = block_in_place(|| {</span></a>
+<a name="191"><span class="lineNum">     191 </span><span class="lineCov">        280 :                 RewardCalculator::new(snapshot.consensus(), snapshot).block_reward_to_finalize(tip)</span></a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineCov">        280 :             })?;</span></a>
+<a name="193"><span class="lineNum">     193 </span><span class="lineCov">        280 :             let input = CellInput::new_cellbase_input(candidate_number);</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineCov">        280 :             let output = CellOutput::new_builder()</span></a>
+<a name="195"><span class="lineNum">     195 </span><span class="lineCov">        280 :                 .capacity(block_reward.total.pack())</span></a>
+<a name="196"><span class="lineNum">     196 </span><span class="lineCov">        280 :                 .lock(target_lock)</span></a>
+<a name="197"><span class="lineNum">     197 </span><span class="lineCov">        280 :                 .build();</span></a>
+<a name="198"><span class="lineNum">     198 </span><span class="lineCov">        280 : </span></a>
+<a name="199"><span class="lineNum">     199 </span><span class="lineCov">        280 :             let witness = cellbase_witness.as_bytes().pack();</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">        280 :             let no_finalization_target =</span></a>
+<a name="201"><span class="lineNum">     201 </span><span class="lineCov">        280 :                 candidate_number &lt;= snapshot.consensus().finalization_delay_length();</span></a>
+<a name="202"><span class="lineNum">     202 </span><span class="lineCov">        280 :             let tx_builder = TransactionBuilder::default().input(input).witness(witness);</span></a>
+<a name="203"><span class="lineNum">     203 </span><span class="lineCov">        280 :             let insufficient_reward_to_create_cell = output.is_lack_of_capacity(Capacity::zero())?;</span></a>
+<a name="204"><span class="lineNum">     204 </span><span class="lineCov">        280 :             if no_finalization_target || insufficient_reward_to_create_cell {</span></a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">        272 :                 tx_builder.build()</span></a>
+<a name="206"><span class="lineNum">     206 </span>            :             } else {</a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">          8 :                 tx_builder</span></a>
+<a name="208"><span class="lineNum">     208 </span><span class="lineCov">          8 :                     .output(output)</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">          8 :                     .output_data(Bytes::default().pack())</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">          8 :                     .build()</span></a>
+<a name="211"><span class="lineNum">     211 </span>            :             }</a>
+<a name="212"><span class="lineNum">     212 </span>            :         };</a>
 <a name="213"><span class="lineNum">     213 </span>            : </a>
-<a name="214"><span class="lineNum">     214 </span>            :     // A block B1 is considered to be the uncle of another block B2 if all of the following conditions are met:</a>
-<a name="215"><span class="lineNum">     215 </span>            :     // (1) they are in the same epoch, sharing the same difficulty;</a>
-<a name="216"><span class="lineNum">     216 </span>            :     // (2) height(B2) &gt; height(B1);</a>
-<a name="217"><span class="lineNum">     217 </span>            :     // (3) B1's parent is either B2's ancestor or embedded in B2 or its ancestors as an uncle;</a>
-<a name="218"><span class="lineNum">     218 </span>            :     // and (4) B2 is the first block in its chain to refer to B1.</a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">        525 :     pub(crate) fn prepare_uncles(</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">        525 :         snapshot: &amp;Snapshot,</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">        525 :         candidate_number: BlockNumber,</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">        525 :         current_epoch_ext: &amp;EpochExt,</span></a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">        525 :         candidate_uncles: &amp;mut CandidateUncles,</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">        525 :     ) -&gt; Vec&lt;UncleBlockView&gt; {</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">        525 :         let epoch_number = current_epoch_ext.number();</span></a>
-<a name="226"><span class="lineNum">     226 </span><span class="lineCov">        525 :         let max_uncles_num = snapshot.consensus().max_uncles_num();</span></a>
-<a name="227"><span class="lineNum">     227 </span><span class="lineCov">        525 :         let mut uncles: Vec&lt;UncleBlockView&gt; = Vec::with_capacity(max_uncles_num);</span></a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">        525 :         let mut removed = Vec::new();</span></a>
-<a name="229"><span class="lineNum">     229 </span>            : </a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">        525 :         for uncle in candidate_uncles.values() {</span></a>
-<a name="231"><span class="lineNum">     231 </span><span class="lineCov">         60 :             if uncles.len() == max_uncles_num {</span></a>
-<a name="232"><span class="lineNum">     232 </span><span class="lineNoCov">          0 :                 break;</span></a>
-<a name="233"><span class="lineNum">     233 </span><span class="lineCov">         60 :             }</span></a>
-<a name="234"><span class="lineNum">     234 </span><span class="lineCov">         60 :             let parent_hash = uncle.header().parent_hash();</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">         60 :             if uncle.compact_target() != current_epoch_ext.compact_target()</span></a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineCov">         45 :                 || uncle.epoch().number() != epoch_number</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         45 :                 || snapshot.get_block_number(&amp;uncle.hash()).is_some()</span></a>
-<a name="238"><span class="lineNum">     238 </span><span class="lineCov">         45 :                 || snapshot.is_uncle(&amp;uncle.hash())</span></a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         45 :                 || !(uncles.iter().any(|u| u.hash() == parent_hash)</span></a>
-<a name="240"><span class="lineNum">     240 </span><span class="lineCov">         45 :                     || snapshot.get_block_number(&amp;parent_hash).is_some()</span></a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineNoCov">          0 :                     || snapshot.is_uncle(&amp;parent_hash))</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineCov">         45 :                 || uncle.number() &gt;= candidate_number</span></a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineCov">         15 :             {</span></a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineCov">         15 :                 removed.push(uncle.clone());</span></a>
-<a name="245"><span class="lineNum">     245 </span><span class="lineCov">         45 :             } else {</span></a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineCov">         45 :                 uncles.push(uncle.clone());</span></a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">         45 :             }</span></a>
-<a name="248"><span class="lineNum">     248 </span>            :         }</a>
-<a name="249"><span class="lineNum">     249 </span>            : </a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineCov">         15 :         for r in removed {</span></a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineCov">         15 :             candidate_uncles.remove(&amp;r);</span></a>
-<a name="252"><span class="lineNum">     252 </span><span class="lineCov">         15 :         }</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineCov">        525 :         uncles</span></a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineCov">        525 :     }</span></a>
-<a name="255"><span class="lineNum">     255 </span>            : }</a>
+<a name="214"><span class="lineNum">     214 </span><span class="lineCov">        280 :         Ok(tx)</span></a>
+<a name="215"><span class="lineNum">     215 </span><span class="lineCov">        280 :     }</span></a>
+<a name="216"><span class="lineNum">     216 </span>            : </a>
+<a name="217"><span class="lineNum">     217 </span>            :     // A block B1 is considered to be the uncle of another block B2 if all of the following conditions are met:</a>
+<a name="218"><span class="lineNum">     218 </span>            :     // (1) they are in the same epoch, sharing the same difficulty;</a>
+<a name="219"><span class="lineNum">     219 </span>            :     // (2) height(B2) &gt; height(B1);</a>
+<a name="220"><span class="lineNum">     220 </span>            :     // (3) B1's parent is either B2's ancestor or embedded in B2 or its ancestors as an uncle;</a>
+<a name="221"><span class="lineNum">     221 </span>            :     // and (4) B2 is the first block in its chain to refer to B1.</a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">        280 :     pub(crate) fn prepare_uncles(</span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">        280 :         snapshot: &amp;Snapshot,</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">        280 :         candidate_number: BlockNumber,</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">        280 :         current_epoch_ext: &amp;EpochExt,</span></a>
+<a name="226"><span class="lineNum">     226 </span><span class="lineCov">        280 :         candidate_uncles: &amp;mut CandidateUncles,</span></a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">        280 :     ) -&gt; Vec&lt;UncleBlockView&gt; {</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineCov">        280 :         let epoch_number = current_epoch_ext.number();</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">        280 :         let max_uncles_num = snapshot.consensus().max_uncles_num();</span></a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineCov">        280 :         let mut uncles: Vec&lt;UncleBlockView&gt; = Vec::with_capacity(max_uncles_num);</span></a>
+<a name="231"><span class="lineNum">     231 </span><span class="lineCov">        280 :         let mut removed = Vec::new();</span></a>
+<a name="232"><span class="lineNum">     232 </span>            : </a>
+<a name="233"><span class="lineNum">     233 </span><span class="lineCov">        280 :         for uncle in candidate_uncles.values() {</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineCov">         32 :             if uncles.len() == max_uncles_num {</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineNoCov">          0 :                 break;</span></a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">         32 :             }</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">         32 :             let parent_hash = uncle.header().parent_hash();</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">         32 :             if uncle.compact_target() != current_epoch_ext.compact_target()</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">         24 :                 || uncle.epoch().number() != epoch_number</span></a>
+<a name="240"><span class="lineNum">     240 </span><span class="lineCov">         24 :                 || snapshot.get_block_number(&amp;uncle.hash()).is_some()</span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">         24 :                 || snapshot.is_uncle(&amp;uncle.hash())</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">         24 :                 || !(uncles.iter().any(|u| u.hash() == parent_hash)</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">         24 :                     || snapshot.get_block_number(&amp;parent_hash).is_some()</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineNoCov">          0 :                     || snapshot.is_uncle(&amp;parent_hash))</span></a>
+<a name="245"><span class="lineNum">     245 </span><span class="lineCov">         24 :                 || uncle.number() &gt;= candidate_number</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">          8 :             {</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">          8 :                 removed.push(uncle.clone());</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">         24 :             } else {</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineCov">         24 :                 uncles.push(uncle.clone());</span></a>
+<a name="250"><span class="lineNum">     250 </span><span class="lineCov">         24 :             }</span></a>
+<a name="251"><span class="lineNum">     251 </span>            :         }</a>
+<a name="252"><span class="lineNum">     252 </span>            : </a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineCov">          8 :         for r in removed {</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">          8 :             candidate_uncles.remove(&amp;r);</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineCov">          8 :         }</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineCov">        280 :         uncles</span></a>
+<a name="257"><span class="lineNum">     257 </span><span class="lineCov">        280 :     }</span></a>
+<a name="258"><span class="lineNum">     258 </span>            : }</a>
 </pre>
       </td>
     </tr>

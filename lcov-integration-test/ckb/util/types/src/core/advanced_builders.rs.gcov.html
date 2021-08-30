@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">77</td>
@@ -118,7 +118,7 @@
 <a name="56"><span class="lineNum">      56 </span>            : ///</a>
 <a name="57"><span class="lineNum">      57 </span>            : /// [`BlockView`]: struct.BlockView.html</a>
 <a name="58"><span class="lineNum">      58 </span>            : /// [`packed::BlockBuilder`]: ../packed/struct.BlockBuilder.html</a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">      19328 : #[derive(Clone, Debug, Default)]</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">      20159 : #[derive(Clone, Debug, Default)]</span></a>
 <a name="60"><span class="lineNum">      60 </span>            : pub struct BlockBuilder {</a>
 <a name="61"><span class="lineNum">      61 </span>            :     pub(crate) header: HeaderBuilder,</a>
 <a name="62"><span class="lineNum">      62 </span>            :     // Others</a>
@@ -133,35 +133,35 @@
 <a name="71"><span class="lineNum">      71 </span>            :  */</a>
 <a name="72"><span class="lineNum">      72 </span>            : </a>
 <a name="73"><span class="lineNum">      73 </span>            : impl ::std::default::Default for TransactionBuilder {</a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">     346508 :     fn default() -&gt; Self {</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">     346508 :         Self {</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">     346508 :             version: constants::TX_VERSION.pack(),</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">     346508 :             cell_deps: Default::default(),</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">     346508 :             header_deps: Default::default(),</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">     346508 :             inputs: Default::default(),</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">     346508 :             outputs: Default::default(),</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">     346508 :             witnesses: Default::default(),</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">     346508 :             outputs_data: Default::default(),</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">     346508 :         }</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">     346508 :     }</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">     393211 :     fn default() -&gt; Self {</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">     393211 :         Self {</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">     393211 :             version: constants::TX_VERSION.pack(),</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">     393211 :             cell_deps: Default::default(),</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">     393211 :             header_deps: Default::default(),</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">     393211 :             inputs: Default::default(),</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">     393211 :             outputs: Default::default(),</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">     393211 :             witnesses: Default::default(),</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">     393211 :             outputs_data: Default::default(),</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">     393211 :         }</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">     393211 :     }</span></a>
 <a name="85"><span class="lineNum">      85 </span>            : }</a>
 <a name="86"><span class="lineNum">      86 </span>            : </a>
 <a name="87"><span class="lineNum">      87 </span>            : impl ::std::default::Default for HeaderBuilder {</a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">     692304 :     fn default() -&gt; Self {</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">     692304 :         Self {</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">     692304 :             version: constants::BLOCK_VERSION.pack(),</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">     692304 :             parent_hash: Default::default(),</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">     692304 :             timestamp: Default::default(),</span></a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">     692304 :             number: Default::default(),</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">     692304 :             transactions_root: Default::default(),</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">     692304 :             proposals_hash: Default::default(),</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">     692304 :             compact_target: DIFF_TWO.pack(),</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">     692304 :             extra_hash: Default::default(),</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">     692304 :             epoch: core::EpochNumberWithFraction::new(0, 0, 1).pack(),</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">     692304 :             dao: Default::default(),</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">     692304 :             nonce: Default::default(),</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">     692304 :         }</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">     692304 :     }</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">     783254 :     fn default() -&gt; Self {</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">     783254 :         Self {</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">     783254 :             version: constants::BLOCK_VERSION.pack(),</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">     783254 :             parent_hash: Default::default(),</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">     783254 :             timestamp: Default::default(),</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">     783254 :             number: Default::default(),</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">     783254 :             transactions_root: Default::default(),</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">     783254 :             proposals_hash: Default::default(),</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">     783254 :             compact_target: DIFF_TWO.pack(),</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">     783254 :             extra_hash: Default::default(),</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">     783254 :             epoch: core::EpochNumberWithFraction::new(0, 0, 1).pack(),</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">     783254 :             dao: Default::default(),</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">     783254 :             nonce: Default::default(),</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">     783254 :         }</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineCov">     783254 :     }</span></a>
 <a name="103"><span class="lineNum">     103 </span>            : }</a>
 <a name="104"><span class="lineNum">     104 </span>            : </a>
 <a name="105"><span class="lineNum">     105 </span>            : /*</a>
@@ -171,17 +171,17 @@
 <a name="109"><span class="lineNum">     109 </span>            : macro_rules! def_setter_simple {</a>
 <a name="110"><span class="lineNum">     110 </span>            :     (__add_doc, $prefix:ident, $field:ident, $type:ident, $comment:expr) =&gt; {</a>
 <a name="111"><span class="lineNum">     111 </span>            :         #[doc = $comment]</a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">    1574166 :         pub fn $field(mut self, v: packed::$type) -&gt; Self {</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">    1574166 :             self.$prefix.$field = v;</span></a>
-<a name="114"><span class="lineNum">     114 </span><span class="lineCov">    1574166 :             self</span></a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">    1574166 :         }</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">    1782300 :         pub fn $field(mut self, v: packed::$type) -&gt; Self {</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">    1782300 :             self.$prefix.$field = v;</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">    1782300 :             self</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">    1782300 :         }</span></a>
 <a name="116"><span class="lineNum">     116 </span>            :     };</a>
 <a name="117"><span class="lineNum">     117 </span>            :     (__add_doc, $field:ident, $type:ident, $comment:expr) =&gt; {</a>
 <a name="118"><span class="lineNum">     118 </span>            :         #[doc = $comment]</a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">    2291203 :         pub fn $field(mut self, v: packed::$type) -&gt; Self {</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">    2291203 :             self.$field = v;</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">    2291203 :             self</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">    2291203 :         }</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">    2591640 :         pub fn $field(mut self, v: packed::$type) -&gt; Self {</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">    2591640 :             self.$field = v;</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">    2591640 :             self</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">    2591640 :         }</span></a>
 <a name="123"><span class="lineNum">     123 </span>            :     };</a>
 <a name="124"><span class="lineNum">     124 </span>            :     ($prefix:ident, $field:ident, $type:ident) =&gt; {</a>
 <a name="125"><span class="lineNum">     125 </span>            :         def_setter_simple!(</a>
@@ -209,23 +209,23 @@
 <a name="147"><span class="lineNum">     147 </span>            :         $comment_push:expr, $comment_extend:expr, $comment_set:expr,</a>
 <a name="148"><span class="lineNum">     148 </span>            :     ) =&gt; {</a>
 <a name="149"><span class="lineNum">     149 </span>            :         #[doc = $comment_push]</a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineCov">    1438300 :         pub fn $func_push(mut self, v: $prefix::$type) -&gt; Self {</span></a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineCov">    1438300 :             self.$field.push(v);</span></a>
-<a name="152"><span class="lineNum">     152 </span><span class="lineCov">    1438300 :             self</span></a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">    1438300 :         }</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineCov">    1630660 :         pub fn $func_push(mut self, v: $prefix::$type) -&gt; Self {</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">    1630660 :             self.$field.push(v);</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">    1630660 :             self</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">    1630660 :         }</span></a>
 <a name="154"><span class="lineNum">     154 </span>            :         #[doc = $comment_extend]</a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">     201165 :         pub fn $func_extend&lt;T&gt;(mut self, v: T) -&gt; Self</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">     201165 :         where</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">     201165 :             T: ::std::iter::IntoIterator&lt;Item = $prefix::$type&gt;,</span></a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">     201165 :         {</span></a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">     201165 :             self.$field.extend(v);</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">     201165 :             self</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">     201165 :         }</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">     229727 :         pub fn $func_extend&lt;T&gt;(mut self, v: T) -&gt; Self</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">     229727 :         where</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">     229727 :             T: ::std::iter::IntoIterator&lt;Item = $prefix::$type&gt;,</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">     229727 :         {</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">     229727 :             self.$field.extend(v);</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">     229727 :             self</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">     229727 :         }</span></a>
 <a name="162"><span class="lineNum">     162 </span>            :         #[doc = $comment_set]</a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">         46 :         pub fn $func_set(mut self, v: Vec&lt;$prefix::$type&gt;) -&gt; Self {</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         46 :             self.$field = v;</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         46 :             self</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         46 :         }</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">         52 :         pub fn $func_set(mut self, v: Vec&lt;$prefix::$type&gt;) -&gt; Self {</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         52 :             self.$field = v;</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         52 :             self</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         52 :         }</span></a>
 <a name="167"><span class="lineNum">     167 </span>            :     };</a>
 <a name="168"><span class="lineNum">     168 </span>            :     ($prefix:ident, $field:ident, $type:ident, $func_push:ident, $func_extend:ident, $func_set:ident) =&gt; {</a>
 <a name="169"><span class="lineNum">     169 </span>            :         def_setter_for_vector!(</a>
@@ -277,36 +277,36 @@
 <a name="215"><span class="lineNum">     215 </span>            :     );</a>
 <a name="216"><span class="lineNum">     216 </span>            : </a>
 <a name="217"><span class="lineNum">     217 </span>            :     /// Converts into [`TransactionView`](struct.TransactionView.html).</a>
-<a name="218"><span class="lineNum">     218 </span><span class="lineCov">     346462 :     pub fn build(self) -&gt; core::TransactionView {</span></a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">     346462 :         let Self {</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">     346462 :             version,</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">     346462 :             cell_deps,</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">     346462 :             header_deps,</span></a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">     346462 :             inputs,</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">     346462 :             outputs,</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">     346462 :             witnesses,</span></a>
-<a name="226"><span class="lineNum">     226 </span><span class="lineCov">     346462 :             outputs_data,</span></a>
-<a name="227"><span class="lineNum">     227 </span><span class="lineCov">     346462 :         } = self;</span></a>
-<a name="228"><span class="lineNum">     228 </span><span class="lineCov">     346462 :         let raw = packed::RawTransaction::new_builder()</span></a>
-<a name="229"><span class="lineNum">     229 </span><span class="lineCov">     346462 :             .version(version)</span></a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">     346462 :             .cell_deps(cell_deps.pack())</span></a>
-<a name="231"><span class="lineNum">     231 </span><span class="lineCov">     346462 :             .header_deps(header_deps.pack())</span></a>
-<a name="232"><span class="lineNum">     232 </span><span class="lineCov">     346462 :             .inputs(inputs.pack())</span></a>
-<a name="233"><span class="lineNum">     233 </span><span class="lineCov">     346462 :             .outputs(outputs.pack())</span></a>
-<a name="234"><span class="lineNum">     234 </span><span class="lineCov">     346462 :             .outputs_data(outputs_data.pack())</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">     346462 :             .build();</span></a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineCov">     346462 :         let tx = packed::Transaction::new_builder()</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">     346462 :             .raw(raw)</span></a>
-<a name="238"><span class="lineNum">     238 </span><span class="lineCov">     346462 :             .witnesses(witnesses.pack())</span></a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">     346462 :             .build();</span></a>
-<a name="240"><span class="lineNum">     240 </span><span class="lineCov">     346462 :         let hash = tx.calc_tx_hash();</span></a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineCov">     346462 :         let witness_hash = tx.calc_witness_hash();</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineCov">     346462 :         core::TransactionView {</span></a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineCov">     346462 :             data: tx,</span></a>
-<a name="244"><span class="lineNum">     244 </span><span class="lineCov">     346462 :             hash,</span></a>
-<a name="245"><span class="lineNum">     245 </span><span class="lineCov">     346462 :             witness_hash,</span></a>
-<a name="246"><span class="lineNum">     246 </span><span class="lineCov">     346462 :         }</span></a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">     346462 :     }</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">     393081 :     pub fn build(self) -&gt; core::TransactionView {</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">     393081 :         let Self {</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">     393081 :             version,</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">     393081 :             cell_deps,</span></a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">     393081 :             header_deps,</span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">     393081 :             inputs,</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">     393081 :             outputs,</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">     393081 :             witnesses,</span></a>
+<a name="226"><span class="lineNum">     226 </span><span class="lineCov">     393081 :             outputs_data,</span></a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">     393081 :         } = self;</span></a>
+<a name="228"><span class="lineNum">     228 </span><span class="lineCov">     393081 :         let raw = packed::RawTransaction::new_builder()</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">     393081 :             .version(version)</span></a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineCov">     393081 :             .cell_deps(cell_deps.pack())</span></a>
+<a name="231"><span class="lineNum">     231 </span><span class="lineCov">     393081 :             .header_deps(header_deps.pack())</span></a>
+<a name="232"><span class="lineNum">     232 </span><span class="lineCov">     393081 :             .inputs(inputs.pack())</span></a>
+<a name="233"><span class="lineNum">     233 </span><span class="lineCov">     393081 :             .outputs(outputs.pack())</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineCov">     393081 :             .outputs_data(outputs_data.pack())</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">     393081 :             .build();</span></a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">     393081 :         let tx = packed::Transaction::new_builder()</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">     393081 :             .raw(raw)</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">     393081 :             .witnesses(witnesses.pack())</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">     393081 :             .build();</span></a>
+<a name="240"><span class="lineNum">     240 </span><span class="lineCov">     393081 :         let hash = tx.calc_tx_hash();</span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">     393081 :         let witness_hash = tx.calc_witness_hash();</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">     393081 :         core::TransactionView {</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">     393081 :             data: tx,</span></a>
+<a name="244"><span class="lineNum">     244 </span><span class="lineCov">     393081 :             hash,</span></a>
+<a name="245"><span class="lineNum">     245 </span><span class="lineCov">     393081 :             witness_hash,</span></a>
+<a name="246"><span class="lineNum">     246 </span><span class="lineCov">     393081 :         }</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">     393081 :     }</span></a>
 <a name="248"><span class="lineNum">     248 </span>            : }</a>
 <a name="249"><span class="lineNum">     249 </span>            : </a>
 <a name="250"><span class="lineNum">     250 </span>            : impl HeaderBuilder {</a>
@@ -323,48 +323,48 @@
 <a name="261"><span class="lineNum">     261 </span>            :     def_setter_simple!(nonce, Uint128);</a>
 <a name="262"><span class="lineNum">     262 </span>            : </a>
 <a name="263"><span class="lineNum">     263 </span>            :     /// Converts into [`HeaderView`](struct.HeaderView.html).</a>
-<a name="264"><span class="lineNum">     264 </span><span class="lineCov">     644763 :     pub fn build(self) -&gt; core::HeaderView {</span></a>
-<a name="265"><span class="lineNum">     265 </span><span class="lineCov">     644763 :         let Self {</span></a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">     644763 :             version,</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">     644763 :             parent_hash,</span></a>
-<a name="268"><span class="lineNum">     268 </span><span class="lineCov">     644763 :             timestamp,</span></a>
-<a name="269"><span class="lineNum">     269 </span><span class="lineCov">     644763 :             number,</span></a>
-<a name="270"><span class="lineNum">     270 </span><span class="lineCov">     644763 :             transactions_root,</span></a>
-<a name="271"><span class="lineNum">     271 </span><span class="lineCov">     644763 :             proposals_hash,</span></a>
-<a name="272"><span class="lineNum">     272 </span><span class="lineCov">     644763 :             compact_target,</span></a>
-<a name="273"><span class="lineNum">     273 </span><span class="lineCov">     644763 :             extra_hash,</span></a>
-<a name="274"><span class="lineNum">     274 </span><span class="lineCov">     644763 :             epoch,</span></a>
-<a name="275"><span class="lineNum">     275 </span><span class="lineCov">     644763 :             dao,</span></a>
-<a name="276"><span class="lineNum">     276 </span><span class="lineCov">     644763 :             nonce,</span></a>
+<a name="264"><span class="lineNum">     264 </span><span class="lineCov">     729330 :     pub fn build(self) -&gt; core::HeaderView {</span></a>
+<a name="265"><span class="lineNum">     265 </span><span class="lineCov">     729330 :         let Self {</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">     729330 :             version,</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">     729330 :             parent_hash,</span></a>
+<a name="268"><span class="lineNum">     268 </span><span class="lineCov">     729330 :             timestamp,</span></a>
+<a name="269"><span class="lineNum">     269 </span><span class="lineCov">     729330 :             number,</span></a>
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">     729330 :             transactions_root,</span></a>
+<a name="271"><span class="lineNum">     271 </span><span class="lineCov">     729330 :             proposals_hash,</span></a>
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">     729330 :             compact_target,</span></a>
+<a name="273"><span class="lineNum">     273 </span><span class="lineCov">     729330 :             extra_hash,</span></a>
+<a name="274"><span class="lineNum">     274 </span><span class="lineCov">     729330 :             epoch,</span></a>
+<a name="275"><span class="lineNum">     275 </span><span class="lineCov">     729330 :             dao,</span></a>
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">     729330 :             nonce,</span></a>
 <a name="277"><span class="lineNum">     277 </span>            :         } = self;</a>
 <a name="278"><span class="lineNum">     278 </span>            :         debug_assert!(</a>
-<a name="279"><span class="lineNum">     279 </span><span class="lineCov">     644349 :             Unpack::&lt;u32&gt;::unpack(&amp;compact_target) &gt; 0,</span></a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineCov">     729122 :             Unpack::&lt;u32&gt;::unpack(&amp;compact_target) &gt; 0,</span></a>
 <a name="280"><span class="lineNum">     280 </span>            :             &quot;[HeaderBuilder] compact_target should greater than zero&quot;</a>
 <a name="281"><span class="lineNum">     281 </span>            :         );</a>
 <a name="282"><span class="lineNum">     282 </span>            :         debug_assert!(</a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineCov">     644602 :             Unpack::&lt;core::BlockNumber&gt;::unpack(&amp;number) == 0</span></a>
-<a name="284"><span class="lineNum">     284 </span><span class="lineCov">     611915 :                 || Unpack::&lt;core::EpochNumberWithFraction&gt;::unpack(&amp;epoch).is_well_formed(),</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">     729382 :             Unpack::&lt;core::BlockNumber&gt;::unpack(&amp;number) == 0</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">     691756 :                 || Unpack::&lt;core::EpochNumberWithFraction&gt;::unpack(&amp;epoch).is_well_formed(),</span></a>
 <a name="285"><span class="lineNum">     285 </span><span class="lineNoCov">          0 :             &quot;[HeaderBuilder] epoch {:x} should be well formed, \</span></a>
 <a name="286"><span class="lineNum">     286 </span><span class="lineNoCov">          0 :             unless it's in the genesis block (number: {:x})&quot;,</span></a>
 <a name="287"><span class="lineNum">     287 </span><span class="lineNoCov">          0 :             epoch,</span></a>
 <a name="288"><span class="lineNum">     288 </span><span class="lineNoCov">          0 :             number</span></a>
 <a name="289"><span class="lineNum">     289 </span>            :         );</a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineCov">     644280 :         let raw = packed::RawHeader::new_builder()</span></a>
-<a name="291"><span class="lineNum">     291 </span><span class="lineCov">     644280 :             .version(version)</span></a>
-<a name="292"><span class="lineNum">     292 </span><span class="lineCov">     644280 :             .parent_hash(parent_hash)</span></a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineCov">     644280 :             .timestamp(timestamp)</span></a>
-<a name="294"><span class="lineNum">     294 </span><span class="lineCov">     644280 :             .number(number)</span></a>
-<a name="295"><span class="lineNum">     295 </span><span class="lineCov">     644280 :             .transactions_root(transactions_root)</span></a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineCov">     644280 :             .proposals_hash(proposals_hash)</span></a>
-<a name="297"><span class="lineNum">     297 </span><span class="lineCov">     644280 :             .compact_target(compact_target)</span></a>
-<a name="298"><span class="lineNum">     298 </span><span class="lineCov">     644280 :             .extra_hash(extra_hash)</span></a>
-<a name="299"><span class="lineNum">     299 </span><span class="lineCov">     644280 :             .epoch(epoch)</span></a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineCov">     644280 :             .dao(dao)</span></a>
-<a name="301"><span class="lineNum">     301 </span><span class="lineCov">     644280 :             .build();</span></a>
-<a name="302"><span class="lineNum">     302 </span><span class="lineCov">     644280 :         let header = packed::Header::new_builder().raw(raw).nonce(nonce).build();</span></a>
-<a name="303"><span class="lineNum">     303 </span><span class="lineCov">     644280 :         let hash = header.calc_header_hash();</span></a>
-<a name="304"><span class="lineNum">     304 </span><span class="lineCov">     644280 :         core::HeaderView { data: header, hash }</span></a>
-<a name="305"><span class="lineNum">     305 </span><span class="lineCov">     644280 :     }</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">     729148 :         let raw = packed::RawHeader::new_builder()</span></a>
+<a name="291"><span class="lineNum">     291 </span><span class="lineCov">     729148 :             .version(version)</span></a>
+<a name="292"><span class="lineNum">     292 </span><span class="lineCov">     729148 :             .parent_hash(parent_hash)</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">     729148 :             .timestamp(timestamp)</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">     729148 :             .number(number)</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">     729148 :             .transactions_root(transactions_root)</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">     729148 :             .proposals_hash(proposals_hash)</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">     729148 :             .compact_target(compact_target)</span></a>
+<a name="298"><span class="lineNum">     298 </span><span class="lineCov">     729148 :             .extra_hash(extra_hash)</span></a>
+<a name="299"><span class="lineNum">     299 </span><span class="lineCov">     729148 :             .epoch(epoch)</span></a>
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">     729148 :             .dao(dao)</span></a>
+<a name="301"><span class="lineNum">     301 </span><span class="lineCov">     729148 :             .build();</span></a>
+<a name="302"><span class="lineNum">     302 </span><span class="lineCov">     729148 :         let header = packed::Header::new_builder().raw(raw).nonce(nonce).build();</span></a>
+<a name="303"><span class="lineNum">     303 </span><span class="lineCov">     729148 :         let hash = header.calc_header_hash();</span></a>
+<a name="304"><span class="lineNum">     304 </span><span class="lineCov">     729148 :         core::HeaderView { data: header, hash }</span></a>
+<a name="305"><span class="lineNum">     305 </span><span class="lineCov">     729148 :     }</span></a>
 <a name="306"><span class="lineNum">     306 </span>            : }</a>
 <a name="307"><span class="lineNum">     307 </span>            : </a>
 <a name="308"><span class="lineNum">     308 </span>            : impl BlockBuilder {</a>
@@ -396,124 +396,124 @@
 <a name="334"><span class="lineNum">     334 </span>            :     );</a>
 <a name="335"><span class="lineNum">     335 </span>            : </a>
 <a name="336"><span class="lineNum">     336 </span>            :     /// Set `header`.</a>
-<a name="337"><span class="lineNum">     337 </span><span class="lineCov">      47725 :     pub fn header(mut self, header: core::HeaderView) -&gt; Self {</span></a>
-<a name="338"><span class="lineNum">     338 </span><span class="lineCov">      47725 :         self.header = header.as_advanced_builder();</span></a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineCov">      47725 :         self</span></a>
-<a name="340"><span class="lineNum">     340 </span><span class="lineCov">      47725 :     }</span></a>
+<a name="337"><span class="lineNum">     337 </span><span class="lineCov">      53950 :     pub fn header(mut self, header: core::HeaderView) -&gt; Self {</span></a>
+<a name="338"><span class="lineNum">     338 </span><span class="lineCov">      53950 :         self.header = header.as_advanced_builder();</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineCov">      53950 :         self</span></a>
+<a name="340"><span class="lineNum">     340 </span><span class="lineCov">      53950 :     }</span></a>
 <a name="341"><span class="lineNum">     341 </span>            : </a>
 <a name="342"><span class="lineNum">     342 </span>            :     /// Set `extension`.</a>
 <a name="343"><span class="lineNum">     343 </span>            :     #[doc(hidden)]</a>
-<a name="344"><span class="lineNum">     344 </span><span class="lineCov">       1219 :     pub fn extension(mut self, extension: Option&lt;packed::Bytes&gt;) -&gt; Self {</span></a>
-<a name="345"><span class="lineNum">     345 </span><span class="lineCov">       1219 :         self.extension = extension;</span></a>
-<a name="346"><span class="lineNum">     346 </span><span class="lineCov">       1219 :         self</span></a>
-<a name="347"><span class="lineNum">     347 </span><span class="lineCov">       1219 :     }</span></a>
+<a name="344"><span class="lineNum">     344 </span><span class="lineCov">       1378 :     pub fn extension(mut self, extension: Option&lt;packed::Bytes&gt;) -&gt; Self {</span></a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineCov">       1378 :         self.extension = extension;</span></a>
+<a name="346"><span class="lineNum">     346 </span><span class="lineCov">       1378 :         self</span></a>
+<a name="347"><span class="lineNum">     347 </span><span class="lineCov">       1378 :     }</span></a>
 <a name="348"><span class="lineNum">     348 </span>            : </a>
-<a name="349"><span class="lineNum">     349 </span><span class="lineCov">     341922 :     fn build_internal(self, reset_header: bool) -&gt; core::BlockView {</span></a>
-<a name="350"><span class="lineNum">     350 </span><span class="lineCov">     341922 :         let Self {</span></a>
-<a name="351"><span class="lineNum">     351 </span><span class="lineCov">     341922 :             header,</span></a>
-<a name="352"><span class="lineNum">     352 </span><span class="lineCov">     341922 :             uncles,</span></a>
-<a name="353"><span class="lineNum">     353 </span><span class="lineCov">     341922 :             transactions,</span></a>
-<a name="354"><span class="lineNum">     354 </span><span class="lineCov">     341922 :             proposals,</span></a>
-<a name="355"><span class="lineNum">     355 </span><span class="lineCov">     341922 :             extension,</span></a>
-<a name="356"><span class="lineNum">     356 </span><span class="lineCov">     341922 :         } = self;</span></a>
-<a name="357"><span class="lineNum">     357 </span><span class="lineCov">     341922 :         let (uncles, uncle_hashes) = {</span></a>
-<a name="358"><span class="lineNum">     358 </span><span class="lineCov">     341922 :             let len = uncles.len();</span></a>
-<a name="359"><span class="lineNum">     359 </span><span class="lineCov">     341922 :             uncles</span></a>
-<a name="360"><span class="lineNum">     360 </span><span class="lineCov">     341922 :                 .into_iter()</span></a>
-<a name="361"><span class="lineNum">     361 </span><span class="lineCov">     341922 :                 .map(|uncle_view| {</span></a>
-<a name="362"><span class="lineNum">     362 </span><span class="lineCov">      15088 :                     let core::UncleBlockView { data, hash } = uncle_view;</span></a>
-<a name="363"><span class="lineNum">     363 </span><span class="lineCov">      15088 :                     (data, hash)</span></a>
-<a name="364"><span class="lineNum">     364 </span><span class="lineCov">     341922 :                 })</span></a>
-<a name="365"><span class="lineNum">     365 </span><span class="lineCov">     341922 :                 .fold(</span></a>
-<a name="366"><span class="lineNum">     366 </span><span class="lineCov">     341922 :                     (Vec::with_capacity(len), Vec::with_capacity(len)),</span></a>
-<a name="367"><span class="lineNum">     367 </span><span class="lineCov">     341922 :                     |(mut uncles, mut hashes), (uncle, hash)| {</span></a>
-<a name="368"><span class="lineNum">     368 </span><span class="lineCov">      15088 :                         uncles.push(uncle);</span></a>
-<a name="369"><span class="lineNum">     369 </span><span class="lineCov">      15088 :                         hashes.push(hash);</span></a>
-<a name="370"><span class="lineNum">     370 </span><span class="lineCov">      15088 :                         (uncles, hashes)</span></a>
-<a name="371"><span class="lineNum">     371 </span><span class="lineCov">     341922 :                     },</span></a>
-<a name="372"><span class="lineNum">     372 </span><span class="lineCov">     341922 :                 )</span></a>
-<a name="373"><span class="lineNum">     373 </span><span class="lineCov">     341922 :         };</span></a>
-<a name="374"><span class="lineNum">     374 </span><span class="lineCov">     341922 : </span></a>
-<a name="375"><span class="lineNum">     375 </span><span class="lineCov">     341922 :         let (transactions, tx_hashes, tx_witness_hashes) = {</span></a>
-<a name="376"><span class="lineNum">     376 </span><span class="lineCov">     341922 :             let len = transactions.len();</span></a>
-<a name="377"><span class="lineNum">     377 </span><span class="lineCov">     341922 :             transactions</span></a>
-<a name="378"><span class="lineNum">     378 </span><span class="lineCov">     341922 :                 .into_iter()</span></a>
-<a name="379"><span class="lineNum">     379 </span><span class="lineCov">     341926 :                 .map(|tx_view| {</span></a>
-<a name="380"><span class="lineNum">     380 </span><span class="lineCov">     322077 :                     let core::TransactionView {</span></a>
-<a name="381"><span class="lineNum">     381 </span><span class="lineCov">     322077 :                         data,</span></a>
-<a name="382"><span class="lineNum">     382 </span><span class="lineCov">     322077 :                         hash,</span></a>
-<a name="383"><span class="lineNum">     383 </span><span class="lineCov">     322077 :                         witness_hash,</span></a>
-<a name="384"><span class="lineNum">     384 </span><span class="lineCov">     322077 :                     } = tx_view;</span></a>
-<a name="385"><span class="lineNum">     385 </span><span class="lineCov">     322077 :                     (data, hash, witness_hash)</span></a>
-<a name="386"><span class="lineNum">     386 </span><span class="lineCov">     341926 :                 })</span></a>
-<a name="387"><span class="lineNum">     387 </span><span class="lineCov">     341922 :                 .fold(</span></a>
-<a name="388"><span class="lineNum">     388 </span><span class="lineCov">     341922 :                     (</span></a>
-<a name="389"><span class="lineNum">     389 </span><span class="lineCov">     341922 :                         Vec::with_capacity(len),</span></a>
-<a name="390"><span class="lineNum">     390 </span><span class="lineCov">     341922 :                         Vec::with_capacity(len),</span></a>
-<a name="391"><span class="lineNum">     391 </span><span class="lineCov">     341922 :                         Vec::with_capacity(len),</span></a>
-<a name="392"><span class="lineNum">     392 </span><span class="lineCov">     341922 :                     ),</span></a>
-<a name="393"><span class="lineNum">     393 </span><span class="lineCov">     341926 :                     |(mut txs, mut hashes, mut witness_hashes), (tx, hash, witness_hash)| {</span></a>
-<a name="394"><span class="lineNum">     394 </span><span class="lineCov">     321939 :                         txs.push(tx);</span></a>
-<a name="395"><span class="lineNum">     395 </span><span class="lineCov">     321939 :                         hashes.push(hash);</span></a>
-<a name="396"><span class="lineNum">     396 </span><span class="lineCov">     321939 :                         witness_hashes.push(witness_hash);</span></a>
-<a name="397"><span class="lineNum">     397 </span><span class="lineCov">     321939 :                         (txs, hashes, witness_hashes)</span></a>
-<a name="398"><span class="lineNum">     398 </span><span class="lineCov">     341926 :                     },</span></a>
-<a name="399"><span class="lineNum">     399 </span><span class="lineCov">     341922 :                 )</span></a>
-<a name="400"><span class="lineNum">     400 </span><span class="lineCov">     341922 :         };</span></a>
-<a name="401"><span class="lineNum">     401 </span><span class="lineCov">     341922 : </span></a>
-<a name="402"><span class="lineNum">     402 </span><span class="lineCov">     341922 :         let proposals = proposals.pack();</span></a>
-<a name="403"><span class="lineNum">     403 </span><span class="lineCov">     341922 :         let uncles = uncles.pack();</span></a>
+<a name="349"><span class="lineNum">     349 </span><span class="lineCov">     386988 :     fn build_internal(self, reset_header: bool) -&gt; core::BlockView {</span></a>
+<a name="350"><span class="lineNum">     350 </span><span class="lineCov">     386988 :         let Self {</span></a>
+<a name="351"><span class="lineNum">     351 </span><span class="lineCov">     386988 :             header,</span></a>
+<a name="352"><span class="lineNum">     352 </span><span class="lineCov">     386988 :             uncles,</span></a>
+<a name="353"><span class="lineNum">     353 </span><span class="lineCov">     386988 :             transactions,</span></a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineCov">     386988 :             proposals,</span></a>
+<a name="355"><span class="lineNum">     355 </span><span class="lineCov">     386988 :             extension,</span></a>
+<a name="356"><span class="lineNum">     356 </span><span class="lineCov">     386988 :         } = self;</span></a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineCov">     386988 :         let (uncles, uncle_hashes) = {</span></a>
+<a name="358"><span class="lineNum">     358 </span><span class="lineCov">     386988 :             let len = uncles.len();</span></a>
+<a name="359"><span class="lineNum">     359 </span><span class="lineCov">     386988 :             uncles</span></a>
+<a name="360"><span class="lineNum">     360 </span><span class="lineCov">     386988 :                 .into_iter()</span></a>
+<a name="361"><span class="lineNum">     361 </span><span class="lineCov">     386988 :                 .map(|uncle_view| {</span></a>
+<a name="362"><span class="lineNum">     362 </span><span class="lineCov">      17056 :                     let core::UncleBlockView { data, hash } = uncle_view;</span></a>
+<a name="363"><span class="lineNum">     363 </span><span class="lineCov">      17056 :                     (data, hash)</span></a>
+<a name="364"><span class="lineNum">     364 </span><span class="lineCov">     386988 :                 })</span></a>
+<a name="365"><span class="lineNum">     365 </span><span class="lineCov">     386988 :                 .fold(</span></a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineCov">     386988 :                     (Vec::with_capacity(len), Vec::with_capacity(len)),</span></a>
+<a name="367"><span class="lineNum">     367 </span><span class="lineCov">     386988 :                     |(mut uncles, mut hashes), (uncle, hash)| {</span></a>
+<a name="368"><span class="lineNum">     368 </span><span class="lineCov">      17056 :                         uncles.push(uncle);</span></a>
+<a name="369"><span class="lineNum">     369 </span><span class="lineCov">      17056 :                         hashes.push(hash);</span></a>
+<a name="370"><span class="lineNum">     370 </span><span class="lineCov">      17056 :                         (uncles, hashes)</span></a>
+<a name="371"><span class="lineNum">     371 </span><span class="lineCov">     386988 :                     },</span></a>
+<a name="372"><span class="lineNum">     372 </span><span class="lineCov">     386988 :                 )</span></a>
+<a name="373"><span class="lineNum">     373 </span><span class="lineCov">     386988 :         };</span></a>
+<a name="374"><span class="lineNum">     374 </span><span class="lineCov">     386988 : </span></a>
+<a name="375"><span class="lineNum">     375 </span><span class="lineCov">     386988 :         let (transactions, tx_hashes, tx_witness_hashes) = {</span></a>
+<a name="376"><span class="lineNum">     376 </span><span class="lineCov">     386988 :             let len = transactions.len();</span></a>
+<a name="377"><span class="lineNum">     377 </span><span class="lineCov">     386988 :             transactions</span></a>
+<a name="378"><span class="lineNum">     378 </span><span class="lineCov">     386988 :                 .into_iter()</span></a>
+<a name="379"><span class="lineNum">     379 </span><span class="lineCov">     386992 :                 .map(|tx_view| {</span></a>
+<a name="380"><span class="lineNum">     380 </span><span class="lineCov">     364658 :                     let core::TransactionView {</span></a>
+<a name="381"><span class="lineNum">     381 </span><span class="lineCov">     364658 :                         data,</span></a>
+<a name="382"><span class="lineNum">     382 </span><span class="lineCov">     364658 :                         hash,</span></a>
+<a name="383"><span class="lineNum">     383 </span><span class="lineCov">     364658 :                         witness_hash,</span></a>
+<a name="384"><span class="lineNum">     384 </span><span class="lineCov">     364658 :                     } = tx_view;</span></a>
+<a name="385"><span class="lineNum">     385 </span><span class="lineCov">     364658 :                     (data, hash, witness_hash)</span></a>
+<a name="386"><span class="lineNum">     386 </span><span class="lineCov">     386992 :                 })</span></a>
+<a name="387"><span class="lineNum">     387 </span><span class="lineCov">     386988 :                 .fold(</span></a>
+<a name="388"><span class="lineNum">     388 </span><span class="lineCov">     386988 :                     (</span></a>
+<a name="389"><span class="lineNum">     389 </span><span class="lineCov">     386988 :                         Vec::with_capacity(len),</span></a>
+<a name="390"><span class="lineNum">     390 </span><span class="lineCov">     386988 :                         Vec::with_capacity(len),</span></a>
+<a name="391"><span class="lineNum">     391 </span><span class="lineCov">     386988 :                         Vec::with_capacity(len),</span></a>
+<a name="392"><span class="lineNum">     392 </span><span class="lineCov">     386988 :                     ),</span></a>
+<a name="393"><span class="lineNum">     393 </span><span class="lineCov">     386992 :                     |(mut txs, mut hashes, mut witness_hashes), (tx, hash, witness_hash)| {</span></a>
+<a name="394"><span class="lineNum">     394 </span><span class="lineCov">     364606 :                         txs.push(tx);</span></a>
+<a name="395"><span class="lineNum">     395 </span><span class="lineCov">     364606 :                         hashes.push(hash);</span></a>
+<a name="396"><span class="lineNum">     396 </span><span class="lineCov">     364606 :                         witness_hashes.push(witness_hash);</span></a>
+<a name="397"><span class="lineNum">     397 </span><span class="lineCov">     364606 :                         (txs, hashes, witness_hashes)</span></a>
+<a name="398"><span class="lineNum">     398 </span><span class="lineCov">     386992 :                     },</span></a>
+<a name="399"><span class="lineNum">     399 </span><span class="lineCov">     386988 :                 )</span></a>
+<a name="400"><span class="lineNum">     400 </span><span class="lineCov">     386988 :         };</span></a>
+<a name="401"><span class="lineNum">     401 </span><span class="lineCov">     386988 : </span></a>
+<a name="402"><span class="lineNum">     402 </span><span class="lineCov">     386988 :         let proposals = proposals.pack();</span></a>
+<a name="403"><span class="lineNum">     403 </span><span class="lineCov">     386988 :         let uncles = uncles.pack();</span></a>
 <a name="404"><span class="lineNum">     404 </span>            : </a>
-<a name="405"><span class="lineNum">     405 </span><span class="lineCov">     341922 :         let core::HeaderView { data, hash } = if reset_header {</span></a>
-<a name="406"><span class="lineNum">     406 </span><span class="lineCov">     341416 :             let raw_transactions_root = merkle_root(&amp;tx_hashes[..]);</span></a>
-<a name="407"><span class="lineNum">     407 </span><span class="lineCov">     341416 :             let witnesses_root = merkle_root(&amp;tx_witness_hashes[..]);</span></a>
-<a name="408"><span class="lineNum">     408 </span><span class="lineCov">     341416 :             let transactions_root = merkle_root(&amp;[raw_transactions_root, witnesses_root]);</span></a>
-<a name="409"><span class="lineNum">     409 </span><span class="lineCov">     341416 :             let proposals_hash = proposals.calc_proposals_hash();</span></a>
-<a name="410"><span class="lineNum">     410 </span><span class="lineCov">     341416 :             let extra_hash_view = core::ExtraHashView::new(</span></a>
-<a name="411"><span class="lineNum">     411 </span><span class="lineCov">     341416 :                 uncles.calc_uncles_hash(),</span></a>
-<a name="412"><span class="lineNum">     412 </span><span class="lineCov">     341416 :                 extension.as_ref().map(packed::Bytes::calc_raw_data_hash),</span></a>
-<a name="413"><span class="lineNum">     413 </span><span class="lineCov">     341416 :             );</span></a>
-<a name="414"><span class="lineNum">     414 </span><span class="lineCov">     341416 :             let extra_hash = extra_hash_view.extra_hash();</span></a>
-<a name="415"><span class="lineNum">     415 </span><span class="lineCov">     341416 :             header</span></a>
-<a name="416"><span class="lineNum">     416 </span><span class="lineCov">     341416 :                 .transactions_root(transactions_root)</span></a>
-<a name="417"><span class="lineNum">     417 </span><span class="lineCov">     341416 :                 .proposals_hash(proposals_hash)</span></a>
-<a name="418"><span class="lineNum">     418 </span><span class="lineCov">     341416 :                 .extra_hash(extra_hash)</span></a>
-<a name="419"><span class="lineNum">     419 </span><span class="lineCov">     341416 :                 .build()</span></a>
+<a name="405"><span class="lineNum">     405 </span><span class="lineCov">     386988 :         let core::HeaderView { data, hash } = if reset_header {</span></a>
+<a name="406"><span class="lineNum">     406 </span><span class="lineCov">     386416 :             let raw_transactions_root = merkle_root(&amp;tx_hashes[..]);</span></a>
+<a name="407"><span class="lineNum">     407 </span><span class="lineCov">     386416 :             let witnesses_root = merkle_root(&amp;tx_witness_hashes[..]);</span></a>
+<a name="408"><span class="lineNum">     408 </span><span class="lineCov">     386416 :             let transactions_root = merkle_root(&amp;[raw_transactions_root, witnesses_root]);</span></a>
+<a name="409"><span class="lineNum">     409 </span><span class="lineCov">     386416 :             let proposals_hash = proposals.calc_proposals_hash();</span></a>
+<a name="410"><span class="lineNum">     410 </span><span class="lineCov">     386416 :             let extra_hash_view = core::ExtraHashView::new(</span></a>
+<a name="411"><span class="lineNum">     411 </span><span class="lineCov">     386416 :                 uncles.calc_uncles_hash(),</span></a>
+<a name="412"><span class="lineNum">     412 </span><span class="lineCov">     386416 :                 extension.as_ref().map(packed::Bytes::calc_raw_data_hash),</span></a>
+<a name="413"><span class="lineNum">     413 </span><span class="lineCov">     386416 :             );</span></a>
+<a name="414"><span class="lineNum">     414 </span><span class="lineCov">     386416 :             let extra_hash = extra_hash_view.extra_hash();</span></a>
+<a name="415"><span class="lineNum">     415 </span><span class="lineCov">     386416 :             header</span></a>
+<a name="416"><span class="lineNum">     416 </span><span class="lineCov">     386416 :                 .transactions_root(transactions_root)</span></a>
+<a name="417"><span class="lineNum">     417 </span><span class="lineCov">     386416 :                 .proposals_hash(proposals_hash)</span></a>
+<a name="418"><span class="lineNum">     418 </span><span class="lineCov">     386416 :                 .extra_hash(extra_hash)</span></a>
+<a name="419"><span class="lineNum">     419 </span><span class="lineCov">     386416 :                 .build()</span></a>
 <a name="420"><span class="lineNum">     420 </span>            :         } else {</a>
-<a name="421"><span class="lineNum">     421 </span><span class="lineCov">        506 :             header.build()</span></a>
+<a name="421"><span class="lineNum">     421 </span><span class="lineCov">        572 :             header.build()</span></a>
 <a name="422"><span class="lineNum">     422 </span>            :         };</a>
 <a name="423"><span class="lineNum">     423 </span>            : </a>
-<a name="424"><span class="lineNum">     424 </span><span class="lineCov">     341922 :         let block = if let Some(extension) = extension {</span></a>
-<a name="425"><span class="lineNum">     425 </span><span class="lineCov">        115 :             packed::BlockV1::new_builder()</span></a>
-<a name="426"><span class="lineNum">     426 </span><span class="lineCov">        115 :                 .header(data)</span></a>
-<a name="427"><span class="lineNum">     427 </span><span class="lineCov">        115 :                 .uncles(uncles)</span></a>
-<a name="428"><span class="lineNum">     428 </span><span class="lineCov">        115 :                 .transactions(transactions.pack())</span></a>
-<a name="429"><span class="lineNum">     429 </span><span class="lineCov">        115 :                 .proposals(proposals)</span></a>
-<a name="430"><span class="lineNum">     430 </span><span class="lineCov">        115 :                 .extension(extension)</span></a>
-<a name="431"><span class="lineNum">     431 </span><span class="lineCov">        115 :                 .build()</span></a>
-<a name="432"><span class="lineNum">     432 </span><span class="lineCov">        115 :                 .as_v0()</span></a>
+<a name="424"><span class="lineNum">     424 </span><span class="lineCov">     386988 :         let block = if let Some(extension) = extension {</span></a>
+<a name="425"><span class="lineNum">     425 </span><span class="lineCov">         26 :             packed::BlockV1::new_builder()</span></a>
+<a name="426"><span class="lineNum">     426 </span><span class="lineCov">         26 :                 .header(data)</span></a>
+<a name="427"><span class="lineNum">     427 </span><span class="lineCov">         26 :                 .uncles(uncles)</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineCov">         26 :                 .transactions(transactions.pack())</span></a>
+<a name="429"><span class="lineNum">     429 </span><span class="lineCov">         26 :                 .proposals(proposals)</span></a>
+<a name="430"><span class="lineNum">     430 </span><span class="lineCov">         26 :                 .extension(extension)</span></a>
+<a name="431"><span class="lineNum">     431 </span><span class="lineCov">         26 :                 .build()</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineCov">         26 :                 .as_v0()</span></a>
 <a name="433"><span class="lineNum">     433 </span>            :         } else {</a>
-<a name="434"><span class="lineNum">     434 </span><span class="lineCov">     341807 :             packed::Block::new_builder()</span></a>
-<a name="435"><span class="lineNum">     435 </span><span class="lineCov">     341807 :                 .header(data)</span></a>
-<a name="436"><span class="lineNum">     436 </span><span class="lineCov">     341807 :                 .uncles(uncles)</span></a>
-<a name="437"><span class="lineNum">     437 </span><span class="lineCov">     341807 :                 .transactions(transactions.pack())</span></a>
-<a name="438"><span class="lineNum">     438 </span><span class="lineCov">     341807 :                 .proposals(proposals)</span></a>
-<a name="439"><span class="lineNum">     439 </span><span class="lineCov">     341807 :                 .build()</span></a>
+<a name="434"><span class="lineNum">     434 </span><span class="lineCov">     386962 :             packed::Block::new_builder()</span></a>
+<a name="435"><span class="lineNum">     435 </span><span class="lineCov">     386962 :                 .header(data)</span></a>
+<a name="436"><span class="lineNum">     436 </span><span class="lineCov">     386962 :                 .uncles(uncles)</span></a>
+<a name="437"><span class="lineNum">     437 </span><span class="lineCov">     386962 :                 .transactions(transactions.pack())</span></a>
+<a name="438"><span class="lineNum">     438 </span><span class="lineCov">     386962 :                 .proposals(proposals)</span></a>
+<a name="439"><span class="lineNum">     439 </span><span class="lineCov">     386962 :                 .build()</span></a>
 <a name="440"><span class="lineNum">     440 </span>            :         };</a>
-<a name="441"><span class="lineNum">     441 </span><span class="lineCov">     341922 :         core::BlockView {</span></a>
-<a name="442"><span class="lineNum">     442 </span><span class="lineCov">     341922 :             data: block,</span></a>
-<a name="443"><span class="lineNum">     443 </span><span class="lineCov">     341922 :             hash,</span></a>
-<a name="444"><span class="lineNum">     444 </span><span class="lineCov">     341922 :             uncle_hashes: uncle_hashes.pack(),</span></a>
-<a name="445"><span class="lineNum">     445 </span><span class="lineCov">     341922 :             tx_hashes,</span></a>
-<a name="446"><span class="lineNum">     446 </span><span class="lineCov">     341922 :             tx_witness_hashes,</span></a>
-<a name="447"><span class="lineNum">     447 </span><span class="lineCov">     341922 :         }</span></a>
-<a name="448"><span class="lineNum">     448 </span><span class="lineCov">     341922 :     }</span></a>
+<a name="441"><span class="lineNum">     441 </span><span class="lineCov">     386988 :         core::BlockView {</span></a>
+<a name="442"><span class="lineNum">     442 </span><span class="lineCov">     386988 :             data: block,</span></a>
+<a name="443"><span class="lineNum">     443 </span><span class="lineCov">     386988 :             hash,</span></a>
+<a name="444"><span class="lineNum">     444 </span><span class="lineCov">     386988 :             uncle_hashes: uncle_hashes.pack(),</span></a>
+<a name="445"><span class="lineNum">     445 </span><span class="lineCov">     386988 :             tx_hashes,</span></a>
+<a name="446"><span class="lineNum">     446 </span><span class="lineCov">     386988 :             tx_witness_hashes,</span></a>
+<a name="447"><span class="lineNum">     447 </span><span class="lineCov">     386988 :         }</span></a>
+<a name="448"><span class="lineNum">     448 </span><span class="lineCov">     386988 :     }</span></a>
 <a name="449"><span class="lineNum">     449 </span>            : </a>
 <a name="450"><span class="lineNum">     450 </span>            :     /// Converts into [`BlockView`](struct.BlockView.html) and recalculates all hashes and merkle</a>
 <a name="451"><span class="lineNum">     451 </span>            :     /// roots in the header.</a>
-<a name="452"><span class="lineNum">     452 </span><span class="lineCov">     341577 :     pub fn build(self) -&gt; core::BlockView {</span></a>
-<a name="453"><span class="lineNum">     453 </span><span class="lineCov">     341577 :         self.build_internal(true)</span></a>
-<a name="454"><span class="lineNum">     454 </span><span class="lineCov">     341577 :     }</span></a>
+<a name="452"><span class="lineNum">     452 </span><span class="lineCov">     386416 :     pub fn build(self) -&gt; core::BlockView {</span></a>
+<a name="453"><span class="lineNum">     453 </span><span class="lineCov">     386416 :         self.build_internal(true)</span></a>
+<a name="454"><span class="lineNum">     454 </span><span class="lineCov">     386416 :     }</span></a>
 <a name="455"><span class="lineNum">     455 </span>            : </a>
 <a name="456"><span class="lineNum">     456 </span>            :     /// Converts into [`BlockView`](struct.BlockView.html) but does not refresh all hashes and all</a>
 <a name="457"><span class="lineNum">     457 </span>            :     /// merkle roots in the header.</a>
@@ -522,9 +522,9 @@
 <a name="460"><span class="lineNum">     460 </span>            :     ///</a>
 <a name="461"><span class="lineNum">     461 </span>            :     /// [`BlockView`](struct.BlockView.html) created by this method could have invalid hashes or</a>
 <a name="462"><span class="lineNum">     462 </span>            :     /// invalid merkle roots in the header.</a>
-<a name="463"><span class="lineNum">     463 </span><span class="lineCov">        598 :     pub fn build_unchecked(self) -&gt; core::BlockView {</span></a>
-<a name="464"><span class="lineNum">     464 </span><span class="lineCov">        598 :         self.build_internal(false)</span></a>
-<a name="465"><span class="lineNum">     465 </span><span class="lineCov">        598 :     }</span></a>
+<a name="463"><span class="lineNum">     463 </span><span class="lineCov">        676 :     pub fn build_unchecked(self) -&gt; core::BlockView {</span></a>
+<a name="464"><span class="lineNum">     464 </span><span class="lineCov">        676 :         self.build_internal(false)</span></a>
+<a name="465"><span class="lineNum">     465 </span><span class="lineCov">        676 :     }</span></a>
 <a name="466"><span class="lineNum">     466 </span>            : }</a>
 <a name="467"><span class="lineNum">     467 </span>            : </a>
 <a name="468"><span class="lineNum">     468 </span>            : /*</a>
@@ -533,34 +533,34 @@
 <a name="471"><span class="lineNum">     471 </span>            : </a>
 <a name="472"><span class="lineNum">     472 </span>            : impl packed::Transaction {</a>
 <a name="473"><span class="lineNum">     473 </span>            :     /// Creates an advanced builder base on current data.</a>
-<a name="474"><span class="lineNum">     474 </span><span class="lineCov">         92 :     pub fn as_advanced_builder(&amp;self) -&gt; TransactionBuilder {</span></a>
-<a name="475"><span class="lineNum">     475 </span><span class="lineCov">         92 :         TransactionBuilder::default()</span></a>
-<a name="476"><span class="lineNum">     476 </span><span class="lineCov">         92 :             .version(self.raw().version())</span></a>
-<a name="477"><span class="lineNum">     477 </span><span class="lineCov">         92 :             .cell_deps(self.raw().cell_deps())</span></a>
-<a name="478"><span class="lineNum">     478 </span><span class="lineCov">         92 :             .header_deps(self.raw().header_deps())</span></a>
-<a name="479"><span class="lineNum">     479 </span><span class="lineCov">         92 :             .inputs(self.raw().inputs())</span></a>
-<a name="480"><span class="lineNum">     480 </span><span class="lineCov">         92 :             .outputs(self.raw().outputs())</span></a>
-<a name="481"><span class="lineNum">     481 </span><span class="lineCov">         92 :             .outputs_data(self.raw().outputs_data())</span></a>
-<a name="482"><span class="lineNum">     482 </span><span class="lineCov">         92 :             .witnesses(self.witnesses())</span></a>
-<a name="483"><span class="lineNum">     483 </span><span class="lineCov">         92 :     }</span></a>
+<a name="474"><span class="lineNum">     474 </span><span class="lineCov">        260 :     pub fn as_advanced_builder(&amp;self) -&gt; TransactionBuilder {</span></a>
+<a name="475"><span class="lineNum">     475 </span><span class="lineCov">        260 :         TransactionBuilder::default()</span></a>
+<a name="476"><span class="lineNum">     476 </span><span class="lineCov">        260 :             .version(self.raw().version())</span></a>
+<a name="477"><span class="lineNum">     477 </span><span class="lineCov">        260 :             .cell_deps(self.raw().cell_deps())</span></a>
+<a name="478"><span class="lineNum">     478 </span><span class="lineCov">        260 :             .header_deps(self.raw().header_deps())</span></a>
+<a name="479"><span class="lineNum">     479 </span><span class="lineCov">        260 :             .inputs(self.raw().inputs())</span></a>
+<a name="480"><span class="lineNum">     480 </span><span class="lineCov">        260 :             .outputs(self.raw().outputs())</span></a>
+<a name="481"><span class="lineNum">     481 </span><span class="lineCov">        260 :             .outputs_data(self.raw().outputs_data())</span></a>
+<a name="482"><span class="lineNum">     482 </span><span class="lineCov">        260 :             .witnesses(self.witnesses())</span></a>
+<a name="483"><span class="lineNum">     483 </span><span class="lineCov">        260 :     }</span></a>
 <a name="484"><span class="lineNum">     484 </span>            : }</a>
 <a name="485"><span class="lineNum">     485 </span>            : </a>
 <a name="486"><span class="lineNum">     486 </span>            : impl packed::Header {</a>
 <a name="487"><span class="lineNum">     487 </span>            :     /// Creates an advanced builder base on current data.</a>
-<a name="488"><span class="lineNum">     488 </span><span class="lineCov">      47794 :     pub fn as_advanced_builder(&amp;self) -&gt; HeaderBuilder {</span></a>
-<a name="489"><span class="lineNum">     489 </span><span class="lineCov">      47794 :         HeaderBuilder::default()</span></a>
-<a name="490"><span class="lineNum">     490 </span><span class="lineCov">      47794 :             .version(self.raw().version())</span></a>
-<a name="491"><span class="lineNum">     491 </span><span class="lineCov">      47794 :             .parent_hash(self.raw().parent_hash())</span></a>
-<a name="492"><span class="lineNum">     492 </span><span class="lineCov">      47794 :             .timestamp(self.raw().timestamp())</span></a>
-<a name="493"><span class="lineNum">     493 </span><span class="lineCov">      47794 :             .number(self.raw().number())</span></a>
-<a name="494"><span class="lineNum">     494 </span><span class="lineCov">      47794 :             .transactions_root(self.raw().transactions_root())</span></a>
-<a name="495"><span class="lineNum">     495 </span><span class="lineCov">      47794 :             .proposals_hash(self.raw().proposals_hash())</span></a>
-<a name="496"><span class="lineNum">     496 </span><span class="lineCov">      47794 :             .compact_target(self.raw().compact_target())</span></a>
-<a name="497"><span class="lineNum">     497 </span><span class="lineCov">      47794 :             .extra_hash(self.raw().extra_hash())</span></a>
-<a name="498"><span class="lineNum">     498 </span><span class="lineCov">      47794 :             .epoch(self.raw().epoch())</span></a>
-<a name="499"><span class="lineNum">     499 </span><span class="lineCov">      47794 :             .dao(self.raw().dao())</span></a>
-<a name="500"><span class="lineNum">     500 </span><span class="lineCov">      47794 :             .nonce(self.nonce())</span></a>
-<a name="501"><span class="lineNum">     501 </span><span class="lineCov">      47794 :     }</span></a>
+<a name="488"><span class="lineNum">     488 </span><span class="lineCov">      54028 :     pub fn as_advanced_builder(&amp;self) -&gt; HeaderBuilder {</span></a>
+<a name="489"><span class="lineNum">     489 </span><span class="lineCov">      54028 :         HeaderBuilder::default()</span></a>
+<a name="490"><span class="lineNum">     490 </span><span class="lineCov">      54028 :             .version(self.raw().version())</span></a>
+<a name="491"><span class="lineNum">     491 </span><span class="lineCov">      54028 :             .parent_hash(self.raw().parent_hash())</span></a>
+<a name="492"><span class="lineNum">     492 </span><span class="lineCov">      54028 :             .timestamp(self.raw().timestamp())</span></a>
+<a name="493"><span class="lineNum">     493 </span><span class="lineCov">      54028 :             .number(self.raw().number())</span></a>
+<a name="494"><span class="lineNum">     494 </span><span class="lineCov">      54028 :             .transactions_root(self.raw().transactions_root())</span></a>
+<a name="495"><span class="lineNum">     495 </span><span class="lineCov">      54028 :             .proposals_hash(self.raw().proposals_hash())</span></a>
+<a name="496"><span class="lineNum">     496 </span><span class="lineCov">      54028 :             .compact_target(self.raw().compact_target())</span></a>
+<a name="497"><span class="lineNum">     497 </span><span class="lineCov">      54028 :             .extra_hash(self.raw().extra_hash())</span></a>
+<a name="498"><span class="lineNum">     498 </span><span class="lineCov">      54028 :             .epoch(self.raw().epoch())</span></a>
+<a name="499"><span class="lineNum">     499 </span><span class="lineCov">      54028 :             .dao(self.raw().dao())</span></a>
+<a name="500"><span class="lineNum">     500 </span><span class="lineCov">      54028 :             .nonce(self.nonce())</span></a>
+<a name="501"><span class="lineNum">     501 </span><span class="lineCov">      54028 :     }</span></a>
 <a name="502"><span class="lineNum">     502 </span>            : }</a>
 <a name="503"><span class="lineNum">     503 </span>            : </a>
 <a name="504"><span class="lineNum">     504 </span>            : impl packed::Block {</a>
@@ -570,24 +570,24 @@
 <a name="508"><span class="lineNum">     508 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="509"><span class="lineNum">     509 </span>            : </a>
 <a name="510"><span class="lineNum">     510 </span>            :     /// Creates an advanced builder base on current data.</a>
-<a name="511"><span class="lineNum">     511 </span><span class="lineCov">        299 :     pub fn as_advanced_builder(&amp;self) -&gt; BlockBuilder {</span></a>
-<a name="512"><span class="lineNum">     512 </span><span class="lineCov">        299 :         BlockBuilder::default()</span></a>
-<a name="513"><span class="lineNum">     513 </span><span class="lineCov">        299 :             .header(self.header().into_view())</span></a>
-<a name="514"><span class="lineNum">     514 </span><span class="lineCov">        299 :             .uncles(</span></a>
-<a name="515"><span class="lineNum">     515 </span><span class="lineCov">        299 :                 self.uncles()</span></a>
-<a name="516"><span class="lineNum">     516 </span><span class="lineCov">        299 :                     .into_iter()</span></a>
-<a name="517"><span class="lineNum">     517 </span><span class="lineCov">        299 :                     .map(|x| x.into_view())</span></a>
-<a name="518"><span class="lineNum">     518 </span><span class="lineCov">        299 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
-<a name="519"><span class="lineNum">     519 </span><span class="lineCov">        299 :             )</span></a>
-<a name="520"><span class="lineNum">     520 </span><span class="lineCov">        299 :             .transactions(</span></a>
-<a name="521"><span class="lineNum">     521 </span><span class="lineCov">        299 :                 self.transactions()</span></a>
-<a name="522"><span class="lineNum">     522 </span><span class="lineCov">        299 :                     .into_iter()</span></a>
-<a name="523"><span class="lineNum">     523 </span><span class="lineCov">        690 :                     .map(|x| x.into_view())</span></a>
-<a name="524"><span class="lineNum">     524 </span><span class="lineCov">        299 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
-<a name="525"><span class="lineNum">     525 </span><span class="lineCov">        299 :             )</span></a>
-<a name="526"><span class="lineNum">     526 </span><span class="lineCov">        299 :             .proposals(self.proposals().into_iter().collect::&lt;Vec&lt;_&gt;&gt;())</span></a>
-<a name="527"><span class="lineNum">     527 </span><span class="lineCov">        299 :             .extension(self.extension())</span></a>
-<a name="528"><span class="lineNum">     528 </span><span class="lineCov">        299 :     }</span></a>
+<a name="511"><span class="lineNum">     511 </span><span class="lineCov">        338 :     pub fn as_advanced_builder(&amp;self) -&gt; BlockBuilder {</span></a>
+<a name="512"><span class="lineNum">     512 </span><span class="lineCov">        338 :         BlockBuilder::default()</span></a>
+<a name="513"><span class="lineNum">     513 </span><span class="lineCov">        338 :             .header(self.header().into_view())</span></a>
+<a name="514"><span class="lineNum">     514 </span><span class="lineCov">        338 :             .uncles(</span></a>
+<a name="515"><span class="lineNum">     515 </span><span class="lineCov">        338 :                 self.uncles()</span></a>
+<a name="516"><span class="lineNum">     516 </span><span class="lineCov">        338 :                     .into_iter()</span></a>
+<a name="517"><span class="lineNum">     517 </span><span class="lineCov">        338 :                     .map(|x| x.into_view())</span></a>
+<a name="518"><span class="lineNum">     518 </span><span class="lineCov">        338 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
+<a name="519"><span class="lineNum">     519 </span><span class="lineCov">        338 :             )</span></a>
+<a name="520"><span class="lineNum">     520 </span><span class="lineCov">        338 :             .transactions(</span></a>
+<a name="521"><span class="lineNum">     521 </span><span class="lineCov">        338 :                 self.transactions()</span></a>
+<a name="522"><span class="lineNum">     522 </span><span class="lineCov">        338 :                     .into_iter()</span></a>
+<a name="523"><span class="lineNum">     523 </span><span class="lineCov">        780 :                     .map(|x| x.into_view())</span></a>
+<a name="524"><span class="lineNum">     524 </span><span class="lineCov">        338 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
+<a name="525"><span class="lineNum">     525 </span><span class="lineCov">        338 :             )</span></a>
+<a name="526"><span class="lineNum">     526 </span><span class="lineCov">        338 :             .proposals(self.proposals().into_iter().collect::&lt;Vec&lt;_&gt;&gt;())</span></a>
+<a name="527"><span class="lineNum">     527 </span><span class="lineCov">        338 :             .extension(self.extension())</span></a>
+<a name="528"><span class="lineNum">     528 </span><span class="lineCov">        338 :     }</span></a>
 <a name="529"><span class="lineNum">     529 </span>            : }</a>
 <a name="530"><span class="lineNum">     530 </span>            : </a>
 <a name="531"><span class="lineNum">     531 </span>            : impl core::TransactionView {</a>
@@ -597,58 +597,58 @@
 <a name="535"><span class="lineNum">     535 </span><span class="lineNoCov">          0 :     }</span></a>
 <a name="536"><span class="lineNum">     536 </span>            : </a>
 <a name="537"><span class="lineNum">     537 </span>            :     /// Creates an advanced builder base on current data.</a>
-<a name="538"><span class="lineNum">     538 </span><span class="lineCov">         92 :     pub fn as_advanced_builder(&amp;self) -&gt; TransactionBuilder {</span></a>
-<a name="539"><span class="lineNum">     539 </span><span class="lineCov">         92 :         self.data().as_advanced_builder()</span></a>
-<a name="540"><span class="lineNum">     540 </span><span class="lineCov">         92 :     }</span></a>
+<a name="538"><span class="lineNum">     538 </span><span class="lineCov">        260 :     pub fn as_advanced_builder(&amp;self) -&gt; TransactionBuilder {</span></a>
+<a name="539"><span class="lineNum">     539 </span><span class="lineCov">        260 :         self.data().as_advanced_builder()</span></a>
+<a name="540"><span class="lineNum">     540 </span><span class="lineCov">        260 :     }</span></a>
 <a name="541"><span class="lineNum">     541 </span>            : }</a>
 <a name="542"><span class="lineNum">     542 </span>            : </a>
 <a name="543"><span class="lineNum">     543 </span>            : impl core::HeaderView {</a>
 <a name="544"><span class="lineNum">     544 </span>            :     /// Creates an empty advanced builder.</a>
-<a name="545"><span class="lineNum">     545 </span><span class="lineCov">       1633 :     pub fn new_advanced_builder() -&gt; HeaderBuilder {</span></a>
-<a name="546"><span class="lineNum">     546 </span><span class="lineCov">       1633 :         Default::default()</span></a>
-<a name="547"><span class="lineNum">     547 </span><span class="lineCov">       1633 :     }</span></a>
+<a name="545"><span class="lineNum">     545 </span><span class="lineCov">       2106 :     pub fn new_advanced_builder() -&gt; HeaderBuilder {</span></a>
+<a name="546"><span class="lineNum">     546 </span><span class="lineCov">       2106 :         Default::default()</span></a>
+<a name="547"><span class="lineNum">     547 </span><span class="lineCov">       2106 :     }</span></a>
 <a name="548"><span class="lineNum">     548 </span>            : </a>
 <a name="549"><span class="lineNum">     549 </span>            :     /// Creates an advanced builder base on current data.</a>
-<a name="550"><span class="lineNum">     550 </span><span class="lineCov">      47794 :     pub fn as_advanced_builder(&amp;self) -&gt; HeaderBuilder {</span></a>
-<a name="551"><span class="lineNum">     551 </span><span class="lineCov">      47794 :         self.data().as_advanced_builder()</span></a>
-<a name="552"><span class="lineNum">     552 </span><span class="lineCov">      47794 :     }</span></a>
+<a name="550"><span class="lineNum">     550 </span><span class="lineCov">      54028 :     pub fn as_advanced_builder(&amp;self) -&gt; HeaderBuilder {</span></a>
+<a name="551"><span class="lineNum">     551 </span><span class="lineCov">      54028 :         self.data().as_advanced_builder()</span></a>
+<a name="552"><span class="lineNum">     552 </span><span class="lineCov">      54028 :     }</span></a>
 <a name="553"><span class="lineNum">     553 </span>            : }</a>
 <a name="554"><span class="lineNum">     554 </span>            : </a>
 <a name="555"><span class="lineNum">     555 </span>            : impl core::BlockView {</a>
 <a name="556"><span class="lineNum">     556 </span>            :     /// Creates an advanced builder base on current data.</a>
-<a name="557"><span class="lineNum">     557 </span><span class="lineCov">        805 :     pub fn as_advanced_builder(&amp;self) -&gt; BlockBuilder {</span></a>
-<a name="558"><span class="lineNum">     558 </span><span class="lineCov">        805 :         let core::BlockView {</span></a>
-<a name="559"><span class="lineNum">     559 </span><span class="lineCov">        805 :             data,</span></a>
-<a name="560"><span class="lineNum">     560 </span><span class="lineCov">        805 :             uncle_hashes,</span></a>
-<a name="561"><span class="lineNum">     561 </span><span class="lineCov">        805 :             tx_hashes,</span></a>
-<a name="562"><span class="lineNum">     562 </span><span class="lineCov">        805 :             tx_witness_hashes,</span></a>
-<a name="563"><span class="lineNum">     563 </span><span class="lineCov">        805 :             hash,</span></a>
-<a name="564"><span class="lineNum">     564 </span><span class="lineCov">        805 :         } = self;</span></a>
-<a name="565"><span class="lineNum">     565 </span><span class="lineCov">        805 :         let _ = hash;</span></a>
-<a name="566"><span class="lineNum">     566 </span><span class="lineCov">        805 :         BlockBuilder::default()</span></a>
-<a name="567"><span class="lineNum">     567 </span><span class="lineCov">        805 :             .header(self.header())</span></a>
-<a name="568"><span class="lineNum">     568 </span><span class="lineCov">        805 :             .uncles(</span></a>
-<a name="569"><span class="lineNum">     569 </span><span class="lineCov">        805 :                 data.uncles()</span></a>
-<a name="570"><span class="lineNum">     570 </span><span class="lineCov">        805 :                     .into_iter()</span></a>
-<a name="571"><span class="lineNum">     571 </span><span class="lineCov">        805 :                     .zip(uncle_hashes.to_owned().into_iter())</span></a>
-<a name="572"><span class="lineNum">     572 </span><span class="lineCov">        805 :                     .map(|(data, hash)| core::UncleBlockView { data, hash })</span></a>
-<a name="573"><span class="lineNum">     573 </span><span class="lineCov">        805 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
-<a name="574"><span class="lineNum">     574 </span><span class="lineCov">        805 :             )</span></a>
-<a name="575"><span class="lineNum">     575 </span><span class="lineCov">        805 :             .transactions(</span></a>
-<a name="576"><span class="lineNum">     576 </span><span class="lineCov">        805 :                 data.transactions()</span></a>
-<a name="577"><span class="lineNum">     577 </span><span class="lineCov">        805 :                     .into_iter()</span></a>
-<a name="578"><span class="lineNum">     578 </span><span class="lineCov">        805 :                     .zip(tx_hashes.iter())</span></a>
-<a name="579"><span class="lineNum">     579 </span><span class="lineCov">        805 :                     .zip(tx_witness_hashes.iter())</span></a>
-<a name="580"><span class="lineNum">     580 </span><span class="lineCov">        805 :                     .map(|((data, hash), witness_hash)| core::TransactionView {</span></a>
-<a name="581"><span class="lineNum">     581 </span><span class="lineCov">        667 :                         data,</span></a>
-<a name="582"><span class="lineNum">     582 </span><span class="lineCov">        667 :                         hash: hash.to_owned(),</span></a>
-<a name="583"><span class="lineNum">     583 </span><span class="lineCov">        667 :                         witness_hash: witness_hash.to_owned(),</span></a>
-<a name="584"><span class="lineNum">     584 </span><span class="lineCov">        805 :                     })</span></a>
-<a name="585"><span class="lineNum">     585 </span><span class="lineCov">        805 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
-<a name="586"><span class="lineNum">     586 </span><span class="lineCov">        805 :             )</span></a>
-<a name="587"><span class="lineNum">     587 </span><span class="lineCov">        805 :             .proposals(data.proposals().into_iter().collect::&lt;Vec&lt;_&gt;&gt;())</span></a>
-<a name="588"><span class="lineNum">     588 </span><span class="lineCov">        805 :             .extension(data.extension())</span></a>
-<a name="589"><span class="lineNum">     589 </span><span class="lineCov">        805 :     }</span></a>
+<a name="557"><span class="lineNum">     557 </span><span class="lineCov">        910 :     pub fn as_advanced_builder(&amp;self) -&gt; BlockBuilder {</span></a>
+<a name="558"><span class="lineNum">     558 </span><span class="lineCov">        910 :         let core::BlockView {</span></a>
+<a name="559"><span class="lineNum">     559 </span><span class="lineCov">        910 :             data,</span></a>
+<a name="560"><span class="lineNum">     560 </span><span class="lineCov">        910 :             uncle_hashes,</span></a>
+<a name="561"><span class="lineNum">     561 </span><span class="lineCov">        910 :             tx_hashes,</span></a>
+<a name="562"><span class="lineNum">     562 </span><span class="lineCov">        910 :             tx_witness_hashes,</span></a>
+<a name="563"><span class="lineNum">     563 </span><span class="lineCov">        910 :             hash,</span></a>
+<a name="564"><span class="lineNum">     564 </span><span class="lineCov">        910 :         } = self;</span></a>
+<a name="565"><span class="lineNum">     565 </span><span class="lineCov">        910 :         let _ = hash;</span></a>
+<a name="566"><span class="lineNum">     566 </span><span class="lineCov">        910 :         BlockBuilder::default()</span></a>
+<a name="567"><span class="lineNum">     567 </span><span class="lineCov">        910 :             .header(self.header())</span></a>
+<a name="568"><span class="lineNum">     568 </span><span class="lineCov">        910 :             .uncles(</span></a>
+<a name="569"><span class="lineNum">     569 </span><span class="lineCov">        910 :                 data.uncles()</span></a>
+<a name="570"><span class="lineNum">     570 </span><span class="lineCov">        910 :                     .into_iter()</span></a>
+<a name="571"><span class="lineNum">     571 </span><span class="lineCov">        910 :                     .zip(uncle_hashes.to_owned().into_iter())</span></a>
+<a name="572"><span class="lineNum">     572 </span><span class="lineCov">        910 :                     .map(|(data, hash)| core::UncleBlockView { data, hash })</span></a>
+<a name="573"><span class="lineNum">     573 </span><span class="lineCov">        910 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
+<a name="574"><span class="lineNum">     574 </span><span class="lineCov">        910 :             )</span></a>
+<a name="575"><span class="lineNum">     575 </span><span class="lineCov">        910 :             .transactions(</span></a>
+<a name="576"><span class="lineNum">     576 </span><span class="lineCov">        910 :                 data.transactions()</span></a>
+<a name="577"><span class="lineNum">     577 </span><span class="lineCov">        910 :                     .into_iter()</span></a>
+<a name="578"><span class="lineNum">     578 </span><span class="lineCov">        910 :                     .zip(tx_hashes.iter())</span></a>
+<a name="579"><span class="lineNum">     579 </span><span class="lineCov">        910 :                     .zip(tx_witness_hashes.iter())</span></a>
+<a name="580"><span class="lineNum">     580 </span><span class="lineCov">        910 :                     .map(|((data, hash), witness_hash)| core::TransactionView {</span></a>
+<a name="581"><span class="lineNum">     581 </span><span class="lineCov">        754 :                         data,</span></a>
+<a name="582"><span class="lineNum">     582 </span><span class="lineCov">        754 :                         hash: hash.to_owned(),</span></a>
+<a name="583"><span class="lineNum">     583 </span><span class="lineCov">        754 :                         witness_hash: witness_hash.to_owned(),</span></a>
+<a name="584"><span class="lineNum">     584 </span><span class="lineCov">        910 :                     })</span></a>
+<a name="585"><span class="lineNum">     585 </span><span class="lineCov">        910 :                     .collect::&lt;Vec&lt;_&gt;&gt;(),</span></a>
+<a name="586"><span class="lineNum">     586 </span><span class="lineCov">        910 :             )</span></a>
+<a name="587"><span class="lineNum">     587 </span><span class="lineCov">        910 :             .proposals(data.proposals().into_iter().collect::&lt;Vec&lt;_&gt;&gt;())</span></a>
+<a name="588"><span class="lineNum">     588 </span><span class="lineCov">        910 :             .extension(data.extension())</span></a>
+<a name="589"><span class="lineNum">     589 </span><span class="lineCov">        910 :     }</span></a>
 <a name="590"><span class="lineNum">     590 </span>            : }</a>
 </pre>
       </td>

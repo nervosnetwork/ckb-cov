@@ -31,18 +31,18 @@
             <td class="headerValue">lcov-integration-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">533</td>
-            <td class="headerCovTableEntry">907</td>
-            <td class="headerCovTableEntryLo">58.8 %</td>
+            <td class="headerCovTableEntry">528</td>
+            <td class="headerCovTableEntry">838</td>
+            <td class="headerCovTableEntryLo">63.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">82</td>
+            <td class="headerCovTableEntry">81</td>
             <td class="headerCovTableEntry">161</td>
-            <td class="headerCovTableEntryLo">50.9 %</td>
+            <td class="headerCovTableEntryLo">50.3 %</td>
           </tr>
           <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -133,6 +133,10 @@
             </tr>
     <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#528">&lt;ckb_network::network::EventHandler&lt;_&gt;&gt;::inbound_eviction::{closure#0}::{closure#1}</a></td>
+              <td class="coverFnLo">0</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#551">&lt;ckb_network::network::EventHandler&lt;ckb_network::network::DefaultExitHandler&gt; as tentacle::traits::ServiceHandle&gt;::handle_error</a></td>
               <td class="coverFnLo">0</td>
             </tr>
     <tr>
@@ -376,14 +380,6 @@
               <td class="coverFnLo">0</td>
             </tr>
     <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#496">&lt;ckb_network::network::DefaultExitHandler as core::default::Default&gt;::default</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#551">&lt;ckb_network::network::EventHandler&lt;ckb_network::network::DefaultExitHandler&gt; as tentacle::traits::ServiceHandle&gt;::handle_error</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#647">&lt;ckb_network::network::EventHandler&lt;ckb_network::network::DefaultExitHandler&gt; as tentacle::traits::ServiceHandle&gt;::handle_event</a></td>
               <td class="coverFnHi">1</td>
             </tr>
@@ -409,10 +405,6 @@
             </tr>
     <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#528">&lt;ckb_network::network::EventHandler&lt;ckb_network::network::DefaultExitHandler&gt;&gt;::inbound_eviction::{closure#0}::{closure#1}</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#1128">&lt;ckb_network::network::NetworkController as core::clone::Clone&gt;::clone</a></td>
               <td class="coverFnHi">1</td>
             </tr>
     <tr>
@@ -544,10 +536,6 @@
               <td class="coverFnHi">1</td>
             </tr>
     <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#285">&lt;ckb_network::network::NetworkState&gt;::connection_status</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#396">&lt;ckb_network::network::NetworkState&gt;::dial_inner</a></td>
               <td class="coverFnHi">1</td>
             </tr>
@@ -556,15 +544,7 @@
               <td class="coverFnHi">1</td>
             </tr>
     <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#89">&lt;ckb_network::network::NetworkState&gt;::from_config</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#478">&lt;ckb_network::network::NetworkState&gt;::is_active</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#261">&lt;ckb_network::network::NetworkState&gt;::local_peer_id</a></td>
               <td class="coverFnHi">1</td>
             </tr>
     <tr>
@@ -573,10 +553,6 @@
             </tr>
     <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#272">&lt;ckb_network::network::NetworkState&gt;::node_id</a></td>
-              <td class="coverFnHi">1</td>
-            </tr>
-    <tr>
-              <td class="coverFn"><a href="network.rs.gcov.html#276">&lt;ckb_network::network::NetworkState&gt;::public_addrs</a></td>
               <td class="coverFnHi">1</td>
             </tr>
     <tr>
@@ -702,6 +678,30 @@
     <tr>
               <td class="coverFn"><a href="network.rs.gcov.html#1332">ckb_network::network::disconnect_with_message</a></td>
               <td class="coverFnHi">1</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#1128">&lt;ckb_network::network::NetworkController as core::clone::Clone&gt;::clone</a></td>
+              <td class="coverFnHi">2</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#285">&lt;ckb_network::network::NetworkState&gt;::connection_status</a></td>
+              <td class="coverFnHi">2</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#89">&lt;ckb_network::network::NetworkState&gt;::from_config</a></td>
+              <td class="coverFnHi">2</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#261">&lt;ckb_network::network::NetworkState&gt;::local_peer_id</a></td>
+              <td class="coverFnHi">2</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#276">&lt;ckb_network::network::NetworkState&gt;::public_addrs</a></td>
+              <td class="coverFnHi">2</td>
+            </tr>
+    <tr>
+              <td class="coverFn"><a href="network.rs.gcov.html#496">&lt;ckb_network::network::DefaultExitHandler as core::default::Default&gt;::default</a></td>
+              <td class="coverFnHi">4</td>
             </tr>
   </table>
   <br>

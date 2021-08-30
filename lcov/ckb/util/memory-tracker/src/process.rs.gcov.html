@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/memory-tracker/src/process.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/memory-tracker/src/process.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">53</td>
+            <td class="headerCovTableEntry">46</td>
             <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -98,9 +98,9 @@
 <a name="36"><span class="lineNum">      36 </span><span class="lineNoCov">          0 :     tracker_opt: Option&lt;sync::Arc&lt;Tracker&gt;&gt;,</span></a>
 <a name="37"><span class="lineNum">      37 </span><span class="lineNoCov">          0 : ) {</span></a>
 <a name="38"><span class="lineNum">      38 </span><span class="lineNoCov">          0 :     if interval == 0 {</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineNoCov">          0 :         info!(&quot;track current process: disable&quot;);</span></a>
+<a name="39"><span class="lineNum">      39 </span>            :         info!(&quot;track current process: disable&quot;);</a>
 <a name="40"><span class="lineNum">      40 </span>            :     } else {</a>
-<a name="41"><span class="lineNum">      41 </span><span class="lineNoCov">          0 :         info!(&quot;track current process: enable&quot;);</span></a>
+<a name="41"><span class="lineNum">      41 </span>            :         info!(&quot;track current process: enable&quot;);</a>
 <a name="42"><span class="lineNum">      42 </span><span class="lineNoCov">          0 :         let wait_secs = time::Duration::from_secs(interval);</span></a>
 <a name="43"><span class="lineNum">      43 </span>            : </a>
 <a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :         let je_epoch = je_mib!(epoch);</span></a>
@@ -124,7 +124,7 @@
 <a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :                 if let Ok(process) = block_on(heim::process::current()) {</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :                     loop {</a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :                         if je_epoch.advance().is_err() {</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :                             error!(&quot;failed to refresh the jemalloc stats&quot;);</span></a>
+<a name="65"><span class="lineNum">      65 </span>            :                             error!(&quot;failed to refresh the jemalloc stats&quot;);</a>
 <a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :                             return;</span></a>
 <a name="67"><span class="lineNum">      67 </span><span class="lineNoCov">          0 :                         }</span></a>
 <a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :                         if let Ok(memory) = block_on(process.memory()) {</span></a>
@@ -154,18 +154,18 @@
 <a name="92"><span class="lineNum">      92 </span><span class="lineNoCov">          0 :                                 tracker.gather_memory_stats();</span></a>
 <a name="93"><span class="lineNum">      93 </span><span class="lineNoCov">          0 :                             }</span></a>
 <a name="94"><span class="lineNum">      94 </span>            :                         } else {</a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineNoCov">          0 :                             error!(&quot;failed to fetch the memory information about current process&quot;);</span></a>
+<a name="95"><span class="lineNum">      95 </span>            :                             error!(&quot;failed to fetch the memory information about current process&quot;);</a>
 <a name="96"><span class="lineNum">      96 </span>            :                         }</a>
 <a name="97"><span class="lineNum">      97 </span><span class="lineNoCov">          0 :                         thread::sleep(wait_secs);</span></a>
 <a name="98"><span class="lineNum">      98 </span>            :                     }</a>
 <a name="99"><span class="lineNum">      99 </span>            :                 } else {</a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineNoCov">          0 :                     error!(&quot;failed to track the currently running program&quot;);</span></a>
+<a name="100"><span class="lineNum">     100 </span>            :                     error!(&quot;failed to track the currently running program&quot;);</a>
 <a name="101"><span class="lineNum">     101 </span>            :                 }</a>
 <a name="102"><span class="lineNum">     102 </span><span class="lineNoCov">          0 :             })</span></a>
 <a name="103"><span class="lineNum">     103 </span>            :         {</a>
 <a name="104"><span class="lineNum">     104 </span>            :             error!(</a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineNoCov">          0 :                 &quot;failed to spawn the thread to track current process: {}&quot;,</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineNoCov">          0 :                 err</span></a>
+<a name="105"><span class="lineNum">     105 </span>            :                 &quot;failed to spawn the thread to track current process: {}&quot;,</a>
+<a name="106"><span class="lineNum">     106 </span>            :                 err</a>
 <a name="107"><span class="lineNum">     107 </span>            :             );</a>
 <a name="108"><span class="lineNum">     108 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="109"><span class="lineNum">     109 </span>            :     }</a>

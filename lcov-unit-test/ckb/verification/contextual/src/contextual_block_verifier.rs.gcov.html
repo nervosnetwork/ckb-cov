@@ -31,13 +31,13 @@
             <td class="headerValue">lcov-unit-test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">321</td>
+            <td class="headerCovTableEntry">316</td>
             <td class="headerCovTableEntry">400</td>
-            <td class="headerCovTableEntryMed">80.2 %</td>
+            <td class="headerCovTableEntryMed">79.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">37</td>
@@ -101,13 +101,13 @@
 <a name="39"><span class="lineNum">      39 </span>            : </a>
 <a name="40"><span class="lineNum">      40 </span>            : impl&lt;'a, CS: ChainStore&lt;'a&gt;&gt; VerifyContext&lt;'a, CS&gt; {</a>
 <a name="41"><span class="lineNum">      41 </span>            :     /// Create new VerifyContext from `Store` and `Consensus`</a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineCov">      96648 :     pub fn new(store: &amp;'a CS, consensus: &amp;'a Consensus) -&gt; Self {</span></a>
-<a name="43"><span class="lineNum">      43 </span><span class="lineCov">      96648 :         VerifyContext { store, consensus }</span></a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">      96648 :     }</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">      48356 :     pub fn new(store: &amp;'a CS, consensus: &amp;'a Consensus) -&gt; Self {</span></a>
+<a name="43"><span class="lineNum">      43 </span><span class="lineCov">      48356 :         VerifyContext { store, consensus }</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">      48356 :     }</span></a>
 <a name="45"><span class="lineNum">      45 </span>            : </a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">      37022 :     fn finalize_block_reward(&amp;self, parent: &amp;HeaderView) -&gt; Result&lt;(Script, BlockReward), Error&gt; {</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">      37022 :         RewardCalculator::new(self.consensus, self.store).block_reward_to_finalize(parent)</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">      37022 :     }</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">      18517 :     fn finalize_block_reward(&amp;self, parent: &amp;HeaderView) -&gt; Result&lt;(Script, BlockReward), Error&gt; {</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">      18517 :         RewardCalculator::new(self.consensus, self.store).block_reward_to_finalize(parent)</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">      18517 :     }</span></a>
 <a name="49"><span class="lineNum">      49 </span>            : }</a>
 <a name="50"><span class="lineNum">      50 </span>            : </a>
 <a name="51"><span class="lineNum">      51 </span>            : impl&lt;'a, CS: ChainStore&lt;'a&gt;&gt; HeaderProvider for VerifyContext&lt;'a, CS&gt; {</a>
@@ -147,42 +147,42 @@
 <a name="85"><span class="lineNum">      85 </span>            : }</a>
 <a name="86"><span class="lineNum">      86 </span>            : </a>
 <a name="87"><span class="lineNum">      87 </span>            : impl&lt;'a, 'b, CS: ChainStore&lt;'a&gt;&gt; UncleVerifierContext&lt;'a, 'b, CS&gt; {</a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">      37050 :     pub(crate) fn new(context: &amp;'a VerifyContext&lt;'a, CS&gt;, epoch: &amp;'b EpochExt) -&gt; Self {</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">      37050 :         UncleVerifierContext { epoch, context }</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">      37050 :     }</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">      18531 :     pub(crate) fn new(context: &amp;'a VerifyContext&lt;'a, CS&gt;, epoch: &amp;'b EpochExt) -&gt; Self {</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">      18531 :         UncleVerifierContext { epoch, context }</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">      18531 :     }</span></a>
 <a name="91"><span class="lineNum">      91 </span>            : }</a>
 <a name="92"><span class="lineNum">      92 </span>            : </a>
 <a name="93"><span class="lineNum">      93 </span>            : impl&lt;'a, 'b, CS: ChainStore&lt;'a&gt;&gt; UncleProvider for UncleVerifierContext&lt;'a, 'b, CS&gt; {</a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">         20 :     fn double_inclusion(&amp;self, hash: &amp;Byte32) -&gt; bool {</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         20 :         self.context.store.get_block_number(hash).is_some() || self.context.store.is_uncle(hash)</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">         20 :     }</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">         10 :     fn double_inclusion(&amp;self, hash: &amp;Byte32) -&gt; bool {</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         10 :         self.context.store.get_block_number(hash).is_some() || self.context.store.is_uncle(hash)</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">         10 :     }</span></a>
 <a name="97"><span class="lineNum">      97 </span>            : </a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">         24 :     fn descendant(&amp;self, uncle: &amp;HeaderView) -&gt; bool {</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">         24 :         let parent_hash = uncle.data().raw().parent_hash();</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">         24 :         let uncle_number = uncle.number();</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">         24 :         let store = self.context.store;</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">         24 : </span></a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">         24 :         if store.get_block_number(&amp;parent_hash).is_some() {</span></a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">         20 :             return store</span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">         20 :                 .get_block_header(&amp;parent_hash)</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">         20 :                 .map(|parent| (parent.number() + 1) == uncle_number)</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         20 :                 .unwrap_or(false);</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">          4 :         }</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">         12 :     fn descendant(&amp;self, uncle: &amp;HeaderView) -&gt; bool {</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">         12 :         let parent_hash = uncle.data().raw().parent_hash();</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">         12 :         let uncle_number = uncle.number();</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">         12 :         let store = self.context.store;</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineCov">         12 : </span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineCov">         12 :         if store.get_block_number(&amp;parent_hash).is_some() {</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">         10 :             return store</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">         10 :                 .get_block_header(&amp;parent_hash)</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">         10 :                 .map(|parent| (parent.number() + 1) == uncle_number)</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         10 :                 .unwrap_or(false);</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">          2 :         }</span></a>
 <a name="109"><span class="lineNum">     109 </span>            : </a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">          4 :         if let Some(uncle_parent) = store.get_uncle_header(&amp;parent_hash) {</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">          2 :             return (uncle_parent.number() + 1) == uncle_number;</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">          2 :         }</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">          2 : </span></a>
-<a name="114"><span class="lineNum">     114 </span><span class="lineCov">          2 :         false</span></a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         24 :     }</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">          2 :         if let Some(uncle_parent) = store.get_uncle_header(&amp;parent_hash) {</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">          1 :             return (uncle_parent.number() + 1) == uncle_number;</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">          1 :         }</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">          1 : </span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">          1 :         false</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         12 :     }</span></a>
 <a name="116"><span class="lineNum">     116 </span>            : </a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         62 :     fn epoch(&amp;self) -&gt; &amp;EpochExt {</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         62 :         &amp;self.epoch</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         62 :     }</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         31 :     fn epoch(&amp;self) -&gt; &amp;EpochExt {</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         31 :         &amp;self.epoch</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         31 :     }</span></a>
 <a name="120"><span class="lineNum">     120 </span>            : </a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         60 :     fn consensus(&amp;self) -&gt; &amp;Consensus {</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         60 :         self.context.consensus</span></a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         60 :     }</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         30 :     fn consensus(&amp;self) -&gt; &amp;Consensus {</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         30 :         self.context.consensus</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         30 :     }</span></a>
 <a name="124"><span class="lineNum">     124 </span>            : }</a>
 <a name="125"><span class="lineNum">     125 </span>            : </a>
 <a name="126"><span class="lineNum">     126 </span>            : pub struct TwoPhaseCommitVerifier&lt;'a, CS&gt; {</a>
@@ -191,62 +191,62 @@
 <a name="129"><span class="lineNum">     129 </span>            : }</a>
 <a name="130"><span class="lineNum">     130 </span>            : </a>
 <a name="131"><span class="lineNum">     131 </span>            : impl&lt;'a, CS: ChainStore&lt;'a&gt;&gt; TwoPhaseCommitVerifier&lt;'a, CS&gt; {</a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">      37068 :     pub fn new(context: &amp;'a VerifyContext&lt;'a, CS&gt;, block: &amp;'a BlockView) -&gt; Self {</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">      37068 :         TwoPhaseCommitVerifier { context, block }</span></a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">      37068 :     }</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">      18536 :     pub fn new(context: &amp;'a VerifyContext&lt;'a, CS&gt;, block: &amp;'a BlockView) -&gt; Self {</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">      18536 :         TwoPhaseCommitVerifier { context, block }</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">      18536 :     }</span></a>
 <a name="135"><span class="lineNum">     135 </span>            : </a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">      37064 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">      37064 :         if self.block.is_genesis() {</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">      18536 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">      18536 :         if self.block.is_genesis() {</span></a>
 <a name="138"><span class="lineNum">     138 </span><span class="lineNoCov">          0 :             return Ok(());</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">      37064 :         }</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">      37064 :         let block_number = self.block.header().number();</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">      37064 :         let proposal_window = self.context.consensus.tx_proposal_window();</span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">      37064 :         let proposal_start = block_number.saturating_sub(proposal_window.farthest());</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">      37064 :         let mut proposal_end = block_number.saturating_sub(proposal_window.closest());</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">      18536 :         }</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">      18536 :         let block_number = self.block.header().number();</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">      18536 :         let proposal_window = self.context.consensus.tx_proposal_window();</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">      18536 :         let proposal_start = block_number.saturating_sub(proposal_window.farthest());</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">      18536 :         let mut proposal_end = block_number.saturating_sub(proposal_window.closest());</span></a>
 <a name="144"><span class="lineNum">     144 </span>            : </a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">      37064 :         let mut block_hash = self</span></a>
-<a name="146"><span class="lineNum">     146 </span><span class="lineCov">      37064 :             .context</span></a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">      37064 :             .store</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">      37064 :             .get_block_hash(proposal_end)</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">      37064 :             .ok_or(CommitError::AncestorNotFound)?;</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">      18536 :         let mut block_hash = self</span></a>
+<a name="146"><span class="lineNum">     146 </span><span class="lineCov">      18536 :             .context</span></a>
+<a name="147"><span class="lineNum">     147 </span><span class="lineCov">      18536 :             .store</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">      18536 :             .get_block_hash(proposal_end)</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">      18536 :             .ok_or(CommitError::AncestorNotFound)?;</span></a>
 <a name="150"><span class="lineNum">     150 </span>            : </a>
-<a name="151"><span class="lineNum">     151 </span><span class="lineCov">      37064 :         let mut proposal_txs_ids = HashSet::new();</span></a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">      18536 :         let mut proposal_txs_ids = HashSet::new();</span></a>
 <a name="152"><span class="lineNum">     152 </span>            : </a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">     359732 :         while proposal_end &gt;= proposal_start {</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">     324540 :             let header = self</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">     324540 :                 .context</span></a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">     324540 :                 .store</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">     324540 :                 .get_block_header(&amp;block_hash)</span></a>
-<a name="158"><span class="lineNum">     158 </span><span class="lineCov">     324540 :                 .ok_or(CommitError::AncestorNotFound)?;</span></a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">     324540 :             if header.is_genesis() {</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">       1860 :                 break;</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">     322680 :             }</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">     179894 :         while proposal_end &gt;= proposal_start {</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">     162288 :             let header = self</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">     162288 :                 .context</span></a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">     162288 :                 .store</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">     162288 :                 .get_block_header(&amp;block_hash)</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">     162288 :                 .ok_or(CommitError::AncestorNotFound)?;</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">     162288 :             if header.is_genesis() {</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">        930 :                 break;</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">     161358 :             }</span></a>
 <a name="162"><span class="lineNum">     162 </span>            : </a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">     322680 :             if let Some(ids) = self.context.store.get_block_proposal_txs_ids(&amp;block_hash) {</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">     322680 :                 proposal_txs_ids.extend(ids);</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">     322680 :             }</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">     322680 :             if let Some(uncles) = self.context.store.get_block_uncles(&amp;block_hash) {</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">     322668 :                 uncles</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">     322668 :                     .data()</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">     322668 :                     .into_iter()</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">     322668 :                     .for_each(|uncle| proposal_txs_ids.extend(uncle.proposals()));</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">     322668 :             }</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">     161358 :             if let Some(ids) = self.context.store.get_block_proposal_txs_ids(&amp;block_hash) {</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">     161358 :                 proposal_txs_ids.extend(ids);</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">     161358 :             }</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">     161358 :             if let Some(uncles) = self.context.store.get_block_uncles(&amp;block_hash) {</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">     161358 :                 uncles</span></a>
+<a name="168"><span class="lineNum">     168 </span><span class="lineCov">     161358 :                     .data()</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">     161358 :                     .into_iter()</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">     161358 :                     .for_each(|uncle| proposal_txs_ids.extend(uncle.proposals()));</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">     161358 :             }</span></a>
 <a name="172"><span class="lineNum">     172 </span>            : </a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">     322668 :             block_hash = header.data().raw().parent_hash();</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">     322668 :             proposal_end -= 1;</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">     161358 :             block_hash = header.data().raw().parent_hash();</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">     161358 :             proposal_end -= 1;</span></a>
 <a name="175"><span class="lineNum">     175 </span>            :         }</a>
 <a name="176"><span class="lineNum">     176 </span>            : </a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">      37052 :         let committed_ids: HashSet&lt;_&gt; = self</span></a>
-<a name="178"><span class="lineNum">     178 </span><span class="lineCov">      37052 :             .block</span></a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">      37052 :             .transactions()</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">      37052 :             .iter()</span></a>
-<a name="181"><span class="lineNum">     181 </span><span class="lineCov">      37052 :             .skip(1)</span></a>
-<a name="182"><span class="lineNum">     182 </span><span class="lineCov">      37052 :             .map(TransactionView::proposal_short_id)</span></a>
-<a name="183"><span class="lineNum">     183 </span><span class="lineCov">      37052 :             .collect();</span></a>
-<a name="184"><span class="lineNum">     184 </span><span class="lineCov">      37052 : </span></a>
-<a name="185"><span class="lineNum">     185 </span><span class="lineCov">      37052 :         let difference: Vec&lt;_&gt; = committed_ids.difference(&amp;proposal_txs_ids).collect();</span></a>
-<a name="186"><span class="lineNum">     186 </span><span class="lineCov">      37052 : </span></a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">      37052 :         if !difference.is_empty() {</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">      18536 :         let committed_ids: HashSet&lt;_&gt; = self</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">      18536 :             .block</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">      18536 :             .transactions()</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">      18536 :             .iter()</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">      18536 :             .skip(1)</span></a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">      18536 :             .map(TransactionView::proposal_short_id)</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">      18536 :             .collect();</span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineCov">      18536 : </span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">      18536 :         let difference: Vec&lt;_&gt; = committed_ids.difference(&amp;proposal_txs_ids).collect();</span></a>
+<a name="186"><span class="lineNum">     186 </span><span class="lineCov">      18536 : </span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">      18536 :         if !difference.is_empty() {</span></a>
 <a name="188"><span class="lineNum">     188 </span>            :             error_target!(</a>
 <a name="189"><span class="lineNum">     189 </span>            :                 crate::LOG_TARGET,</a>
 <a name="190"><span class="lineNum">     190 </span><span class="lineNoCov">          0 :                 &quot;BlockView {} {}&quot;,</span></a>
@@ -255,17 +255,17 @@
 <a name="193"><span class="lineNum">     193 </span>            :             );</a>
 <a name="194"><span class="lineNum">     194 </span><span class="lineNoCov">          0 :             error_target!(crate::LOG_TARGET, &quot;proposal_window {:?}&quot;, proposal_window);</span></a>
 <a name="195"><span class="lineNum">     195 </span><span class="lineNoCov">          0 :             error_target!(crate::LOG_TARGET, &quot;Committed Ids:&quot;);</span></a>
-<a name="196"><span class="lineNum">     196 </span><span class="lineCov">         80 :             for committed_id in committed_ids.iter() {</span></a>
+<a name="196"><span class="lineNum">     196 </span><span class="lineCov">         40 :             for committed_id in committed_ids.iter() {</span></a>
 <a name="197"><span class="lineNum">     197 </span><span class="lineNoCov">          0 :                 error_target!(crate::LOG_TARGET, &quot;    {:?}&quot;, committed_id);</span></a>
 <a name="198"><span class="lineNum">     198 </span>            :             }</a>
 <a name="199"><span class="lineNum">     199 </span><span class="lineNoCov">          0 :             error_target!(crate::LOG_TARGET, &quot;Proposal Txs Ids:&quot;);</span></a>
-<a name="200"><span class="lineNum">     200 </span><span class="lineCov">          4 :             for proposal_txs_id in proposal_txs_ids.iter() {</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">          2 :             for proposal_txs_id in proposal_txs_ids.iter() {</span></a>
 <a name="201"><span class="lineNum">     201 </span><span class="lineNoCov">          0 :                 error_target!(crate::LOG_TARGET, &quot;    {:?}&quot;, proposal_txs_id);</span></a>
 <a name="202"><span class="lineNum">     202 </span>            :             }</a>
-<a name="203"><span class="lineNum">     203 </span><span class="lineCov">          4 :             return Err((CommitError::Invalid).into());</span></a>
-<a name="204"><span class="lineNum">     204 </span><span class="lineCov">      37068 :         }</span></a>
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">      37068 :         Ok(())</span></a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">      37072 :     }</span></a>
+<a name="203"><span class="lineNum">     203 </span><span class="lineCov">          2 :             return Err((CommitError::Invalid).into());</span></a>
+<a name="204"><span class="lineNum">     204 </span><span class="lineCov">      18534 :         }</span></a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">      18534 :         Ok(())</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">      18536 :     }</span></a>
 <a name="207"><span class="lineNum">     207 </span>            : }</a>
 <a name="208"><span class="lineNum">     208 </span>            : </a>
 <a name="209"><span class="lineNum">     209 </span>            : pub struct RewardVerifier&lt;'a, 'b, CS&gt; {</a>
@@ -275,58 +275,58 @@
 <a name="213"><span class="lineNum">     213 </span>            : }</a>
 <a name="214"><span class="lineNum">     214 </span>            : </a>
 <a name="215"><span class="lineNum">     215 </span>            : impl&lt;'a, 'b, CS: ChainStore&lt;'a&gt;&gt; RewardVerifier&lt;'a, 'b, CS&gt; {</a>
-<a name="216"><span class="lineNum">     216 </span><span class="lineCov">      37030 :     pub fn new(</span></a>
-<a name="217"><span class="lineNum">     217 </span><span class="lineCov">      37030 :         context: &amp;'a VerifyContext&lt;'a, CS&gt;,</span></a>
-<a name="218"><span class="lineNum">     218 </span><span class="lineCov">      37030 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
-<a name="219"><span class="lineNum">     219 </span><span class="lineCov">      37030 :         parent: &amp;'b HeaderView,</span></a>
-<a name="220"><span class="lineNum">     220 </span><span class="lineCov">      37030 :     ) -&gt; Self {</span></a>
-<a name="221"><span class="lineNum">     221 </span><span class="lineCov">      37030 :         RewardVerifier {</span></a>
-<a name="222"><span class="lineNum">     222 </span><span class="lineCov">      37030 :             parent,</span></a>
-<a name="223"><span class="lineNum">     223 </span><span class="lineCov">      37030 :             context,</span></a>
-<a name="224"><span class="lineNum">     224 </span><span class="lineCov">      37030 :             resolved,</span></a>
-<a name="225"><span class="lineNum">     225 </span><span class="lineCov">      37030 :         }</span></a>
-<a name="226"><span class="lineNum">     226 </span><span class="lineCov">      37030 :     }</span></a>
+<a name="216"><span class="lineNum">     216 </span><span class="lineCov">      18517 :     pub fn new(</span></a>
+<a name="217"><span class="lineNum">     217 </span><span class="lineCov">      18517 :         context: &amp;'a VerifyContext&lt;'a, CS&gt;,</span></a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">      18517 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">      18517 :         parent: &amp;'b HeaderView,</span></a>
+<a name="220"><span class="lineNum">     220 </span><span class="lineCov">      18517 :     ) -&gt; Self {</span></a>
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">      18517 :         RewardVerifier {</span></a>
+<a name="222"><span class="lineNum">     222 </span><span class="lineCov">      18517 :             parent,</span></a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">      18517 :             context,</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">      18517 :             resolved,</span></a>
+<a name="225"><span class="lineNum">     225 </span><span class="lineCov">      18517 :         }</span></a>
+<a name="226"><span class="lineNum">     226 </span><span class="lineCov">      18517 :     }</span></a>
 <a name="227"><span class="lineNum">     227 </span>            : </a>
 <a name="228"><span class="lineNum">     228 </span>            :     #[allow(clippy::int_plus_one)]</a>
-<a name="229"><span class="lineNum">     229 </span><span class="lineCov">      37022 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="230"><span class="lineNum">     230 </span><span class="lineCov">      37022 :         let cellbase = &amp;self.resolved[0];</span></a>
-<a name="231"><span class="lineNum">     231 </span><span class="lineCov">      37022 :         let no_finalization_target =</span></a>
-<a name="232"><span class="lineNum">     232 </span><span class="lineCov">      37022 :             (self.parent.number() + 1) &lt;= self.context.consensus.finalization_delay_length();</span></a>
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">      18517 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="230"><span class="lineNum">     230 </span><span class="lineCov">      18517 :         let cellbase = &amp;self.resolved[0];</span></a>
+<a name="231"><span class="lineNum">     231 </span><span class="lineCov">      18517 :         let no_finalization_target =</span></a>
+<a name="232"><span class="lineNum">     232 </span><span class="lineCov">      18517 :             (self.parent.number() + 1) &lt;= self.context.consensus.finalization_delay_length();</span></a>
 <a name="233"><span class="lineNum">     233 </span>            : </a>
-<a name="234"><span class="lineNum">     234 </span><span class="lineCov">      37022 :         let (target_lock, block_reward) = self.context.finalize_block_reward(self.parent)?;</span></a>
-<a name="235"><span class="lineNum">     235 </span><span class="lineCov">      37022 :         let output = CellOutput::new_builder()</span></a>
-<a name="236"><span class="lineNum">     236 </span><span class="lineCov">      37022 :             .capacity(block_reward.total.pack())</span></a>
-<a name="237"><span class="lineNum">     237 </span><span class="lineCov">      37022 :             .lock(target_lock.clone())</span></a>
-<a name="238"><span class="lineNum">     238 </span><span class="lineCov">      37022 :             .build();</span></a>
-<a name="239"><span class="lineNum">     239 </span><span class="lineCov">      37022 :         let insufficient_reward_to_create_cell = output.is_lack_of_capacity(Capacity::zero())?;</span></a>
+<a name="234"><span class="lineNum">     234 </span><span class="lineCov">      18517 :         let (target_lock, block_reward) = self.context.finalize_block_reward(self.parent)?;</span></a>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">      18517 :         let output = CellOutput::new_builder()</span></a>
+<a name="236"><span class="lineNum">     236 </span><span class="lineCov">      18517 :             .capacity(block_reward.total.pack())</span></a>
+<a name="237"><span class="lineNum">     237 </span><span class="lineCov">      18517 :             .lock(target_lock.clone())</span></a>
+<a name="238"><span class="lineNum">     238 </span><span class="lineCov">      18517 :             .build();</span></a>
+<a name="239"><span class="lineNum">     239 </span><span class="lineCov">      18517 :         let insufficient_reward_to_create_cell = output.is_lack_of_capacity(Capacity::zero())?;</span></a>
 <a name="240"><span class="lineNum">     240 </span>            : </a>
-<a name="241"><span class="lineNum">     241 </span><span class="lineCov">      37022 :         if no_finalization_target || insufficient_reward_to_create_cell {</span></a>
-<a name="242"><span class="lineNum">     242 </span><span class="lineCov">       1978 :             let ret = if cellbase.transaction.outputs().is_empty() {</span></a>
-<a name="243"><span class="lineNum">     243 </span><span class="lineCov">       1976 :                 Ok(())</span></a>
+<a name="241"><span class="lineNum">     241 </span><span class="lineCov">      18517 :         if no_finalization_target || insufficient_reward_to_create_cell {</span></a>
+<a name="242"><span class="lineNum">     242 </span><span class="lineCov">        989 :             let ret = if cellbase.transaction.outputs().is_empty() {</span></a>
+<a name="243"><span class="lineNum">     243 </span><span class="lineCov">        988 :                 Ok(())</span></a>
 <a name="244"><span class="lineNum">     244 </span>            :             } else {</a>
-<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          2 :                 Err((CellbaseError::InvalidRewardTarget).into())</span></a>
+<a name="245"><span class="lineNum">     245 </span><span class="lineCov">          1 :                 Err((CellbaseError::InvalidRewardTarget).into())</span></a>
 <a name="246"><span class="lineNum">     246 </span>            :             };</a>
-<a name="247"><span class="lineNum">     247 </span><span class="lineCov">       1978 :             return ret;</span></a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineCov">      35048 :         }</span></a>
-<a name="249"><span class="lineNum">     249 </span><span class="lineCov">      35048 : </span></a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineCov">      35048 :         if !insufficient_reward_to_create_cell {</span></a>
-<a name="251"><span class="lineNum">     251 </span><span class="lineCov">      35048 :             if cellbase.transaction.outputs_capacity()? != block_reward.total {</span></a>
+<a name="247"><span class="lineNum">     247 </span><span class="lineCov">        989 :             return ret;</span></a>
+<a name="248"><span class="lineNum">     248 </span><span class="lineCov">      17528 :         }</span></a>
+<a name="249"><span class="lineNum">     249 </span><span class="lineCov">      17528 : </span></a>
+<a name="250"><span class="lineNum">     250 </span><span class="lineCov">      17528 :         if !insufficient_reward_to_create_cell {</span></a>
+<a name="251"><span class="lineNum">     251 </span><span class="lineCov">      17528 :             if cellbase.transaction.outputs_capacity()? != block_reward.total {</span></a>
 <a name="252"><span class="lineNum">     252 </span><span class="lineNoCov">          0 :                 return Err((CellbaseError::InvalidRewardAmount).into());</span></a>
-<a name="253"><span class="lineNum">     253 </span><span class="lineCov">      35048 :             }</span></a>
-<a name="254"><span class="lineNum">     254 </span><span class="lineCov">      35048 :             if cellbase</span></a>
-<a name="255"><span class="lineNum">     255 </span><span class="lineCov">      35048 :                 .transaction</span></a>
-<a name="256"><span class="lineNum">     256 </span><span class="lineCov">      35048 :                 .outputs()</span></a>
-<a name="257"><span class="lineNum">     257 </span><span class="lineCov">      35048 :                 .get(0)</span></a>
-<a name="258"><span class="lineNum">     258 </span><span class="lineCov">      35048 :                 .expect(&quot;cellbase should have output&quot;)</span></a>
-<a name="259"><span class="lineNum">     259 </span><span class="lineCov">      35048 :                 .lock()</span></a>
-<a name="260"><span class="lineNum">     260 </span><span class="lineCov">      35048 :                 != target_lock</span></a>
+<a name="253"><span class="lineNum">     253 </span><span class="lineCov">      17528 :             }</span></a>
+<a name="254"><span class="lineNum">     254 </span><span class="lineCov">      17528 :             if cellbase</span></a>
+<a name="255"><span class="lineNum">     255 </span><span class="lineCov">      17528 :                 .transaction</span></a>
+<a name="256"><span class="lineNum">     256 </span><span class="lineCov">      17528 :                 .outputs()</span></a>
+<a name="257"><span class="lineNum">     257 </span><span class="lineCov">      17528 :                 .get(0)</span></a>
+<a name="258"><span class="lineNum">     258 </span><span class="lineCov">      17528 :                 .expect(&quot;cellbase should have output&quot;)</span></a>
+<a name="259"><span class="lineNum">     259 </span><span class="lineCov">      17528 :                 .lock()</span></a>
+<a name="260"><span class="lineNum">     260 </span><span class="lineCov">      17528 :                 != target_lock</span></a>
 <a name="261"><span class="lineNum">     261 </span>            :             {</a>
 <a name="262"><span class="lineNum">     262 </span><span class="lineNoCov">          0 :                 return Err((CellbaseError::InvalidRewardTarget).into());</span></a>
-<a name="263"><span class="lineNum">     263 </span><span class="lineCov">      35048 :             }</span></a>
+<a name="263"><span class="lineNum">     263 </span><span class="lineCov">      17528 :             }</span></a>
 <a name="264"><span class="lineNum">     264 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="265"><span class="lineNum">     265 </span>            : </a>
-<a name="266"><span class="lineNum">     266 </span><span class="lineCov">      35048 :         Ok(())</span></a>
-<a name="267"><span class="lineNum">     267 </span><span class="lineCov">      37026 :     }</span></a>
+<a name="266"><span class="lineNum">     266 </span><span class="lineCov">      17528 :         Ok(())</span></a>
+<a name="267"><span class="lineNum">     267 </span><span class="lineCov">      18517 :     }</span></a>
 <a name="268"><span class="lineNum">     268 </span>            : }</a>
 <a name="269"><span class="lineNum">     269 </span>            : </a>
 <a name="270"><span class="lineNum">     270 </span>            : struct DaoHeaderVerifier&lt;'a, 'b, 'c, CS&gt; {</a>
@@ -337,27 +337,27 @@
 <a name="275"><span class="lineNum">     275 </span>            : }</a>
 <a name="276"><span class="lineNum">     276 </span>            : </a>
 <a name="277"><span class="lineNum">     277 </span>            : impl&lt;'a, 'b, 'c, CS: ChainStore&lt;'a&gt;&gt; DaoHeaderVerifier&lt;'a, 'b, 'c, CS&gt; {</a>
-<a name="278"><span class="lineNum">     278 </span><span class="lineCov">      37028 :     pub fn new(</span></a>
-<a name="279"><span class="lineNum">     279 </span><span class="lineCov">      37028 :         context: &amp;'a VerifyContext&lt;'a, CS&gt;,</span></a>
-<a name="280"><span class="lineNum">     280 </span><span class="lineCov">      37028 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
-<a name="281"><span class="lineNum">     281 </span><span class="lineCov">      37028 :         parent: &amp;'b HeaderView,</span></a>
-<a name="282"><span class="lineNum">     282 </span><span class="lineCov">      37028 :         header: &amp;'c HeaderView,</span></a>
-<a name="283"><span class="lineNum">     283 </span><span class="lineCov">      37028 :     ) -&gt; Self {</span></a>
-<a name="284"><span class="lineNum">     284 </span><span class="lineCov">      37028 :         DaoHeaderVerifier {</span></a>
-<a name="285"><span class="lineNum">     285 </span><span class="lineCov">      37028 :             context,</span></a>
-<a name="286"><span class="lineNum">     286 </span><span class="lineCov">      37028 :             resolved,</span></a>
-<a name="287"><span class="lineNum">     287 </span><span class="lineCov">      37028 :             parent,</span></a>
-<a name="288"><span class="lineNum">     288 </span><span class="lineCov">      37028 :             header,</span></a>
-<a name="289"><span class="lineNum">     289 </span><span class="lineCov">      37028 :         }</span></a>
-<a name="290"><span class="lineNum">     290 </span><span class="lineCov">      37028 :     }</span></a>
+<a name="278"><span class="lineNum">     278 </span><span class="lineCov">      18516 :     pub fn new(</span></a>
+<a name="279"><span class="lineNum">     279 </span><span class="lineCov">      18516 :         context: &amp;'a VerifyContext&lt;'a, CS&gt;,</span></a>
+<a name="280"><span class="lineNum">     280 </span><span class="lineCov">      18516 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
+<a name="281"><span class="lineNum">     281 </span><span class="lineCov">      18516 :         parent: &amp;'b HeaderView,</span></a>
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">      18516 :         header: &amp;'c HeaderView,</span></a>
+<a name="283"><span class="lineNum">     283 </span><span class="lineCov">      18516 :     ) -&gt; Self {</span></a>
+<a name="284"><span class="lineNum">     284 </span><span class="lineCov">      18516 :         DaoHeaderVerifier {</span></a>
+<a name="285"><span class="lineNum">     285 </span><span class="lineCov">      18516 :             context,</span></a>
+<a name="286"><span class="lineNum">     286 </span><span class="lineCov">      18516 :             resolved,</span></a>
+<a name="287"><span class="lineNum">     287 </span><span class="lineCov">      18516 :             parent,</span></a>
+<a name="288"><span class="lineNum">     288 </span><span class="lineCov">      18516 :             header,</span></a>
+<a name="289"><span class="lineNum">     289 </span><span class="lineCov">      18516 :         }</span></a>
+<a name="290"><span class="lineNum">     290 </span><span class="lineCov">      18516 :     }</span></a>
 <a name="291"><span class="lineNum">     291 </span>            : </a>
-<a name="292"><span class="lineNum">     292 </span><span class="lineCov">      37028 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="293"><span class="lineNum">     293 </span><span class="lineCov">      37028 :         let dao = DaoCalculator::new(</span></a>
-<a name="294"><span class="lineNum">     294 </span><span class="lineCov">      37028 :             self.context.consensus,</span></a>
-<a name="295"><span class="lineNum">     295 </span><span class="lineCov">      37028 :             &amp;self.context.store.as_data_provider(),</span></a>
-<a name="296"><span class="lineNum">     296 </span><span class="lineCov">      37028 :         )</span></a>
-<a name="297"><span class="lineNum">     297 </span><span class="lineCov">      37028 :         .dao_field(&amp;self.resolved, self.parent)</span></a>
-<a name="298"><span class="lineNum">     298 </span><span class="lineCov">      37028 :         .map_err(|e| {</span></a>
+<a name="292"><span class="lineNum">     292 </span><span class="lineCov">      18516 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="293"><span class="lineNum">     293 </span><span class="lineCov">      18516 :         let dao = DaoCalculator::new(</span></a>
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">      18516 :             self.context.consensus,</span></a>
+<a name="295"><span class="lineNum">     295 </span><span class="lineCov">      18516 :             &amp;self.context.store.as_data_provider(),</span></a>
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">      18516 :         )</span></a>
+<a name="297"><span class="lineNum">     297 </span><span class="lineCov">      18516 :         .dao_field(&amp;self.resolved, self.parent)</span></a>
+<a name="298"><span class="lineNum">     298 </span><span class="lineCov">      18516 :         .map_err(|e| {</span></a>
 <a name="299"><span class="lineNum">     299 </span>            :             error_target!(</a>
 <a name="300"><span class="lineNum">     300 </span>            :                 crate::LOG_TARGET,</a>
 <a name="301"><span class="lineNum">     301 </span><span class="lineNoCov">          0 :                 &quot;Error generating dao data for block {}: {:?}&quot;,</span></a>
@@ -365,13 +365,13 @@
 <a name="303"><span class="lineNum">     303 </span><span class="lineNoCov">          0 :                 e</span></a>
 <a name="304"><span class="lineNum">     304 </span>            :             );</a>
 <a name="305"><span class="lineNum">     305 </span><span class="lineNoCov">          0 :             e</span></a>
-<a name="306"><span class="lineNum">     306 </span><span class="lineCov">      37028 :         })?;</span></a>
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">      18516 :         })?;</span></a>
 <a name="307"><span class="lineNum">     307 </span>            : </a>
-<a name="308"><span class="lineNum">     308 </span><span class="lineCov">      37028 :         if dao != self.header.dao() {</span></a>
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">      18516 :         if dao != self.header.dao() {</span></a>
 <a name="309"><span class="lineNum">     309 </span><span class="lineNoCov">          0 :             return Err((BlockErrorKind::InvalidDAO).into());</span></a>
-<a name="310"><span class="lineNum">     310 </span><span class="lineCov">      37020 :         }</span></a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineCov">      37020 :         Ok(())</span></a>
-<a name="312"><span class="lineNum">     312 </span><span class="lineCov">      37020 :     }</span></a>
+<a name="310"><span class="lineNum">     310 </span><span class="lineCov">      18516 :         }</span></a>
+<a name="311"><span class="lineNum">     311 </span><span class="lineCov">      18516 :         Ok(())</span></a>
+<a name="312"><span class="lineNum">     312 </span><span class="lineCov">      18516 :     }</span></a>
 <a name="313"><span class="lineNum">     313 </span>            : }</a>
 <a name="314"><span class="lineNum">     314 </span>            : </a>
 <a name="315"><span class="lineNum">     315 </span>            : struct BlockTxsVerifier&lt;'a, CS&gt; {</a>
@@ -381,73 +381,73 @@
 <a name="319"><span class="lineNum">     319 </span>            : }</a>
 <a name="320"><span class="lineNum">     320 </span>            : </a>
 <a name="321"><span class="lineNum">     321 </span>            : impl&lt;'a, CS: ChainStore&lt;'a&gt;&gt; BlockTxsVerifier&lt;'a, CS&gt; {</a>
-<a name="322"><span class="lineNum">     322 </span><span class="lineCov">      37032 :     pub fn new(</span></a>
-<a name="323"><span class="lineNum">     323 </span><span class="lineCov">      37032 :         context: &amp;'a VerifyContext&lt;'a, CS&gt;,</span></a>
-<a name="324"><span class="lineNum">     324 </span><span class="lineCov">      37032 :         header: HeaderView,</span></a>
-<a name="325"><span class="lineNum">     325 </span><span class="lineCov">      37032 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
-<a name="326"><span class="lineNum">     326 </span><span class="lineCov">      37032 :     ) -&gt; Self {</span></a>
-<a name="327"><span class="lineNum">     327 </span><span class="lineCov">      37032 :         BlockTxsVerifier {</span></a>
-<a name="328"><span class="lineNum">     328 </span><span class="lineCov">      37032 :             context,</span></a>
-<a name="329"><span class="lineNum">     329 </span><span class="lineCov">      37032 :             header,</span></a>
-<a name="330"><span class="lineNum">     330 </span><span class="lineCov">      37032 :             resolved,</span></a>
-<a name="331"><span class="lineNum">     331 </span><span class="lineCov">      37032 :         }</span></a>
-<a name="332"><span class="lineNum">     332 </span><span class="lineCov">      37032 :     }</span></a>
+<a name="322"><span class="lineNum">     322 </span><span class="lineCov">      18516 :     pub fn new(</span></a>
+<a name="323"><span class="lineNum">     323 </span><span class="lineCov">      18516 :         context: &amp;'a VerifyContext&lt;'a, CS&gt;,</span></a>
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">      18516 :         header: HeaderView,</span></a>
+<a name="325"><span class="lineNum">     325 </span><span class="lineCov">      18516 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
+<a name="326"><span class="lineNum">     326 </span><span class="lineCov">      18516 :     ) -&gt; Self {</span></a>
+<a name="327"><span class="lineNum">     327 </span><span class="lineCov">      18516 :         BlockTxsVerifier {</span></a>
+<a name="328"><span class="lineNum">     328 </span><span class="lineCov">      18516 :             context,</span></a>
+<a name="329"><span class="lineNum">     329 </span><span class="lineCov">      18516 :             header,</span></a>
+<a name="330"><span class="lineNum">     330 </span><span class="lineCov">      18516 :             resolved,</span></a>
+<a name="331"><span class="lineNum">     331 </span><span class="lineCov">      18516 :         }</span></a>
+<a name="332"><span class="lineNum">     332 </span><span class="lineCov">      18516 :     }</span></a>
 <a name="333"><span class="lineNum">     333 </span>            : </a>
-<a name="334"><span class="lineNum">     334 </span><span class="lineCov">         72 :     fn fetched_cache&lt;K: IntoIterator&lt;Item = Byte32&gt; + Send + 'static&gt;(</span></a>
-<a name="335"><span class="lineNum">     335 </span><span class="lineCov">         72 :         &amp;self,</span></a>
-<a name="336"><span class="lineNum">     336 </span><span class="lineCov">         72 :         txs_verify_cache: Arc&lt;RwLock&lt;TxVerificationCache&gt;&gt;,</span></a>
-<a name="337"><span class="lineNum">     337 </span><span class="lineCov">         72 :         keys: K,</span></a>
-<a name="338"><span class="lineNum">     338 </span><span class="lineCov">         72 :         handle: &amp;Handle,</span></a>
-<a name="339"><span class="lineNum">     339 </span><span class="lineCov">         72 :     ) -&gt; HashMap&lt;Byte32, CacheEntry&gt; {</span></a>
-<a name="340"><span class="lineNum">     340 </span><span class="lineCov">         72 :         let (sender, receiver) = oneshot::channel();</span></a>
-<a name="341"><span class="lineNum">     341 </span><span class="lineCov">         72 :         handle.spawn(async move {</span></a>
-<a name="342"><span class="lineNum">     342 </span><span class="lineCov">         72 :             let guard = txs_verify_cache.read().await;</span></a>
-<a name="343"><span class="lineNum">     343 </span><span class="lineCov">         72 :             let ret = keys</span></a>
-<a name="344"><span class="lineNum">     344 </span><span class="lineCov">         72 :                 .into_iter()</span></a>
-<a name="345"><span class="lineNum">     345 </span><span class="lineCov">        232 :                 .filter_map(|hash| guard.peek(&amp;hash).cloned().map(|value| (hash, value)))</span></a>
-<a name="346"><span class="lineNum">     346 </span><span class="lineCov">         72 :                 .collect();</span></a>
+<a name="334"><span class="lineNum">     334 </span><span class="lineCov">         36 :     fn fetched_cache&lt;K: IntoIterator&lt;Item = Byte32&gt; + Send + 'static&gt;(</span></a>
+<a name="335"><span class="lineNum">     335 </span><span class="lineCov">         36 :         &amp;self,</span></a>
+<a name="336"><span class="lineNum">     336 </span><span class="lineCov">         36 :         txs_verify_cache: Arc&lt;RwLock&lt;TxVerificationCache&gt;&gt;,</span></a>
+<a name="337"><span class="lineNum">     337 </span><span class="lineCov">         36 :         keys: K,</span></a>
+<a name="338"><span class="lineNum">     338 </span><span class="lineCov">         36 :         handle: &amp;Handle,</span></a>
+<a name="339"><span class="lineNum">     339 </span><span class="lineCov">         36 :     ) -&gt; HashMap&lt;Byte32, CacheEntry&gt; {</span></a>
+<a name="340"><span class="lineNum">     340 </span><span class="lineCov">         36 :         let (sender, receiver) = oneshot::channel();</span></a>
+<a name="341"><span class="lineNum">     341 </span><span class="lineCov">         36 :         handle.spawn(async move {</span></a>
+<a name="342"><span class="lineNum">     342 </span><span class="lineCov">         36 :             let guard = txs_verify_cache.read().await;</span></a>
+<a name="343"><span class="lineNum">     343 </span><span class="lineCov">         36 :             let ret = keys</span></a>
+<a name="344"><span class="lineNum">     344 </span><span class="lineCov">         36 :                 .into_iter()</span></a>
+<a name="345"><span class="lineNum">     345 </span><span class="lineCov">        116 :                 .filter_map(|hash| guard.peek(&amp;hash).cloned().map(|value| (hash, value)))</span></a>
+<a name="346"><span class="lineNum">     346 </span><span class="lineCov">         36 :                 .collect();</span></a>
 <a name="347"><span class="lineNum">     347 </span>            : </a>
-<a name="348"><span class="lineNum">     348 </span><span class="lineCov">         72 :             if let Err(e) = sender.send(ret) {</span></a>
+<a name="348"><span class="lineNum">     348 </span><span class="lineCov">         36 :             if let Err(e) = sender.send(ret) {</span></a>
 <a name="349"><span class="lineNum">     349 </span><span class="lineNoCov">          0 :                 error_target!(crate::LOG_TARGET, &quot;TxsVerifier fetched_cache error {:?}&quot;, e);</span></a>
-<a name="350"><span class="lineNum">     350 </span><span class="lineCov">         72 :             };</span></a>
-<a name="351"><span class="lineNum">     351 </span><span class="lineCov">         72 :         });</span></a>
-<a name="352"><span class="lineNum">     352 </span><span class="lineCov">         72 :         handle</span></a>
-<a name="353"><span class="lineNum">     353 </span><span class="lineCov">         72 :             .block_on(receiver)</span></a>
-<a name="354"><span class="lineNum">     354 </span><span class="lineCov">         72 :             .expect(&quot;fetched cache no exception&quot;)</span></a>
-<a name="355"><span class="lineNum">     355 </span><span class="lineCov">         72 :     }</span></a>
+<a name="350"><span class="lineNum">     350 </span><span class="lineCov">         36 :             };</span></a>
+<a name="351"><span class="lineNum">     351 </span><span class="lineCov">         36 :         });</span></a>
+<a name="352"><span class="lineNum">     352 </span><span class="lineCov">         36 :         handle</span></a>
+<a name="353"><span class="lineNum">     353 </span><span class="lineCov">         36 :             .block_on(receiver)</span></a>
+<a name="354"><span class="lineNum">     354 </span><span class="lineCov">         36 :             .expect(&quot;fetched cache no exception&quot;)</span></a>
+<a name="355"><span class="lineNum">     355 </span><span class="lineCov">         36 :     }</span></a>
 <a name="356"><span class="lineNum">     356 </span>            : </a>
-<a name="357"><span class="lineNum">     357 </span><span class="lineCov">      37020 :     pub fn verify(</span></a>
-<a name="358"><span class="lineNum">     358 </span><span class="lineCov">      37020 :         &amp;self,</span></a>
-<a name="359"><span class="lineNum">     359 </span><span class="lineCov">      37020 :         txs_verify_cache: Arc&lt;RwLock&lt;TxVerificationCache&gt;&gt;,</span></a>
-<a name="360"><span class="lineNum">     360 </span><span class="lineCov">      37020 :         handle: &amp;Handle,</span></a>
-<a name="361"><span class="lineNum">     361 </span><span class="lineCov">      37020 :         skip_script_verify: bool,</span></a>
-<a name="362"><span class="lineNum">     362 </span><span class="lineCov">      37020 :     ) -&gt; Result&lt;(Cycle, Vec&lt;Completed&gt;), Error&gt; {</span></a>
-<a name="363"><span class="lineNum">     363 </span><span class="lineCov">      37020 :         let timer = Timer::start();</span></a>
+<a name="357"><span class="lineNum">     357 </span><span class="lineCov">      18516 :     pub fn verify(</span></a>
+<a name="358"><span class="lineNum">     358 </span><span class="lineCov">      18516 :         &amp;self,</span></a>
+<a name="359"><span class="lineNum">     359 </span><span class="lineCov">      18516 :         txs_verify_cache: Arc&lt;RwLock&lt;TxVerificationCache&gt;&gt;,</span></a>
+<a name="360"><span class="lineNum">     360 </span><span class="lineCov">      18516 :         handle: &amp;Handle,</span></a>
+<a name="361"><span class="lineNum">     361 </span><span class="lineCov">      18516 :         skip_script_verify: bool,</span></a>
+<a name="362"><span class="lineNum">     362 </span><span class="lineCov">      18516 :     ) -&gt; Result&lt;(Cycle, Vec&lt;Completed&gt;), Error&gt; {</span></a>
+<a name="363"><span class="lineNum">     363 </span><span class="lineCov">      18516 :         let timer = Timer::start();</span></a>
 <a name="364"><span class="lineNum">     364 </span>            :         // We should skip updating tx_verify_cache about the cellbase tx,</a>
 <a name="365"><span class="lineNum">     365 </span>            :         // putting it in cache that will never be used until lru cache expires.</a>
-<a name="366"><span class="lineNum">     366 </span><span class="lineCov">      37020 :         let fetched_cache = if self.resolved.len() &gt; 1 {</span></a>
-<a name="367"><span class="lineNum">     367 </span><span class="lineCov">         72 :             let keys: Vec&lt;Byte32&gt; = self</span></a>
-<a name="368"><span class="lineNum">     368 </span><span class="lineCov">         72 :                 .resolved</span></a>
-<a name="369"><span class="lineNum">     369 </span><span class="lineCov">         72 :                 .iter()</span></a>
-<a name="370"><span class="lineNum">     370 </span><span class="lineCov">         72 :                 .skip(1)</span></a>
-<a name="371"><span class="lineNum">     371 </span><span class="lineCov">        232 :                 .map(|rtx| rtx.transaction.hash())</span></a>
-<a name="372"><span class="lineNum">     372 </span><span class="lineCov">         72 :                 .collect();</span></a>
-<a name="373"><span class="lineNum">     373 </span><span class="lineCov">         72 : </span></a>
-<a name="374"><span class="lineNum">     374 </span><span class="lineCov">         72 :             self.fetched_cache(Arc::clone(&amp;txs_verify_cache), keys, handle)</span></a>
+<a name="366"><span class="lineNum">     366 </span><span class="lineCov">      18516 :         let fetched_cache = if self.resolved.len() &gt; 1 {</span></a>
+<a name="367"><span class="lineNum">     367 </span><span class="lineCov">         36 :             let keys: Vec&lt;Byte32&gt; = self</span></a>
+<a name="368"><span class="lineNum">     368 </span><span class="lineCov">         36 :                 .resolved</span></a>
+<a name="369"><span class="lineNum">     369 </span><span class="lineCov">         36 :                 .iter()</span></a>
+<a name="370"><span class="lineNum">     370 </span><span class="lineCov">         36 :                 .skip(1)</span></a>
+<a name="371"><span class="lineNum">     371 </span><span class="lineCov">        116 :                 .map(|rtx| rtx.transaction.hash())</span></a>
+<a name="372"><span class="lineNum">     372 </span><span class="lineCov">         36 :                 .collect();</span></a>
+<a name="373"><span class="lineNum">     373 </span><span class="lineCov">         36 : </span></a>
+<a name="374"><span class="lineNum">     374 </span><span class="lineCov">         36 :             self.fetched_cache(Arc::clone(&amp;txs_verify_cache), keys, handle)</span></a>
 <a name="375"><span class="lineNum">     375 </span>            :         } else {</a>
-<a name="376"><span class="lineNum">     376 </span><span class="lineCov">      36948 :             HashMap::new()</span></a>
+<a name="376"><span class="lineNum">     376 </span><span class="lineCov">      18480 :             HashMap::new()</span></a>
 <a name="377"><span class="lineNum">     377 </span>            :         };</a>
 <a name="378"><span class="lineNum">     378 </span>            : </a>
 <a name="379"><span class="lineNum">     379 </span>            :         // make verifiers orthogonal</a>
-<a name="380"><span class="lineNum">     380 </span><span class="lineCov">      37020 :         let ret = self</span></a>
-<a name="381"><span class="lineNum">     381 </span><span class="lineCov">      37020 :             .resolved</span></a>
-<a name="382"><span class="lineNum">     382 </span><span class="lineCov">      37020 :             .par_iter()</span></a>
-<a name="383"><span class="lineNum">     383 </span><span class="lineCov">      37020 :             .enumerate()</span></a>
-<a name="384"><span class="lineNum">     384 </span><span class="lineCov">      37260 :             .map(|(index, tx)| {</span></a>
-<a name="385"><span class="lineNum">     385 </span><span class="lineCov">      37260 :                 let tx_hash = tx.transaction.hash();</span></a>
-<a name="386"><span class="lineNum">     386 </span><span class="lineCov">      37260 :                 let tx_env = TxVerifyEnv::new_commit(&amp;self.header);</span></a>
-<a name="387"><span class="lineNum">     387 </span><span class="lineCov">>1844*10^16 :                 if let Some(cache_entry) = fetched_cache.get(&amp;tx_hash) {</span></a>
-<a name="388"><span class="lineNum">     388 </span><span class="lineCov">>1844*10^16 :                     match cache_entry {</span></a>
+<a name="380"><span class="lineNum">     380 </span><span class="lineCov">      18516 :         let ret = self</span></a>
+<a name="381"><span class="lineNum">     381 </span><span class="lineCov">      18516 :             .resolved</span></a>
+<a name="382"><span class="lineNum">     382 </span><span class="lineCov">      18516 :             .par_iter()</span></a>
+<a name="383"><span class="lineNum">     383 </span><span class="lineCov">      18516 :             .enumerate()</span></a>
+<a name="384"><span class="lineNum">     384 </span><span class="lineCov">      18632 :             .map(|(index, tx)| {</span></a>
+<a name="385"><span class="lineNum">     385 </span><span class="lineCov">      18632 :                 let tx_hash = tx.transaction.hash();</span></a>
+<a name="386"><span class="lineNum">     386 </span><span class="lineCov">      18632 :                 let tx_env = TxVerifyEnv::new_commit(&amp;self.header);</span></a>
+<a name="387"><span class="lineNum">     387 </span><span class="lineCov">      18632 :                 if let Some(cache_entry) = fetched_cache.get(&amp;tx_hash) {</span></a>
+<a name="388"><span class="lineNum">     388 </span><span class="lineNoCov">          0 :                     match cache_entry {</span></a>
 <a name="389"><span class="lineNum">     389 </span><span class="lineNoCov">          0 :                         CacheEntry::Completed(completed) =&gt; TimeRelativeTransactionVerifier::new(</span></a>
 <a name="390"><span class="lineNum">     390 </span><span class="lineNoCov">          0 :                             &amp;tx,</span></a>
 <a name="391"><span class="lineNum">     391 </span><span class="lineNoCov">          0 :                             self.context.consensus,</span></a>
@@ -484,51 +484,51 @@
 <a name="422"><span class="lineNum">     422 </span><span class="lineNoCov">          0 :                         .map(|completed| (tx_hash, completed)),</span></a>
 <a name="423"><span class="lineNum">     423 </span>            :                     }</a>
 <a name="424"><span class="lineNum">     424 </span>            :                 } else {</a>
-<a name="425"><span class="lineNum">     425 </span><span class="lineCov">      37264 :                     ContextualTransactionVerifier::new(</span></a>
-<a name="426"><span class="lineNum">     426 </span><span class="lineCov">      37264 :                         &amp;tx,</span></a>
-<a name="427"><span class="lineNum">     427 </span><span class="lineCov">      37264 :                         self.context.consensus,</span></a>
-<a name="428"><span class="lineNum">     428 </span><span class="lineCov">      37264 :                         &amp;self.context.store.as_data_provider(),</span></a>
-<a name="429"><span class="lineNum">     429 </span><span class="lineCov">      37264 :                         &amp;tx_env,</span></a>
-<a name="430"><span class="lineNum">     430 </span><span class="lineCov">      37264 :                     )</span></a>
-<a name="431"><span class="lineNum">     431 </span><span class="lineCov">      37264 :                     .verify(</span></a>
-<a name="432"><span class="lineNum">     432 </span><span class="lineCov">      37264 :                         self.context.consensus.max_block_cycles(),</span></a>
-<a name="433"><span class="lineNum">     433 </span><span class="lineCov">      37264 :                         skip_script_verify,</span></a>
-<a name="434"><span class="lineNum">     434 </span><span class="lineCov">      37264 :                     )</span></a>
-<a name="435"><span class="lineNum">     435 </span><span class="lineCov">      37264 :                     .map_err(|error| {</span></a>
+<a name="425"><span class="lineNum">     425 </span><span class="lineCov">      18632 :                     ContextualTransactionVerifier::new(</span></a>
+<a name="426"><span class="lineNum">     426 </span><span class="lineCov">      18632 :                         &amp;tx,</span></a>
+<a name="427"><span class="lineNum">     427 </span><span class="lineCov">      18632 :                         self.context.consensus,</span></a>
+<a name="428"><span class="lineNum">     428 </span><span class="lineCov">      18632 :                         &amp;self.context.store.as_data_provider(),</span></a>
+<a name="429"><span class="lineNum">     429 </span><span class="lineCov">      18632 :                         &amp;tx_env,</span></a>
+<a name="430"><span class="lineNum">     430 </span><span class="lineCov">      18632 :                     )</span></a>
+<a name="431"><span class="lineNum">     431 </span><span class="lineCov">      18632 :                     .verify(</span></a>
+<a name="432"><span class="lineNum">     432 </span><span class="lineCov">      18632 :                         self.context.consensus.max_block_cycles(),</span></a>
+<a name="433"><span class="lineNum">     433 </span><span class="lineCov">      18632 :                         skip_script_verify,</span></a>
+<a name="434"><span class="lineNum">     434 </span><span class="lineCov">      18632 :                     )</span></a>
+<a name="435"><span class="lineNum">     435 </span><span class="lineCov">      18632 :                     .map_err(|error| {</span></a>
 <a name="436"><span class="lineNum">     436 </span><span class="lineNoCov">          0 :                         BlockTransactionsError {</span></a>
 <a name="437"><span class="lineNum">     437 </span><span class="lineNoCov">          0 :                             index: index as u32,</span></a>
 <a name="438"><span class="lineNum">     438 </span><span class="lineNoCov">          0 :                             error,</span></a>
 <a name="439"><span class="lineNum">     439 </span><span class="lineNoCov">          0 :                         }</span></a>
 <a name="440"><span class="lineNum">     440 </span><span class="lineNoCov">          0 :                         .into()</span></a>
-<a name="441"><span class="lineNum">     441 </span><span class="lineCov">      37264 :                     })</span></a>
-<a name="442"><span class="lineNum">     442 </span><span class="lineCov">      37264 :                     .map(|completed| (tx_hash, completed))</span></a>
+<a name="441"><span class="lineNum">     441 </span><span class="lineCov">      18632 :                     })</span></a>
+<a name="442"><span class="lineNum">     442 </span><span class="lineCov">      18632 :                     .map(|completed| (tx_hash, completed))</span></a>
 <a name="443"><span class="lineNum">     443 </span>            :                 }</a>
-<a name="444"><span class="lineNum">     444 </span><span class="lineCov">      37264 :             })</span></a>
-<a name="445"><span class="lineNum">     445 </span><span class="lineCov">      37020 :             .skip(1)</span></a>
-<a name="446"><span class="lineNum">     446 </span><span class="lineCov">      37020 :             .collect::&lt;Result&lt;Vec&lt;(Byte32, Completed)&gt;, Error&gt;&gt;()?;</span></a>
+<a name="444"><span class="lineNum">     444 </span><span class="lineCov">      18632 :             })</span></a>
+<a name="445"><span class="lineNum">     445 </span><span class="lineCov">      18516 :             .skip(1)</span></a>
+<a name="446"><span class="lineNum">     446 </span><span class="lineCov">      18516 :             .collect::&lt;Result&lt;Vec&lt;(Byte32, Completed)&gt;, Error&gt;&gt;()?;</span></a>
 <a name="447"><span class="lineNum">     447 </span>            : </a>
-<a name="448"><span class="lineNum">     448 </span><span class="lineCov">      37020 :         let sum: Cycle = ret.iter().map(|(_, cache_entry)| cache_entry.cycles).sum();</span></a>
-<a name="449"><span class="lineNum">     449 </span><span class="lineCov">      37020 :         let cache_entires = ret</span></a>
-<a name="450"><span class="lineNum">     450 </span><span class="lineCov">      37020 :             .iter()</span></a>
-<a name="451"><span class="lineNum">     451 </span><span class="lineCov">      37020 :             .map(|(_, completed)| completed)</span></a>
-<a name="452"><span class="lineNum">     452 </span><span class="lineCov">      37020 :             .cloned()</span></a>
-<a name="453"><span class="lineNum">     453 </span><span class="lineCov">      37020 :             .collect();</span></a>
-<a name="454"><span class="lineNum">     454 </span><span class="lineCov">      37020 :         if !ret.is_empty() {</span></a>
-<a name="455"><span class="lineNum">     455 </span><span class="lineCov">         72 :             handle.spawn(async move {</span></a>
-<a name="456"><span class="lineNum">     456 </span><span class="lineCov">         72 :                 let mut guard = txs_verify_cache.write().await;</span></a>
-<a name="457"><span class="lineNum">     457 </span><span class="lineCov">        304 :                 for (k, v) in ret {</span></a>
-<a name="458"><span class="lineNum">     458 </span><span class="lineCov">        232 :                     guard.put(k, CacheEntry::Completed(v));</span></a>
-<a name="459"><span class="lineNum">     459 </span><span class="lineCov">        232 :                 }</span></a>
-<a name="460"><span class="lineNum">     460 </span><span class="lineCov">         72 :             });</span></a>
-<a name="461"><span class="lineNum">     461 </span><span class="lineCov">      36948 :         }</span></a>
+<a name="448"><span class="lineNum">     448 </span><span class="lineCov">      18516 :         let sum: Cycle = ret.iter().map(|(_, cache_entry)| cache_entry.cycles).sum();</span></a>
+<a name="449"><span class="lineNum">     449 </span><span class="lineCov">      18516 :         let cache_entires = ret</span></a>
+<a name="450"><span class="lineNum">     450 </span><span class="lineCov">      18516 :             .iter()</span></a>
+<a name="451"><span class="lineNum">     451 </span><span class="lineCov">      18516 :             .map(|(_, completed)| completed)</span></a>
+<a name="452"><span class="lineNum">     452 </span><span class="lineCov">      18516 :             .cloned()</span></a>
+<a name="453"><span class="lineNum">     453 </span><span class="lineCov">      18516 :             .collect();</span></a>
+<a name="454"><span class="lineNum">     454 </span><span class="lineCov">      18516 :         if !ret.is_empty() {</span></a>
+<a name="455"><span class="lineNum">     455 </span><span class="lineCov">         36 :             handle.spawn(async move {</span></a>
+<a name="456"><span class="lineNum">     456 </span><span class="lineCov">         36 :                 let mut guard = txs_verify_cache.write().await;</span></a>
+<a name="457"><span class="lineNum">     457 </span><span class="lineCov">        152 :                 for (k, v) in ret {</span></a>
+<a name="458"><span class="lineNum">     458 </span><span class="lineCov">        116 :                     guard.put(k, CacheEntry::Completed(v));</span></a>
+<a name="459"><span class="lineNum">     459 </span><span class="lineCov">        116 :                 }</span></a>
+<a name="460"><span class="lineNum">     460 </span><span class="lineCov">         36 :             });</span></a>
+<a name="461"><span class="lineNum">     461 </span><span class="lineCov">      18480 :         }</span></a>
 <a name="462"><span class="lineNum">     462 </span>            : </a>
-<a name="463"><span class="lineNum">     463 </span><span class="lineCov">      37020 :         metrics!(timing, &quot;ckb.contextual_verified_block_txs&quot;, timer.stop());</span></a>
-<a name="464"><span class="lineNum">     464 </span><span class="lineCov">      37020 :         if sum &gt; self.context.consensus.max_block_cycles() {</span></a>
+<a name="463"><span class="lineNum">     463 </span><span class="lineCov">      18516 :         metrics!(timing, &quot;ckb.contextual_verified_block_txs&quot;, timer.stop());</span></a>
+<a name="464"><span class="lineNum">     464 </span><span class="lineCov">      18516 :         if sum &gt; self.context.consensus.max_block_cycles() {</span></a>
 <a name="465"><span class="lineNum">     465 </span><span class="lineNoCov">          0 :             Err(BlockErrorKind::ExceededMaximumCycles.into())</span></a>
 <a name="466"><span class="lineNum">     466 </span>            :         } else {</a>
-<a name="467"><span class="lineNum">     467 </span><span class="lineCov">      37032 :             Ok((sum, cache_entires))</span></a>
+<a name="467"><span class="lineNum">     467 </span><span class="lineCov">      18516 :             Ok((sum, cache_entires))</span></a>
 <a name="468"><span class="lineNum">     468 </span>            :         }</a>
-<a name="469"><span class="lineNum">     469 </span><span class="lineCov">      37032 :     }</span></a>
+<a name="469"><span class="lineNum">     469 </span><span class="lineCov">      18516 :     }</span></a>
 <a name="470"><span class="lineNum">     470 </span>            : }</a>
 <a name="471"><span class="lineNum">     471 </span>            : /// EpochVerifier</a>
 <a name="472"><span class="lineNum">     472 </span>            : ///</a>
@@ -539,32 +539,32 @@
 <a name="477"><span class="lineNum">     477 </span>            : }</a>
 <a name="478"><span class="lineNum">     478 </span>            : </a>
 <a name="479"><span class="lineNum">     479 </span>            : impl&lt;'a&gt; EpochVerifier&lt;'a&gt; {</a>
-<a name="480"><span class="lineNum">     480 </span><span class="lineCov">      35944 :     pub fn new(epoch: &amp;'a EpochExt, block: &amp;'a BlockView) -&gt; Self {</span></a>
-<a name="481"><span class="lineNum">     481 </span><span class="lineCov">      35944 :         EpochVerifier { epoch, block }</span></a>
-<a name="482"><span class="lineNum">     482 </span><span class="lineCov">      35944 :     }</span></a>
+<a name="480"><span class="lineNum">     480 </span><span class="lineCov">      17974 :     pub fn new(epoch: &amp;'a EpochExt, block: &amp;'a BlockView) -&gt; Self {</span></a>
+<a name="481"><span class="lineNum">     481 </span><span class="lineCov">      17974 :         EpochVerifier { epoch, block }</span></a>
+<a name="482"><span class="lineNum">     482 </span><span class="lineCov">      17974 :     }</span></a>
 <a name="483"><span class="lineNum">     483 </span>            : </a>
-<a name="484"><span class="lineNum">     484 </span><span class="lineCov">      35940 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
-<a name="485"><span class="lineNum">     485 </span><span class="lineCov">      35940 :         let header = self.block.header();</span></a>
-<a name="486"><span class="lineNum">     486 </span><span class="lineCov">      35940 :         let actual_epoch_with_fraction = header.epoch();</span></a>
-<a name="487"><span class="lineNum">     487 </span><span class="lineCov">      35940 :         let block_number = header.number();</span></a>
-<a name="488"><span class="lineNum">     488 </span><span class="lineCov">      35940 :         let epoch_with_fraction = self.epoch.number_with_fraction(block_number);</span></a>
-<a name="489"><span class="lineNum">     489 </span><span class="lineCov">      35940 :         if actual_epoch_with_fraction != epoch_with_fraction {</span></a>
-<a name="490"><span class="lineNum">     490 </span><span class="lineCov">          2 :             return Err(EpochError::NumberMismatch {</span></a>
-<a name="491"><span class="lineNum">     491 </span><span class="lineCov">          2 :                 expected: epoch_with_fraction.full_value(),</span></a>
-<a name="492"><span class="lineNum">     492 </span><span class="lineCov">          2 :                 actual: actual_epoch_with_fraction.full_value(),</span></a>
-<a name="493"><span class="lineNum">     493 </span><span class="lineCov">          2 :             }</span></a>
-<a name="494"><span class="lineNum">     494 </span><span class="lineCov">          2 :             .into());</span></a>
-<a name="495"><span class="lineNum">     495 </span><span class="lineCov">      35938 :         }</span></a>
-<a name="496"><span class="lineNum">     496 </span><span class="lineCov">      35938 :         let actual_compact_target = header.compact_target();</span></a>
-<a name="497"><span class="lineNum">     497 </span><span class="lineCov">      35938 :         if self.epoch.compact_target() != actual_compact_target {</span></a>
-<a name="498"><span class="lineNum">     498 </span><span class="lineCov">          2 :             return Err(EpochError::TargetMismatch {</span></a>
-<a name="499"><span class="lineNum">     499 </span><span class="lineCov">          2 :                 expected: self.epoch.compact_target(),</span></a>
-<a name="500"><span class="lineNum">     500 </span><span class="lineCov">          2 :                 actual: actual_compact_target,</span></a>
-<a name="501"><span class="lineNum">     501 </span><span class="lineCov">          2 :             }</span></a>
-<a name="502"><span class="lineNum">     502 </span><span class="lineCov">          2 :             .into());</span></a>
-<a name="503"><span class="lineNum">     503 </span><span class="lineCov">      35936 :         }</span></a>
-<a name="504"><span class="lineNum">     504 </span><span class="lineCov">      35936 :         Ok(())</span></a>
-<a name="505"><span class="lineNum">     505 </span><span class="lineCov">      35940 :     }</span></a>
+<a name="484"><span class="lineNum">     484 </span><span class="lineCov">      17974 :     pub fn verify(&amp;self) -&gt; Result&lt;(), Error&gt; {</span></a>
+<a name="485"><span class="lineNum">     485 </span><span class="lineCov">      17974 :         let header = self.block.header();</span></a>
+<a name="486"><span class="lineNum">     486 </span><span class="lineCov">      17974 :         let actual_epoch_with_fraction = header.epoch();</span></a>
+<a name="487"><span class="lineNum">     487 </span><span class="lineCov">      17974 :         let block_number = header.number();</span></a>
+<a name="488"><span class="lineNum">     488 </span><span class="lineCov">      17974 :         let epoch_with_fraction = self.epoch.number_with_fraction(block_number);</span></a>
+<a name="489"><span class="lineNum">     489 </span><span class="lineCov">      17974 :         if actual_epoch_with_fraction != epoch_with_fraction {</span></a>
+<a name="490"><span class="lineNum">     490 </span><span class="lineCov">          1 :             return Err(EpochError::NumberMismatch {</span></a>
+<a name="491"><span class="lineNum">     491 </span><span class="lineCov">          1 :                 expected: epoch_with_fraction.full_value(),</span></a>
+<a name="492"><span class="lineNum">     492 </span><span class="lineCov">          1 :                 actual: actual_epoch_with_fraction.full_value(),</span></a>
+<a name="493"><span class="lineNum">     493 </span><span class="lineCov">          1 :             }</span></a>
+<a name="494"><span class="lineNum">     494 </span><span class="lineCov">          1 :             .into());</span></a>
+<a name="495"><span class="lineNum">     495 </span><span class="lineCov">      17973 :         }</span></a>
+<a name="496"><span class="lineNum">     496 </span><span class="lineCov">      17973 :         let actual_compact_target = header.compact_target();</span></a>
+<a name="497"><span class="lineNum">     497 </span><span class="lineCov">      17973 :         if self.epoch.compact_target() != actual_compact_target {</span></a>
+<a name="498"><span class="lineNum">     498 </span><span class="lineCov">          1 :             return Err(EpochError::TargetMismatch {</span></a>
+<a name="499"><span class="lineNum">     499 </span><span class="lineCov">          1 :                 expected: self.epoch.compact_target(),</span></a>
+<a name="500"><span class="lineNum">     500 </span><span class="lineCov">          1 :                 actual: actual_compact_target,</span></a>
+<a name="501"><span class="lineNum">     501 </span><span class="lineCov">          1 :             }</span></a>
+<a name="502"><span class="lineNum">     502 </span><span class="lineCov">          1 :             .into());</span></a>
+<a name="503"><span class="lineNum">     503 </span><span class="lineCov">      17972 :         }</span></a>
+<a name="504"><span class="lineNum">     504 </span><span class="lineCov">      17972 :         Ok(())</span></a>
+<a name="505"><span class="lineNum">     505 </span><span class="lineCov">      17974 :     }</span></a>
 <a name="506"><span class="lineNum">     506 </span>            : }</a>
 <a name="507"><span class="lineNum">     507 </span>            : </a>
 <a name="508"><span class="lineNum">     508 </span>            : /// Context-dependent verification checks for block</a>
@@ -582,71 +582,71 @@
 <a name="520"><span class="lineNum">     520 </span>            : </a>
 <a name="521"><span class="lineNum">     521 </span>            : impl&lt;'a, CS: ChainStore&lt;'a&gt;&gt; ContextualBlockVerifier&lt;'a, CS&gt; {</a>
 <a name="522"><span class="lineNum">     522 </span>            :     /// Create new ContextualBlockVerifier</a>
-<a name="523"><span class="lineNum">     523 </span><span class="lineCov">      37096 :     pub fn new(context: &amp;'a VerifyContext&lt;'a, CS&gt;) -&gt; Self {</span></a>
-<a name="524"><span class="lineNum">     524 </span><span class="lineCov">      37096 :         ContextualBlockVerifier { context }</span></a>
-<a name="525"><span class="lineNum">     525 </span><span class="lineCov">      37096 :     }</span></a>
+<a name="523"><span class="lineNum">     523 </span><span class="lineCov">      18548 :     pub fn new(context: &amp;'a VerifyContext&lt;'a, CS&gt;) -&gt; Self {</span></a>
+<a name="524"><span class="lineNum">     524 </span><span class="lineCov">      18548 :         ContextualBlockVerifier { context }</span></a>
+<a name="525"><span class="lineNum">     525 </span><span class="lineCov">      18548 :     }</span></a>
 <a name="526"><span class="lineNum">     526 </span>            : </a>
 <a name="527"><span class="lineNum">     527 </span>            :     /// Perform context-dependent verification checks for block</a>
-<a name="528"><span class="lineNum">     528 </span><span class="lineCov">      37028 :     pub fn verify(</span></a>
-<a name="529"><span class="lineNum">     529 </span><span class="lineCov">      37028 :         &amp;'a self,</span></a>
-<a name="530"><span class="lineNum">     530 </span><span class="lineCov">      37028 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
-<a name="531"><span class="lineNum">     531 </span><span class="lineCov">      37028 :         block: &amp;'a BlockView,</span></a>
-<a name="532"><span class="lineNum">     532 </span><span class="lineCov">      37028 :         txs_verify_cache: Arc&lt;RwLock&lt;TxVerificationCache&gt;&gt;,</span></a>
-<a name="533"><span class="lineNum">     533 </span><span class="lineCov">      37028 :         handle: &amp;Handle,</span></a>
-<a name="534"><span class="lineNum">     534 </span><span class="lineCov">      37028 :         switch: Switch,</span></a>
-<a name="535"><span class="lineNum">     535 </span><span class="lineCov">      37028 :     ) -&gt; Result&lt;(Cycle, Vec&lt;Completed&gt;), Error&gt; {</span></a>
-<a name="536"><span class="lineNum">     536 </span><span class="lineCov">      37028 :         let timer = Timer::start();</span></a>
-<a name="537"><span class="lineNum">     537 </span><span class="lineCov">      37028 :         let parent_hash = block.data().header().raw().parent_hash();</span></a>
-<a name="538"><span class="lineNum">     538 </span><span class="lineCov">      37028 :         let header = block.header();</span></a>
-<a name="539"><span class="lineNum">     539 </span><span class="lineCov">      37028 :         let parent = self</span></a>
-<a name="540"><span class="lineNum">     540 </span><span class="lineCov">      37028 :             .context</span></a>
-<a name="541"><span class="lineNum">     541 </span><span class="lineCov">      37028 :             .store</span></a>
-<a name="542"><span class="lineNum">     542 </span><span class="lineCov">      37028 :             .get_block_header(&amp;parent_hash)</span></a>
-<a name="543"><span class="lineNum">     543 </span><span class="lineCov">      37028 :             .ok_or_else(|| UnknownParentError {</span></a>
+<a name="528"><span class="lineNum">     528 </span><span class="lineCov">      18516 :     pub fn verify(</span></a>
+<a name="529"><span class="lineNum">     529 </span><span class="lineCov">      18516 :         &amp;'a self,</span></a>
+<a name="530"><span class="lineNum">     530 </span><span class="lineCov">      18516 :         resolved: &amp;'a [ResolvedTransaction],</span></a>
+<a name="531"><span class="lineNum">     531 </span><span class="lineCov">      18516 :         block: &amp;'a BlockView,</span></a>
+<a name="532"><span class="lineNum">     532 </span><span class="lineCov">      18516 :         txs_verify_cache: Arc&lt;RwLock&lt;TxVerificationCache&gt;&gt;,</span></a>
+<a name="533"><span class="lineNum">     533 </span><span class="lineCov">      18516 :         handle: &amp;Handle,</span></a>
+<a name="534"><span class="lineNum">     534 </span><span class="lineCov">      18516 :         switch: Switch,</span></a>
+<a name="535"><span class="lineNum">     535 </span><span class="lineCov">      18516 :     ) -&gt; Result&lt;(Cycle, Vec&lt;Completed&gt;), Error&gt; {</span></a>
+<a name="536"><span class="lineNum">     536 </span><span class="lineCov">      18516 :         let timer = Timer::start();</span></a>
+<a name="537"><span class="lineNum">     537 </span><span class="lineCov">      18516 :         let parent_hash = block.data().header().raw().parent_hash();</span></a>
+<a name="538"><span class="lineNum">     538 </span><span class="lineCov">      18516 :         let header = block.header();</span></a>
+<a name="539"><span class="lineNum">     539 </span><span class="lineCov">      18516 :         let parent = self</span></a>
+<a name="540"><span class="lineNum">     540 </span><span class="lineCov">      18516 :             .context</span></a>
+<a name="541"><span class="lineNum">     541 </span><span class="lineCov">      18516 :             .store</span></a>
+<a name="542"><span class="lineNum">     542 </span><span class="lineCov">      18516 :             .get_block_header(&amp;parent_hash)</span></a>
+<a name="543"><span class="lineNum">     543 </span><span class="lineCov">      18516 :             .ok_or_else(|| UnknownParentError {</span></a>
 <a name="544"><span class="lineNum">     544 </span><span class="lineNoCov">          0 :                 parent_hash: parent_hash.clone(),</span></a>
-<a name="545"><span class="lineNum">     545 </span><span class="lineCov">      37028 :             })?;</span></a>
+<a name="545"><span class="lineNum">     545 </span><span class="lineCov">      18516 :             })?;</span></a>
 <a name="546"><span class="lineNum">     546 </span>            : </a>
-<a name="547"><span class="lineNum">     547 </span><span class="lineCov">      37028 :         let epoch_ext = if block.is_genesis() {</span></a>
+<a name="547"><span class="lineNum">     547 </span><span class="lineCov">      18516 :         let epoch_ext = if block.is_genesis() {</span></a>
 <a name="548"><span class="lineNum">     548 </span><span class="lineNoCov">          0 :             self.context.consensus.genesis_epoch_ext().to_owned()</span></a>
 <a name="549"><span class="lineNum">     549 </span>            :         } else {</a>
-<a name="550"><span class="lineNum">     550 </span><span class="lineCov">      37028 :             self.context</span></a>
-<a name="551"><span class="lineNum">     551 </span><span class="lineCov">      37028 :                 .consensus</span></a>
-<a name="552"><span class="lineNum">     552 </span><span class="lineCov">      37028 :                 .next_epoch_ext(&amp;parent, &amp;self.context.store.as_data_provider())</span></a>
-<a name="553"><span class="lineNum">     553 </span><span class="lineCov">      37028 :                 .ok_or_else(|| UnknownParentError {</span></a>
+<a name="550"><span class="lineNum">     550 </span><span class="lineCov">      18516 :             self.context</span></a>
+<a name="551"><span class="lineNum">     551 </span><span class="lineCov">      18516 :                 .consensus</span></a>
+<a name="552"><span class="lineNum">     552 </span><span class="lineCov">      18516 :                 .next_epoch_ext(&amp;parent, &amp;self.context.store.as_data_provider())</span></a>
+<a name="553"><span class="lineNum">     553 </span><span class="lineCov">      18516 :                 .ok_or_else(|| UnknownParentError {</span></a>
 <a name="554"><span class="lineNum">     554 </span><span class="lineNoCov">          0 :                     parent_hash: parent.hash(),</span></a>
-<a name="555"><span class="lineNum">     555 </span><span class="lineCov">      37028 :                 })?</span></a>
-<a name="556"><span class="lineNum">     556 </span><span class="lineCov">      37028 :                 .epoch()</span></a>
+<a name="555"><span class="lineNum">     555 </span><span class="lineCov">      18516 :                 })?</span></a>
+<a name="556"><span class="lineNum">     556 </span><span class="lineCov">      18516 :                 .epoch()</span></a>
 <a name="557"><span class="lineNum">     557 </span>            :         };</a>
 <a name="558"><span class="lineNum">     558 </span>            : </a>
-<a name="559"><span class="lineNum">     559 </span><span class="lineCov">      37028 :         if !switch.disable_epoch() {</span></a>
-<a name="560"><span class="lineNum">     560 </span><span class="lineCov">      35940 :             EpochVerifier::new(&amp;epoch_ext, block).verify()?;</span></a>
-<a name="561"><span class="lineNum">     561 </span><span class="lineCov">       1088 :         }</span></a>
+<a name="559"><span class="lineNum">     559 </span><span class="lineCov">      18516 :         if !switch.disable_epoch() {</span></a>
+<a name="560"><span class="lineNum">     560 </span><span class="lineCov">      17972 :             EpochVerifier::new(&amp;epoch_ext, block).verify()?;</span></a>
+<a name="561"><span class="lineNum">     561 </span><span class="lineCov">        544 :         }</span></a>
 <a name="562"><span class="lineNum">     562 </span>            : </a>
-<a name="563"><span class="lineNum">     563 </span><span class="lineCov">      37028 :         if !switch.disable_uncles() {</span></a>
-<a name="564"><span class="lineNum">     564 </span><span class="lineCov">      37032 :             let uncle_verifier_context = UncleVerifierContext::new(&amp;self.context, &amp;epoch_ext);</span></a>
-<a name="565"><span class="lineNum">     565 </span><span class="lineCov">      37032 :             UnclesVerifier::new(uncle_verifier_context, block).verify()?;</span></a>
-<a name="566"><span class="lineNum">     566 </span><span class="lineCov">>1844*10^16 :         }</span></a>
+<a name="563"><span class="lineNum">     563 </span><span class="lineCov">      18516 :         if !switch.disable_uncles() {</span></a>
+<a name="564"><span class="lineNum">     564 </span><span class="lineCov">      18516 :             let uncle_verifier_context = UncleVerifierContext::new(&amp;self.context, &amp;epoch_ext);</span></a>
+<a name="565"><span class="lineNum">     565 </span><span class="lineCov">      18516 :             UnclesVerifier::new(uncle_verifier_context, block).verify()?;</span></a>
+<a name="566"><span class="lineNum">     566 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="567"><span class="lineNum">     567 </span>            : </a>
-<a name="568"><span class="lineNum">     568 </span><span class="lineCov">      37028 :         if !switch.disable_two_phase_commit() {</span></a>
-<a name="569"><span class="lineNum">     569 </span><span class="lineCov">      37028 :             TwoPhaseCommitVerifier::new(&amp;self.context, block).verify()?;</span></a>
-<a name="570"><span class="lineNum">     570 </span><span class="lineCov">>1844*10^16 :         }</span></a>
+<a name="568"><span class="lineNum">     568 </span><span class="lineCov">      18516 :         if !switch.disable_two_phase_commit() {</span></a>
+<a name="569"><span class="lineNum">     569 </span><span class="lineCov">      18516 :             TwoPhaseCommitVerifier::new(&amp;self.context, block).verify()?;</span></a>
+<a name="570"><span class="lineNum">     570 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="571"><span class="lineNum">     571 </span>            : </a>
-<a name="572"><span class="lineNum">     572 </span><span class="lineCov">      37028 :         if !switch.disable_daoheader() {</span></a>
-<a name="573"><span class="lineNum">     573 </span><span class="lineCov">      37016 :             DaoHeaderVerifier::new(&amp;self.context, resolved, &amp;parent, &amp;block.header()).verify()?;</span></a>
-<a name="574"><span class="lineNum">     574 </span><span class="lineCov">         12 :         }</span></a>
+<a name="572"><span class="lineNum">     572 </span><span class="lineCov">      18516 :         if !switch.disable_daoheader() {</span></a>
+<a name="573"><span class="lineNum">     573 </span><span class="lineCov">      18516 :             DaoHeaderVerifier::new(&amp;self.context, resolved, &amp;parent, &amp;block.header()).verify()?;</span></a>
+<a name="574"><span class="lineNum">     574 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="575"><span class="lineNum">     575 </span>            : </a>
-<a name="576"><span class="lineNum">     576 </span><span class="lineCov">      37028 :         if !switch.disable_reward() {</span></a>
-<a name="577"><span class="lineNum">     577 </span><span class="lineCov">      37024 :             RewardVerifier::new(&amp;self.context, resolved, &amp;parent).verify()?;</span></a>
-<a name="578"><span class="lineNum">     578 </span><span class="lineCov">          4 :         }</span></a>
+<a name="576"><span class="lineNum">     576 </span><span class="lineCov">      18516 :         if !switch.disable_reward() {</span></a>
+<a name="577"><span class="lineNum">     577 </span><span class="lineCov">      18516 :             RewardVerifier::new(&amp;self.context, resolved, &amp;parent).verify()?;</span></a>
+<a name="578"><span class="lineNum">     578 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="579"><span class="lineNum">     579 </span>            : </a>
-<a name="580"><span class="lineNum">     580 </span><span class="lineCov">      37032 :         let ret = BlockTxsVerifier::new(&amp;self.context, header, resolved).verify(</span></a>
-<a name="581"><span class="lineNum">     581 </span><span class="lineCov">      37028 :             txs_verify_cache,</span></a>
-<a name="582"><span class="lineNum">     582 </span><span class="lineCov">      37028 :             handle,</span></a>
-<a name="583"><span class="lineNum">     583 </span><span class="lineCov">      37028 :             switch.disable_script(),</span></a>
-<a name="584"><span class="lineNum">     584 </span><span class="lineCov">      37028 :         )?;</span></a>
-<a name="585"><span class="lineNum">     585 </span><span class="lineCov">      37032 :         metrics!(timing, &quot;ckb.contextual_verified_block&quot;, timer.stop());</span></a>
-<a name="586"><span class="lineNum">     586 </span><span class="lineCov">      37032 :         Ok(ret)</span></a>
-<a name="587"><span class="lineNum">     587 </span><span class="lineCov">      37032 :     }</span></a>
+<a name="580"><span class="lineNum">     580 </span><span class="lineCov">      18516 :         let ret = BlockTxsVerifier::new(&amp;self.context, header, resolved).verify(</span></a>
+<a name="581"><span class="lineNum">     581 </span><span class="lineCov">      18516 :             txs_verify_cache,</span></a>
+<a name="582"><span class="lineNum">     582 </span><span class="lineCov">      18516 :             handle,</span></a>
+<a name="583"><span class="lineNum">     583 </span><span class="lineCov">      18516 :             switch.disable_script(),</span></a>
+<a name="584"><span class="lineNum">     584 </span><span class="lineCov">      18516 :         )?;</span></a>
+<a name="585"><span class="lineNum">     585 </span><span class="lineCov">      18516 :         metrics!(timing, &quot;ckb.contextual_verified_block&quot;, timer.stop());</span></a>
+<a name="586"><span class="lineNum">     586 </span><span class="lineCov">      18516 :         Ok(ret)</span></a>
+<a name="587"><span class="lineNum">     587 </span><span class="lineCov">      18516 :     }</span></a>
 <a name="588"><span class="lineNum">     588 </span>            : }</a>
 </pre>
       </td>

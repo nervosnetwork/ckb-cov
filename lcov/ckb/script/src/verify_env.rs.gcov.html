@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/script/src/verify_env.rs</title>
+  <title>LCOV - Unit + Integration - ckb/script/src/verify_env.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">49</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">7</td>
@@ -106,79 +106,79 @@
 <a name="44"><span class="lineNum">      44 </span>            :     /// The transaction has just been submitted.</a>
 <a name="45"><span class="lineNum">      45 </span>            :     ///</a>
 <a name="46"><span class="lineNum">      46 </span>            :     /// The input is current tip header.</a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        525 :     pub fn new_submit(header: &amp;HeaderView) -&gt; Self {</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        525 :         Self {</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        525 :             phase: TxVerifyPhase::Submitted,</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">        525 :             number: header.number(),</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">        525 :             epoch: header.epoch(),</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">        525 :             hash: header.hash(),</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">        525 :             parent_hash: header.parent_hash(),</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">        525 :         }</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">        525 :     }</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">        322 :     pub fn new_submit(header: &amp;HeaderView) -&gt; Self {</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">        322 :         Self {</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">        322 :             phase: TxVerifyPhase::Submitted,</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">        322 :             number: header.number(),</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">        322 :             epoch: header.epoch(),</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">        322 :             hash: header.hash(),</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineCov">        322 :             parent_hash: header.parent_hash(),</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">        322 :         }</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineCov">        322 :     }</span></a>
 <a name="56"><span class="lineNum">      56 </span>            : </a>
 <a name="57"><span class="lineNum">      57 </span>            :     /// The transaction has already been proposed before several blocks.</a>
 <a name="58"><span class="lineNum">      58 </span>            :     ///</a>
 <a name="59"><span class="lineNum">      59 </span>            :     /// The input is current tip header and how many blocks have been passed since the transaction was proposed.</a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">        770 :     pub fn new_proposed(header: &amp;HeaderView, n_blocks: BlockNumber) -&gt; Self {</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        770 :         Self {</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        770 :             phase: TxVerifyPhase::Proposed(n_blocks),</span></a>
-<a name="63"><span class="lineNum">      63 </span><span class="lineCov">        770 :             number: header.number(),</span></a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        770 :             epoch: header.epoch(),</span></a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        770 :             hash: header.hash(),</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        770 :             parent_hash: header.parent_hash(),</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        770 :         }</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        770 :     }</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">        504 :     pub fn new_proposed(header: &amp;HeaderView, n_blocks: BlockNumber) -&gt; Self {</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        504 :         Self {</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        504 :             phase: TxVerifyPhase::Proposed(n_blocks),</span></a>
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">        504 :             number: header.number(),</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineCov">        504 :             epoch: header.epoch(),</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">        504 :             hash: header.hash(),</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">        504 :             parent_hash: header.parent_hash(),</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">        504 :         }</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        504 :     }</span></a>
 <a name="69"><span class="lineNum">      69 </span>            : </a>
 <a name="70"><span class="lineNum">      70 </span>            :     /// The transaction will committed in current block.</a>
 <a name="71"><span class="lineNum">      71 </span>            :     ///</a>
 <a name="72"><span class="lineNum">      72 </span>            :     /// The input is current tip header.</a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineCov">      98409 :     pub fn new_commit(header: &amp;HeaderView) -&gt; Self {</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineCov">      98409 :         Self {</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineCov">      98409 :             phase: TxVerifyPhase::Committed,</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineCov">      98409 :             number: header.number(),</span></a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      98409 :             epoch: header.epoch(),</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">      98409 :             hash: header.hash(),</span></a>
-<a name="79"><span class="lineNum">      79 </span><span class="lineCov">      98409 :             parent_hash: header.parent_hash(),</span></a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">      98409 :         }</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">      98409 :     }</span></a>
+<a name="73"><span class="lineNum">      73 </span><span class="lineCov">      65612 :     pub fn new_commit(header: &amp;HeaderView) -&gt; Self {</span></a>
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">      65612 :         Self {</span></a>
+<a name="75"><span class="lineNum">      75 </span><span class="lineCov">      65612 :             phase: TxVerifyPhase::Committed,</span></a>
+<a name="76"><span class="lineNum">      76 </span><span class="lineCov">      65612 :             number: header.number(),</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      65612 :             epoch: header.epoch(),</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">      65612 :             hash: header.hash(),</span></a>
+<a name="79"><span class="lineNum">      79 </span><span class="lineCov">      65612 :             parent_hash: header.parent_hash(),</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">      65612 :         }</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">      65612 :     }</span></a>
 <a name="82"><span class="lineNum">      82 </span>            : </a>
 <a name="83"><span class="lineNum">      83 </span>            :     /// The block number of the earliest block which the transaction will committed in.</a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">        126 :     pub fn block_number(&amp;self, proposal_window: ProposalWindow) -&gt; BlockNumber {</span></a>
-<a name="85"><span class="lineNum">      85 </span><span class="lineCov">        126 :         match self.phase {</span></a>
-<a name="86"><span class="lineNum">      86 </span><span class="lineCov">        126 :             TxVerifyPhase::Submitted =&gt; self.number + 1 + proposal_window.closest(),</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         84 :     pub fn block_number(&amp;self, proposal_window: ProposalWindow) -&gt; BlockNumber {</span></a>
+<a name="85"><span class="lineNum">      85 </span><span class="lineCov">         84 :         match self.phase {</span></a>
+<a name="86"><span class="lineNum">      86 </span><span class="lineCov">         84 :             TxVerifyPhase::Submitted =&gt; self.number + 1 + proposal_window.closest(),</span></a>
 <a name="87"><span class="lineNum">      87 </span><span class="lineNoCov">          0 :             TxVerifyPhase::Proposed(already_proposed) =&gt; {</span></a>
 <a name="88"><span class="lineNum">      88 </span><span class="lineNoCov">          0 :                 self.number.saturating_sub(already_proposed) + proposal_window.closest()</span></a>
 <a name="89"><span class="lineNum">      89 </span>            :             }</a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">        126 :             TxVerifyPhase::Committed =&gt; self.number,</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">         84 :             TxVerifyPhase::Committed =&gt; self.number,</span></a>
 <a name="91"><span class="lineNum">      91 </span>            :         }</a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">        126 :     }</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">         84 :     }</span></a>
 <a name="93"><span class="lineNum">      93 </span>            : </a>
 <a name="94"><span class="lineNum">      94 </span>            :     /// The epoch number of the earliest epoch which the transaction will committed in.</a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">     100727 :     pub fn epoch_number(&amp;self, proposal_window: ProposalWindow) -&gt; EpochNumber {</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">     100727 :         let n_blocks = match self.phase {</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">     100727 :             TxVerifyPhase::Submitted =&gt; 1 + proposal_window.closest(),</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">       1106 :             TxVerifyPhase::Proposed(already_proposed) =&gt; {</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">       1106 :                 proposal_window.closest().saturating_sub(already_proposed)</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">      67170 :     pub fn epoch_number(&amp;self, proposal_window: ProposalWindow) -&gt; EpochNumber {</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">      67170 :         let n_blocks = match self.phase {</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">      67170 :             TxVerifyPhase::Submitted =&gt; 1 + proposal_window.closest(),</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">        728 :             TxVerifyPhase::Proposed(already_proposed) =&gt; {</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">        728 :                 proposal_window.closest().saturating_sub(already_proposed)</span></a>
 <a name="100"><span class="lineNum">     100 </span>            :             }</a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">      98942 :             TxVerifyPhase::Committed =&gt; 0,</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">      66022 :             TxVerifyPhase::Committed =&gt; 0,</span></a>
 <a name="102"><span class="lineNum">     102 </span>            :         };</a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">     100727 :         self.epoch.minimum_epoch_number_after_n_blocks(n_blocks)</span></a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">     100727 :     }</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineCov">      67170 :         self.epoch.minimum_epoch_number_after_n_blocks(n_blocks)</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">      67170 :     }</span></a>
 <a name="105"><span class="lineNum">     105 </span>            : </a>
 <a name="106"><span class="lineNum">     106 </span>            :     /// The parent block hash of the earliest block which the transaction will committed in.</a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         84 :     pub fn parent_hash(&amp;self) -&gt; Byte32 {</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">         84 :         match self.phase {</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         84 :             TxVerifyPhase::Submitted =&gt; &amp;self.hash,</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         56 :     pub fn parent_hash(&amp;self) -&gt; Byte32 {</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">         56 :         match self.phase {</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         56 :             TxVerifyPhase::Submitted =&gt; &amp;self.hash,</span></a>
 <a name="110"><span class="lineNum">     110 </span><span class="lineNoCov">          0 :             TxVerifyPhase::Proposed(_) =&gt; &amp;self.hash,</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         84 :             TxVerifyPhase::Committed =&gt; &amp;self.parent_hash,</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         56 :             TxVerifyPhase::Committed =&gt; &amp;self.parent_hash,</span></a>
 <a name="112"><span class="lineNum">     112 </span>            :         }</a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         84 :         .to_owned()</span></a>
-<a name="114"><span class="lineNum">     114 </span><span class="lineCov">         84 :     }</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         56 :         .to_owned()</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">         56 :     }</span></a>
 <a name="115"><span class="lineNum">     115 </span>            : </a>
 <a name="116"><span class="lineNum">     116 </span>            :     /// The earliest epoch which the transaction will committed in.</a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">      98665 :     pub fn epoch(&amp;self) -&gt; EpochNumberWithFraction {</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">      98665 :         self.epoch</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">      98665 :     }</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">      65758 :     pub fn epoch(&amp;self) -&gt; EpochNumberWithFraction {</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">      65758 :         self.epoch</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">      65758 :     }</span></a>
 <a name="120"><span class="lineNum">     120 </span>            : }</a>
 </pre>
       </td>

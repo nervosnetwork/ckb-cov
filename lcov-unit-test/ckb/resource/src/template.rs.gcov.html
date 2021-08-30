@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -164,15 +164,15 @@
 <a name="102"><span class="lineNum">     102 </span>            :     /// //     p2p_port      =&gt; 8115</a>
 <a name="103"><span class="lineNum">     103 </span>            :     /// TemplateContext::new(&quot;dev&quot;, vec![(&quot;rpc_port&quot;, &quot;8114&quot;), (&quot;p2p_port&quot;, &quot;8115&quot;)]);</a>
 <a name="104"><span class="lineNum">     104 </span>            :     /// ```</a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">         28 :     pub fn new&lt;I&gt;(spec: &amp;'a str, kvs: I) -&gt; Self</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">         28 :     where</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         28 :         I: IntoIterator&lt;Item = (&amp;'a str, &amp;'a str)&gt;,</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">         28 :     {</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         28 :         Self {</span></a>
-<a name="110"><span class="lineNum">     110 </span><span class="lineCov">         28 :             spec,</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         28 :             kvs: kvs.into_iter().collect(),</span></a>
-<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         28 :         }</span></a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         28 :     }</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">         14 :     pub fn new&lt;I&gt;(spec: &amp;'a str, kvs: I) -&gt; Self</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">         14 :     where</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         14 :         I: IntoIterator&lt;Item = (&amp;'a str, &amp;'a str)&gt;,</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">         14 :     {</span></a>
+<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         14 :         Self {</span></a>
+<a name="110"><span class="lineNum">     110 </span><span class="lineCov">         14 :             spec,</span></a>
+<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         14 :             kvs: kvs.into_iter().collect(),</span></a>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         14 :         }</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         14 :     }</span></a>
 <a name="114"><span class="lineNum">     114 </span>            : </a>
 <a name="115"><span class="lineNum">     115 </span>            :     /// Inserts a new variable into the context.</a>
 <a name="116"><span class="lineNum">     116 </span>            :     ///</a>
@@ -185,24 +185,24 @@
 <a name="123"><span class="lineNum">     123 </span>            : </a>
 <a name="124"><span class="lineNum">     124 </span>            : impl Template {</a>
 <a name="125"><span class="lineNum">     125 </span>            :     /// Creates the template with the specified content.</a>
-<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         38 :     pub fn new(content: String) -&gt; Self {</span></a>
-<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         38 :         Template(content)</span></a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         38 :     }</span></a>
+<a name="126"><span class="lineNum">     126 </span><span class="lineCov">         19 :     pub fn new(content: String) -&gt; Self {</span></a>
+<a name="127"><span class="lineNum">     127 </span><span class="lineCov">         19 :         Template(content)</span></a>
+<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         19 :     }</span></a>
 <a name="129"><span class="lineNum">     129 </span>            : }</a>
 <a name="130"><span class="lineNum">     130 </span>            : </a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">        258 : fn writeln&lt;W: io::Write&gt;(w: &amp;mut W, s: &amp;str, context: &amp;TemplateContext) -&gt; io::Result&lt;()&gt; {</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">        258 :     #[cfg(docker)]</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">        258 :     let s = s.replace(&quot;127.0.0.1:{rpc_port}&quot;, &quot;0.0.0.0:{rpc_port}&quot;);</span></a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">        258 :     writeln!(</span></a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">        258 :         w,</span></a>
-<a name="136"><span class="lineNum">     136 </span><span class="lineCov">        258 :         &quot;{}&quot;,</span></a>
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">        258 :         context</span></a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        258 :             .kvs</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        258 :             .iter()</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">       1410 :             .fold(s.replace(&quot;\\n&quot;, &quot;\n&quot;), |s, (key, value)| s</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">       1410 :                 .replace(format!(&quot;{{{}}}&quot;, key).as_str(), value))</span></a>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">        258 :     )</span></a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">        258 : }</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">        129 : fn writeln&lt;W: io::Write&gt;(w: &amp;mut W, s: &amp;str, context: &amp;TemplateContext) -&gt; io::Result&lt;()&gt; {</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">        129 :     #[cfg(docker)]</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">        129 :     let s = s.replace(&quot;127.0.0.1:{rpc_port}&quot;, &quot;0.0.0.0:{rpc_port}&quot;);</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">        129 :     writeln!(</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">        129 :         w,</span></a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineCov">        129 :         &quot;{}&quot;,</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">        129 :         context</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        129 :             .kvs</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        129 :             .iter()</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">        704 :             .fold(s.replace(&quot;\\n&quot;, &quot;\n&quot;), |s, (key, value)| s</span></a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineCov">        704 :                 .replace(format!(&quot;{{{}}}&quot;, key).as_str(), value))</span></a>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">        129 :     )</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">        129 : }</span></a>
 <a name="144"><span class="lineNum">     144 </span>            : </a>
 <a name="145"><span class="lineNum">     145 </span><span class="lineNoCov">          0 : #[derive(Debug)]</span></a>
 <a name="146"><span class="lineNum">     146 </span>            : pub enum TemplateState&lt;'a&gt; {</a>
@@ -218,58 +218,58 @@
 <a name="156"><span class="lineNum">     156 </span>            :     ///</a>
 <a name="157"><span class="lineNum">     157 </span>            :     /// This method returns `std::io::Error` when it fails to write the chunks to the underlying</a>
 <a name="158"><span class="lineNum">     158 </span>            :     /// writer.</a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">         38 :     pub fn render_to&lt;'c, W: io::Write&gt;(</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         38 :         &amp;self,</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         38 :         w: &amp;mut W,</span></a>
-<a name="162"><span class="lineNum">     162 </span><span class="lineCov">         38 :         context: &amp;TemplateContext&lt;'c&gt;,</span></a>
-<a name="163"><span class="lineNum">     163 </span><span class="lineCov">         38 :     ) -&gt; io::Result&lt;()&gt; {</span></a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         38 :         let spec_branch = format!(&quot;# {} =&gt; &quot;, context.spec);</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         38 : </span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         38 :         let mut state = TemplateState::SearchStartMarker;</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       4811 :         for line in self.0.lines() {</span></a>
+<a name="159"><span class="lineNum">     159 </span><span class="lineCov">         19 :     pub fn render_to&lt;'c, W: io::Write&gt;(</span></a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         19 :         &amp;self,</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         19 :         w: &amp;mut W,</span></a>
+<a name="162"><span class="lineNum">     162 </span><span class="lineCov">         19 :         context: &amp;TemplateContext&lt;'c&gt;,</span></a>
+<a name="163"><span class="lineNum">     163 </span><span class="lineCov">         19 :     ) -&gt; io::Result&lt;()&gt; {</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         19 :         let spec_branch = format!(&quot;# {} =&gt; &quot;, context.spec);</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         19 : </span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         19 :         let mut state = TemplateState::SearchStartMarker;</span></a>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">       2400 :         for line in self.0.lines() {</span></a>
 <a name="168"><span class="lineNum">     168 </span>            :             // dbg!((line, &amp;state));</a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">       4811 :             match state {</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">       4811 :                 TemplateState::SearchStartMarker =&gt; {</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       3639 :                     if line.ends_with(START_MARKER) {</span></a>
-<a name="172"><span class="lineNum">     172 </span><span class="lineCov">        404 :                         state = TemplateState::MatchBranch(line);</span></a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        404 :                     } else {</span></a>
-<a name="174"><span class="lineNum">     174 </span><span class="lineCov">       3235 :                         writeln!(w, &quot;{}&quot;, line)?;</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">       2400 :             match state {</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">       2400 :                 TemplateState::SearchStartMarker =&gt; {</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">       1814 :                     if line.ends_with(START_MARKER) {</span></a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">        202 :                         state = TemplateState::MatchBranch(line);</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        202 :                     } else {</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">       1612 :                         writeln!(w, &quot;{}&quot;, line)?;</span></a>
 <a name="175"><span class="lineNum">     175 </span>            :                     }</a>
 <a name="176"><span class="lineNum">     176 </span>            :                 }</a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">        822 :                 TemplateState::MatchBranch(start_line) =&gt; {</span></a>
-<a name="178"><span class="lineNum">     178 </span><span class="lineCov">        822 :                     if line == END_MAKER {</span></a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">        146 :                         writeln!(</span></a>
-<a name="180"><span class="lineNum">     180 </span><span class="lineCov">        146 :                             w,</span></a>
-<a name="181"><span class="lineNum">     181 </span><span class="lineCov">        146 :                             &quot;{}&quot;,</span></a>
-<a name="182"><span class="lineNum">     182 </span><span class="lineCov">        146 :                             &amp;start_line[..(start_line.len() - START_MARKER.len())],</span></a>
-<a name="183"><span class="lineNum">     183 </span><span class="lineCov">        146 :                         )?;</span></a>
-<a name="184"><span class="lineNum">     184 </span><span class="lineCov">        146 :                         state = TemplateState::SearchStartMarker;</span></a>
-<a name="185"><span class="lineNum">     185 </span><span class="lineCov">        676 :                     } else if line.starts_with(&amp;spec_branch) {</span></a>
-<a name="186"><span class="lineNum">     186 </span><span class="lineCov">        104 :                         writeln(w, &amp;line[spec_branch.len()..], context)?;</span></a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">        104 :                         state = TemplateState::SearchEndMarker;</span></a>
-<a name="188"><span class="lineNum">     188 </span><span class="lineCov">        572 :                     } else if let Some(c) = line.strip_prefix(WILDCARD_BRANCH) {</span></a>
-<a name="189"><span class="lineNum">     189 </span><span class="lineCov">        154 :                         writeln(w, c, context)?;</span></a>
-<a name="190"><span class="lineNum">     190 </span><span class="lineCov">        154 :                         state = TemplateState::SearchEndMarker;</span></a>
-<a name="191"><span class="lineNum">     191 </span><span class="lineCov">        418 :                     }</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">        411 :                 TemplateState::MatchBranch(start_line) =&gt; {</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">        411 :                     if line == END_MAKER {</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">         73 :                         writeln!(</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">         73 :                             w,</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">         73 :                             &quot;{}&quot;,</span></a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">         73 :                             &amp;start_line[..(start_line.len() - START_MARKER.len())],</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">         73 :                         )?;</span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineCov">         73 :                         state = TemplateState::SearchStartMarker;</span></a>
+<a name="185"><span class="lineNum">     185 </span><span class="lineCov">        338 :                     } else if line.starts_with(&amp;spec_branch) {</span></a>
+<a name="186"><span class="lineNum">     186 </span><span class="lineCov">         52 :                         writeln(w, &amp;line[spec_branch.len()..], context)?;</span></a>
+<a name="187"><span class="lineNum">     187 </span><span class="lineCov">         52 :                         state = TemplateState::SearchEndMarker;</span></a>
+<a name="188"><span class="lineNum">     188 </span><span class="lineCov">        286 :                     } else if let Some(c) = line.strip_prefix(WILDCARD_BRANCH) {</span></a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineCov">         77 :                         writeln(w, c, context)?;</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">         77 :                         state = TemplateState::SearchEndMarker;</span></a>
+<a name="191"><span class="lineNum">     191 </span><span class="lineCov">        209 :                     }</span></a>
 <a name="192"><span class="lineNum">     192 </span>            :                 }</a>
 <a name="193"><span class="lineNum">     193 </span>            :                 TemplateState::SearchEndMarker =&gt; {</a>
-<a name="194"><span class="lineNum">     194 </span><span class="lineCov">        350 :                     if line == END_MAKER {</span></a>
-<a name="195"><span class="lineNum">     195 </span><span class="lineCov">        258 :                         state = TemplateState::SearchStartMarker;</span></a>
-<a name="196"><span class="lineNum">     196 </span><span class="lineCov">        258 :                     }</span></a>
+<a name="194"><span class="lineNum">     194 </span><span class="lineCov">        175 :                     if line == END_MAKER {</span></a>
+<a name="195"><span class="lineNum">     195 </span><span class="lineCov">        129 :                         state = TemplateState::SearchStartMarker;</span></a>
+<a name="196"><span class="lineNum">     196 </span><span class="lineCov">        129 :                     }</span></a>
 <a name="197"><span class="lineNum">     197 </span>            :                 }</a>
 <a name="198"><span class="lineNum">     198 </span>            :             }</a>
 <a name="199"><span class="lineNum">     199 </span>            :         }</a>
 <a name="200"><span class="lineNum">     200 </span>            : </a>
-<a name="201"><span class="lineNum">     201 </span><span class="lineCov">         38 :         if let TemplateState::MatchBranch(start_line) = state {</span></a>
+<a name="201"><span class="lineNum">     201 </span><span class="lineCov">         19 :         if let TemplateState::MatchBranch(start_line) = state {</span></a>
 <a name="202"><span class="lineNum">     202 </span><span class="lineNoCov">          0 :             writeln!(</span></a>
 <a name="203"><span class="lineNum">     203 </span><span class="lineNoCov">          0 :                 w,</span></a>
 <a name="204"><span class="lineNum">     204 </span><span class="lineNoCov">          0 :                 &quot;{}&quot;,</span></a>
 <a name="205"><span class="lineNum">     205 </span><span class="lineNoCov">          0 :                 &amp;start_line[..(start_line.len() - START_MARKER.len())],</span></a>
 <a name="206"><span class="lineNum">     206 </span><span class="lineNoCov">          0 :             )?;</span></a>
-<a name="207"><span class="lineNum">     207 </span><span class="lineCov">         38 :         }</span></a>
+<a name="207"><span class="lineNum">     207 </span><span class="lineCov">         19 :         }</span></a>
 <a name="208"><span class="lineNum">     208 </span>            : </a>
-<a name="209"><span class="lineNum">     209 </span><span class="lineCov">         38 :         Ok(())</span></a>
-<a name="210"><span class="lineNum">     210 </span><span class="lineCov">         38 :     }</span></a>
+<a name="209"><span class="lineNum">     209 </span><span class="lineCov">         19 :         Ok(())</span></a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">         19 :     }</span></a>
 <a name="211"><span class="lineNum">     211 </span>            : </a>
 <a name="212"><span class="lineNum">     212 </span>            :     /// Renders the template and returns the result as a string.</a>
 <a name="213"><span class="lineNum">     213 </span>            :     ///</a>

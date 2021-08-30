@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/tx-pool/src/persisted.rs</title>
+  <title>LCOV - Unit + Integration - ckb/tx-pool/src/persisted.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">7</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -76,11 +76,11 @@
 <a name="14"><span class="lineNum">      14 </span>            : pub(crate) const VERSION: u32 = 1;</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
 <a name="16"><span class="lineNum">      16 </span>            : impl TxPool {</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">        930 :     pub(crate) fn load_from_file(&amp;self) -&gt; Result&lt;Vec&lt;TransactionView&gt;, AnyError&gt; {</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        930 :         let mut persisted_data_file = self.config.persisted_data.clone();</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">        930 :         persisted_data_file.set_extension(format!(&quot;v{}&quot;, VERSION));</span></a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">        930 : </span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        930 :         if persisted_data_file.exists() {</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">        496 :     pub(crate) fn load_from_file(&amp;self) -&gt; Result&lt;Vec&lt;TransactionView&gt;, AnyError&gt; {</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        496 :         let mut persisted_data_file = self.config.persisted_data.clone();</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">        496 :         persisted_data_file.set_extension(format!(&quot;v{}&quot;, VERSION));</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">        496 : </span></a>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">        496 :         if persisted_data_file.exists() {</span></a>
 <a name="22"><span class="lineNum">      22 </span><span class="lineNoCov">          0 :             let mut file = OpenOptions::new()</span></a>
 <a name="23"><span class="lineNum">      23 </span><span class="lineNoCov">          0 :                 .read(true)</span></a>
 <a name="24"><span class="lineNum">      24 </span><span class="lineNoCov">          0 :                 .open(&amp;persisted_data_file)</span></a>
@@ -115,9 +115,9 @@
 <a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :                 .map(|tx| tx.into_view())</span></a>
 <a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :                 .collect())</span></a>
 <a name="55"><span class="lineNum">      55 </span>            :         } else {</a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">        930 :             Ok(Vec::new())</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">        496 :             Ok(Vec::new())</span></a>
 <a name="57"><span class="lineNum">      57 </span>            :         }</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        930 :     }</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">        496 :     }</span></a>
 <a name="59"><span class="lineNum">      59 </span>            : </a>
 <a name="60"><span class="lineNum">      60 </span><span class="lineNoCov">          0 :     pub(crate) fn save_into_file(&amp;mut self) -&gt; Result&lt;(), AnyError&gt; {</span></a>
 <a name="61"><span class="lineNum">      61 </span><span class="lineNoCov">          0 :         let mut persisted_data_file = self.config.persisted_data.clone();</span></a>

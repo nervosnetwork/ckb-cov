@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">42</td>
-            <td class="headerCovTableEntry">72</td>
-            <td class="headerCovTableEntryLo">58.3 %</td>
+            <td class="headerCovTableEntry">66</td>
+            <td class="headerCovTableEntryLo">63.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">4</td>
@@ -114,8 +114,8 @@
 <a name="52"><span class="lineNum">      52 </span><span class="lineCov">          1 : </span></a>
 <a name="53"><span class="lineNum">      53 </span><span class="lineCov">          1 :         if active_chain.is_initial_block_download() {</span></a>
 <a name="54"><span class="lineNum">      54 </span>            :             info!(</a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :                 &quot;Ignoring getheaders from peer={} because node is in initial block download&quot;,</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineNoCov">          0 :                 self.peer</span></a>
+<a name="55"><span class="lineNum">      55 </span>            :                 &quot;Ignoring getheaders from peer={} because node is in initial block download&quot;,</a>
+<a name="56"><span class="lineNum">      56 </span>            :                 self.peer</a>
 <a name="57"><span class="lineNum">      57 </span>            :             );</a>
 <a name="58"><span class="lineNum">      58 </span><span class="lineNoCov">          0 :             self.send_in_ibd();</span></a>
 <a name="59"><span class="lineNum">      59 </span><span class="lineNoCov">          0 :             let state = self.synchronizer.shared.state();</span></a>
@@ -131,9 +131,9 @@
 <a name="69"><span class="lineNum">      69 </span><span class="lineCov">          1 :             active_chain.locate_latest_common_block(&amp;hash_stop, &amp;block_locator_hashes[..])</span></a>
 <a name="70"><span class="lineNum">      70 </span>            :         {</a>
 <a name="71"><span class="lineNum">      71 </span>            :             debug!(</a>
-<a name="72"><span class="lineNum">      72 </span><span class="lineNoCov">          0 :                 &quot;headers latest_common={} tip={} begin&quot;,</span></a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineNoCov">          0 :                 block_number,</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineNoCov">          0 :                 active_chain.tip_header().number(),</span></a>
+<a name="72"><span class="lineNum">      72 </span>            :                 &quot;headers latest_common={} tip={} begin&quot;,</a>
+<a name="73"><span class="lineNum">      73 </span>            :                 block_number,</a>
+<a name="74"><span class="lineNum">      74 </span>            :                 active_chain.tip_header().number(),</a>
 <a name="75"><span class="lineNum">      75 </span>            :             );</a>
 <a name="76"><span class="lineNum">      76 </span>            : </a>
 <a name="77"><span class="lineNum">      77 </span><span class="lineCov">          1 :             self.synchronizer.peers().getheaders_received(self.peer);</span></a>
@@ -141,7 +141,7 @@
 <a name="79"><span class="lineNum">      79 </span><span class="lineCov">          1 :                 active_chain.get_locator_response(block_number, &amp;hash_stop);</span></a>
 <a name="80"><span class="lineNum">      80 </span>            :             // response headers</a>
 <a name="81"><span class="lineNum">      81 </span>            : </a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineNoCov">          0 :             debug!(&quot;headers len={}&quot;, headers.len());</span></a>
+<a name="82"><span class="lineNum">      82 </span>            :             debug!(&quot;headers len={}&quot;, headers.len());</a>
 <a name="83"><span class="lineNum">      83 </span>            : </a>
 <a name="84"><span class="lineNum">      84 </span><span class="lineCov">          1 :             let content = packed::SendHeaders::new_builder()</span></a>
 <a name="85"><span class="lineNum">      85 </span><span class="lineCov">          2 :                 .headers(headers.into_iter().map(|x| x.data()).pack())</span></a>

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/sync/src/status.rs</title>
+  <title>LCOV - Unit + Integration - ckb/sync/src/status.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">35</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">19</td>
@@ -98,7 +98,7 @@
 <a name="36"><span class="lineNum">      36 </span>            : ///   - 4xx: Malformed Error - The request contains malformed messages</a>
 <a name="37"><span class="lineNum">      37 </span>            : ///   - 5xx: Warning - The node warns about recoverable conditions</a>
 <a name="38"><span class="lineNum">      38 </span>            : #[repr(u16)]</a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">        264 : #[derive(Clone, Copy, Debug, PartialEq, Eq)]</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">        176 : #[derive(Clone, Copy, Debug, PartialEq, Eq)]</span></a>
 <a name="40"><span class="lineNum">      40 </span>            : pub enum StatusCode {</a>
 <a name="41"><span class="lineNum">      41 </span>            :     ///////////////////////////////////</a>
 <a name="42"><span class="lineNum">      42 </span>            :     //      Informational 1xx        //</a>
@@ -175,9 +175,9 @@
 <a name="113"><span class="lineNum">     113 </span>            : </a>
 <a name="114"><span class="lineNum">     114 </span>            : impl StatusCode {</a>
 <a name="115"><span class="lineNum">     115 </span>            :     /// Code with context</a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">         54 :     pub fn with_context&lt;S: ToString&gt;(self, context: S) -&gt; Status {</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         54 :         Status::new(self, Some(context))</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         54 :     }</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">         36 :     pub fn with_context&lt;S: ToString&gt;(self, context: S) -&gt; Status {</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         36 :         Status::new(self, Some(context))</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         36 :     }</span></a>
 <a name="119"><span class="lineNum">     119 </span>            : }</a>
 <a name="120"><span class="lineNum">     120 </span>            : </a>
 <a name="121"><span class="lineNum">     121 </span>            : /// Process message status</a>
@@ -189,54 +189,54 @@
 <a name="127"><span class="lineNum">     127 </span>            : </a>
 <a name="128"><span class="lineNum">     128 </span>            : impl Status {</a>
 <a name="129"><span class="lineNum">     129 </span>            :     /// New with code</a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">        423 :     pub fn new&lt;S: ToString&gt;(code: StatusCode, context: Option&lt;S&gt;) -&gt; Self {</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">        423 :         Self {</span></a>
-<a name="132"><span class="lineNum">     132 </span><span class="lineCov">        423 :             code,</span></a>
-<a name="133"><span class="lineNum">     133 </span><span class="lineCov">        423 :             context: context.map(|s| s.to_string()),</span></a>
-<a name="134"><span class="lineNum">     134 </span><span class="lineCov">        423 :         }</span></a>
-<a name="135"><span class="lineNum">     135 </span><span class="lineCov">        423 :     }</span></a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineCov">        282 :     pub fn new&lt;S: ToString&gt;(code: StatusCode, context: Option&lt;S&gt;) -&gt; Self {</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineCov">        282 :         Self {</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineCov">        282 :             code,</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineCov">        282 :             context: context.map(|s| s.to_string()),</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineCov">        282 :         }</span></a>
+<a name="135"><span class="lineNum">     135 </span><span class="lineCov">        282 :     }</span></a>
 <a name="136"><span class="lineNum">     136 </span>            : </a>
 <a name="137"><span class="lineNum">     137 </span>            :     /// Ok status</a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        261 :     pub fn ok() -&gt; Self {</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        261 :         Self::new::&lt;&amp;str&gt;(StatusCode::OK, None)</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">        261 :     }</span></a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineCov">        174 :     pub fn ok() -&gt; Self {</span></a>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">        174 :         Self::new::&lt;&amp;str&gt;(StatusCode::OK, None)</span></a>
+<a name="140"><span class="lineNum">     140 </span><span class="lineCov">        174 :     }</span></a>
 <a name="141"><span class="lineNum">     141 </span>            : </a>
 <a name="142"><span class="lineNum">     142 </span>            :     /// Ignored status</a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         18 :     pub fn ignored() -&gt; Self {</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         18 :         Self::new::&lt;&amp;str&gt;(StatusCode::Ignored, None)</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         18 :     }</span></a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineCov">         12 :     pub fn ignored() -&gt; Self {</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         12 :         Self::new::&lt;&amp;str&gt;(StatusCode::Ignored, None)</span></a>
+<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         12 :     }</span></a>
 <a name="146"><span class="lineNum">     146 </span>            : </a>
 <a name="147"><span class="lineNum">     147 </span>            :     /// Whether ok</a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">        132 :     pub fn is_ok(&amp;self) -&gt; bool {</span></a>
-<a name="149"><span class="lineNum">     149 </span><span class="lineCov">        132 :         self.code == StatusCode::OK</span></a>
-<a name="150"><span class="lineNum">     150 </span><span class="lineCov">        132 :     }</span></a>
+<a name="148"><span class="lineNum">     148 </span><span class="lineCov">         88 :     pub fn is_ok(&amp;self) -&gt; bool {</span></a>
+<a name="149"><span class="lineNum">     149 </span><span class="lineCov">         88 :         self.code == StatusCode::OK</span></a>
+<a name="150"><span class="lineNum">     150 </span><span class="lineCov">         88 :     }</span></a>
 <a name="151"><span class="lineNum">     151 </span>            : </a>
 <a name="152"><span class="lineNum">     152 </span>            :     /// Whether should ban session</a>
-<a name="153"><span class="lineNum">     153 </span><span class="lineCov">         15 :     pub fn should_ban(&amp;self) -&gt; Option&lt;Duration&gt; {</span></a>
-<a name="154"><span class="lineNum">     154 </span><span class="lineCov">         15 :         if !(400..500).contains(&amp;(self.code as u16)) {</span></a>
-<a name="155"><span class="lineNum">     155 </span><span class="lineCov">         15 :             return None;</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">         10 :     pub fn should_ban(&amp;self) -&gt; Option&lt;Duration&gt; {</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">         10 :         if !(400..500).contains(&amp;(self.code as u16)) {</span></a>
+<a name="155"><span class="lineNum">     155 </span><span class="lineCov">         10 :             return None;</span></a>
 <a name="156"><span class="lineNum">     156 </span><span class="lineNoCov">          0 :         }</span></a>
 <a name="157"><span class="lineNum">     157 </span><span class="lineNoCov">          0 :         match self.code {</span></a>
 <a name="158"><span class="lineNum">     158 </span><span class="lineNoCov">          0 :             StatusCode::GetHeadersMissCommonAncestors =&gt; Some(SYNC_USELESS_BAN_TIME),</span></a>
 <a name="159"><span class="lineNum">     159 </span><span class="lineNoCov">          0 :             _ =&gt; Some(BAD_MESSAGE_BAN_TIME),</span></a>
 <a name="160"><span class="lineNum">     160 </span>            :         }</a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         15 :     }</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         10 :     }</span></a>
 <a name="162"><span class="lineNum">     162 </span>            : </a>
 <a name="163"><span class="lineNum">     163 </span>            :     /// Whether should output a warning log</a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         15 :     pub fn should_warn(&amp;self) -&gt; bool {</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         15 :         self.code as u16 &gt;= 500</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         15 :     }</span></a>
+<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         10 :     pub fn should_warn(&amp;self) -&gt; bool {</span></a>
+<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         10 :         self.code as u16 &gt;= 500</span></a>
+<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         10 :     }</span></a>
 <a name="167"><span class="lineNum">     167 </span>            : </a>
 <a name="168"><span class="lineNum">     168 </span>            :     /// Status code</a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">         15 :     pub fn code(&amp;self) -&gt; StatusCode {</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">         15 :         self.code</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineCov">         15 :     }</span></a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">         10 :     pub fn code(&amp;self) -&gt; StatusCode {</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">         10 :         self.code</span></a>
+<a name="171"><span class="lineNum">     171 </span><span class="lineCov">         10 :     }</span></a>
 <a name="172"><span class="lineNum">     172 </span>            : }</a>
 <a name="173"><span class="lineNum">     173 </span>            : </a>
 <a name="174"><span class="lineNum">     174 </span>            : impl PartialEq for Status {</a>
-<a name="175"><span class="lineNum">     175 </span><span class="lineCov">        132 :     fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
-<a name="176"><span class="lineNum">     176 </span><span class="lineCov">        132 :         self.code == other.code</span></a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">        132 :     }</span></a>
+<a name="175"><span class="lineNum">     175 </span><span class="lineCov">         88 :     fn eq(&amp;self, other: &amp;Self) -&gt; bool {</span></a>
+<a name="176"><span class="lineNum">     176 </span><span class="lineCov">         88 :         self.code == other.code</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">         88 :     }</span></a>
 <a name="178"><span class="lineNum">     178 </span>            : }</a>
 <a name="179"><span class="lineNum">     179 </span>            : </a>
 <a name="180"><span class="lineNum">     180 </span>            : impl Display for Status {</a>
@@ -249,9 +249,9 @@
 <a name="187"><span class="lineNum">     187 </span>            : }</a>
 <a name="188"><span class="lineNum">     188 </span>            : </a>
 <a name="189"><span class="lineNum">     189 </span>            : impl From&lt;StatusCode&gt; for Status {</a>
-<a name="190"><span class="lineNum">     190 </span><span class="lineCov">         90 :     fn from(code: StatusCode) -&gt; Self {</span></a>
-<a name="191"><span class="lineNum">     191 </span><span class="lineCov">         90 :         Self::new::&lt;&amp;str&gt;(code, None)</span></a>
-<a name="192"><span class="lineNum">     192 </span><span class="lineCov">         90 :     }</span></a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">         60 :     fn from(code: StatusCode) -&gt; Self {</span></a>
+<a name="191"><span class="lineNum">     191 </span><span class="lineCov">         60 :         Self::new::&lt;&amp;str&gt;(code, None)</span></a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineCov">         60 :     }</span></a>
 <a name="193"><span class="lineNum">     193 </span>            : }</a>
 </pre>
       </td>

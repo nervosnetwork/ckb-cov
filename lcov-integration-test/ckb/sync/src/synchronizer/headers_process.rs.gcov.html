@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">152</td>
-            <td class="headerCovTableEntry">252</td>
-            <td class="headerCovTableEntryLo">60.3 %</td>
+            <td class="headerCovTableEntry">210</td>
+            <td class="headerCovTableEntryLo">72.4 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">11</td>
@@ -103,9 +103,9 @@
 <a name="41"><span class="lineNum">      41 </span><span class="lineCov">         14 :             if let [parent, header] = &amp;window {</span></a>
 <a name="42"><span class="lineNum">      42 </span><span class="lineCov">         14 :                 if header.data().raw().parent_hash() != parent.hash() {</span></a>
 <a name="43"><span class="lineNum">      43 </span>            :                     debug!(</a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :                         &quot;header.parent_hash {} parent.hash {}&quot;,</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :                         header.parent_hash(),</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :                         parent.hash()</span></a>
+<a name="44"><span class="lineNum">      44 </span>            :                         &quot;header.parent_hash {} parent.hash {}&quot;,</a>
+<a name="45"><span class="lineNum">      45 </span>            :                         header.parent_hash(),</a>
+<a name="46"><span class="lineNum">      46 </span>            :                         parent.hash()</a>
 <a name="47"><span class="lineNum">      47 </span>            :                     );</a>
 <a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :                     return false;</span></a>
 <a name="49"><span class="lineNum">      49 </span><span class="lineCov">         14 :                 }</span></a>
@@ -127,33 +127,33 @@
 <a name="65"><span class="lineNum">      65 </span><span class="lineNoCov">          0 :             let shared_best_known = self.synchronizer.shared.state().shared_best_header();</span></a>
 <a name="66"><span class="lineNum">      66 </span><span class="lineNoCov">          0 :             let peer_best_known = self.synchronizer.peers().get_best_known_header(self.peer);</span></a>
 <a name="67"><span class="lineNum">      67 </span>            :             debug!(</a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineNoCov">          0 :                 &quot;chain: num={}, diff={:#x};&quot;,</span></a>
-<a name="69"><span class="lineNum">      69 </span><span class="lineNoCov">          0 :                 self.active_chain.tip_number(),</span></a>
-<a name="70"><span class="lineNum">      70 </span><span class="lineNoCov">          0 :                 self.active_chain.total_difficulty()</span></a>
+<a name="68"><span class="lineNum">      68 </span>            :                 &quot;chain: num={}, diff={:#x};&quot;,</a>
+<a name="69"><span class="lineNum">      69 </span>            :                 self.active_chain.tip_number(),</a>
+<a name="70"><span class="lineNum">      70 </span>            :                 self.active_chain.total_difficulty()</a>
 <a name="71"><span class="lineNum">      71 </span>            :             );</a>
 <a name="72"><span class="lineNum">      72 </span>            :             debug!(</a>
-<a name="73"><span class="lineNum">      73 </span><span class="lineNoCov">          0 :                 &quot;shared best_known_header: num={}, diff={:#x}, hash={};&quot;,</span></a>
-<a name="74"><span class="lineNum">      74 </span><span class="lineNoCov">          0 :                 shared_best_known.number(),</span></a>
-<a name="75"><span class="lineNum">      75 </span><span class="lineNoCov">          0 :                 shared_best_known.total_difficulty(),</span></a>
-<a name="76"><span class="lineNum">      76 </span><span class="lineNoCov">          0 :                 shared_best_known.hash(),</span></a>
+<a name="73"><span class="lineNum">      73 </span>            :                 &quot;shared best_known_header: num={}, diff={:#x}, hash={};&quot;,</a>
+<a name="74"><span class="lineNum">      74 </span>            :                 shared_best_known.number(),</a>
+<a name="75"><span class="lineNum">      75 </span>            :                 shared_best_known.total_difficulty(),</a>
+<a name="76"><span class="lineNum">      76 </span>            :                 shared_best_known.hash(),</a>
 <a name="77"><span class="lineNum">      77 </span>            :             );</a>
 <a name="78"><span class="lineNum">      78 </span><span class="lineNoCov">          0 :             if let Some(header) = peer_best_known {</span></a>
 <a name="79"><span class="lineNum">      79 </span>            :                 debug!(</a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineNoCov">          0 :                     &quot;peer's best_known_header: peer: {}, num={}; diff={:#x}, hash={};&quot;,</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineNoCov">          0 :                     self.peer,</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineNoCov">          0 :                     header.number(),</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineNoCov">          0 :                     header.total_difficulty(),</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineNoCov">          0 :                     header.hash()</span></a>
+<a name="80"><span class="lineNum">      80 </span>            :                     &quot;peer's best_known_header: peer: {}, num={}; diff={:#x}, hash={};&quot;,</a>
+<a name="81"><span class="lineNum">      81 </span>            :                     self.peer,</a>
+<a name="82"><span class="lineNum">      82 </span>            :                     header.number(),</a>
+<a name="83"><span class="lineNum">      83 </span>            :                     header.total_difficulty(),</a>
+<a name="84"><span class="lineNum">      84 </span>            :                     header.hash()</a>
 <a name="85"><span class="lineNum">      85 </span>            :                 );</a>
 <a name="86"><span class="lineNum">      86 </span>            :             } else {</a>
-<a name="87"><span class="lineNum">      87 </span><span class="lineNoCov">          0 :                 debug!(&quot;state: null;&quot;);</span></a>
+<a name="87"><span class="lineNum">      87 </span>            :                 debug!(&quot;state: null;&quot;);</a>
 <a name="88"><span class="lineNum">      88 </span>            :             }</a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineNoCov">          0 :             debug!(&quot;peer: {}&quot;, self.peer);</span></a>
+<a name="89"><span class="lineNum">      89 </span>            :             debug!(&quot;peer: {}&quot;, self.peer);</a>
 <a name="90"><span class="lineNum">      90 </span><span class="lineCov">          4 :         }</span></a>
 <a name="91"><span class="lineNum">      91 </span><span class="lineCov">          4 :     }</span></a>
 <a name="92"><span class="lineNum">      92 </span>            : </a>
 <a name="93"><span class="lineNum">      93 </span>            :     pub fn execute(self) -&gt; Status {</a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineNoCov">          0 :         debug!(&quot;HeadersProcess begin&quot;);</span></a>
+<a name="94"><span class="lineNum">      94 </span>            :         debug!(&quot;HeadersProcess begin&quot;);</a>
 <a name="95"><span class="lineNum">      95 </span><span class="lineCov">          4 :         let shared: &amp;SyncShared = self.synchronizer.shared();</span></a>
 <a name="96"><span class="lineNum">      96 </span><span class="lineCov">          4 :         let consensus = shared.consensus();</span></a>
 <a name="97"><span class="lineNum">      97 </span><span class="lineCov">          4 :         let headers = self</span></a>
@@ -165,12 +165,12 @@
 <a name="103"><span class="lineNum">     103 </span><span class="lineCov">          4 :             .collect::&lt;Vec&lt;_&gt;&gt;();</span></a>
 <a name="104"><span class="lineNum">     104 </span><span class="lineCov">          4 : </span></a>
 <a name="105"><span class="lineNum">     105 </span><span class="lineCov">          4 :         if headers.len() &gt; MAX_HEADERS_LEN {</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineNoCov">          0 :             warn!(&quot;HeadersProcess is oversize&quot;);</span></a>
+<a name="106"><span class="lineNum">     106 </span>            :             warn!(&quot;HeadersProcess is oversize&quot;);</a>
 <a name="107"><span class="lineNum">     107 </span><span class="lineNoCov">          0 :             return StatusCode::HeadersIsInvalid.with_context(&quot;oversize&quot;);</span></a>
 <a name="108"><span class="lineNum">     108 </span><span class="lineCov">          4 :         }</span></a>
 <a name="109"><span class="lineNum">     109 </span><span class="lineCov">          4 : </span></a>
 <a name="110"><span class="lineNum">     110 </span><span class="lineCov">          4 :         if headers.is_empty() {</span></a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineNoCov">          0 :             debug!(&quot;HeadersProcess is_empty (synchronized)&quot;);</span></a>
+<a name="111"><span class="lineNum">     111 </span>            :             debug!(&quot;HeadersProcess is_empty (synchronized)&quot;);</a>
 <a name="112"><span class="lineNum">     112 </span><span class="lineNoCov">          0 :             if let Some(mut state) = self.synchronizer.peers().state.get_mut(&amp;self.peer) {</span></a>
 <a name="113"><span class="lineNum">     113 </span><span class="lineNoCov">          0 :                 self.synchronizer</span></a>
 <a name="114"><span class="lineNum">     114 </span><span class="lineNoCov">          0 :                     .shared()</span></a>
@@ -181,7 +181,7 @@
 <a name="119"><span class="lineNum">     119 </span><span class="lineCov">          4 :         }</span></a>
 <a name="120"><span class="lineNum">     120 </span><span class="lineCov">          4 : </span></a>
 <a name="121"><span class="lineNum">     121 </span><span class="lineCov">          4 :         if !self.is_continuous(&amp;headers) {</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineNoCov">          0 :             warn!(&quot;HeadersProcess is not continuous&quot;);</span></a>
+<a name="122"><span class="lineNum">     122 </span>            :             warn!(&quot;HeadersProcess is not continuous&quot;);</a>
 <a name="123"><span class="lineNum">     123 </span><span class="lineNoCov">          0 :             return StatusCode::HeadersIsInvalid.with_context(&quot;not continuous&quot;);</span></a>
 <a name="124"><span class="lineNum">     124 </span><span class="lineCov">          4 :         }</span></a>
 <a name="125"><span class="lineNum">     125 </span><span class="lineCov">          4 : </span></a>
@@ -189,16 +189,16 @@
 <a name="127"><span class="lineNum">     127 </span><span class="lineCov">          4 :         match result.state {</span></a>
 <a name="128"><span class="lineNum">     128 </span><span class="lineCov">          4 :             ValidationState::Invalid =&gt; {</span></a>
 <a name="129"><span class="lineNum">     129 </span>            :                 debug!(</a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineNoCov">          0 :                     &quot;HeadersProcess accept_first result is invalid, error = {:?}, first header = {:?}&quot;,</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineNoCov">          0 :                     result.error, headers[0]</span></a>
+<a name="130"><span class="lineNum">     130 </span>            :                     &quot;HeadersProcess accept_first result is invalid, error = {:?}, first header = {:?}&quot;,</a>
+<a name="131"><span class="lineNum">     131 </span>            :                     result.error, headers[0]</a>
 <a name="132"><span class="lineNum">     132 </span>            :                 );</a>
 <a name="133"><span class="lineNum">     133 </span><span class="lineNoCov">          0 :                 return StatusCode::HeadersIsInvalid</span></a>
 <a name="134"><span class="lineNum">     134 </span><span class="lineNoCov">          0 :                     .with_context(format!(&quot;accept first header {:?}&quot;, headers[0]));</span></a>
 <a name="135"><span class="lineNum">     135 </span>            :             }</a>
 <a name="136"><span class="lineNum">     136 </span>            :             ValidationState::TemporaryInvalid =&gt; {</a>
 <a name="137"><span class="lineNum">     137 </span>            :                 debug!(</a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineNoCov">          0 :                     &quot;HeadersProcess accept_first result is temporary invalid, first header = {:?}&quot;,</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineNoCov">          0 :                     headers[0]</span></a>
+<a name="138"><span class="lineNum">     138 </span>            :                     &quot;HeadersProcess accept_first result is temporary invalid, first header = {:?}&quot;,</a>
+<a name="139"><span class="lineNum">     139 </span>            :                     headers[0]</a>
 <a name="140"><span class="lineNum">     140 </span>            :                 );</a>
 <a name="141"><span class="lineNum">     141 </span><span class="lineNoCov">          0 :                 return Status::ok();</span></a>
 <a name="142"><span class="lineNum">     142 </span>            :             }</a>
@@ -215,16 +215,16 @@
 <a name="153"><span class="lineNum">     153 </span><span class="lineCov">         14 :             match result.state {</span></a>
 <a name="154"><span class="lineNum">     154 </span><span class="lineCov">         14 :                 ValidationState::Invalid =&gt; {</span></a>
 <a name="155"><span class="lineNum">     155 </span>            :                     debug!(</a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineNoCov">          0 :                         &quot;HeadersProcess accept result is invalid, error = {:?}, header = {:?}&quot;,</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineNoCov">          0 :                         result.error, headers,</span></a>
+<a name="156"><span class="lineNum">     156 </span>            :                         &quot;HeadersProcess accept result is invalid, error = {:?}, header = {:?}&quot;,</a>
+<a name="157"><span class="lineNum">     157 </span>            :                         result.error, headers,</a>
 <a name="158"><span class="lineNum">     158 </span>            :                     );</a>
 <a name="159"><span class="lineNum">     159 </span><span class="lineNoCov">          0 :                     return StatusCode::HeadersIsInvalid</span></a>
 <a name="160"><span class="lineNum">     160 </span><span class="lineNoCov">          0 :                         .with_context(format!(&quot;accept header {:?}&quot;, header));</span></a>
 <a name="161"><span class="lineNum">     161 </span>            :                 }</a>
 <a name="162"><span class="lineNum">     162 </span>            :                 ValidationState::TemporaryInvalid =&gt; {</a>
 <a name="163"><span class="lineNum">     163 </span>            :                     debug!(</a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineNoCov">          0 :                         &quot;HeadersProcess accept result is temporary invalid, header = {:?}&quot;,</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineNoCov">          0 :                         header</span></a>
+<a name="164"><span class="lineNum">     164 </span>            :                         &quot;HeadersProcess accept result is temporary invalid, header = {:?}&quot;,</a>
+<a name="165"><span class="lineNum">     165 </span>            :                         header</a>
 <a name="166"><span class="lineNum">     166 </span>            :                     );</a>
 <a name="167"><span class="lineNum">     167 </span><span class="lineNoCov">          0 :                     return Status::ok();</span></a>
 <a name="168"><span class="lineNum">     168 </span>            :                 }</a>
@@ -258,7 +258,7 @@
 <a name="196"><span class="lineNum">     196 </span><span class="lineCov">          3 :             &amp;&amp; headers.len() != MAX_HEADERS_LEN</span></a>
 <a name="197"><span class="lineNum">     197 </span><span class="lineCov">          3 :             &amp;&amp; (!peer_flags.is_protect &amp;&amp; !peer_flags.is_whitelist &amp;&amp; peer_flags.is_outbound)</span></a>
 <a name="198"><span class="lineNum">     198 </span>            :         {</a>
-<a name="199"><span class="lineNum">     199 </span><span class="lineNoCov">          0 :             debug!(&quot;Disconnect peer({}) is unprotected outbound&quot;, self.peer);</span></a>
+<a name="199"><span class="lineNum">     199 </span>            :             debug!(&quot;Disconnect peer({}) is unprotected outbound&quot;, self.peer);</a>
 <a name="200"><span class="lineNum">     200 </span><span class="lineNoCov">          0 :             if let Err(err) = self</span></a>
 <a name="201"><span class="lineNum">     201 </span><span class="lineNoCov">          0 :                 .nc</span></a>
 <a name="202"><span class="lineNum">     202 </span><span class="lineNoCov">          0 :                 .disconnect(self.peer, &quot;useless outbound peer in IBD&quot;)</span></a>
@@ -307,9 +307,9 @@
 <a name="245"><span class="lineNum">     245 </span><span class="lineCov">         15 :     pub fn non_contextual_check(&amp;self, state: &amp;mut ValidationResult) -&gt; Result&lt;(), bool&gt; {</span></a>
 <a name="246"><span class="lineNum">     246 </span><span class="lineCov">         15 :         self.verifier.verify(self.header).map_err(|error| {</span></a>
 <a name="247"><span class="lineNum">     247 </span>            :             debug!(</a>
-<a name="248"><span class="lineNum">     248 </span><span class="lineNoCov">          0 :                 &quot;HeadersProcess accept {:?} error {:?}&quot;,</span></a>
-<a name="249"><span class="lineNum">     249 </span><span class="lineNoCov">          0 :                 self.header.number(),</span></a>
-<a name="250"><span class="lineNum">     250 </span><span class="lineNoCov">          0 :                 error</span></a>
+<a name="248"><span class="lineNum">     248 </span>            :                 &quot;HeadersProcess accept {:?} error {:?}&quot;,</a>
+<a name="249"><span class="lineNum">     249 </span>            :                 self.header.number(),</a>
+<a name="250"><span class="lineNum">     250 </span>            :                 error</a>
 <a name="251"><span class="lineNum">     251 </span>            :             );</a>
 <a name="252"><span class="lineNum">     252 </span>            :             // HeaderVerifier return HeaderError or UnknownParentError</a>
 <a name="253"><span class="lineNum">     253 </span><span class="lineNoCov">          0 :             if let Some(header_error) = error.downcast_ref::&lt;HeaderError&gt;() {</span></a>
@@ -359,9 +359,9 @@
 <a name="297"><span class="lineNum">     297 </span><span class="lineCov">         15 : </span></a>
 <a name="298"><span class="lineNum">     298 </span><span class="lineCov">         15 :         if self.prev_block_check(&amp;mut result).is_err() {</span></a>
 <a name="299"><span class="lineNum">     299 </span>            :             debug!(</a>
-<a name="300"><span class="lineNum">     300 </span><span class="lineNoCov">          0 :                 &quot;HeadersProcess reject invalid-parent header: {} {}&quot;,</span></a>
-<a name="301"><span class="lineNum">     301 </span><span class="lineNoCov">          0 :                 self.header.number(),</span></a>
-<a name="302"><span class="lineNum">     302 </span><span class="lineNoCov">          0 :                 self.header.hash(),</span></a>
+<a name="300"><span class="lineNum">     300 </span>            :                 &quot;HeadersProcess reject invalid-parent header: {} {}&quot;,</a>
+<a name="301"><span class="lineNum">     301 </span>            :                 self.header.number(),</a>
+<a name="302"><span class="lineNum">     302 </span>            :                 self.header.hash(),</a>
 <a name="303"><span class="lineNum">     303 </span>            :             );</a>
 <a name="304"><span class="lineNum">     304 </span><span class="lineNoCov">          0 :             state.insert_block_status(self.header.hash(), BlockStatus::BLOCK_INVALID);</span></a>
 <a name="305"><span class="lineNum">     305 </span><span class="lineNoCov">          0 :             return result;</span></a>
@@ -369,9 +369,9 @@
 <a name="307"><span class="lineNum">     307 </span>            : </a>
 <a name="308"><span class="lineNum">     308 </span><span class="lineCov">         15 :         if let Some(is_invalid) = self.non_contextual_check(&amp;mut result).err() {</span></a>
 <a name="309"><span class="lineNum">     309 </span>            :             debug!(</a>
-<a name="310"><span class="lineNum">     310 </span><span class="lineNoCov">          0 :                 &quot;HeadersProcess reject non-contextual header: {} {}&quot;,</span></a>
-<a name="311"><span class="lineNum">     311 </span><span class="lineNoCov">          0 :                 self.header.number(),</span></a>
-<a name="312"><span class="lineNum">     312 </span><span class="lineNoCov">          0 :                 self.header.hash(),</span></a>
+<a name="310"><span class="lineNum">     310 </span>            :                 &quot;HeadersProcess reject non-contextual header: {} {}&quot;,</a>
+<a name="311"><span class="lineNum">     311 </span>            :                 self.header.number(),</a>
+<a name="312"><span class="lineNum">     312 </span>            :                 self.header.hash(),</a>
 <a name="313"><span class="lineNum">     313 </span>            :             );</a>
 <a name="314"><span class="lineNum">     314 </span><span class="lineNoCov">          0 :             if is_invalid {</span></a>
 <a name="315"><span class="lineNum">     315 </span><span class="lineNoCov">          0 :                 state.insert_block_status(self.header.hash(), BlockStatus::BLOCK_INVALID);</span></a>
@@ -381,9 +381,9 @@
 <a name="319"><span class="lineNum">     319 </span><span class="lineCov">         15 : </span></a>
 <a name="320"><span class="lineNum">     320 </span><span class="lineCov">         15 :         if self.version_check(&amp;mut result).is_err() {</span></a>
 <a name="321"><span class="lineNum">     321 </span>            :             debug!(</a>
-<a name="322"><span class="lineNum">     322 </span><span class="lineNoCov">          0 :                 &quot;HeadersProcess reject invalid-version header {} {}&quot;,</span></a>
-<a name="323"><span class="lineNum">     323 </span><span class="lineNoCov">          0 :                 self.header.number(),</span></a>
-<a name="324"><span class="lineNum">     324 </span><span class="lineNoCov">          0 :                 self.header.hash(),</span></a>
+<a name="322"><span class="lineNum">     322 </span>            :                 &quot;HeadersProcess reject invalid-version header {} {}&quot;,</a>
+<a name="323"><span class="lineNum">     323 </span>            :                 self.header.number(),</a>
+<a name="324"><span class="lineNum">     324 </span>            :                 self.header.hash(),</a>
 <a name="325"><span class="lineNum">     325 </span>            :             );</a>
 <a name="326"><span class="lineNum">     326 </span><span class="lineNoCov">          0 :             state.insert_block_status(self.header.hash(), BlockStatus::BLOCK_INVALID);</span></a>
 <a name="327"><span class="lineNum">     327 </span><span class="lineNoCov">          0 :             return result;</span></a>

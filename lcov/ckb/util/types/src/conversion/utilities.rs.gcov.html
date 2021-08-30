@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/types/src/conversion/utilities.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/types/src/conversion/utilities.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">25</td>
@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">54</td>
-            <td class="headerCovTableEntry">90</td>
-            <td class="headerCovTableEntryLo">60.0 %</td>
+            <td class="headerCovTableEntry">51</td>
+            <td class="headerCovTableEntry">87</td>
+            <td class="headerCovTableEntryLo">58.6 %</td>
           </tr>
           <tr><td><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -63,9 +63,9 @@
 <a name="1"><span class="lineNum">       1 </span>            : macro_rules! impl_conversion_for_entity_unpack {</a>
 <a name="2"><span class="lineNum">       2 </span>            :     ($original:ty, $entity:ident) =&gt; {</a>
 <a name="3"><span class="lineNum">       3 </span>            :         impl Unpack&lt;$original&gt; for packed::$entity {</a>
-<a name="4"><span class="lineNum">       4 </span><span class="lineCov">   11679700 :             fn unpack(&amp;self) -&gt; $original {</span></a>
-<a name="5"><span class="lineNum">       5 </span><span class="lineCov">   11679700 :                 self.as_reader().unpack()</span></a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">   11679700 :             }</span></a>
+<a name="4"><span class="lineNum">       4 </span><span class="lineCov">    8473816 :             fn unpack(&amp;self) -&gt; $original {</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineCov">    8473816 :                 self.as_reader().unpack()</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">    8473816 :             }</span></a>
 <a name="7"><span class="lineNum">       7 </span>            :         }</a>
 <a name="8"><span class="lineNum">       8 </span>            :     };</a>
 <a name="9"><span class="lineNum">       9 </span>            : }</a>
@@ -74,12 +74,12 @@
 <a name="12"><span class="lineNum">      12 </span>            :     ($original:ty, $entity:ident) =&gt; {</a>
 <a name="13"><span class="lineNum">      13 </span>            :         impl Pack&lt;packed::$entity&gt; for Option&lt;$original&gt; {</a>
 <a name="14"><span class="lineNum">      14 </span>            :             fn pack(&amp;self) -&gt; packed::$entity {</a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">    1208650 :                 if let Some(ref inner) = self {</span></a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">    1016462 :                     packed::$entity::new_unchecked(inner.pack().as_bytes())</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">     860100 :                 if let Some(ref inner) = self {</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">     731650 :                     packed::$entity::new_unchecked(inner.pack().as_bytes())</span></a>
 <a name="17"><span class="lineNum">      17 </span>            :                 } else {</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">     192188 :                     packed::$entity::default()</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">     128450 :                     packed::$entity::default()</span></a>
 <a name="19"><span class="lineNum">      19 </span>            :                 }</a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">    1208650 :             }</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">     860100 :             }</span></a>
 <a name="21"><span class="lineNum">      21 </span>            :         }</a>
 <a name="22"><span class="lineNum">      22 </span>            :     };</a>
 <a name="23"><span class="lineNum">      23 </span>            : }</a>
@@ -87,9 +87,9 @@
 <a name="25"><span class="lineNum">      25 </span>            : macro_rules! impl_conversion_for_option_unpack {</a>
 <a name="26"><span class="lineNum">      26 </span>            :     ($original:ty, $entity:ident, $reader:ident) =&gt; {</a>
 <a name="27"><span class="lineNum">      27 </span>            :         impl&lt;'r&gt; Unpack&lt;Option&lt;$original&gt;&gt; for packed::$reader&lt;'r&gt; {</a>
-<a name="28"><span class="lineNum">      28 </span><span class="lineCov">    2062594 :             fn unpack(&amp;self) -&gt; Option&lt;$original&gt; {</span></a>
-<a name="29"><span class="lineNum">      29 </span><span class="lineCov">    2062594 :                 self.to_opt().map(|x| x.unpack())</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">    2062594 :             }</span></a>
+<a name="28"><span class="lineNum">      28 </span><span class="lineCov">    1494050 :             fn unpack(&amp;self) -&gt; Option&lt;$original&gt; {</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineCov">    1494050 :                 self.to_opt().map(|x| x.unpack())</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">    1494050 :             }</span></a>
 <a name="31"><span class="lineNum">      31 </span>            :         }</a>
 <a name="32"><span class="lineNum">      32 </span>            :         impl_conversion_for_entity_unpack!(Option&lt;$original&gt;, $entity);</a>
 <a name="33"><span class="lineNum">      33 </span>            :     };</a>
@@ -105,11 +105,11 @@
 <a name="43"><span class="lineNum">      43 </span>            : macro_rules! impl_conversion_for_vector_pack {</a>
 <a name="44"><span class="lineNum">      44 </span>            :     ($original:ty, $entity:ident) =&gt; {</a>
 <a name="45"><span class="lineNum">      45 </span>            :         impl Pack&lt;packed::$entity&gt; for [$original] {</a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">    1210007 :             fn pack(&amp;self) -&gt; packed::$entity {</span></a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">    1210007 :                 packed::$entity::new_builder()</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">    1210007 :                     .set(self.iter().map(|v| v.pack()).collect())</span></a>
-<a name="49"><span class="lineNum">      49 </span><span class="lineCov">    1210007 :                     .build()</span></a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">    1210007 :             }</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">     876650 :             fn pack(&amp;self) -&gt; packed::$entity {</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">     876650 :                 packed::$entity::new_builder()</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">     876650 :                     .set(self.iter().map(|v| v.pack()).collect())</span></a>
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">     876650 :                     .build()</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">     876650 :             }</span></a>
 <a name="51"><span class="lineNum">      51 </span>            :         }</a>
 <a name="52"><span class="lineNum">      52 </span>            :     };</a>
 <a name="53"><span class="lineNum">      53 </span>            : }</a>
@@ -117,9 +117,9 @@
 <a name="55"><span class="lineNum">      55 </span>            : macro_rules! impl_conversion_for_vector_unpack {</a>
 <a name="56"><span class="lineNum">      56 </span>            :     ($original:ty, $entity:ident, $reader:ident) =&gt; {</a>
 <a name="57"><span class="lineNum">      57 </span>            :         impl&lt;'r&gt; Unpack&lt;Vec&lt;$original&gt;&gt; for packed::$reader&lt;'r&gt; {</a>
-<a name="58"><span class="lineNum">      58 </span><span class="lineCov">    2062663 :             fn unpack(&amp;self) -&gt; Vec&lt;$original&gt; {</span></a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">    2062663 :                 self.iter().map(|x| x.unpack()).collect()</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">    2062663 :             }</span></a>
+<a name="58"><span class="lineNum">      58 </span><span class="lineCov">    1494900 :             fn unpack(&amp;self) -&gt; Vec&lt;$original&gt; {</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">    1494900 :                 self.iter().map(|x| x.unpack()).collect()</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">    1494900 :             }</span></a>
 <a name="61"><span class="lineNum">      61 </span>            :         }</a>
 <a name="62"><span class="lineNum">      62 </span>            :         impl_conversion_for_entity_unpack!(Vec&lt;$original&gt;, $entity);</a>
 <a name="63"><span class="lineNum">      63 </span>            :     };</a>
@@ -136,12 +136,12 @@
 <a name="74"><span class="lineNum">      74 </span>            :     ($original:ident, $entity:ident) =&gt; {</a>
 <a name="75"><span class="lineNum">      75 </span>            :         impl Pack&lt;packed::$entity&gt; for Option&lt;packed::$original&gt; {</a>
 <a name="76"><span class="lineNum">      76 </span>            :             fn pack(&amp;self) -&gt; packed::$entity {</a>
-<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      30774 :                 if let Some(ref inner) = self {</span></a>
-<a name="78"><span class="lineNum">      78 </span><span class="lineCov">      28980 :                     packed::$entity::new_unchecked(inner.as_bytes())</span></a>
+<a name="77"><span class="lineNum">      77 </span><span class="lineCov">      24700 :                 if let Some(ref inner) = self {</span></a>
+<a name="78"><span class="lineNum">      78 </span><span class="lineCov">      22800 :                     packed::$entity::new_unchecked(inner.as_bytes())</span></a>
 <a name="79"><span class="lineNum">      79 </span>            :                 } else {</a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">       1794 :                     packed::$entity::default()</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">       1900 :                     packed::$entity::default()</span></a>
 <a name="81"><span class="lineNum">      81 </span>            :                 }</a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">      30774 :             }</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">      24700 :             }</span></a>
 <a name="83"><span class="lineNum">      83 </span>            :         }</a>
 <a name="84"><span class="lineNum">      84 </span>            :     };</a>
 <a name="85"><span class="lineNum">      85 </span>            : }</a>
@@ -152,9 +152,9 @@
 <a name="90"><span class="lineNum">      90 </span>            :         where</a>
 <a name="91"><span class="lineNum">      91 </span>            :             T: IntoIterator&lt;Item = packed::$item&gt;,</a>
 <a name="92"><span class="lineNum">      92 </span>            :         {</a>
-<a name="93"><span class="lineNum">      93 </span><span class="lineCov">   11086371 :             fn pack(self) -&gt; packed::$vec {</span></a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">   11086371 :                 packed::$vec::new_builder().extend(self).build()</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">   11086371 :             }</span></a>
+<a name="93"><span class="lineNum">      93 </span><span class="lineCov">    8055976 :             fn pack(self) -&gt; packed::$vec {</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">    8055976 :                 packed::$vec::new_builder().extend(self).build()</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">    8055976 :             }</span></a>
 <a name="96"><span class="lineNum">      96 </span>            :         }</a>
 <a name="97"><span class="lineNum">      97 </span>            :     };</a>
 <a name="98"><span class="lineNum">      98 </span>            : }</a>

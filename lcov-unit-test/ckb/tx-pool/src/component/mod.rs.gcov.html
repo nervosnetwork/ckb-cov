@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -69,21 +69,24 @@
 <a name="7"><span class="lineNum">       7 </span>            : pub(crate) mod pending;</a>
 <a name="8"><span class="lineNum">       8 </span>            : pub(crate) mod proposed;</a>
 <a name="9"><span class="lineNum">       9 </span>            : </a>
-<a name="10"><span class="lineNum">      10 </span>            : pub use self::entry::TxEntry;</a>
-<a name="11"><span class="lineNum">      11 </span>            : </a>
-<a name="12"><span class="lineNum">      12 </span>            : /// Equal to MAX_BLOCK_BYTES / MAX_BLOCK_CYCLES, see ckb-chain-spec.</a>
-<a name="13"><span class="lineNum">      13 </span>            : /// The precision is set so that the difference between MAX_BLOCK_CYCLES * DEFAULT_BYTES_PER_CYCLES</a>
-<a name="14"><span class="lineNum">      14 </span>            : /// and MAX_BLOCK_BYTES is less than 1.</a>
-<a name="15"><span class="lineNum">      15 </span>            : const DEFAULT_BYTES_PER_CYCLES: f64 = 0.000_170_571_4_f64;</a>
-<a name="16"><span class="lineNum">      16 </span>            : </a>
-<a name="17"><span class="lineNum">      17 </span>            : /// Virtual bytes(aka vbytes) is a concept to unify the size and cycles of a transaction,</a>
-<a name="18"><span class="lineNum">      18 </span>            : /// tx_pool use vbytes to estimate transaction fee rate.</a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">       3560 : pub(crate) fn get_transaction_virtual_bytes(tx_size: usize, cycles: u64) -&gt; u64 {</span></a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">       3560 :     std::cmp::max(</span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">       3560 :         tx_size as u64,</span></a>
-<a name="22"><span class="lineNum">      22 </span><span class="lineCov">       3560 :         (cycles as f64 * DEFAULT_BYTES_PER_CYCLES) as u64,</span></a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">       3560 :     )</span></a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">       3560 : }</span></a>
+<a name="10"><span class="lineNum">      10 </span>            : #[cfg(test)]</a>
+<a name="11"><span class="lineNum">      11 </span>            : mod tests;</a>
+<a name="12"><span class="lineNum">      12 </span>            : </a>
+<a name="13"><span class="lineNum">      13 </span>            : pub use self::entry::TxEntry;</a>
+<a name="14"><span class="lineNum">      14 </span>            : </a>
+<a name="15"><span class="lineNum">      15 </span>            : /// Equal to MAX_BLOCK_BYTES / MAX_BLOCK_CYCLES, see ckb-chain-spec.</a>
+<a name="16"><span class="lineNum">      16 </span>            : /// The precision is set so that the difference between MAX_BLOCK_CYCLES * DEFAULT_BYTES_PER_CYCLES</a>
+<a name="17"><span class="lineNum">      17 </span>            : /// and MAX_BLOCK_BYTES is less than 1.</a>
+<a name="18"><span class="lineNum">      18 </span>            : const DEFAULT_BYTES_PER_CYCLES: f64 = 0.000_170_571_4_f64;</a>
+<a name="19"><span class="lineNum">      19 </span>            : </a>
+<a name="20"><span class="lineNum">      20 </span>            : /// Virtual bytes(aka vbytes) is a concept to unify the size and cycles of a transaction,</a>
+<a name="21"><span class="lineNum">      21 </span>            : /// tx_pool use vbytes to estimate transaction fee rate.</a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineCov">       1446 : pub(crate) fn get_transaction_virtual_bytes(tx_size: usize, cycles: u64) -&gt; u64 {</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineCov">       1446 :     std::cmp::max(</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">       1446 :         tx_size as u64,</span></a>
+<a name="25"><span class="lineNum">      25 </span><span class="lineCov">       1446 :         (cycles as f64 * DEFAULT_BYTES_PER_CYCLES) as u64,</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineCov">       1446 :     )</span></a>
+<a name="27"><span class="lineNum">      27 </span><span class="lineCov">       1446 : }</span></a>
 </pre>
       </td>
     </tr>

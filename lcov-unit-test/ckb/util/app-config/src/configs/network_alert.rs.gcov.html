@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 16:20:48</td>
+            <td class="headerValue">2021-08-30 15:39:37</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -64,7 +64,7 @@
 <a name="2"><span class="lineNum">       2 </span>            : use serde::{Deserialize, Serialize};</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
 <a name="4"><span class="lineNum">       4 </span>            : /// Network alert config options.</a>
-<a name="5"><span class="lineNum">       5 </span><span class="lineCov">        120 : #[derive(Clone, Debug, Serialize, Deserialize)]</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineCov">         60 : #[derive(Clone, Debug, Serialize, Deserialize)]</span></a>
 <a name="6"><span class="lineNum">       6 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="7"><span class="lineNum">       7 </span>            : pub struct Config {</a>
 <a name="8"><span class="lineNum">       8 </span>            :     /// The minimual number of required signatures to send a network alert.</a>
@@ -74,10 +74,10 @@
 <a name="12"><span class="lineNum">      12 </span>            : }</a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
 <a name="14"><span class="lineNum">      14 </span>            : impl Default for Config {</a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         30 :     fn default() -&gt; Self {</span></a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">         30 :         let alert_config = include_bytes!(&quot;./alert_signature.toml&quot;);</span></a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">         30 :         toml::from_slice(&amp;alert_config[..]).expect(&quot;alert system config&quot;)</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">         30 :     }</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         15 :     fn default() -&gt; Self {</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">         15 :         let alert_config = include_bytes!(&quot;./alert_signature.toml&quot;);</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">         15 :         toml::from_slice(&amp;alert_config[..]).expect(&quot;alert system config&quot;)</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">         15 :     }</span></a>
 <a name="19"><span class="lineNum">      19 </span>            : }</a>
 </pre>
       </td>

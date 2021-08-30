@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/spec/src/hardfork.rs</title>
+  <title>LCOV - Unit + Integration - ckb/spec/src/hardfork.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">37</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">11</td>
@@ -70,7 +70,7 @@
 <a name="8"><span class="lineNum">       8 </span>            : use serde::{Deserialize, Serialize};</a>
 <a name="9"><span class="lineNum">       9 </span>            : </a>
 <a name="10"><span class="lineNum">      10 </span>            : /// Hard forks parameters for spec.</a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">        810 : #[derive(Default, Clone, PartialEq, Eq, Debug, Serialize, Deserialize)]</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineCov">        570 : #[derive(Default, Clone, PartialEq, Eq, Debug, Serialize, Deserialize)]</span></a>
 <a name="12"><span class="lineNum">      12 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="13"><span class="lineNum">      13 </span>            : pub struct HardForkConfig {</a>
 <a name="14"><span class="lineNum">      14 </span>            :     /// Use input cell committing block timestamp as the start time for the relative timestamp in `since`.</a>
@@ -139,50 +139,50 @@
 <a name="77"><span class="lineNum">      77 </span>            : impl HardForkConfig {</a>
 <a name="78"><span class="lineNum">      78 </span>            :     /// If all parameters which have been set are correct for mainnet, then</a>
 <a name="79"><span class="lineNum">      79 </span>            :     /// sets all `None` to default values, otherwise, return an `Err`.</a>
-<a name="80"><span class="lineNum">      80 </span><span class="lineCov">         54 :     pub fn complete_mainnet(&amp;self) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
-<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         54 :         let mut b = HardForkSwitch::new_builder();</span></a>
-<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         54 :         b = self.update_builder_via_edition(b, mainnet::CKB2021_START_EPOCH)?;</span></a>
-<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         54 :         b.build()</span></a>
-<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         54 :     }</span></a>
+<a name="80"><span class="lineNum">      80 </span><span class="lineCov">         38 :     pub fn complete_mainnet(&amp;self) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
+<a name="81"><span class="lineNum">      81 </span><span class="lineCov">         38 :         let mut b = HardForkSwitch::new_builder();</span></a>
+<a name="82"><span class="lineNum">      82 </span><span class="lineCov">         38 :         b = self.update_builder_via_edition(b, mainnet::CKB2021_START_EPOCH)?;</span></a>
+<a name="83"><span class="lineNum">      83 </span><span class="lineCov">         38 :         b.build()</span></a>
+<a name="84"><span class="lineNum">      84 </span><span class="lineCov">         38 :     }</span></a>
 <a name="85"><span class="lineNum">      85 </span>            : </a>
 <a name="86"><span class="lineNum">      86 </span>            :     /// If all parameters which have been set are correct for testnet, then</a>
 <a name="87"><span class="lineNum">      87 </span>            :     /// sets all `None` to default values, otherwise, return an `Err`.</a>
-<a name="88"><span class="lineNum">      88 </span><span class="lineCov">        309 :     pub fn complete_testnet(&amp;self) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
-<a name="89"><span class="lineNum">      89 </span><span class="lineCov">        309 :         let mut b = HardForkSwitch::new_builder();</span></a>
-<a name="90"><span class="lineNum">      90 </span><span class="lineCov">        309 :         b = self.update_builder_via_edition(b, testnet::CKB2021_START_EPOCH)?;</span></a>
-<a name="91"><span class="lineNum">      91 </span><span class="lineCov">        309 :         b.build()</span></a>
-<a name="92"><span class="lineNum">      92 </span><span class="lineCov">        309 :     }</span></a>
+<a name="88"><span class="lineNum">      88 </span><span class="lineCov">        434 :     pub fn complete_testnet(&amp;self) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
+<a name="89"><span class="lineNum">      89 </span><span class="lineCov">        434 :         let mut b = HardForkSwitch::new_builder();</span></a>
+<a name="90"><span class="lineNum">      90 </span><span class="lineCov">        434 :         b = self.update_builder_via_edition(b, testnet::CKB2021_START_EPOCH)?;</span></a>
+<a name="91"><span class="lineNum">      91 </span><span class="lineCov">        434 :         b.build()</span></a>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">        434 :     }</span></a>
 <a name="93"><span class="lineNum">      93 </span>            : </a>
-<a name="94"><span class="lineNum">      94 </span><span class="lineCov">        363 :     fn update_builder_via_edition(</span></a>
-<a name="95"><span class="lineNum">      95 </span><span class="lineCov">        363 :         &amp;self,</span></a>
-<a name="96"><span class="lineNum">      96 </span><span class="lineCov">        363 :         builder: HardForkSwitchBuilder,</span></a>
-<a name="97"><span class="lineNum">      97 </span><span class="lineCov">        363 :         ckb2021: EpochNumber,</span></a>
-<a name="98"><span class="lineNum">      98 </span><span class="lineCov">        363 :     ) -&gt; Result&lt;HardForkSwitchBuilder, String&gt; {</span></a>
-<a name="99"><span class="lineNum">      99 </span><span class="lineCov">        363 :         let builder = builder</span></a>
-<a name="100"><span class="lineNum">     100 </span><span class="lineCov">        363 :             .rfc_0028(check_default!(self, rfc_0028, ckb2021))</span></a>
-<a name="101"><span class="lineNum">     101 </span><span class="lineCov">        363 :             .rfc_0029(check_default!(self, rfc_0029, ckb2021))</span></a>
-<a name="102"><span class="lineNum">     102 </span><span class="lineCov">        363 :             .rfc_0030(check_default!(self, rfc_0030, ckb2021))</span></a>
-<a name="103"><span class="lineNum">     103 </span><span class="lineCov">        363 :             .rfc_0031(check_default!(self, rfc_0031, ckb2021))</span></a>
-<a name="104"><span class="lineNum">     104 </span><span class="lineCov">        363 :             .rfc_0032(check_default!(self, rfc_0032, ckb2021))</span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        363 :             .rfc_0036(check_default!(self, rfc_0036, ckb2021))</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">        363 :             .rfc_0038(check_default!(self, rfc_0038, ckb2021));</span></a>
-<a name="107"><span class="lineNum">     107 </span><span class="lineCov">        363 :         Ok(builder)</span></a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">        363 :     }</span></a>
+<a name="94"><span class="lineNum">      94 </span><span class="lineCov">        472 :     fn update_builder_via_edition(</span></a>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">        472 :         &amp;self,</span></a>
+<a name="96"><span class="lineNum">      96 </span><span class="lineCov">        472 :         builder: HardForkSwitchBuilder,</span></a>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">        472 :         ckb2021: EpochNumber,</span></a>
+<a name="98"><span class="lineNum">      98 </span><span class="lineCov">        472 :     ) -&gt; Result&lt;HardForkSwitchBuilder, String&gt; {</span></a>
+<a name="99"><span class="lineNum">      99 </span><span class="lineCov">        472 :         let builder = builder</span></a>
+<a name="100"><span class="lineNum">     100 </span><span class="lineCov">        472 :             .rfc_0028(check_default!(self, rfc_0028, ckb2021))</span></a>
+<a name="101"><span class="lineNum">     101 </span><span class="lineCov">        472 :             .rfc_0029(check_default!(self, rfc_0029, ckb2021))</span></a>
+<a name="102"><span class="lineNum">     102 </span><span class="lineCov">        472 :             .rfc_0030(check_default!(self, rfc_0030, ckb2021))</span></a>
+<a name="103"><span class="lineNum">     103 </span><span class="lineCov">        472 :             .rfc_0031(check_default!(self, rfc_0031, ckb2021))</span></a>
+<a name="104"><span class="lineNum">     104 </span><span class="lineCov">        472 :             .rfc_0032(check_default!(self, rfc_0032, ckb2021))</span></a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        472 :             .rfc_0036(check_default!(self, rfc_0036, ckb2021))</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">        472 :             .rfc_0038(check_default!(self, rfc_0038, ckb2021));</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">        472 :         Ok(builder)</span></a>
+<a name="108"><span class="lineNum">     108 </span><span class="lineCov">        472 :     }</span></a>
 <a name="109"><span class="lineNum">     109 </span>            : </a>
 <a name="110"><span class="lineNum">     110 </span>            :     /// Converts to a hard fork switch.</a>
 <a name="111"><span class="lineNum">     111 </span>            :     ///</a>
 <a name="112"><span class="lineNum">     112 </span>            :     /// Enable features which are set to `None` at the user provided epoch.</a>
-<a name="113"><span class="lineNum">     113 </span><span class="lineCov">        108 :     pub fn complete_with_default(&amp;self, default: EpochNumber) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
-<a name="114"><span class="lineNum">     114 </span><span class="lineCov">        108 :         HardForkSwitch::new_builder()</span></a>
-<a name="115"><span class="lineNum">     115 </span><span class="lineCov">        108 :             .rfc_0028(self.rfc_0028.unwrap_or(default))</span></a>
-<a name="116"><span class="lineNum">     116 </span><span class="lineCov">        108 :             .rfc_0029(self.rfc_0029.unwrap_or(default))</span></a>
-<a name="117"><span class="lineNum">     117 </span><span class="lineCov">        108 :             .rfc_0030(self.rfc_0030.unwrap_or(default))</span></a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">        108 :             .rfc_0031(self.rfc_0031.unwrap_or(default))</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">        108 :             .rfc_0032(self.rfc_0032.unwrap_or(default))</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">        108 :             .rfc_0036(self.rfc_0036.unwrap_or(default))</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">        108 :             .rfc_0038(self.rfc_0038.unwrap_or(default))</span></a>
-<a name="122"><span class="lineNum">     122 </span><span class="lineCov">        108 :             .build()</span></a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">        108 :     }</span></a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         76 :     pub fn complete_with_default(&amp;self, default: EpochNumber) -&gt; Result&lt;HardForkSwitch, String&gt; {</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">         76 :         HardForkSwitch::new_builder()</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         76 :             .rfc_0028(self.rfc_0028.unwrap_or(default))</span></a>
+<a name="116"><span class="lineNum">     116 </span><span class="lineCov">         76 :             .rfc_0029(self.rfc_0029.unwrap_or(default))</span></a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">         76 :             .rfc_0030(self.rfc_0030.unwrap_or(default))</span></a>
+<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         76 :             .rfc_0031(self.rfc_0031.unwrap_or(default))</span></a>
+<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         76 :             .rfc_0032(self.rfc_0032.unwrap_or(default))</span></a>
+<a name="120"><span class="lineNum">     120 </span><span class="lineCov">         76 :             .rfc_0036(self.rfc_0036.unwrap_or(default))</span></a>
+<a name="121"><span class="lineNum">     121 </span><span class="lineCov">         76 :             .rfc_0038(self.rfc_0038.unwrap_or(default))</span></a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         76 :             .build()</span></a>
+<a name="123"><span class="lineNum">     123 </span><span class="lineCov">         76 :     }</span></a>
 <a name="124"><span class="lineNum">     124 </span>            : }</a>
 </pre>
       </td>

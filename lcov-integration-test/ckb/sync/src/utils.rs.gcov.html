@@ -32,12 +32,12 @@
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">39</td>
-            <td class="headerCovTableEntry">58</td>
-            <td class="headerCovTableEntryLo">67.2 %</td>
+            <td class="headerCovTableEntry">57</td>
+            <td class="headerCovTableEntryLo">68.4 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 17:27:19</td>
+            <td class="headerValue">2021-08-30 15:55:54</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -80,7 +80,7 @@
 <a name="18"><span class="lineNum">      18 </span><span class="lineCov">         19 :     if let Err(err) = nc.send_message(protocol_id, peer_index, message.as_bytes()) {</span></a>
 <a name="19"><span class="lineNum">      19 </span><span class="lineNoCov">          0 :         let name = message_name(protocol_id, message);</span></a>
 <a name="20"><span class="lineNum">      20 </span><span class="lineNoCov">          0 :         let error_message = format!(&quot;nc.send_message {}, error: {:?}&quot;, name, err);</span></a>
-<a name="21"><span class="lineNum">      21 </span><span class="lineNoCov">          0 :         ckb_logger::error!(&quot;{}&quot;, error_message);</span></a>
+<a name="21"><span class="lineNum">      21 </span>            :         ckb_logger::error!(&quot;{}&quot;, error_message);</a>
 <a name="22"><span class="lineNum">      22 </span><span class="lineNoCov">          0 :         return StatusCode::Network.with_context(error_message);</span></a>
 <a name="23"><span class="lineNum">      23 </span><span class="lineCov">         19 :     }</span></a>
 <a name="24"><span class="lineNum">      24 </span><span class="lineCov">         19 : </span></a>

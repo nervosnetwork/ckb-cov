@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - unnamed - ckb/util/logger-config/src/lib.rs</title>
+  <title>LCOV - Unit + Integration - ckb/util/logger-config/src/lib.rs</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">unnamed</td>
+            <td class="headerValue">Unit + Integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">2</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-08-24 18:15:31</td>
+            <td class="headerValue">2021-08-30 15:58:08</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">5</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          3 : //! CKB logger configurations.</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          2 : //! CKB logger configurations.</span></a>
 <a name="2"><span class="lineNum">       2 </span>            : //!</a>
 <a name="3"><span class="lineNum">       3 </span>            : //! This crate is used to configure the [CKB logger and logging service].</a>
 <a name="4"><span class="lineNum">       4 </span>            : //!</a>
@@ -77,7 +77,7 @@
 <a name="15"><span class="lineNum">      15 </span>            : /// Include configurations of the main logger and any number of extra loggers.</a>
 <a name="16"><span class="lineNum">      16 </span>            : ///</a>
 <a name="17"><span class="lineNum">      17 </span>            : /// [`Logger`]: ../ckb_logger_service/struct.Logger.html</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        540 : #[derive(Clone, Debug, Serialize, Deserialize)]</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">        360 : #[derive(Clone, Debug, Serialize, Deserialize)]</span></a>
 <a name="19"><span class="lineNum">      19 </span>            : #[serde(deny_unknown_fields)]</a>
 <a name="20"><span class="lineNum">      20 </span>            : pub struct Config {</a>
 <a name="21"><span class="lineNum">      21 </span>            :     /// An optional string which is used to build [env_logger::Filter] for the main logger.</a>
